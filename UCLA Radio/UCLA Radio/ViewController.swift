@@ -26,18 +26,9 @@ class ViewController: UIViewController {
     }
 
     @IBAction func hitPlayButton(sender: AnyObject) {
-        if (player.status == .ReadyToPlay) {
-            if (playing) {
-                player.pause()
-                playing = false
-                playButton.setTitle("Play", forState: .Normal)
-            }
-            else {
-                player.play()
-                playing = true
-                playButton.setTitle("Pause", forState: .Normal)
-            }
-        }
+        AudioStream.sharedInstance.togglePlay()
+        let title = AudioStream.sharedInstance.playing ? "Pause" : "Play"
+        playButton.setTitle(title, forState: .Normal)
     }
 
 }

@@ -16,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        AudioStream.sharedInstance.skipToLive()
         return true
     }
 
@@ -41,6 +42,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-
+    override func remoteControlReceivedWithEvent(event: UIEvent?) {
+        let stream = AudioStream.sharedInstance
+        if let subtype = event?.subtype where event?.type  == .RemoteControl {
+            
+            switch (subtype) {
+            case .RemoteControlPlay,
+                 .RemoteControlPause,
+                 .RemoteControlTogglePlayPause:
+                stream.togglePlay()
+            case .RemoteControlNextTrack:
+                stream.skipToLive()
+            default:
+                break
+            }
+        }
+    }
+    
 }
 

@@ -14,6 +14,7 @@
 		832C65EA1CD0800200B3479E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 832C65E81CD0800200B3479E /* LaunchScreen.storyboard */; };
 		832C65F51CD0800200B3479E /* UCLA_RadioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832C65F41CD0800200B3479E /* UCLA_RadioTests.swift */; };
 		832C66001CD0800200B3479E /* UCLA_RadioUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832C65FF1CD0800200B3479E /* UCLA_RadioUITests.swift */; };
+		83FD04F61CD8678D009A6350 /* AudioStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FD04F51CD8678D009A6350 /* AudioStream.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		832C65FB1CD0800200B3479E /* UCLA RadioUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "UCLA RadioUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		832C65FF1CD0800200B3479E /* UCLA_RadioUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UCLA_RadioUITests.swift; sourceTree = "<group>"; };
 		832C66011CD0800200B3479E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		83FD04F51CD8678D009A6350 /* AudioStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AudioStream.swift; path = data/AudioStream.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 			children = (
 				832C65DF1CD0800200B3479E /* AppDelegate.swift */,
 				832C65E11CD0800200B3479E /* ViewController.swift */,
+				83FD04F51CD8678D009A6350 /* AudioStream.swift */,
 				832C65E31CD0800200B3479E /* Main.storyboard */,
 				832C65E61CD0800200B3479E /* Assets.xcassets */,
 				832C65E81CD0800200B3479E /* LaunchScreen.storyboard */,
@@ -258,6 +261,7 @@
 			files = (
 				832C65E21CD0800200B3479E /* ViewController.swift in Sources */,
 				832C65E01CD0800200B3479E /* AppDelegate.swift in Sources */,
+				83FD04F61CD8678D009A6350 /* AudioStream.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -482,6 +486,7 @@
 				832C66061CD0800200B3479E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		832C66071CD0800200B3479E /* Build configuration list for PBXNativeTarget "UCLA RadioTests" */ = {
 			isa = XCConfigurationList;
@@ -490,6 +495,7 @@
 				832C66091CD0800200B3479E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		832C660A1CD0800200B3479E /* Build configuration list for PBXNativeTarget "UCLA RadioUITests" */ = {
 			isa = XCConfigurationList;
@@ -498,6 +504,7 @@
 				832C660C1CD0800200B3479E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
