@@ -1,0 +1,505 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		832C65E01CD0800200B3479E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832C65DF1CD0800200B3479E /* AppDelegate.swift */; };
+		832C65E21CD0800200B3479E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832C65E11CD0800200B3479E /* ViewController.swift */; };
+		832C65E51CD0800200B3479E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 832C65E31CD0800200B3479E /* Main.storyboard */; };
+		832C65E71CD0800200B3479E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 832C65E61CD0800200B3479E /* Assets.xcassets */; };
+		832C65EA1CD0800200B3479E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 832C65E81CD0800200B3479E /* LaunchScreen.storyboard */; };
+		832C65F51CD0800200B3479E /* UCLA_RadioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832C65F41CD0800200B3479E /* UCLA_RadioTests.swift */; };
+		832C66001CD0800200B3479E /* UCLA_RadioUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832C65FF1CD0800200B3479E /* UCLA_RadioUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		832C65F11CD0800200B3479E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 832C65D41CD0800200B3479E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 832C65DB1CD0800200B3479E;
+			remoteInfo = "UCLA Radio";
+		};
+		832C65FC1CD0800200B3479E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 832C65D41CD0800200B3479E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 832C65DB1CD0800200B3479E;
+			remoteInfo = "UCLA Radio";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		832C65DC1CD0800200B3479E /* UCLA Radio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UCLA Radio.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		832C65DF1CD0800200B3479E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		832C65E11CD0800200B3479E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		832C65E41CD0800200B3479E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		832C65E61CD0800200B3479E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		832C65E91CD0800200B3479E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		832C65EB1CD0800200B3479E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		832C65F01CD0800200B3479E /* UCLA RadioTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "UCLA RadioTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		832C65F41CD0800200B3479E /* UCLA_RadioTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UCLA_RadioTests.swift; sourceTree = "<group>"; };
+		832C65F61CD0800200B3479E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		832C65FB1CD0800200B3479E /* UCLA RadioUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "UCLA RadioUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		832C65FF1CD0800200B3479E /* UCLA_RadioUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UCLA_RadioUITests.swift; sourceTree = "<group>"; };
+		832C66011CD0800200B3479E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		832C65D91CD0800200B3479E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		832C65ED1CD0800200B3479E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		832C65F81CD0800200B3479E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		832C65D31CD0800200B3479E = {
+			isa = PBXGroup;
+			children = (
+				832C65DE1CD0800200B3479E /* UCLA Radio */,
+				832C65F31CD0800200B3479E /* UCLA RadioTests */,
+				832C65FE1CD0800200B3479E /* UCLA RadioUITests */,
+				832C65DD1CD0800200B3479E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		832C65DD1CD0800200B3479E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				832C65DC1CD0800200B3479E /* UCLA Radio.app */,
+				832C65F01CD0800200B3479E /* UCLA RadioTests.xctest */,
+				832C65FB1CD0800200B3479E /* UCLA RadioUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		832C65DE1CD0800200B3479E /* UCLA Radio */ = {
+			isa = PBXGroup;
+			children = (
+				832C65DF1CD0800200B3479E /* AppDelegate.swift */,
+				832C65E11CD0800200B3479E /* ViewController.swift */,
+				832C65E31CD0800200B3479E /* Main.storyboard */,
+				832C65E61CD0800200B3479E /* Assets.xcassets */,
+				832C65E81CD0800200B3479E /* LaunchScreen.storyboard */,
+				832C65EB1CD0800200B3479E /* Info.plist */,
+			);
+			path = "UCLA Radio";
+			sourceTree = "<group>";
+		};
+		832C65F31CD0800200B3479E /* UCLA RadioTests */ = {
+			isa = PBXGroup;
+			children = (
+				832C65F41CD0800200B3479E /* UCLA_RadioTests.swift */,
+				832C65F61CD0800200B3479E /* Info.plist */,
+			);
+			path = "UCLA RadioTests";
+			sourceTree = "<group>";
+		};
+		832C65FE1CD0800200B3479E /* UCLA RadioUITests */ = {
+			isa = PBXGroup;
+			children = (
+				832C65FF1CD0800200B3479E /* UCLA_RadioUITests.swift */,
+				832C66011CD0800200B3479E /* Info.plist */,
+			);
+			path = "UCLA RadioUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		832C65DB1CD0800200B3479E /* UCLA Radio */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 832C66041CD0800200B3479E /* Build configuration list for PBXNativeTarget "UCLA Radio" */;
+			buildPhases = (
+				832C65D81CD0800200B3479E /* Sources */,
+				832C65D91CD0800200B3479E /* Frameworks */,
+				832C65DA1CD0800200B3479E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "UCLA Radio";
+			productName = "UCLA Radio";
+			productReference = 832C65DC1CD0800200B3479E /* UCLA Radio.app */;
+			productType = "com.apple.product-type.application";
+		};
+		832C65EF1CD0800200B3479E /* UCLA RadioTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 832C66071CD0800200B3479E /* Build configuration list for PBXNativeTarget "UCLA RadioTests" */;
+			buildPhases = (
+				832C65EC1CD0800200B3479E /* Sources */,
+				832C65ED1CD0800200B3479E /* Frameworks */,
+				832C65EE1CD0800200B3479E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				832C65F21CD0800200B3479E /* PBXTargetDependency */,
+			);
+			name = "UCLA RadioTests";
+			productName = "UCLA RadioTests";
+			productReference = 832C65F01CD0800200B3479E /* UCLA RadioTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		832C65FA1CD0800200B3479E /* UCLA RadioUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 832C660A1CD0800200B3479E /* Build configuration list for PBXNativeTarget "UCLA RadioUITests" */;
+			buildPhases = (
+				832C65F71CD0800200B3479E /* Sources */,
+				832C65F81CD0800200B3479E /* Frameworks */,
+				832C65F91CD0800200B3479E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				832C65FD1CD0800200B3479E /* PBXTargetDependency */,
+			);
+			name = "UCLA RadioUITests";
+			productName = "UCLA RadioUITests";
+			productReference = 832C65FB1CD0800200B3479E /* UCLA RadioUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		832C65D41CD0800200B3479E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = ChrisLaganiere;
+				TargetAttributes = {
+					832C65DB1CD0800200B3479E = {
+						CreatedOnToolsVersion = 7.3;
+					};
+					832C65EF1CD0800200B3479E = {
+						CreatedOnToolsVersion = 7.3;
+						TestTargetID = 832C65DB1CD0800200B3479E;
+					};
+					832C65FA1CD0800200B3479E = {
+						CreatedOnToolsVersion = 7.3;
+						TestTargetID = 832C65DB1CD0800200B3479E;
+					};
+				};
+			};
+			buildConfigurationList = 832C65D71CD0800200B3479E /* Build configuration list for PBXProject "UCLA Radio" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 832C65D31CD0800200B3479E;
+			productRefGroup = 832C65DD1CD0800200B3479E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				832C65DB1CD0800200B3479E /* UCLA Radio */,
+				832C65EF1CD0800200B3479E /* UCLA RadioTests */,
+				832C65FA1CD0800200B3479E /* UCLA RadioUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		832C65DA1CD0800200B3479E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				832C65EA1CD0800200B3479E /* LaunchScreen.storyboard in Resources */,
+				832C65E71CD0800200B3479E /* Assets.xcassets in Resources */,
+				832C65E51CD0800200B3479E /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		832C65EE1CD0800200B3479E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		832C65F91CD0800200B3479E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		832C65D81CD0800200B3479E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				832C65E21CD0800200B3479E /* ViewController.swift in Sources */,
+				832C65E01CD0800200B3479E /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		832C65EC1CD0800200B3479E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				832C65F51CD0800200B3479E /* UCLA_RadioTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		832C65F71CD0800200B3479E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				832C66001CD0800200B3479E /* UCLA_RadioUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		832C65F21CD0800200B3479E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 832C65DB1CD0800200B3479E /* UCLA Radio */;
+			targetProxy = 832C65F11CD0800200B3479E /* PBXContainerItemProxy */;
+		};
+		832C65FD1CD0800200B3479E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 832C65DB1CD0800200B3479E /* UCLA Radio */;
+			targetProxy = 832C65FC1CD0800200B3479E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		832C65E31CD0800200B3479E /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				832C65E41CD0800200B3479E /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		832C65E81CD0800200B3479E /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				832C65E91CD0800200B3479E /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		832C66021CD0800200B3479E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		832C66031CD0800200B3479E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		832C66051CD0800200B3479E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "UCLA Radio/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ChrisLaganiere.UCLA-Radio";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		832C66061CD0800200B3479E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "UCLA Radio/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ChrisLaganiere.UCLA-Radio";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		832C66081CD0800200B3479E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "UCLA RadioTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ChrisLaganiere.UCLA-RadioTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UCLA Radio.app/UCLA Radio";
+			};
+			name = Debug;
+		};
+		832C66091CD0800200B3479E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "UCLA RadioTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ChrisLaganiere.UCLA-RadioTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UCLA Radio.app/UCLA Radio";
+			};
+			name = Release;
+		};
+		832C660B1CD0800200B3479E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "UCLA RadioUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ChrisLaganiere.UCLA-RadioUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = "UCLA Radio";
+			};
+			name = Debug;
+		};
+		832C660C1CD0800200B3479E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "UCLA RadioUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ChrisLaganiere.UCLA-RadioUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = "UCLA Radio";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		832C65D71CD0800200B3479E /* Build configuration list for PBXProject "UCLA Radio" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				832C66021CD0800200B3479E /* Debug */,
+				832C66031CD0800200B3479E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		832C66041CD0800200B3479E /* Build configuration list for PBXNativeTarget "UCLA Radio" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				832C66051CD0800200B3479E /* Debug */,
+				832C66061CD0800200B3479E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		832C66071CD0800200B3479E /* Build configuration list for PBXNativeTarget "UCLA RadioTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				832C66081CD0800200B3479E /* Debug */,
+				832C66091CD0800200B3479E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		832C660A1CD0800200B3479E /* Build configuration list for PBXNativeTarget "UCLA RadioUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				832C660B1CD0800200B3479E /* Debug */,
+				832C660C1CD0800200B3479E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 832C65D41CD0800200B3479E /* Project object */;
+}
