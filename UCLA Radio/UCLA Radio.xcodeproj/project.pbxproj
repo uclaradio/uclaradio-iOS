@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		80C4FF0BDD1724D747148CEA /* Pods_UCLA_Radio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65514855D8EABCF7CD92BD49 /* Pods_UCLA_Radio.framework */; };
 		832C65E01CD0800200B3479E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832C65DF1CD0800200B3479E /* AppDelegate.swift */; };
 		832C65E21CD0800200B3479E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832C65E11CD0800200B3479E /* ViewController.swift */; };
 		832C65E51CD0800200B3479E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 832C65E31CD0800200B3479E /* Main.storyboard */; };
@@ -14,6 +15,7 @@
 		832C65EA1CD0800200B3479E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 832C65E81CD0800200B3479E /* LaunchScreen.storyboard */; };
 		832C65F51CD0800200B3479E /* UCLA_RadioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832C65F41CD0800200B3479E /* UCLA_RadioTests.swift */; };
 		832C66001CD0800200B3479E /* UCLA_RadioUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832C65FF1CD0800200B3479E /* UCLA_RadioUITests.swift */; };
+		8331836B1CE179EF00DDD37B /* APIServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8331836A1CE179EF00DDD37B /* APIServices.swift */; };
 		83FD04F61CD8678D009A6350 /* AudioStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FD04F51CD8678D009A6350 /* AudioStream.swift */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +37,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3FFD9ADD0DCADD1878E89FDE /* Pods-UCLA Radio.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UCLA Radio.release.xcconfig"; path = "Pods/Target Support Files/Pods-UCLA Radio/Pods-UCLA Radio.release.xcconfig"; sourceTree = "<group>"; };
+		65514855D8EABCF7CD92BD49 /* Pods_UCLA_Radio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UCLA_Radio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6DA6C14DE284BA7CD5A4FD5A /* Pods-UCLA Radio.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UCLA Radio.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UCLA Radio/Pods-UCLA Radio.debug.xcconfig"; sourceTree = "<group>"; };
 		832C65DC1CD0800200B3479E /* UCLA Radio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UCLA Radio.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		832C65DF1CD0800200B3479E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		832C65E11CD0800200B3479E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -48,6 +53,7 @@
 		832C65FB1CD0800200B3479E /* UCLA RadioUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "UCLA RadioUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		832C65FF1CD0800200B3479E /* UCLA_RadioUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UCLA_RadioUITests.swift; sourceTree = "<group>"; };
 		832C66011CD0800200B3479E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8331836A1CE179EF00DDD37B /* APIServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIServices.swift; path = data/APIServices.swift; sourceTree = "<group>"; };
 		83FD04F51CD8678D009A6350 /* AudioStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AudioStream.swift; path = data/AudioStream.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -56,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80C4FF0BDD1724D747148CEA /* Pods_UCLA_Radio.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +83,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		61DD12C715DFFC887DDBEFF3 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6DA6C14DE284BA7CD5A4FD5A /* Pods-UCLA Radio.debug.xcconfig */,
+				3FFD9ADD0DCADD1878E89FDE /* Pods-UCLA Radio.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		832C65D31CD0800200B3479E = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +99,8 @@
 				832C65F31CD0800200B3479E /* UCLA RadioTests */,
 				832C65FE1CD0800200B3479E /* UCLA RadioUITests */,
 				832C65DD1CD0800200B3479E /* Products */,
+				61DD12C715DFFC887DDBEFF3 /* Pods */,
+				B4A7438CAD3002B88C0F22BD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,6 +117,7 @@
 		832C65DE1CD0800200B3479E /* UCLA Radio */ = {
 			isa = PBXGroup;
 			children = (
+				8331836A1CE179EF00DDD37B /* APIServices.swift */,
 				832C65DF1CD0800200B3479E /* AppDelegate.swift */,
 				832C65E11CD0800200B3479E /* ViewController.swift */,
 				83FD04F51CD8678D009A6350 /* AudioStream.swift */,
@@ -128,6 +147,14 @@
 			path = "UCLA RadioUITests";
 			sourceTree = "<group>";
 		};
+		B4A7438CAD3002B88C0F22BD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				65514855D8EABCF7CD92BD49 /* Pods_UCLA_Radio.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,9 +162,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 832C66041CD0800200B3479E /* Build configuration list for PBXNativeTarget "UCLA Radio" */;
 			buildPhases = (
+				EF00B5B0562A19365C2F71C7 /* 📦 Check Pods Manifest.lock */,
 				832C65D81CD0800200B3479E /* Sources */,
 				832C65D91CD0800200B3479E /* Frameworks */,
 				832C65DA1CD0800200B3479E /* Resources */,
+				99EB4CE62D2F234E48363279 /* 📦 Embed Pods Frameworks */,
+				296E7CC0708044067E2A801A /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -254,6 +284,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		296E7CC0708044067E2A801A /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-UCLA Radio/Pods-UCLA Radio-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		99EB4CE62D2F234E48363279 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-UCLA Radio/Pods-UCLA Radio-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EF00B5B0562A19365C2F71C7 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		832C65D81CD0800200B3479E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -261,6 +339,7 @@
 			files = (
 				832C65E21CD0800200B3479E /* ViewController.swift in Sources */,
 				832C65E01CD0800200B3479E /* AppDelegate.swift in Sources */,
+				8331836B1CE179EF00DDD37B /* APIServices.swift in Sources */,
 				83FD04F61CD8678D009A6350 /* AudioStream.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -401,6 +480,7 @@
 		};
 		832C66051CD0800200B3479E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6DA6C14DE284BA7CD5A4FD5A /* Pods-UCLA Radio.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "UCLA Radio/Info.plist";
@@ -412,6 +492,7 @@
 		};
 		832C66061CD0800200B3479E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3FFD9ADD0DCADD1878E89FDE /* Pods-UCLA Radio.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "UCLA Radio/Info.plist";
