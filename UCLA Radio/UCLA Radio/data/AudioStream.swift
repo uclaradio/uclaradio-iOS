@@ -53,6 +53,9 @@ class AudioStream: NSObject {
         }
     }
     
+    /**
+     Reset audio stream to get live stream
+     */
     func skipToLive() {
         let newItem = AVPlayerItem(URL: NSURL(string: "http://stream.uclaradio.com:8000/listen")!)
         audioPlayer.replaceCurrentItemWithPlayerItem(newItem)
@@ -61,6 +64,9 @@ class AudioStream: NSObject {
         }
     }
     
+    /**
+     Update now playing information which is used by iOS in the control center, lock screen
+     */
     func updateNowPlaying() {
         var nowPlayingDict: [String: AnyObject] = [:]
         nowPlayingDict[MPMediaItemPropertyArtist] = "UCLA Radio"
@@ -69,14 +75,14 @@ class AudioStream: NSObject {
         MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = nowPlayingDict
     }
     
-    func printData() {
-        let item = audioPlayer.currentItem
-        print("duration: \(item?.duration)")
-        print("timebase: \(item?.timebase)")
-        print("loadedTimeRanges: \(item?.loadedTimeRanges)")
-        print("currentDate: \(item?.currentDate())")
-        
-    }
+//    func printData() {
+//        let item = audioPlayer.currentItem
+//        print("duration: \(item?.duration)")
+//        print("timebase: \(item?.timebase)")
+//        print("loadedTimeRanges: \(item?.loadedTimeRanges)")
+//        print("currentDate: \(item?.currentDate())")
+//        
+//    }
     
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         if let player = object as? AVPlayer {

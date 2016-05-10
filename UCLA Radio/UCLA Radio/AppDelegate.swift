@@ -60,8 +60,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
             case .RemoteControlNextTrack:
                 stream.skipToLive()
-            case .RemoteControlPreviousTrack:
-                stream.printData()
             default:
                 break
             }
