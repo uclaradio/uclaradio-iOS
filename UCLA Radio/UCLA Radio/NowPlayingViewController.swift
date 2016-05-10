@@ -22,10 +22,16 @@ class NowPlayingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        playButton.imageView?.contentMode = .ScaleAspectFit
+        skipButton.imageView?.contentMode = .ScaleAspectFit
+        
         let volumeView = MPVolumeView()
         controlsParentView.addSubview(volumeView)
         volumeView.translatesAutoresizingMaskIntoConstraints = false
+        volumeView.setVolumeThumbImage(UIImage(named: "volumeSlider")?.imageWithColor(UIColor.yellowColor()), forState: .Normal)
+        volumeView.setRouteButtonImage(UIImage(named: "airplayIcon")?.imageWithColor(UIColor.yellowColor()), forState: .Normal)
         volumeView.tintColor = UIColor.yellowColor()
+        
         controlsParentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[play]-(20)-[volume(>=30)]", options: [], metrics: nil, views: ["play": playButton, "volume": volumeView]))
         controlsParentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-(20)-[volume]-(20)-|", options: [], metrics: nil, views: ["volume": volumeView]))
     }

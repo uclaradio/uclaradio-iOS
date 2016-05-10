@@ -20,21 +20,12 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UCLA Radio" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aew-hk-pfe">
                                 <rect key="frame" x="254" y="193" width="92" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9GG-Ph-86M">
                                 <rect key="frame" x="160" y="236" width="280" height="128"/>
                                 <subviews>
-                                    <button autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R6f-YY-Gxu">
-                                        <rect key="frame" x="8" y="39" width="45" height="49"/>
-                                        <color key="tintColor" red="1" green="0.73249855340000003" blue="0.37758148180000001" alpha="1" colorSpace="calibratedRGB"/>
-                                        <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
-                                        <state key="normal" image="play"/>
-                                        <connections>
-                                            <action selector="hitPlayButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hEp-Xf-2kx"/>
-                                        </connections>
-                                    </button>
                                     <button autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rqe-0e-co2">
                                         <rect key="frame" x="211" y="39" width="61" height="50"/>
                                         <color key="tintColor" red="1" green="0.73249855340000003" blue="0.37758148180000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -42,6 +33,15 @@
                                         <state key="normal" image="next"/>
                                         <connections>
                                             <action selector="skipButtonHit:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3pb-6B-Qtf"/>
+                                        </connections>
+                                    </button>
+                                    <button autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R6f-YY-Gxu">
+                                        <rect key="frame" x="8" y="39" width="45" height="50"/>
+                                        <color key="tintColor" red="1" green="0.73249855340000003" blue="0.37758148180000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                        <state key="normal" image="play"/>
+                                        <connections>
+                                            <action selector="hitPlayButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hEp-Xf-2kx"/>
                                         </connections>
                                     </button>
                                 </subviews>

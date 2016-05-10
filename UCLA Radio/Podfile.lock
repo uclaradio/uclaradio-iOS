@@ -1,12 +1,20 @@
 PODS:
   - Alamofire (3.4.0)
+  - ASHorizontalScrollView (1.1)
+  - SDWebImage (3.7.6):
+    - SDWebImage/Core (= 3.7.6)
+  - SDWebImage/Core (3.7.6)
 
 DEPENDENCIES:
   - Alamofire (~> 3.4)
+  - ASHorizontalScrollView (~> 1.1)
+  - SDWebImage (~> 3.7)
 
 SPEC CHECKSUMS:
   Alamofire: c19a627cefd6a95f840401c49ab1f124e07f54ee
+  ASHorizontalScrollView: 97f78b44008078b9c3ea1fe3ed7286c39e47d4e8
+  SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
 
-PODFILE CHECKSUM: a39ad0b70162e1337a5939149d54f3169477536b
+PODFILE CHECKSUM: 849e724c3a2385c66b13abcd23b13ae6d1f1abd1
 
 COCOAPODS: 1.0.0.rc.2
