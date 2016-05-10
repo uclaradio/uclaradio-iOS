@@ -10,11 +10,16 @@ import Foundation
 import AVFoundation
 import MediaPlayer
 
+protocol AudioStreamDelegate {
+    func streamStatusUpdated()
+}
+
 class AudioStream: NSObject {
     
     static let sharedInstance = AudioStream()
     
     var playing = false
+    var delegate: AudioStreamDelegate?
     
     private var audioPlayer = AVPlayer(URL: NSURL(string: "http://stream.uclaradio.com:8000/listen")!)
     
@@ -43,6 +48,7 @@ class AudioStream: NSObject {
             audioPlayer.play()
             playing = true
             UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
+            delegate?.streamStatusUpdated()
         }
     }
     
@@ -50,6 +56,7 @@ class AudioStream: NSObject {
         if (playing) {
             audioPlayer.pause()
             playing = false
+            delegate?.streamStatusUpdated()
         }
     }
     
@@ -59,9 +66,9 @@ class AudioStream: NSObject {
     func skipToLive() {
         let newItem = AVPlayerItem(URL: NSURL(string: "http://stream.uclaradio.com:8000/listen")!)
         audioPlayer.replaceCurrentItemWithPlayerItem(newItem)
-        if playing {
-            audioPlayer.play()
-        }
+        audioPlayer.play()
+        playing = true
+        delegate?.streamStatusUpdated()
     }
     
     /**
@@ -71,7 +78,7 @@ class AudioStream: NSObject {
         var nowPlayingDict: [String: AnyObject] = [:]
         nowPlayingDict[MPMediaItemPropertyArtist] = "UCLA Radio"
         nowPlayingDict[MPMediaItemPropertyTitle] = "Live Stream"
-        nowPlayingDict[MPNowPlayingInfoPropertyElapsedPlaybackTime] = 0.0
+//        nowPlayingDict[MPNowPlayingInfoPropertyElapsedPlaybackTime] = 0.0
         MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = nowPlayingDict
     }
     

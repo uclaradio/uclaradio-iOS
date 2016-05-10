@@ -17,15 +17,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AEg-ei-x8z">
-                                <rect key="frame" x="150" y="28" width="300" height="300"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="300" id="0J5-7i-vFo"/>
-                                    <constraint firstAttribute="height" constant="300" id="SQG-7M-SbC"/>
-                                </constraints>
-                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9GG-Ph-86M">
-                                <rect key="frame" x="160" y="336" width="280" height="100"/>
+                                <rect key="frame" x="160" y="371" width="280" height="100"/>
                                 <subviews>
                                     <button autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rqe-0e-co2">
                                         <rect key="frame" x="211" y="8" width="61" height="50"/>
@@ -64,13 +57,20 @@
                                     <constraint firstAttribute="width" constant="280" id="qEf-AR-umI"/>
                                 </constraints>
                             </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AEg-ei-x8z">
+                                <rect key="frame" x="150" y="63" width="300" height="300"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="0J5-7i-vFo"/>
+                                    <constraint firstAttribute="height" constant="300" id="SQG-7M-SbC"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="AEg-ei-x8z" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="QMn-gT-9hP"/>
+                            <constraint firstItem="AEg-ei-x8z" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="43" id="QMn-gT-9hP"/>
                             <constraint firstItem="9GG-Ph-86M" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="RAi-6m-hgC"/>
                             <constraint firstItem="AEg-ei-x8z" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="XEg-cV-XZx"/>
-                            <constraint firstItem="9GG-Ph-86M" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="316" id="vJR-2R-o58"/>
+                            <constraint firstItem="9GG-Ph-86M" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="351" id="vJR-2R-o58"/>
                         </constraints>
                     </view>
                     <connections>
