@@ -70,7 +70,7 @@ class AudioStream: NSObject {
     func updateNowPlaying() {
         var nowPlayingDict: [String: AnyObject] = [:]
         nowPlayingDict[MPMediaItemPropertyArtist] = "UCLA Radio"
-        nowPlayingDict[MPMediaItemPropertyTitle] = "Pirate Radio"
+        nowPlayingDict[MPMediaItemPropertyTitle] = "Live Stream"
         nowPlayingDict[MPNowPlayingInfoPropertyElapsedPlaybackTime] = 0.0
         MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = nowPlayingDict
     }
