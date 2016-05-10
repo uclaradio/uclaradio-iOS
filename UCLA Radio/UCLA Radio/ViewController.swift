@@ -19,6 +19,10 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         playButton.setTitle("Play", forState: .Normal)
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -26,7 +30,13 @@ class ViewController: UIViewController {
     }
 
     @IBAction func hitPlayButton(sender: AnyObject) {
-        AudioStream.sharedInstance.togglePlay()
+        let stream = AudioStream.sharedInstance
+        if (stream.playing) {
+            stream.pause()
+        }
+        else {
+            stream.play()
+        }
         let title = AudioStream.sharedInstance.playing ? "Pause" : "Play"
         playButton.setTitle(title, forState: .Normal)
     }

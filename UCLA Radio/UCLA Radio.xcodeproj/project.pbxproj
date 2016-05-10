@@ -15,7 +15,7 @@
 		832C65EA1CD0800200B3479E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 832C65E81CD0800200B3479E /* LaunchScreen.storyboard */; };
 		832C65F51CD0800200B3479E /* UCLA_RadioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832C65F41CD0800200B3479E /* UCLA_RadioTests.swift */; };
 		832C66001CD0800200B3479E /* UCLA_RadioUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832C65FF1CD0800200B3479E /* UCLA_RadioUITests.swift */; };
-		8331836B1CE179EF00DDD37B /* APIServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8331836A1CE179EF00DDD37B /* APIServices.swift */; };
+		8331836B1CE179EF00DDD37B /* HistoryFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8331836A1CE179EF00DDD37B /* HistoryFetcher.swift */; };
 		83FD04F61CD8678D009A6350 /* AudioStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FD04F51CD8678D009A6350 /* AudioStream.swift */; };
 /* End PBXBuildFile section */
 
@@ -53,7 +53,7 @@
 		832C65FB1CD0800200B3479E /* UCLA RadioUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "UCLA RadioUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		832C65FF1CD0800200B3479E /* UCLA_RadioUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UCLA_RadioUITests.swift; sourceTree = "<group>"; };
 		832C66011CD0800200B3479E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8331836A1CE179EF00DDD37B /* APIServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIServices.swift; path = data/APIServices.swift; sourceTree = "<group>"; };
+		8331836A1CE179EF00DDD37B /* HistoryFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HistoryFetcher.swift; path = data/HistoryFetcher.swift; sourceTree = "<group>"; };
 		83FD04F51CD8678D009A6350 /* AudioStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AudioStream.swift; path = data/AudioStream.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -117,7 +117,7 @@
 		832C65DE1CD0800200B3479E /* UCLA Radio */ = {
 			isa = PBXGroup;
 			children = (
-				8331836A1CE179EF00DDD37B /* APIServices.swift */,
+				8331836A1CE179EF00DDD37B /* HistoryFetcher.swift */,
 				832C65DF1CD0800200B3479E /* AppDelegate.swift */,
 				832C65E11CD0800200B3479E /* ViewController.swift */,
 				83FD04F51CD8678D009A6350 /* AudioStream.swift */,
@@ -339,7 +339,7 @@
 			files = (
 				832C65E21CD0800200B3479E /* ViewController.swift in Sources */,
 				832C65E01CD0800200B3479E /* AppDelegate.swift in Sources */,
-				8331836B1CE179EF00DDD37B /* APIServices.swift in Sources */,
+				8331836B1CE179EF00DDD37B /* HistoryFetcher.swift in Sources */,
 				83FD04F61CD8678D009A6350 /* AudioStream.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

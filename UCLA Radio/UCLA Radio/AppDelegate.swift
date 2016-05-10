@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        AudioStream.sharedInstance.skipToLive()
+        HistoryFetcher.sharedInstance.fetchRecentTracks()
         return true
     }
 
@@ -47,12 +47,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let subtype = event?.subtype where event?.type  == .RemoteControl {
             
             switch (subtype) {
-            case .RemoteControlPlay,
-                 .RemoteControlPause,
-                 .RemoteControlTogglePlayPause:
-                stream.togglePlay()
+            case .RemoteControlPlay:
+                stream.play()
+            case .RemoteControlPause:
+                stream.pause()
+            case .RemoteControlTogglePlayPause:
+                if (stream.playing) {
+                    stream.pause()
+                }
+                else {
+                    stream.play()
+                }
             case .RemoteControlNextTrack:
                 stream.skipToLive()
+            case .RemoteControlPreviousTrack:
+                stream.printData()
             default:
                 break
             }
