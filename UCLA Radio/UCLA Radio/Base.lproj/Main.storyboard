@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Now Playing View Controller-->
@@ -17,63 +18,87 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9GG-Ph-86M">
-                                <rect key="frame" x="160" y="371" width="280" height="100"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4dO-ik-ILl">
+                                <rect key="frame" x="100" y="20" width="400" height="600"/>
                                 <subviews>
-                                    <button autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rqe-0e-co2">
-                                        <rect key="frame" x="211" y="8" width="61" height="50"/>
-                                        <color key="tintColor" red="1" green="0.73249855340000003" blue="0.37758148180000001" alpha="1" colorSpace="calibratedRGB"/>
-                                        <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
-                                        <state key="normal" image="next"/>
-                                        <connections>
-                                            <action selector="skipButtonHit:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3pb-6B-Qtf"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="UCLA Radio" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oWj-hU-fTj">
-                                        <rect key="frame" x="76" y="32" width="127" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R6f-YY-Gxu">
-                                        <rect key="frame" x="8" y="8" width="45" height="50"/>
-                                        <color key="tintColor" red="1" green="0.73249855340000003" blue="0.37758148180000001" alpha="1" colorSpace="calibratedRGB"/>
-                                        <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
-                                        <state key="normal" image="play"/>
-                                        <connections>
-                                            <action selector="hitPlayButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hEp-Xf-2kx"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="UCLA Radio" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aew-hk-pfe">
-                                        <rect key="frame" x="76" y="10" width="127" height="21"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AEg-ei-x8z">
+                                        <rect key="frame" x="20" y="30" width="360" height="360"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="AEg-ei-x8z" secondAttribute="height" multiplier="1:1" id="ncc-B7-WDO"/>
+                                        </constraints>
+                                    </imageView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9GG-Ph-86M">
+                                        <rect key="frame" x="0.0" y="405" width="400" height="100"/>
+                                        <subviews>
+                                            <button autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rqe-0e-co2">
+                                                <rect key="frame" x="305" y="8" width="75" height="55"/>
+                                                <color key="tintColor" red="1" green="0.73249855340000003" blue="0.37758148180000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                                <state key="normal" image="next"/>
+                                                <connections>
+                                                    <action selector="skipButtonHit:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3pb-6B-Qtf"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UCLA Radio" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oWj-hU-fTj">
+                                                <rect key="frame" x="100" y="32" width="200" height="18"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R6f-YY-Gxu">
+                                                <rect key="frame" x="20" y="8" width="50" height="57"/>
+                                                <color key="tintColor" red="1" green="0.73249855340000003" blue="0.37758148180000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                                <state key="normal" image="play"/>
+                                                <connections>
+                                                    <action selector="hitPlayButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hEp-Xf-2kx"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UCLA Radio" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aew-hk-pfe">
+                                                <rect key="frame" x="100" y="10" width="200" height="21"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="EDC-Yf-Qks"/>
+                                            <constraint firstAttribute="trailing" secondItem="Rqe-0e-co2" secondAttribute="trailing" constant="20" id="Etw-II-ABM"/>
+                                            <constraint firstItem="aew-hk-pfe" firstAttribute="width" secondItem="9GG-Ph-86M" secondAttribute="width" constant="-200" id="Gij-Zy-40Z"/>
+                                            <constraint firstItem="R6f-YY-Gxu" firstAttribute="leading" secondItem="9GG-Ph-86M" secondAttribute="leading" constant="20" id="Ku3-qm-07K"/>
+                                            <constraint firstItem="aew-hk-pfe" firstAttribute="centerX" secondItem="9GG-Ph-86M" secondAttribute="centerX" id="Vvb-TY-eya"/>
+                                            <constraint firstItem="oWj-hU-fTj" firstAttribute="top" secondItem="9GG-Ph-86M" secondAttribute="top" constant="32" id="Zfs-II-SWM"/>
+                                            <constraint firstItem="Rqe-0e-co2" firstAttribute="top" secondItem="9GG-Ph-86M" secondAttribute="top" constant="8" id="d5F-KN-ewP"/>
+                                            <constraint firstItem="R6f-YY-Gxu" firstAttribute="top" secondItem="9GG-Ph-86M" secondAttribute="top" constant="8" id="gRH-yM-yXt"/>
+                                            <constraint firstItem="aew-hk-pfe" firstAttribute="top" secondItem="9GG-Ph-86M" secondAttribute="top" constant="10" id="gl6-hY-uDe"/>
+                                            <constraint firstItem="oWj-hU-fTj" firstAttribute="width" secondItem="9GG-Ph-86M" secondAttribute="width" constant="-200" id="k2S-SL-0pB"/>
+                                            <constraint firstItem="oWj-hU-fTj" firstAttribute="centerX" secondItem="9GG-Ph-86M" secondAttribute="centerX" id="v8T-eX-2GH"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="KzE-ni-eID"/>
-                                    <constraint firstAttribute="width" constant="280" id="qEf-AR-umI"/>
+                                    <constraint firstItem="AEg-ei-x8z" firstAttribute="centerX" secondItem="4dO-ik-ILl" secondAttribute="centerX" id="Lcg-MG-hZo"/>
+                                    <constraint firstItem="AEg-ei-x8z" firstAttribute="top" secondItem="4dO-ik-ILl" secondAttribute="top" constant="30" id="Tny-In-56t"/>
+                                    <constraint firstItem="AEg-ei-x8z" firstAttribute="width" secondItem="4dO-ik-ILl" secondAttribute="width" constant="-40" id="ZR7-5p-K6E"/>
+                                    <constraint firstItem="9GG-Ph-86M" firstAttribute="width" secondItem="4dO-ik-ILl" secondAttribute="width" id="bUJ-W7-nBd"/>
+                                    <constraint firstItem="9GG-Ph-86M" firstAttribute="centerX" secondItem="4dO-ik-ILl" secondAttribute="centerX" id="fHY-ib-YGh"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="400" id="lae-oB-thT"/>
+                                    <constraint firstItem="9GG-Ph-86M" firstAttribute="top" secondItem="AEg-ei-x8z" secondAttribute="bottom" constant="15" id="oji-O4-kav"/>
                                 </constraints>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AEg-ei-x8z">
-                                <rect key="frame" x="150" y="63" width="300" height="300"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="300" id="0J5-7i-vFo"/>
-                                    <constraint firstAttribute="height" constant="300" id="SQG-7M-SbC"/>
-                                </constraints>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="AEg-ei-x8z" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="43" id="QMn-gT-9hP"/>
-                            <constraint firstItem="9GG-Ph-86M" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="RAi-6m-hgC"/>
-                            <constraint firstItem="AEg-ei-x8z" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="XEg-cV-XZx"/>
-                            <constraint firstItem="9GG-Ph-86M" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="351" id="vJR-2R-o58"/>
+                            <constraint firstItem="4dO-ik-ILl" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" priority="999" id="NGt-ok-gY2"/>
+                            <constraint firstItem="4dO-ik-ILl" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="gvt-5y-gqk"/>
+                            <constraint firstItem="4dO-ik-ILl" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="k7T-iQ-ckY"/>
+                            <constraint firstItem="4dO-ik-ILl" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="tUM-Gu-cFR"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="containerView" destination="4dO-ik-ILl" id="cmE-fo-GdR"/>
                         <outlet property="controlsParentView" destination="9GG-Ph-86M" id="nzF-Wu-aPV"/>
                         <outlet property="imageView" destination="AEg-ei-x8z" id="Gk6-Nl-oU4"/>
                         <outlet property="playButton" destination="R6f-YY-Gxu" id="rCh-6d-JfK"/>

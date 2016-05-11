@@ -7,66 +7,12 @@
 //
 
 import UIKit
-import AVFoundation
 import MediaPlayer
 import ASHorizontalScrollView
-import SDWebImage
-
-class RecentTrackView: UIView {
-    
-    var imageView: UIImageView!
-    var title: UILabel!
-    var subtitle: UILabel!
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        imageView = UIImageView()
-        imageView.contentMode = .ScaleAspectFit
-        title = UILabel()
-        title.font = UIFont.systemFontOfSize(10)
-        title.textColor = UIColor.whiteColor()
-        title.textAlignment = .Center
-        subtitle = UILabel()
-        subtitle.font = UIFont.systemFontOfSize(8)
-        subtitle.textColor = UIColor.lightTextColor()
-        subtitle.textAlignment = .Center
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        title.translatesAutoresizingMaskIntoConstraints = false
-        subtitle.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(imageView)
-        addSubview(title)
-        addSubview(subtitle)
-        addConstraints(preferredConstraints())
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    func styleFromTrack(track: RecentTrack) {
-        if let url = track.image {
-            imageView.sd_setImageWithURL(NSURL(string: url), placeholderImage: UIImage(named: "no_artwork"))
-        }
-        else {
-            imageView.image = UIImage(named: "no_artwork")
-        }
-        title.text = track.title
-        subtitle.text = track.artist
-    }
-    
-    func preferredConstraints() -> [NSLayoutConstraint] {
-        var constraints: [NSLayoutConstraint] = []
-        let views = ["image": imageView, "title": title, "subtitle": subtitle]
-        constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|-[image]-(5)-[title(10)]-(2)-[subtitle(10)]-|", options: [], metrics: nil, views: views)
-        constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|-[image]-|", options: [], metrics: nil, views: views)
-        constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|-[title]-|", options: [], metrics: nil, views: views)
-        constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|-[subtitle]-|", options: [], metrics: nil, views: views)
-        return constraints
-    }
-}
 
 class NowPlayingViewController: UIViewController, HistoryFetchDelegate, AudioStreamDelegate {
 
+    @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var controlsParentView: UIView!
     @IBOutlet weak var playButton: UIButton!
@@ -104,32 +50,34 @@ class NowPlayingViewController: UIViewController, HistoryFetchDelegate, AudioStr
         volumeView.setRouteButtonImage(UIImage(named: "airplayIcon")?.imageWithColor(Constants.Colors.gold), forState: .Normal)
         volumeView.tintColor = Constants.Colors.gold
         
-        controlsParentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[play]-(20)-[volume(>=30)]", options: [], metrics: nil, views: ["play": playButton, "volume": volumeView]))
+        controlsParentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[skip]-(15)-[volume(>=30)]", options: [], metrics: nil, views: ["skip": skipButton, "volume": volumeView]))
         controlsParentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-(20)-[volume]-(20)-|", options: [], metrics: nil, views: ["volume": volumeView]))
         
         recentlyPlayedLabel = UILabel()
         recentlyPlayedLabel.text = "Recently Played"
         recentlyPlayedLabel.textColor = UIColor.lightTextColor()
-        recentlyPlayedLabel.font = UIFont.boldSystemFontOfSize(12)
-        view.addSubview(recentlyPlayedLabel)
+        recentlyPlayedLabel.font = UIFont.boldSystemFontOfSize(14)
+        containerView.addSubview(recentlyPlayedLabel)
         recentlyPlayedLabel.translatesAutoresizingMaskIntoConstraints = false
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-(15)-[recentLabel(150)]", options: [], metrics: nil, views: ["recentLabel": recentlyPlayedLabel]))
+        containerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-(15)-[recentLabel(150)]", options: [], metrics: nil, views: ["recentLabel": recentlyPlayedLabel]))
+        
+        let recentTrackSize = CGSize(width: (view.frame.size.width-20)/4, height: 80)
         
         // ASHorizontalScrollView is not optimized for auto layout, has to be initialized with frame, use auto layout for positioning
-        recentlyPlayed = ASHorizontalScrollView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 70))
+        recentlyPlayed = ASHorizontalScrollView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: recentTrackSize.height))
         
         recentlyPlayed.leftMarginPx = 10
         recentlyPlayed.itemsMargin = 5
         recentlyPlayed.miniMarginPxBetweenItems = 0
         recentlyPlayed.miniAppearPxOfLastItem = 5
-        recentlyPlayed.uniformItemSize = CGSizeMake(80, 70)
+        recentlyPlayed.uniformItemSize = recentTrackSize
         //This must be called after changing any size or margin property of this class to get acurrate margin
         recentlyPlayed.setItemsMarginOnce()
         
-        self.view.addSubview(recentlyPlayed)
+        containerView.addSubview(recentlyPlayed)
         recentlyPlayed.translatesAutoresizingMaskIntoConstraints = false
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[controls]-(>=15)-[recentLabel(15)]-(5)-[recent(70)]-(30)-|", options: [], metrics: nil, views: ["controls": controlsParentView, "recent": recentlyPlayed, "recentLabel": recentlyPlayedLabel]))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[recent]|", options: [], metrics: nil, views: ["recent": recentlyPlayed]))
+        containerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[controls]-(>=15)-[recentLabel(15)]-(5)-[recent(trackHeight)]-(30)-|", options: [], metrics: ["trackHeight": recentTrackSize.height], views: ["controls": controlsParentView, "recent": recentlyPlayed, "recentLabel": recentlyPlayedLabel]))
+        containerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[recent]|", options: [], metrics: nil, views: ["recent": recentlyPlayed]))
         recentlyPlayed.sizeToFit()
     }
     
