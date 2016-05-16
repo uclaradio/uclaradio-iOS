@@ -10,7 +10,7 @@ import Foundation
 import AVFoundation
 import MediaPlayer
 
-protocol AudioStreamDelegate {
+@objc protocol AudioStreamDelegate {
     func streamStatusUpdated()
 }
 
@@ -19,7 +19,7 @@ class AudioStream: NSObject {
     static let sharedInstance = AudioStream()
     
     var playing = false
-    var delegate: AudioStreamDelegate?
+    weak var delegate: AudioStreamDelegate?
     
     private var audioPlayer = AVPlayer(URL: NSURL(string: "http://stream.uclaradio.com:8000/listen")!)
     

@@ -21,14 +21,14 @@ struct RecentTrack {
     }
 }
 
-protocol HistoryFetchDelegate {
+@objc protocol HistoryFetchDelegate {
     func updatedHistory()
 }
 
 class HistoryFetcher {
     
     static var recentTracks: [RecentTrack] = []
-    static var delegate: HistoryFetchDelegate?
+    static weak var delegate: HistoryFetchDelegate?
     private static var currentPage = 1;
     
     /**

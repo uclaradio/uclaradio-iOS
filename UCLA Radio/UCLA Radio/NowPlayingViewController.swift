@@ -24,10 +24,13 @@ class NowPlayingViewController: UIViewController, HistoryFetchDelegate, AudioStr
     var recentlyPlayed: ASHorizontalScrollView!
     
     var recentUpdateTimer: NSTimer?
+    var tapGesture: UITapGestureRecognizer?
     
     // SlidingVCDelegate
+    var slider: SlidingViewController?
     var MaximumHeight: CGFloat = -80
-    var MinimumYPos: CGFloat = 0
+    var MinimumYPosition: CGFloat = 0
+    var ClosedHeight: CGFloat = -100
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,7 +68,7 @@ class NowPlayingViewController: UIViewController, HistoryFetchDelegate, AudioStr
         recentlyPlayedLabel.translatesAutoresizingMaskIntoConstraints = false
         containerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-(15)-[recentLabel(150)]", options: [], metrics: nil, views: ["recentLabel": recentlyPlayedLabel]))
         
-        let recentTrackSize = CGSize(width: (view.frame.size.width-20)/4, height: 80)
+        let recentTrackSize = CGSize(width: (view.frame.size.width-20)/4, height: 90)
         
         // ASHorizontalScrollView is not optimized for auto layout, has to be initialized with frame, use auto layout for positioning
         recentlyPlayed = ASHorizontalScrollView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: recentTrackSize.height))
@@ -80,9 +83,14 @@ class NowPlayingViewController: UIViewController, HistoryFetchDelegate, AudioStr
         
         containerView.addSubview(recentlyPlayed)
         recentlyPlayed.translatesAutoresizingMaskIntoConstraints = false
-        containerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[controls]-(>=15)-[recentLabel(15)]-(5)-[recent(trackHeight)]-(30)-|", options: [], metrics: ["trackHeight": recentTrackSize.height], views: ["controls": controlsParentView, "recent": recentlyPlayed, "recentLabel": recentlyPlayedLabel]))
+        containerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[controls]-(>=15)-[recentLabel(15)]-(5)-[recent(trackHeight@999)]-(30)-|", options: [], metrics: ["trackHeight": recentTrackSize.height], views: ["controls": controlsParentView, "recent": recentlyPlayed, "recentLabel": recentlyPlayedLabel]))
         containerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[recent]|", options: [], metrics: nil, views: ["recent": recentlyPlayed]))
-        recentlyPlayed.sizeToFit()
+        // for smaller screens (iPhone 5)
+        containerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[controls]-(>=8)-[recent]", options: [], metrics: nil, views: ["controls": controlsParentView, "recent": recentlyPlayed]))
+        
+        tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTap))
+        imageView.userInteractionEnabled = true
+        imageView.addGestureRecognizer(tapGesture!)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -136,7 +144,26 @@ class NowPlayingViewController: UIViewController, HistoryFetchDelegate, AudioStr
         AudioStream.sharedInstance.skipToLive()
     }
     
+    // Slider
+    
+    func didTap(gesture: UITapGestureRecognizer) {
+        if let slider = slider {
+            var newPosition: SlidingViewControllerPosition!
+            switch(slider.position) {
+            case .Open:
+                newPosition = .Closed
+            case .Closed:
+                newPosition = .Open
+            }
+            slider.updatePosition(newPosition, animated: true)
+        }
+    }
+    
     // SlidingVCDelegate
+    
+    func openPercentageChanged(percent: CGFloat) {
+        print("open percentage: \(percent)")
+    }
     
     func positionUpdated(position: SlidingViewControllerPosition) {
         print("slider position updated")
@@ -159,5 +186,6 @@ class NowPlayingViewController: UIViewController, HistoryFetchDelegate, AudioStr
     func updateTick() {
         HistoryFetcher.fetchRecentTracks()
     }
+    
 }
 

@@ -11,11 +11,23 @@ import UIKit
 
 class MenuViewController: UIViewController {
     
+    // Now Playing slider
     var slider: SlidingViewController!
     var nowPlaying: NowPlayingViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        installNowPlayingSlider()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    
+    func installNowPlayingSlider() {
+        if slider != nil {
+            return
+        }
         slider = SlidingViewController()
         view.addSubview(slider.view)
         addChildViewController(slider)
@@ -26,10 +38,6 @@ class MenuViewController: UIViewController {
             self.nowPlaying = nowPlaying
             slider.addContent(nowPlaying)
         }
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
     }
     
 }

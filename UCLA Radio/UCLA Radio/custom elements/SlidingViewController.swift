@@ -15,25 +15,24 @@ import UIKit
 }
 
 @objc protocol SlidingVCDelegate {
+    weak var slider: SlidingViewController? { get set }
     var MaximumHeight: CGFloat { get }
-    var MinimumYPos: CGFloat { get }
+    var MinimumYPosition: CGFloat { get }
+    var ClosedHeight: CGFloat { get }
+    func openPercentageChanged(percent: CGFloat)
     func positionUpdated(position: SlidingViewControllerPosition)
 }
 
 class SlidingViewController: UIViewController {
     
-    var sliderDelegate: SlidingVCDelegate?
+    weak var sliderDelegate: SlidingVCDelegate?
     var position: SlidingViewControllerPosition = .Open
     
-    private let ClosedHeight: CGFloat = -100
-    private let MinimumYPos: CGFloat = 0
-    private let MaximumHeight: CGFloat = -80
     private let AnimationDuration = 0.3
     
-    private var tapGesture: UITapGestureRecognizer?
     private var panGesture: UIPanGestureRecognizer?
-    private var yPosConstraint: NSLayoutConstraint?
-    private var initialRelativeYPos: CGFloat?
+    private var yPositionConstraint: NSLayoutConstraint?
+    private var initialRelativeYPosition: CGFloat?
     
     init () {
         super.init(nibName: nil, bundle: nil)
@@ -52,6 +51,7 @@ class SlidingViewController: UIViewController {
         content.didMoveToParentViewController(self)
         if let delegate = content as? SlidingVCDelegate {
             sliderDelegate = delegate
+            sliderDelegate?.slider = self
         }
     }
     
@@ -59,9 +59,6 @@ class SlidingViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor.clearColor()
         view.translatesAutoresizingMaskIntoConstraints = false
-        
-        tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTap))
-        view.addGestureRecognizer(tapGesture!)
         
         panGesture = UIPanGestureRecognizer(target: self, action: #selector(didPan))
         view.addGestureRecognizer(panGesture!)
@@ -77,18 +74,21 @@ class SlidingViewController: UIViewController {
         constraints.append(NSLayoutConstraint(item: view, attribute: .Width, relatedBy: .Equal, toItem: view.superview, attribute: .Width, multiplier: 1.0, constant: 0))
         constraints.append(NSLayoutConstraint(item: view, attribute: .Height, relatedBy: .Equal, toItem: view.superview, attribute: .Height, multiplier: 1.0, constant: 0))
         constraints.append(NSLayoutConstraint(item: view, attribute: .CenterX, relatedBy: .Equal, toItem: view.superview, attribute: .CenterX, multiplier: 1.0, constant: 0))
-        yPosConstraint = NSLayoutConstraint(item: view, attribute: .Top, relatedBy: .Equal, toItem: view.superview, attribute: .Bottom, multiplier: 1.0, constant: 0)
-        constraints.append(yPosConstraint!)
+        yPositionConstraint = NSLayoutConstraint(item: view, attribute: .Top, relatedBy: .Equal, toItem: view.superview, attribute: .Bottom, multiplier: 1.0, constant: 0)
+        constraints.append(yPositionConstraint!)
         return constraints
     }
     
     func updatePosition(position: SlidingViewControllerPosition, animated: Bool) {
         switch position {
         case .Open:
-            yPosConstraint?.constant = -view.frame.size.height
+            yPositionConstraint?.constant = -view.frame.size.height
         case .Closed:
-            yPosConstraint?.constant = ClosedHeight
+            if let delegate = sliderDelegate {
+                yPositionConstraint?.constant = delegate.ClosedHeight
+            }
         }
+        view.superview?.setNeedsLayout()
         self.position = position
         sliderDelegate?.positionUpdated(position)
         
@@ -99,38 +99,29 @@ class SlidingViewController: UIViewController {
         }
     }
     
-    func didTap(gesture: UITapGestureRecognizer) {
-        var newPosition: SlidingViewControllerPosition!
-        switch(position) {
-        case .Open:
-            newPosition = .Closed
-        case .Closed:
-            newPosition = .Open
-        }
-        updatePosition(newPosition, animated: true)
-    }
-    
     func didPan(gesture: UIPanGestureRecognizer) {
         let touchLocation = gesture.locationInView(view.superview)
-        if initialRelativeYPos == nil {
-            initialRelativeYPos = gesture.locationInView(view).y
+        if initialRelativeYPosition == nil {
+            initialRelativeYPosition = gesture.locationInView(view).y
         }
         
         switch(gesture.state) {
-        case .Changed:
-            if let relativeYPos = initialRelativeYPos {
-                let touchYPosition = touchLocation.y - relativeYPos
-                let newYPosition: CGFloat = max(MinimumYPos, min(MaximumHeight + view.frame.size.height, touchYPosition))
-                view.frame.origin = CGPointMake(0, newYPosition)
-            }
+        case .Began:
             break;
-        case .Ended:
+        case .Changed:
+            if let relativeYPosition = initialRelativeYPosition, let delegate = sliderDelegate {
+                let MaximumYPosition = delegate.MaximumHeight + view.frame.size.height
+                let touchYPosition = touchLocation.y - relativeYPosition
+                let newYPosition: CGFloat = max(delegate.MinimumYPosition, min(MaximumYPosition, touchYPosition))
+                view.frame.origin = CGPointMake(0, newYPosition)
+                
+                let openPercentage = 1.0 - (newYPosition-delegate.MinimumYPosition)/(MaximumYPosition-delegate.MinimumYPosition)
+                sliderDelegate?.openPercentageChanged(openPercentage)
+            }
+        default:
             let shouldOpen = touchLocation.y < view.frame.size.height/2 || gesture.velocityInView(view?.superview).y < -300
             updatePosition((shouldOpen ? .Open : .Closed), animated: true)
-            initialRelativeYPos = nil
-            break;
-        default:
-            break;
+            initialRelativeYPosition = nil
         }
     }
 }

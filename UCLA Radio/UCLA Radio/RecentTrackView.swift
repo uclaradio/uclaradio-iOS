@@ -54,7 +54,7 @@ class RecentTrackView: UIView {
     func preferredConstraints() -> [NSLayoutConstraint] {
         var constraints: [NSLayoutConstraint] = []
         let views = ["image": imageView, "title": title, "subtitle": subtitle]
-        constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|-[image]-(5)-[title(14)]-(2)-[subtitle(12)]-|", options: [], metrics: nil, views: views)
+        constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|-[image]-(5)-[title(16)]-(2)-[subtitle(14)]-|", options: [], metrics: nil, views: views)
         constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|-[image]-|", options: [], metrics: nil, views: views)
         constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|-[title]-|", options: [], metrics: nil, views: views)
         constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|-[subtitle]-|", options: [], metrics: nil, views: views)
