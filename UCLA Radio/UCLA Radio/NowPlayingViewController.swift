@@ -10,7 +10,7 @@ import UIKit
 import MediaPlayer
 import ASHorizontalScrollView
 
-class NowPlayingViewController: UIViewController, HistoryFetchDelegate, AudioStreamDelegate {
+class NowPlayingViewController: UIViewController, HistoryFetchDelegate, AudioStreamDelegate, SlidingVCDelegate {
 
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var imageView: UIImageView!
@@ -24,6 +24,10 @@ class NowPlayingViewController: UIViewController, HistoryFetchDelegate, AudioStr
     var recentlyPlayed: ASHorizontalScrollView!
     
     var recentUpdateTimer: NSTimer?
+    
+    // SlidingVCDelegate
+    var MaximumHeight: CGFloat = -80
+    var MinimumYPos: CGFloat = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,6 +91,7 @@ class NowPlayingViewController: UIViewController, HistoryFetchDelegate, AudioStr
         HistoryFetcher.delegate = self
         AudioStream.sharedInstance.delegate = self
         
+        HistoryFetcher.fetchRecentTracks()
         recentUpdateTimer = NSTimer.scheduledTimerWithTimeInterval(30, target: self, selector: #selector(updateTick), userInfo: nil, repeats: true)
     }
     
@@ -94,6 +99,8 @@ class NowPlayingViewController: UIViewController, HistoryFetchDelegate, AudioStr
         super.viewWillDisappear(animated)
         HistoryFetcher.delegate = nil
         AudioStream.sharedInstance.delegate = nil
+        recentUpdateTimer?.invalidate()
+        recentUpdateTimer = nil
     }
 
     override func didReceiveMemoryWarning() {
@@ -129,10 +136,10 @@ class NowPlayingViewController: UIViewController, HistoryFetchDelegate, AudioStr
         AudioStream.sharedInstance.skipToLive()
     }
     
-    // Timers
+    // SlidingVCDelegate
     
-    func updateTick() {
-        HistoryFetcher.fetchRecentTracks()
+    func positionUpdated(position: SlidingViewControllerPosition) {
+        print("slider position updated")
     }
     
     // HistoryFetchDelegate
@@ -145,6 +152,12 @@ class NowPlayingViewController: UIViewController, HistoryFetchDelegate, AudioStr
     
     func streamStatusUpdated() {
         styleFromAudioStream()
+    }
+    
+    // Timers
+    
+    func updateTick() {
+        HistoryFetcher.fetchRecentTracks()
     }
 }
 

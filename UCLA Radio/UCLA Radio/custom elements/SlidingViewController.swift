@@ -9,17 +9,30 @@
 import Foundation
 import UIKit
 
+@objc enum SlidingViewControllerPosition: Int {
+    case Open
+    case Closed
+}
+
+@objc protocol SlidingVCDelegate {
+    var MaximumHeight: CGFloat { get }
+    var MinimumYPos: CGFloat { get }
+    func positionUpdated(position: SlidingViewControllerPosition)
+}
+
 class SlidingViewController: UIViewController {
+    
+    var sliderDelegate: SlidingVCDelegate?
+    var position: SlidingViewControllerPosition = .Open
     
     private let ClosedHeight: CGFloat = -100
     private let MinimumYPos: CGFloat = 0
     private let MaximumHeight: CGFloat = -80
     private let AnimationDuration = 0.3
     
-    var tapGesture: UITapGestureRecognizer?
-    var panGesture: UIPanGestureRecognizer?
+    private var tapGesture: UITapGestureRecognizer?
+    private var panGesture: UIPanGestureRecognizer?
     private var yPosConstraint: NSLayoutConstraint?
-    private var open = false
     private var initialRelativeYPos: CGFloat?
     
     init () {
@@ -30,9 +43,21 @@ class SlidingViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func addContent(content: UIViewController) {
+        addChildViewController(content)
+        view.addSubview(content.view)
+        content.view.translatesAutoresizingMaskIntoConstraints = false
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[content]|", options: [], metrics: nil, views: ["content": content.view]))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[content]|", options: [], metrics: nil, views: ["content": content.view]))
+        content.didMoveToParentViewController(self)
+        if let delegate = content as? SlidingVCDelegate {
+            sliderDelegate = delegate
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.greenColor()
+        view.backgroundColor = UIColor.clearColor()
         view.translatesAutoresizingMaskIntoConstraints = false
         
         tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTap))
@@ -44,7 +69,7 @@ class SlidingViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        updateYPosConstraint(true, animated: false)
+        updatePosition(.Open, animated: false)
     }
     
     func preferredConstraints() -> [NSLayoutConstraint] {
@@ -57,18 +82,32 @@ class SlidingViewController: UIViewController {
         return constraints
     }
     
-    func updateYPosConstraint(shouldOpen: Bool, animated: Bool) {
-        self.yPosConstraint?.constant = shouldOpen ? -self.view.frame.size.height : self.ClosedHeight
+    func updatePosition(position: SlidingViewControllerPosition, animated: Bool) {
+        switch position {
+        case .Open:
+            yPosConstraint?.constant = -view.frame.size.height
+        case .Closed:
+            yPosConstraint?.constant = ClosedHeight
+        }
+        self.position = position
+        sliderDelegate?.positionUpdated(position)
+        
         if (animated) {
             UIView.animateWithDuration(AnimationDuration, animations: {
                     self.view.superview?.layoutIfNeeded()
                 })
         }
-        open = shouldOpen
     }
     
     func didTap(gesture: UITapGestureRecognizer) {
-        updateYPosConstraint(!open, animated: true)
+        var newPosition: SlidingViewControllerPosition!
+        switch(position) {
+        case .Open:
+            newPosition = .Closed
+        case .Closed:
+            newPosition = .Open
+        }
+        updatePosition(newPosition, animated: true)
     }
     
     func didPan(gesture: UIPanGestureRecognizer) {
@@ -87,7 +126,7 @@ class SlidingViewController: UIViewController {
             break;
         case .Ended:
             let shouldOpen = touchLocation.y < view.frame.size.height/2 || gesture.velocityInView(view?.superview).y < -300
-            updateYPosConstraint(shouldOpen, animated: true)
+            updatePosition((shouldOpen ? .Open : .Closed), animated: true)
             initialRelativeYPos = nil
             break;
         default:

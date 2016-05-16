@@ -12,13 +12,20 @@ import UIKit
 class MenuViewController: UIViewController {
     
     var slider: SlidingViewController!
+    var nowPlaying: NowPlayingViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         slider = SlidingViewController()
         view.addSubview(slider.view)
         addChildViewController(slider)
+        slider.didMoveToParentViewController(self)
         view.addConstraints(slider.preferredConstraints())
+        
+        if let nowPlaying = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("nowPlaying") as? NowPlayingViewController {
+            self.nowPlaying = nowPlaying
+            slider.addContent(nowPlaying)
+        }
     }
     
     override func viewDidAppear(animated: Bool) {
