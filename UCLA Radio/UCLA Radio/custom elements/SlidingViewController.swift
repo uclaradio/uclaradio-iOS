@@ -23,10 +23,15 @@ import UIKit
     func positionUpdated(position: SlidingViewControllerPosition)
 }
 
+class SliderTabView: UIView {
+    func willAppear() { }
+    func willDisappear() { }
+}
+
 class SlidingViewController: UIViewController {
     
     var contentViewController: UIViewController?
-    var tabView: UIView?
+    var tabView: SliderTabView?
     
     var position: SlidingViewControllerPosition = .Open
     weak var sliderDelegate: SlidingVCDelegate?
@@ -68,7 +73,7 @@ class SlidingViewController: UIViewController {
         }
     }
     
-    func addTabView(tabView: UIView) {
+    func addTabView(tabView: SliderTabView) {
         self.tabView = tabView
         view.addSubview(tabView)
         let tabHeight = tabView.frame.size.height
@@ -103,6 +108,12 @@ class SlidingViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         updatePosition(.Open, animated: false)
+        tabView?.willAppear()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        tabView?.willDisappear()
     }
     
     func preferredConstraints() -> [NSLayoutConstraint] {

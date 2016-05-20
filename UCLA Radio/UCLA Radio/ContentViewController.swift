@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class MenuViewController: UIViewController {
+class ContentViewController: UIViewController {
     
     // Now Playing slider
     var slider: SlidingViewController!
@@ -19,7 +19,7 @@ class MenuViewController: UIViewController {
         super.viewDidLoad()
         installNowPlayingSlider()
         
-        view.backgroundColor = UIColor.blackColor()
+        view.backgroundColor = Constants.Colors.lightBlue
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -30,20 +30,22 @@ class MenuViewController: UIViewController {
         if slider != nil {
             return
         }
+        // set up slider view controller (container)
         slider = SlidingViewController()
         view.addSubview(slider.view)
         addChildViewController(slider)
         slider.didMoveToParentViewController(self)
         view.addConstraints(slider.preferredConstraints())
         
+        // set up content (NowPlayingViewController)
         if let nowPlaying = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("nowPlaying") as? NowPlayingViewController {
             self.nowPlaying = nowPlaying
             slider.addContent(nowPlaying)
+            
+            // set up slider tab (NowPlayingView)
+            let tabView = NowPlayingView(canSkipStream: false)
+            slider.addTabView(tabView)
         }
-        
-        var tabView = UIView(frame: CGRect(x: 0, y: 0, width: 400, height: 80))
-        tabView.backgroundColor = UIColor.lightGrayColor()
-        slider.addTabView(tabView)
     }
     
 }

@@ -6,10 +6,10 @@
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
-        <!--Menu View Controller-->
+        <!--Content View Controller-->
         <scene sceneID="MJT-74-EjM">
             <objects>
-                <viewController id="DuL-GS-bCM" customClass="MenuViewController" customModule="UCLA_Radio" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="DuL-GS-bCM" customClass="ContentViewController" customModule="UCLA_Radio" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="MZL-gI-uwV"/>
                         <viewControllerLayoutGuide type="bottom" id="cpQ-I5-LeC"/>

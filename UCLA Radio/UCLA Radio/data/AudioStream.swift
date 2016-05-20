@@ -10,16 +10,12 @@ import Foundation
 import AVFoundation
 import MediaPlayer
 
-@objc protocol AudioStreamDelegate {
-    func streamStatusUpdated()
-}
-
 class AudioStream: NSObject {
     
     static let sharedInstance = AudioStream()
+    static let StreamUpdateNotificationKey = "StreamUpdated"
     
     var playing = false
-    weak var delegate: AudioStreamDelegate?
     
     private var audioPlayer = AVPlayer(URL: NSURL(string: "http://stream.uclaradio.com:8000/listen")!)
     
@@ -48,7 +44,7 @@ class AudioStream: NSObject {
             audioPlayer.play()
             playing = true
             UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
-            delegate?.streamStatusUpdated()
+            NSNotificationCenter.defaultCenter().postNotificationName(AudioStream.StreamUpdateNotificationKey, object: nil)
         }
     }
     
@@ -56,7 +52,16 @@ class AudioStream: NSObject {
         if (playing) {
             audioPlayer.pause()
             playing = false
-            delegate?.streamStatusUpdated()
+            NSNotificationCenter.defaultCenter().postNotificationName(AudioStream.StreamUpdateNotificationKey, object: nil)
+        }
+    }
+    
+    func togglePlay() {
+        if (playing) {
+            pause()
+        }
+        else {
+            play()
         }
     }
     
@@ -68,7 +73,7 @@ class AudioStream: NSObject {
         audioPlayer.replaceCurrentItemWithPlayerItem(newItem)
         audioPlayer.play()
         playing = true
-        delegate?.streamStatusUpdated()
+        NSNotificationCenter.defaultCenter().postNotificationName(AudioStream.StreamUpdateNotificationKey, object: nil)
     }
     
     /**

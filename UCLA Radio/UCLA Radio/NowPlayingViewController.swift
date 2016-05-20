@@ -10,7 +10,7 @@ import UIKit
 import MediaPlayer
 import ASHorizontalScrollView
 
-class NowPlayingViewController: UIViewController, HistoryFetchDelegate, AudioStreamDelegate, SlidingVCDelegate {
+class NowPlayingViewController: UIViewController, HistoryFetchDelegate, SlidingVCDelegate {
 
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var imageView: UIImageView!
@@ -35,14 +35,14 @@ class NowPlayingViewController: UIViewController, HistoryFetchDelegate, AudioStr
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = Constants.Colors.darkBlue
+        
         imageView.image = UIImage(named: "radio_banner")
         
         titleLabel.textColor = Constants.Colors.gold
         titleLabel.text = "Live Stream"
         subtitleLabel.textColor = UIColor.whiteColor()
         subtitleLabel.text = "UCLA Radio"
-        
-        view.backgroundColor = Constants.Colors.darkBlue
         
         playButton.imageView?.contentMode = .ScaleAspectFit
         playButton.tintColor = Constants.Colors.gold
@@ -97,7 +97,7 @@ class NowPlayingViewController: UIViewController, HistoryFetchDelegate, AudioStr
         super.viewWillAppear(animated)
         styleFromAudioStream()
         HistoryFetcher.delegate = self
-        AudioStream.sharedInstance.delegate = self
+//        AudioStream.sharedInstance.delegate = self
         
         HistoryFetcher.fetchRecentTracks()
         recentUpdateTimer = NSTimer.scheduledTimerWithTimeInterval(30, target: self, selector: #selector(updateTick), userInfo: nil, repeats: true)
@@ -106,7 +106,7 @@ class NowPlayingViewController: UIViewController, HistoryFetchDelegate, AudioStr
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         HistoryFetcher.delegate = nil
-        AudioStream.sharedInstance.delegate = nil
+//        AudioStream.sharedInstance.delegate = nil
         recentUpdateTimer?.invalidate()
         recentUpdateTimer = nil
     }
@@ -131,13 +131,7 @@ class NowPlayingViewController: UIViewController, HistoryFetchDelegate, AudioStr
     }
 
     @IBAction func hitPlayButton(sender: AnyObject) {
-        let stream = AudioStream.sharedInstance
-        if (stream.playing) {
-            stream.pause()
-        }
-        else {
-            stream.play()
-        }
+        AudioStream.sharedInstance.togglePlay()
     }
 
     @IBAction func skipButtonHit(sender: AnyObject) {
