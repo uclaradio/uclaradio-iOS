@@ -17,7 +17,7 @@
 		832C66001CD0800200B3479E /* UCLA_RadioUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832C65FF1CD0800200B3479E /* UCLA_RadioUITests.swift */; };
 		833B169F1CE1BD2D00E711F5 /* UIImage+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833B169E1CE1BD2D00E711F5 /* UIImage+Color.swift */; };
 		8365ECF51CE99265001B96BF /* SlidingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8365ECF41CE99265001B96BF /* SlidingViewController.swift */; };
-		8365ECF71CE9945C001B96BF /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8365ECF61CE9945C001B96BF /* ContentViewController.swift */; };
+		8365ECF71CE9945C001B96BF /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8365ECF61CE9945C001B96BF /* ContainerViewController.swift */; };
 		83A8ED6E1CE30248003D4286 /* RecentTrackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A8ED6D1CE30248003D4286 /* RecentTrackView.swift */; };
 		83B381021CE1ABD000BA22FE /* AudioStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B381001CE1ABD000BA22FE /* AudioStream.swift */; };
 		83B381031CE1ABD000BA22FE /* HistoryFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B381011CE1ABD000BA22FE /* HistoryFetcher.swift */; };
@@ -62,7 +62,7 @@
 		832C66011CD0800200B3479E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		833B169E1CE1BD2D00E711F5 /* UIImage+Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Color.swift"; sourceTree = "<group>"; };
 		8365ECF41CE99265001B96BF /* SlidingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlidingViewController.swift; sourceTree = "<group>"; };
-		8365ECF61CE9945C001B96BF /* ContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
+		8365ECF61CE9945C001B96BF /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		83A8ED6D1CE30248003D4286 /* RecentTrackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecentTrackView.swift; path = ../RecentTrackView.swift; sourceTree = "<group>"; };
 		83B381001CE1ABD000BA22FE /* AudioStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioStream.swift; sourceTree = "<group>"; };
 		83B381011CE1ABD000BA22FE /* HistoryFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryFetcher.swift; sourceTree = "<group>"; };
@@ -136,7 +136,7 @@
 				833EA2E51CE1BC4F00952BA0 /* extensions */,
 				832C65DF1CD0800200B3479E /* AppDelegate.swift */,
 				832C65E11CD0800200B3479E /* NowPlayingViewController.swift */,
-				8365ECF61CE9945C001B96BF /* ContentViewController.swift */,
+				8365ECF61CE9945C001B96BF /* ContainerViewController.swift */,
 				832C65E31CD0800200B3479E /* Main.storyboard */,
 				832C65E61CD0800200B3479E /* Assets.xcassets */,
 				832C65E81CD0800200B3479E /* LaunchScreen.storyboard */,
@@ -384,7 +384,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				83C4CC1F1CE25C1500FBA1EC /* UIColor+Hex.swift in Sources */,
-				8365ECF71CE9945C001B96BF /* ContentViewController.swift in Sources */,
+				8365ECF71CE9945C001B96BF /* ContainerViewController.swift in Sources */,
 				83A8ED6E1CE30248003D4286 /* RecentTrackView.swift in Sources */,
 				832C65E21CD0800200B3479E /* NowPlayingViewController.swift in Sources */,
 				832C65E01CD0800200B3479E /* AppDelegate.swift in Sources */,
@@ -539,7 +539,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "UCLA Radio/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ChrisLaganiere.UCLARadio;
+				PRODUCT_BUNDLE_IDENTIFIER = com.chrislaganiere.uclaradio;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -552,7 +552,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "UCLA Radio/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ChrisLaganiere.UCLARadio;
+				PRODUCT_BUNDLE_IDENTIFIER = com.chrislaganiere.uclaradio;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

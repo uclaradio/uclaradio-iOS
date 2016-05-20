@@ -78,9 +78,9 @@ class NowPlayingViewController: UIViewController, HistoryFetchDelegate {
         // for smaller screens (iPhone 5)
         containerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[controls]-(>=8)-[recent]", options: [], metrics: nil, views: ["controls": controlsParentView, "recent": recentlyPlayed]))
         
-        tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTap))
-        imageView.userInteractionEnabled = true
-        imageView.addGestureRecognizer(tapGesture!)
+//        tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTap))
+//        imageView.userInteractionEnabled = true
+//        imageView.addGestureRecognizer(tapGesture!)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -127,18 +127,18 @@ class NowPlayingViewController: UIViewController, HistoryFetchDelegate {
     
     // Slider
     
-    func didTap(gesture: UITapGestureRecognizer) {
-        if let slider = slider {
-            var newPosition: SlidingViewControllerPosition!
-            switch(slider.position) {
-            case .Open:
-                newPosition = .Closed
-            case .Closed:
-                newPosition = .Open
-            }
-            slider.updatePosition(newPosition, animated: true)
-        }
-    }
+//    func didTap(gesture: UITapGestureRecognizer) {
+//        if let slider = slider {
+//            var newPosition: SlidingViewControllerPosition!
+//            switch(slider.position) {
+//            case .Open:
+//                newPosition = .Closed
+//            case .Closed:
+//                newPosition = .Open
+//            }
+//            slider.updatePosition(newPosition, animated: true)
+//        }
+//    }
     
     // HistoryFetchDelegate
     

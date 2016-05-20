@@ -1,5 +1,5 @@
 //
-//  MenuViewController.swift
+//  ContainerViewController.swift
 //  UCLA Radio
 //
 //  Created by Christopher Laganiere on 5/15/16.
@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class ContentViewController: UIViewController {
+class ContainerViewController: UIViewController {
     
     // Now Playing slider
     var slider: SlidingViewController!
@@ -17,13 +17,18 @@ class ContentViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        installNowPlayingSlider()
         
-        view.backgroundColor = Constants.Colors.lightBlue
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
+//        view.backgroundColor = Constants.Colors.lightBlue
+        
+        let root = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("rootNav")
+        view.addSubview(root.view)
+        addChildViewController(root)
+        root.didMoveToParentViewController(self)
+        root.view.translatesAutoresizingMaskIntoConstraints = false
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[root]", options: [], metrics: nil, views: ["root": root]))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:[root]", options: [], metrics: nil, views: ["root": root]))
+        
+        installNowPlayingSlider()
     }
     
     func installNowPlayingSlider() {

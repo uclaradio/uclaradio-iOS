@@ -36,6 +36,8 @@ class AudioStream: NSObject {
         audioPlayer.addObserver(self, forKeyPath: "playbackBufferEmpty", options: .New, context: nil)
         audioPlayer.addObserver(self, forKeyPath: "playbackLikelyToKeepUp", options: .New, context: nil)
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(sessionInterrupted), name: AVAudioSessionInterruptionNotification, object: nil)
+        
         updateNowPlaying()
     }
     
@@ -71,8 +73,7 @@ class AudioStream: NSObject {
     func skipToLive() {
         let newItem = AVPlayerItem(URL: NSURL(string: "http://stream.uclaradio.com:8000/listen")!)
         audioPlayer.replaceCurrentItemWithPlayerItem(newItem)
-        audioPlayer.play()
-        playing = true
+        play()
         NSNotificationCenter.defaultCenter().postNotificationName(AudioStream.StreamUpdateNotificationKey, object: nil)
     }
     
@@ -95,6 +96,13 @@ class AudioStream: NSObject {
 //        print("currentDate: \(item?.currentDate())")
 //        
 //    }
+    
+    // Notifications
+    
+    func sessionInterrupted(notification: NSNotification) {
+        playing = false
+        NSNotificationCenter.defaultCenter().postNotificationName(AudioStream.StreamUpdateNotificationKey, object: nil)
+    }
     
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         if let player = object as? AVPlayer {
