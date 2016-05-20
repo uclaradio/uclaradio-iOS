@@ -10,16 +10,13 @@ import UIKit
 import MediaPlayer
 import ASHorizontalScrollView
 
-class NowPlayingViewController: UIViewController, HistoryFetchDelegate, SlidingVCDelegate {
+class NowPlayingViewController: UIViewController, HistoryFetchDelegate {
 
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var controlsParentView: UIView!
-    @IBOutlet weak var playButton: UIButton!
-    @IBOutlet weak var skipButton: UIButton!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var subtitleLabel: UILabel!
     
+    var nowPlayingView: NowPlayingView!
     var recentlyPlayedLabel: UILabel!
     var recentlyPlayed: ASHorizontalScrollView!
     
@@ -28,9 +25,6 @@ class NowPlayingViewController: UIViewController, HistoryFetchDelegate, SlidingV
     
     // SlidingVCDelegate
     var slider: SlidingViewController?
-    var MaximumHeight: CGFloat = -80
-    var MinimumYPosition: CGFloat = 0
-    var ClosedHeight: CGFloat = -100
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,15 +33,9 @@ class NowPlayingViewController: UIViewController, HistoryFetchDelegate, SlidingV
         
         imageView.image = UIImage(named: "radio_banner")
         
-        titleLabel.textColor = Constants.Colors.gold
-        titleLabel.text = "Live Stream"
-        subtitleLabel.textColor = UIColor.whiteColor()
-        subtitleLabel.text = "UCLA Radio"
-        
-        playButton.imageView?.contentMode = .ScaleAspectFit
-        playButton.tintColor = Constants.Colors.gold
-        skipButton.imageView?.contentMode = .ScaleAspectFit
-        skipButton.tintColor = Constants.Colors.gold
+        nowPlayingView = NowPlayingView(canSkipStream: true)
+        nowPlayingView.translatesAutoresizingMaskIntoConstraints = false
+        controlsParentView.addSubview(nowPlayingView)
         
         let volumeView = MPVolumeView()
         controlsParentView.addSubview(volumeView)
@@ -57,8 +45,10 @@ class NowPlayingViewController: UIViewController, HistoryFetchDelegate, SlidingV
         volumeView.setRouteButtonImage(UIImage(named: "airplayIcon")?.imageWithColor(Constants.Colors.gold), forState: .Normal)
         volumeView.tintColor = Constants.Colors.gold
         
-        controlsParentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[skip]-(15)-[volume(>=30)]", options: [], metrics: nil, views: ["skip": skipButton, "volume": volumeView]))
-        controlsParentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-(20)-[volume]-(20)-|", options: [], metrics: nil, views: ["volume": volumeView]))
+        let controlsViews = ["nowPlaying": nowPlayingView, "volume": volumeView]
+        controlsParentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[nowPlaying]-[volume(30)]|", options: [], metrics: nil, views: controlsViews))
+        controlsParentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[nowPlaying]-|", options: [], metrics: nil, views: controlsViews))
+        controlsParentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-(40)-[volume]-(40)-|", options: [], metrics: nil, views: controlsViews))
         
         recentlyPlayedLabel = UILabel()
         recentlyPlayedLabel.text = "Recently Played"
@@ -83,7 +73,7 @@ class NowPlayingViewController: UIViewController, HistoryFetchDelegate, SlidingV
         
         containerView.addSubview(recentlyPlayed)
         recentlyPlayed.translatesAutoresizingMaskIntoConstraints = false
-        containerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[controls]-(>=15)-[recentLabel(15)]-(5)-[recent(trackHeight@999)]-(30)-|", options: [], metrics: ["trackHeight": recentTrackSize.height], views: ["controls": controlsParentView, "recent": recentlyPlayed, "recentLabel": recentlyPlayedLabel]))
+        containerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[controls]-(>=15)-[recentLabel(15)]-(5)-[recent(trackHeight@999)]-(30@998,>=8)-|", options: [], metrics: ["trackHeight": recentTrackSize.height], views: ["controls": controlsParentView, "recent": recentlyPlayed, "recentLabel": recentlyPlayedLabel]))
         containerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[recent]|", options: [], metrics: nil, views: ["recent": recentlyPlayed]))
         // for smaller screens (iPhone 5)
         containerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[controls]-(>=8)-[recent]", options: [], metrics: nil, views: ["controls": controlsParentView, "recent": recentlyPlayed]))
@@ -95,18 +85,20 @@ class NowPlayingViewController: UIViewController, HistoryFetchDelegate, SlidingV
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        styleFromAudioStream()
-        HistoryFetcher.delegate = self
-//        AudioStream.sharedInstance.delegate = self
+        nowPlayingView.willAppear()
         
+        // fetch recently played
+        HistoryFetcher.delegate = self
         HistoryFetcher.fetchRecentTracks()
         recentUpdateTimer = NSTimer.scheduledTimerWithTimeInterval(30, target: self, selector: #selector(updateTick), userInfo: nil, repeats: true)
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
+        nowPlayingView.willDisappear()
+        
+        // stop fetching recently played
         HistoryFetcher.delegate = nil
-//        AudioStream.sharedInstance.delegate = nil
         recentUpdateTimer?.invalidate()
         recentUpdateTimer = nil
     }
@@ -114,11 +106,6 @@ class NowPlayingViewController: UIViewController, HistoryFetchDelegate, SlidingV
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    func styleFromAudioStream() {
-        let name = AudioStream.sharedInstance.playing ? "pause" : "play"
-        playButton.setImage(UIImage(named: name), forState: .Normal)
     }
     
     func updateRecentlyPlayed() {
@@ -153,26 +140,10 @@ class NowPlayingViewController: UIViewController, HistoryFetchDelegate, SlidingV
         }
     }
     
-    // SlidingVCDelegate
-    
-    func openPercentageChanged(percent: CGFloat) {
-        print("open percentage: \(percent)")
-    }
-    
-    func positionUpdated(position: SlidingViewControllerPosition) {
-        print("slider position updated")
-    }
-    
     // HistoryFetchDelegate
     
     func updatedHistory() {
         updateRecentlyPlayed()
-    }
-    
-    // AudioStreamDelegate
-    
-    func streamStatusUpdated() {
-        styleFromAudioStream()
     }
     
     // Timers

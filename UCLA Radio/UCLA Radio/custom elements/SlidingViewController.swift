@@ -16,11 +16,6 @@ import UIKit
 
 @objc protocol SlidingVCDelegate {
     weak var slider: SlidingViewController? { get set }
-    var MaximumHeight: CGFloat { get }
-    var MinimumYPosition: CGFloat { get }
-    var ClosedHeight: CGFloat { get }
-    func openPercentageChanged(percent: CGFloat)
-    func positionUpdated(position: SlidingViewControllerPosition)
 }
 
 class SliderTabView: UIView {
@@ -142,7 +137,7 @@ class SlidingViewController: UIViewController {
         }
         view.superview?.setNeedsLayout()
         self.position = position
-        sliderDelegate?.positionUpdated(position)
+//        sliderDelegate?.positionUpdated(position)
         
         let alpha: CGFloat = (position == .Closed) ? 1.0 : 0.0
         if (animated) {
@@ -163,13 +158,14 @@ class SlidingViewController: UIViewController {
         case .Began:
             break;
         case .Changed:
-            if let relativeYPosition = initialRelativeYPosition, let delegate = sliderDelegate {
-                let MaximumYPosition = 20 + -tabView!.frame.size.height + contentViewController!.view.frame.size.height
+            if let relativeYPosition = initialRelativeYPosition {
+                let MinimumYPosition = -tabView!.frame.size.height
+                let MaximumYPosition = 15 + -tabView!.frame.size.height + contentViewController!.view.frame.size.height
                 let touchYPosition = touchLocation.y - relativeYPosition
-                let newYPosition: CGFloat = max(-tabView!.frame.size.height, min(MaximumYPosition, touchYPosition))
+                let newYPosition: CGFloat = max(MinimumYPosition, min(MaximumYPosition, touchYPosition))
                 view.frame.origin = CGPointMake(0, newYPosition)
                 
-                let openPercentage = 1.0 - (newYPosition-delegate.MinimumYPosition)/(MaximumYPosition-delegate.MinimumYPosition)
+                let openPercentage = 1.0 - (newYPosition-MinimumYPosition)/(MaximumYPosition-MinimumYPosition)
 //                sliderDelegate?.openPercentageChanged(openPercentage)
                 tabView?.alpha = 0.3 + 0.7*(1.0 - openPercentage)
             }

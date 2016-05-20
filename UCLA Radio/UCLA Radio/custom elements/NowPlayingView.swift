@@ -23,7 +23,7 @@ class NowPlayingView: SliderTabView {
     var titleLabel: UILabel!
     var subtitleLabel: UILabel!
     
-    private var constraintsInstalled: [NSLayoutConstraint]?
+    private var containerConstraintsInstalled: [NSLayoutConstraint]?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -38,8 +38,9 @@ class NowPlayingView: SliderTabView {
         playButton = UIButton(type: .System)
         playButton.tintColor = Constants.Colors.gold
         playButton.contentMode = .ScaleAspectFit
-        playButton.imageEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+        playButton.imageEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         playButton.translatesAutoresizingMaskIntoConstraints = false
+        playButton.addTarget(self, action: #selector(hitPlay), forControlEvents: .TouchUpInside)
         containerView.addSubview(playButton)
         
         titleLabel = UILabel()
@@ -67,7 +68,6 @@ class NowPlayingView: SliderTabView {
     convenience init(canSkipStream: Bool) {
         self.init(frame: CGRect(x: 0, y: 0, width: 400, height: NowPlayingView.PreferredHeight))
         if (canSkipStream) {
-            self.canSkipStream = true
             addSkipButton()
         }
     }
@@ -87,22 +87,26 @@ class NowPlayingView: SliderTabView {
     
     func addSkipButton() {
         skipButton = UIButton(type: .System)
+        skipButton.setImage(UIImage(named: "reset"), forState: .Normal)
         skipButton.tintColor = Constants.Colors.gold
         skipButton.contentMode = .ScaleAspectFit
-        skipButton.imageEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+        skipButton.imageEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         skipButton.translatesAutoresizingMaskIntoConstraints = false
+        skipButton.addTarget(self, action: #selector(hitSkip), forControlEvents: .TouchUpInside)
         containerView.addSubview(skipButton)
         
-        if (!canSkipStream) {
-            resetConstraints()
-            canSkipStream = true
-        }
+        canSkipStream = true
+        resetConstraints()
     }
     
     // Actions
     
     func hitPlay(button: UIButton) {
         AudioStream.sharedInstance.togglePlay()
+    }
+    
+    func hitSkip(button: UIButton) {
+        AudioStream.sharedInstance.skipToLive()
     }
     
     // Notifications
@@ -123,11 +127,12 @@ class NowPlayingView: SliderTabView {
     // Layout
     
     func resetConstraints() {
-        if let constraints = constraintsInstalled {
-            removeConstraints(constraints)
-            constraintsInstalled = nil
+        if let constraints = containerConstraintsInstalled {
+            containerView.removeConstraints(constraints)
+            containerConstraintsInstalled = nil
         }
-        addConstraints(preferredConstraints())
+        containerConstraintsInstalled = containerConstraints()
+        containerView.addConstraints(containerConstraintsInstalled!)
     }
     
     func preferredConstraints() -> [NSLayoutConstraint] {

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="DuL-GS-bCM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -47,51 +47,9 @@
                                     </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9GG-Ph-86M">
                                         <rect key="frame" x="0.0" y="405" width="400" height="100"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UCLA Radio" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oWj-hU-fTj">
-                                                <rect key="frame" x="100" y="32" width="200" height="18"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <button autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R6f-YY-Gxu">
-                                                <rect key="frame" x="42" y="8" width="50" height="57"/>
-                                                <color key="tintColor" red="1" green="0.73249855340000003" blue="0.37758148180000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
-                                                <state key="normal" image="play"/>
-                                                <connections>
-                                                    <action selector="hitPlayButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hEp-Xf-2kx"/>
-                                                </connections>
-                                            </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UCLA Radio" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aew-hk-pfe">
-                                                <rect key="frame" x="100" y="10" width="200" height="21"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <button autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rqe-0e-co2">
-                                                <rect key="frame" x="308" y="8" width="75" height="55"/>
-                                                <color key="tintColor" red="1" green="0.73249855340000003" blue="0.37758148180000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
-                                                <state key="normal" image="next"/>
-                                                <connections>
-                                                    <action selector="skipButtonHit:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3pb-6B-Qtf"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="100" id="EDC-Yf-Qks"/>
-                                            <constraint firstAttribute="trailing" secondItem="Rqe-0e-co2" secondAttribute="trailing" constant="17" id="Etw-II-ABM"/>
-                                            <constraint firstItem="aew-hk-pfe" firstAttribute="width" secondItem="9GG-Ph-86M" secondAttribute="width" constant="-200" id="Gij-Zy-40Z"/>
-                                            <constraint firstItem="R6f-YY-Gxu" firstAttribute="leading" secondItem="9GG-Ph-86M" secondAttribute="leading" constant="42" id="Ku3-qm-07K"/>
-                                            <constraint firstItem="aew-hk-pfe" firstAttribute="centerX" secondItem="9GG-Ph-86M" secondAttribute="centerX" id="Vvb-TY-eya"/>
-                                            <constraint firstItem="oWj-hU-fTj" firstAttribute="top" secondItem="9GG-Ph-86M" secondAttribute="top" constant="32" id="Zfs-II-SWM"/>
-                                            <constraint firstItem="Rqe-0e-co2" firstAttribute="top" secondItem="9GG-Ph-86M" secondAttribute="top" constant="8" id="d5F-KN-ewP"/>
-                                            <constraint firstItem="R6f-YY-Gxu" firstAttribute="top" secondItem="9GG-Ph-86M" secondAttribute="top" constant="8" id="gRH-yM-yXt"/>
-                                            <constraint firstItem="aew-hk-pfe" firstAttribute="top" secondItem="9GG-Ph-86M" secondAttribute="top" constant="10" id="gl6-hY-uDe"/>
-                                            <constraint firstItem="oWj-hU-fTj" firstAttribute="width" secondItem="9GG-Ph-86M" secondAttribute="width" constant="-200" id="k2S-SL-0pB"/>
-                                            <constraint firstItem="oWj-hU-fTj" firstAttribute="centerX" secondItem="9GG-Ph-86M" secondAttribute="centerX" id="v8T-eX-2GH"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -119,10 +77,6 @@
                         <outlet property="containerView" destination="4dO-ik-ILl" id="cmE-fo-GdR"/>
                         <outlet property="controlsParentView" destination="9GG-Ph-86M" id="nzF-Wu-aPV"/>
                         <outlet property="imageView" destination="AEg-ei-x8z" id="Gk6-Nl-oU4"/>
-                        <outlet property="playButton" destination="R6f-YY-Gxu" id="rCh-6d-JfK"/>
-                        <outlet property="skipButton" destination="Rqe-0e-co2" id="Bh2-r8-kIY"/>
-                        <outlet property="subtitleLabel" destination="oWj-hU-fTj" id="p4F-QG-5YT"/>
-                        <outlet property="titleLabel" destination="aew-hk-pfe" id="7rJ-gh-q05"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -130,8 +84,4 @@
             <point key="canvasLocation" x="543" y="494"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="next" width="75" height="55"/>
-        <image name="play" width="50" height="57"/>
-    </resources>
 </document>
