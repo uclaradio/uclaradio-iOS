@@ -18,6 +18,8 @@ class MenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         installNowPlayingSlider()
+        
+        view.backgroundColor = UIColor.blackColor()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -38,6 +40,10 @@ class MenuViewController: UIViewController {
             self.nowPlaying = nowPlaying
             slider.addContent(nowPlaying)
         }
+        
+        var tabView = UIView(frame: CGRect(x: 0, y: 0, width: 400, height: 80))
+        tabView.backgroundColor = UIColor.lightGrayColor()
+        slider.addTabView(tabView)
     }
     
 }
