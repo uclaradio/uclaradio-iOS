@@ -1,6 +1,7 @@
 PODS:
   - Alamofire (3.4.0)
   - ASHorizontalScrollView (1.1)
+  - KRLCollectionViewGridLayout (0.4.1)
   - SDWebImage (3.7.6):
     - SDWebImage/Core (= 3.7.6)
   - SDWebImage/Core (3.7.6)
@@ -8,13 +9,15 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 3.4)
   - ASHorizontalScrollView (~> 1.1)
+  - KRLCollectionViewGridLayout (~> 0.4.1)
   - SDWebImage (~> 3.7)
 
 SPEC CHECKSUMS:
   Alamofire: c19a627cefd6a95f840401c49ab1f124e07f54ee
   ASHorizontalScrollView: 97f78b44008078b9c3ea1fe3ed7286c39e47d4e8
+  KRLCollectionViewGridLayout: 6363dc7e3d91cf1f97e19ed20846764566659596
   SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
 
-PODFILE CHECKSUM: 849e724c3a2385c66b13abcd23b13ae6d1f1abd1
+PODFILE CHECKSUM: d22984179f6f2146dd866c7c2edb8c68be26d37d
 
 COCOAPODS: 1.0.0.rc.2

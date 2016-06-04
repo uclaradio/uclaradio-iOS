@@ -8,8 +8,12 @@
 
 import Foundation
 import UIKit
+import KRLCollectionViewGridLayout
 
 class ContainerViewController: UIViewController {
+    
+    // Menu
+    var rootNavController: UINavigationController!
     
     // Now Playing slider
     var slider: SlidingViewController!
@@ -20,13 +24,14 @@ class ContainerViewController: UIViewController {
         
 //        view.backgroundColor = Constants.Colors.lightBlue
         
-        let root = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("rootNav")
-        view.addSubview(root.view)
-        addChildViewController(root)
-        root.didMoveToParentViewController(self)
-        root.view.translatesAutoresizingMaskIntoConstraints = false
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[root]", options: [], metrics: nil, views: ["root": root]))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:[root]", options: [], metrics: nil, views: ["root": root]))
+        let menuVC = MenuViewController(collectionViewLayout: KRLCollectionViewGridLayout())
+        rootNavController = UINavigationController(rootViewController: menuVC)
+        view.addSubview(rootNavController.view)
+        addChildViewController(rootNavController)
+        rootNavController.didMoveToParentViewController(self)
+        rootNavController.view.translatesAutoresizingMaskIntoConstraints = false
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[root]", options: [], metrics: nil, views: ["root": rootNavController]))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:[root]", options: [], metrics: nil, views: ["root": rootNavController]))
         
         installNowPlayingSlider()
     }

@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '2F609F8D498C8F58DCD18E913EAA946B'
-               BlueprintName = 'SDWebImage'
+               BlueprintIdentifier = '6FACE30FFDD69CD562F6E8526FA562EB'
+               BlueprintName = 'KRLCollectionViewGridLayout'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'SDWebImage.framework'>
+               BuildableName = 'KRLCollectionViewGridLayout.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

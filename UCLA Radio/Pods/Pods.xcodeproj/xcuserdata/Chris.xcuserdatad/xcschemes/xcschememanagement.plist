@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>KRLCollectionViewGridLayout.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-UCLA Radio.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -27,17 +32,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>65D0D08D1C08CFD17A0FD71028930604</key>
+		<key>18BA33499E43E0D8C2024131C72D4804</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2F609F8D498C8F58DCD18E913EAA946B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6FACE30FFDD69CD562F6E8526FA562EB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>79C040AFDDCE1BCBF6D8B5EB0B85887F</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>B0E538D2A53A92F359E5ACED58AFF510</key>
 		<dict>
 			<key>primary</key>
 			<true/>
