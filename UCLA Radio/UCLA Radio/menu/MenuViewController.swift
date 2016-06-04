@@ -14,9 +14,9 @@ private let reuseIdentifier = "MenuCell"
 private let sectionInset: CGFloat = 25
 private let itemSpacing: CGFloat = 15
 
-private class MenuItem {
+class MenuItem {
     let title: String
-    let image: String // image url (square)
+    let image: String // image name (square)
     let storyboardID: String? // storyboard ID for view controller to push when tapped (or nil)
     
     init(title: String, image: String, storyboardID: String?) {
@@ -28,9 +28,9 @@ private class MenuItem {
 
 class MenuViewController: UICollectionViewController {
     
-    private let items = [MenuItem(title: "Schedule", image: "/img/radio.png", storyboardID: "schedule"),
-                         MenuItem(title: "DJs", image: "/img/radio.png", storyboardID: "schedule"),
-                         MenuItem(title: "News", image: "/img/radio.png", storyboardID: "schedule")]
+    private let items = [MenuItem(title: "Schedule", image: "schedule", storyboardID: "scheduleViewController"),
+                         MenuItem(title: "DJs", image: "djs", storyboardID: "djListViewController"),
+                         MenuItem(title: "About", image: "about", storyboardID: "aboutViewController")]
     
     var layout: KRLCollectionViewGridLayout {
         return self.collectionView?.collectionViewLayout as! KRLCollectionViewGridLayout
@@ -39,7 +39,7 @@ class MenuViewController: UICollectionViewController {
     override init(collectionViewLayout layout: UICollectionViewLayout) {
         super.init(collectionViewLayout: layout)
         
-        collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        collectionView!.registerClass(MenuCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -55,6 +55,10 @@ class MenuViewController: UICollectionViewController {
         layout.sectionInset = UIEdgeInsets(top: sectionInset, left: sectionInset, bottom: sectionInset, right: sectionInset)
         layout.interitemSpacing = itemSpacing
         layout.lineSpacing = itemSpacing
+        
+        collectionView?.backgroundColor = UIColor.clearColor()
+        
+        view.backgroundColor = Constants.Colors.lightBlue
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -95,6 +99,13 @@ class MenuViewController: UICollectionViewController {
         
         cell.contentView.backgroundColor = Constants.Colors.gold
         return cell
+    }
+    
+    override func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
+        let item = items[indexPath.row]
+        if let menuCell = cell as? MenuCollectionViewCell {
+            menuCell.styleForMenuItem(item)
+        }
     }
     
     // MARK: - UICollectionViewDelegate

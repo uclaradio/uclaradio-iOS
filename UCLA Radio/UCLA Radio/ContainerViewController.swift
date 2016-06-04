@@ -22,8 +22,6 @@ class ContainerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        view.backgroundColor = Constants.Colors.lightBlue
-        
         let menuVC = MenuViewController(collectionViewLayout: KRLCollectionViewGridLayout())
         rootNavController = UINavigationController(rootViewController: menuVC)
         view.addSubview(rootNavController.view)
