@@ -51,7 +51,10 @@ class RadioAPI {
         Alamofire.request(.GET, host+djRoute).validate().responseJSON { response in
             switch response.result {
             case .Success(let json):
-                delegate?.didFetchData(json)
+                if let djs = json["djs"] as? NSArray {
+                    djListCache = DJ.djsFromJSON(djs)
+                    delegate?.didFetchData(djListCache!)
+                }
             case .Failure(let error):
                 delegate?.failedToFetchData(error.localizedDescription)
                 print(error)
