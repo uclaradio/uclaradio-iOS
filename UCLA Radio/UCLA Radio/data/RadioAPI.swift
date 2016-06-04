@@ -21,7 +21,7 @@ protocol APIFetchDelegate {
 class RadioAPI {
     static let host = "https://radio.chrislaganiere.net"
     
-    static var scheduleCache: [Show]?
+    static var scheduleCache: Schedule?
     static var djListCache: [DJ]?
     
     static func fetchSchedule(delegate: APIFetchDelegate?) {
@@ -32,8 +32,10 @@ class RadioAPI {
         Alamofire.request(.GET, host+scheduleRoute).validate().responseJSON { response in
             switch response.result {
             case .Success(let json):
-                if let shows = json["shows"] as? NSArray {
-                    scheduleCache = Show.showsFromJSON(shows)
+                if let showsArray = json["shows"] as? NSArray {
+                    let shows = Show.showsFromJSON(showsArray)
+                    scheduleCache = Schedule(shows: shows)
+                    delegate?.didFetchData(shows)
                     delegate?.didFetchData(scheduleCache!)
                 }
             case .Failure(let error):

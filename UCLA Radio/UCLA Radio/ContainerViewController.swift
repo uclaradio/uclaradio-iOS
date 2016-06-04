@@ -30,8 +30,12 @@ class ContainerViewController: UIViewController {
         rootNavController.view.translatesAutoresizingMaskIntoConstraints = false
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[root]", options: [], metrics: nil, views: ["root": rootNavController]))
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:[root]", options: [], metrics: nil, views: ["root": rootNavController]))
+        // bar color
         rootNavController.navigationBar.barTintColor = Constants.Colors.darkBlue
-        rootNavController.navigationBar
+        // back button color
+        rootNavController.navigationBar.tintColor = UIColor.whiteColor()
+        // title color
+        rootNavController.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: Constants.Colors.gold]
         
         installNowPlayingSlider()
     }
@@ -56,6 +60,10 @@ class ContainerViewController: UIViewController {
             let tabView = NowPlayingView(canSkipStream: false)
             slider.addTabView(tabView)
         }
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
     }
     
 }

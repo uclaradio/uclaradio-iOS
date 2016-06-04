@@ -36,7 +36,12 @@ class Show {
     static func showsFromJSON(shows: NSArray) -> [Show] {
         var result: [Show] = []
         for showObject: AnyObject in shows {
-            if let show = showObject as? NSDictionary, let id = show["id"] as? Int, let title = show["title"] as? String, let day = show["day"] as? String, let time = show["time"] as? String {
+            if let show = showObject as? NSDictionary,
+                let id = show["id"] as? Int,
+                let title = show["title"] as? String,
+                let day = show["day"] as? String,
+                let time = show["time"] as? String {
+                
                 let newShow = Show(id: id, title: title, day: day, time: time)
                 
                 // optional properties

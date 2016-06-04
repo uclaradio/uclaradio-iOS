@@ -30,6 +30,8 @@
 		83C28A6F1D02627A0096D629 /* Show.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C28A6E1D02627A0096D629 /* Show.swift */; };
 		83C28A711D0263350096D629 /* DJ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C28A701D0263350096D629 /* DJ.swift */; };
 		83C28A731D0270AA0096D629 /* DJCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C28A721D0270AA0096D629 /* DJCollectionViewCell.swift */; };
+		83C28A751D02C25E0096D629 /* ScheduleDayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C28A741D02C25E0096D629 /* ScheduleDayViewController.swift */; };
+		83C28A771D02CB980096D629 /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C28A761D02CB980096D629 /* Schedule.swift */; };
 		83C4CC1D1CE25BB900FBA1EC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C4CC1C1CE25BB900FBA1EC /* Constants.swift */; };
 		83C4CC1F1CE25C1500FBA1EC /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C4CC1E1CE25C1500FBA1EC /* UIColor+Hex.swift */; };
 		83E4247A1CEECCF700662EDD /* NowPlayingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E424791CEECCF700662EDD /* NowPlayingView.swift */; };
@@ -84,6 +86,8 @@
 		83C28A6E1D02627A0096D629 /* Show.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Show.swift; sourceTree = "<group>"; };
 		83C28A701D0263350096D629 /* DJ.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DJ.swift; sourceTree = "<group>"; };
 		83C28A721D0270AA0096D629 /* DJCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DJCollectionViewCell.swift; sourceTree = "<group>"; };
+		83C28A741D02C25E0096D629 /* ScheduleDayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleDayViewController.swift; sourceTree = "<group>"; };
+		83C28A761D02CB980096D629 /* Schedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
 		83C4CC1C1CE25BB900FBA1EC /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		83C4CC1E1CE25C1500FBA1EC /* UIColor+Hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
 		83E424791CEECCF700662EDD /* NowPlayingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NowPlayingView.swift; sourceTree = "<group>"; };
@@ -200,6 +204,7 @@
 				83B381001CE1ABD000BA22FE /* AudioStream.swift */,
 				83B381011CE1ABD000BA22FE /* HistoryFetcher.swift */,
 				83C28A6C1D025FB10096D629 /* RadioAPI.swift */,
+				83C28A761D02CB980096D629 /* Schedule.swift */,
 			);
 			path = data;
 			sourceTree = "<group>";
@@ -213,6 +218,7 @@
 				83C28A681D025E360096D629 /* DJListViewController.swift */,
 				83C28A721D0270AA0096D629 /* DJCollectionViewCell.swift */,
 				83C28A6A1D025E500096D629 /* AboutViewController.swift */,
+				83C28A741D02C25E0096D629 /* ScheduleDayViewController.swift */,
 			);
 			path = menu;
 			sourceTree = "<group>";
@@ -420,6 +426,7 @@
 			files = (
 				83C4CC1F1CE25C1500FBA1EC /* UIColor+Hex.swift in Sources */,
 				83C28A691D025E360096D629 /* DJListViewController.swift in Sources */,
+				83C28A771D02CB980096D629 /* Schedule.swift in Sources */,
 				83C28A6D1D025FB10096D629 /* RadioAPI.swift in Sources */,
 				8365ECF71CE9945C001B96BF /* ContainerViewController.swift in Sources */,
 				83A8ED6E1CE30248003D4286 /* RecentTrackView.swift in Sources */,
@@ -427,6 +434,7 @@
 				83C28A6F1D02627A0096D629 /* Show.swift in Sources */,
 				832C65E01CD0800200B3479E /* AppDelegate.swift in Sources */,
 				83C28A671D025E020096D629 /* ScheduleViewController.swift in Sources */,
+				83C28A751D02C25E0096D629 /* ScheduleDayViewController.swift in Sources */,
 				833B169F1CE1BD2D00E711F5 /* UIImage+Color.swift in Sources */,
 				83C28A731D0270AA0096D629 /* DJCollectionViewCell.swift in Sources */,
 				8365ECF51CE99265001B96BF /* SlidingViewController.swift in Sources */,

@@ -23,7 +23,7 @@ class DJCollectionViewCell: UICollectionViewCell {
         
         contentView.addSubview(imageView)
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .ScaleAspectFit
+        imageView.contentMode = .ScaleAspectFill
         imageView.clipsToBounds = true
         contentView.addSubview(nameLabel)
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -36,7 +36,7 @@ class DJCollectionViewCell: UICollectionViewCell {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    1
+    
     func styleFromDJ(dj: DJ) {
         if let name = dj.djName {
             nameLabel.text = name
