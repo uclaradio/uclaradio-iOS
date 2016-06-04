@@ -30,6 +30,8 @@ class ContainerViewController: UIViewController {
         rootNavController.view.translatesAutoresizingMaskIntoConstraints = false
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[root]", options: [], metrics: nil, views: ["root": rootNavController]))
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:[root]", options: [], metrics: nil, views: ["root": rootNavController]))
+        rootNavController.navigationBar.barTintColor = Constants.Colors.darkBlue
+        rootNavController.navigationBar
         
         installNowPlayingSlider()
     }

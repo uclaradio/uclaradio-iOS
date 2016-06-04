@@ -24,10 +24,10 @@
             </objects>
             <point key="canvasLocation" x="543" y="-293"/>
         </scene>
-        <!--Schedule View Controller-->
+        <!--Schedule-->
         <scene sceneID="oTE-Fe-gyE">
             <objects>
-                <viewController storyboardIdentifier="scheduleViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="MQO-bm-SfN" customClass="ScheduleViewController" customModule="UCLA_Radio" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="scheduleViewController" title="Schedule" useStoryboardIdentifierAsRestorationIdentifier="YES" id="MQO-bm-SfN" customClass="ScheduleViewController" customModule="UCLA_Radio" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4y2-OA-pqC"/>
                         <viewControllerLayoutGuide type="bottom" id="cRF-JD-eE2"/>
@@ -41,10 +41,10 @@
             </objects>
             <point key="canvasLocation" x="1295" y="-293"/>
         </scene>
-        <!--List View Controller-->
+        <!--DJs-->
         <scene sceneID="Ml5-Be-zSE">
             <objects>
-                <viewController storyboardIdentifier="djListViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="aIc-ZC-F6h" customClass="DJListViewController" customModule="UCLA_Radio" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="djListViewController" title="DJs" useStoryboardIdentifierAsRestorationIdentifier="YES" id="aIc-ZC-F6h" customClass="DJListViewController" customModule="UCLA_Radio" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="R7c-aV-eO0"/>
                         <viewControllerLayoutGuide type="bottom" id="9lU-10-cs7"/>
@@ -59,10 +59,10 @@
             </objects>
             <point key="canvasLocation" x="1939" y="-296"/>
         </scene>
-        <!--About View Controller-->
+        <!--About-->
         <scene sceneID="3MT-az-Cbe">
             <objects>
-                <viewController storyboardIdentifier="aboutViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="lfH-Bk-LZM" customClass="AboutViewController" customModule="UCLA_Radio" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="aboutViewController" title="About" useStoryboardIdentifierAsRestorationIdentifier="YES" id="lfH-Bk-LZM" customClass="AboutViewController" customModule="UCLA_Radio" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="doX-td-2aO"/>
                         <viewControllerLayoutGuide type="bottom" id="KlL-3L-PRx"/>

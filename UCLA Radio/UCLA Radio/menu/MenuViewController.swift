@@ -57,6 +57,7 @@ class MenuViewController: UICollectionViewController {
         layout.lineSpacing = itemSpacing
         
         collectionView?.backgroundColor = UIColor.clearColor()
+        collectionView?.alwaysBounceVertical = true
         
         view.backgroundColor = Constants.Colors.lightBlue
     }
@@ -101,14 +102,14 @@ class MenuViewController: UICollectionViewController {
         return cell
     }
     
+    // MARK: - UICollectionViewDelegate
+    
     override func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
         let item = items[indexPath.row]
         if let menuCell = cell as? MenuCollectionViewCell {
             menuCell.styleForMenuItem(item)
         }
     }
-    
-    // MARK: - UICollectionViewDelegate
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         collectionView.deselectItemAtIndexPath(indexPath, animated: true)
@@ -121,35 +122,3 @@ class MenuViewController: UICollectionViewController {
     }
     
 }
-
-//extension GridLayoutCollectionViewController: KRLCollectionViewDelegateGridLayout {
-//    
-//    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
-//        let inset = CGFloat((section + 1) * 10)
-//        return UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset)
-//    }
-//    
-//    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, interitemSpacingForSectionAtIndex section: Int) -> CGFloat {
-//        return CGFloat((section + 1) * 10)
-//    }
-//    
-//    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, lineSpacingForSectionAtIndex section: Int) -> CGFloat {
-//        return CGFloat((section + 1) * 10)
-//    }
-//    
-//    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceLengthForHeaderInSection section: Int) -> CGFloat {
-//        return CGFloat((section + 1) * 20)
-//    }
-//    
-//    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceLengthForFooterInSection section: Int) -> CGFloat {
-//        return CGFloat((section + 1) * 20)
-//    }
-//    
-//    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, numberItemsPerLineForSectionAtIndex section: Int) -> Int {
-//        return self.layout.numberOfItemsPerLine + (section * 1)
-//    }
-//    
-//    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, aspectRatioForItemsInSectionAtIndex section: Int) -> CGFloat {
-//        return CGFloat(1 + section)
-//    }
-//}

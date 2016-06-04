@@ -9,7 +9,6 @@
 import Foundation
 import Alamofire
 
-private let host = "https://radio.chrislaganiere.net"
 private let scheduleRoute = "/api/schedule"
 private let djRoute = "/api/djs"
 
@@ -20,6 +19,7 @@ protocol APIFetchDelegate {
 }
 
 class RadioAPI {
+    static let host = "https://radio.chrislaganiere.net"
     
     static var scheduleCache: [Show]?
     static var djListCache: [DJ]?

@@ -11,10 +11,9 @@ import UIKit
 
 class MenuCollectionViewCell: UICollectionViewCell {
     
-    let imageView: UIImageView!
+    let imageView = UIImageView()
     
     override init(frame: CGRect) {
-        imageView = UIImageView()
         super.init(frame: frame)
         
         contentView.addSubview(imageView)

@@ -29,6 +29,7 @@
 		83C28A6D1D025FB10096D629 /* RadioAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C28A6C1D025FB10096D629 /* RadioAPI.swift */; };
 		83C28A6F1D02627A0096D629 /* Show.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C28A6E1D02627A0096D629 /* Show.swift */; };
 		83C28A711D0263350096D629 /* DJ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C28A701D0263350096D629 /* DJ.swift */; };
+		83C28A731D0270AA0096D629 /* DJCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C28A721D0270AA0096D629 /* DJCollectionViewCell.swift */; };
 		83C4CC1D1CE25BB900FBA1EC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C4CC1C1CE25BB900FBA1EC /* Constants.swift */; };
 		83C4CC1F1CE25C1500FBA1EC /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C4CC1E1CE25C1500FBA1EC /* UIColor+Hex.swift */; };
 		83E4247A1CEECCF700662EDD /* NowPlayingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E424791CEECCF700662EDD /* NowPlayingView.swift */; };
@@ -82,6 +83,7 @@
 		83C28A6C1D025FB10096D629 /* RadioAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioAPI.swift; sourceTree = "<group>"; };
 		83C28A6E1D02627A0096D629 /* Show.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Show.swift; sourceTree = "<group>"; };
 		83C28A701D0263350096D629 /* DJ.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DJ.swift; sourceTree = "<group>"; };
+		83C28A721D0270AA0096D629 /* DJCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DJCollectionViewCell.swift; sourceTree = "<group>"; };
 		83C4CC1C1CE25BB900FBA1EC /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		83C4CC1E1CE25C1500FBA1EC /* UIColor+Hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
 		83E424791CEECCF700662EDD /* NowPlayingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NowPlayingView.swift; sourceTree = "<group>"; };
@@ -205,10 +207,11 @@
 		83C28A611D025DED0096D629 /* menu */ = {
 			isa = PBXGroup;
 			children = (
-				83C28A621D025DED0096D629 /* MenuCollectionViewCell.swift */,
 				83C28A631D025DED0096D629 /* MenuViewController.swift */,
+				83C28A621D025DED0096D629 /* MenuCollectionViewCell.swift */,
 				83C28A661D025E020096D629 /* ScheduleViewController.swift */,
 				83C28A681D025E360096D629 /* DJListViewController.swift */,
+				83C28A721D0270AA0096D629 /* DJCollectionViewCell.swift */,
 				83C28A6A1D025E500096D629 /* AboutViewController.swift */,
 			);
 			path = menu;
@@ -425,6 +428,7 @@
 				832C65E01CD0800200B3479E /* AppDelegate.swift in Sources */,
 				83C28A671D025E020096D629 /* ScheduleViewController.swift in Sources */,
 				833B169F1CE1BD2D00E711F5 /* UIImage+Color.swift in Sources */,
+				83C28A731D0270AA0096D629 /* DJCollectionViewCell.swift in Sources */,
 				8365ECF51CE99265001B96BF /* SlidingViewController.swift in Sources */,
 				83C28A651D025DED0096D629 /* MenuViewController.swift in Sources */,
 				83B381021CE1ABD000BA22FE /* AudioStream.swift in Sources */,
