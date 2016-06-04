@@ -9,6 +9,7 @@
 import Foundation
 import Alamofire
 
+private let nowPlayingRoute = "/api/nowplaying"
 private let scheduleRoute = "/api/schedule"
 private let djRoute = "/api/djs"
 
@@ -21,8 +22,28 @@ protocol APIFetchDelegate {
 class RadioAPI {
     static let host = "https://radio.chrislaganiere.net"
     
+    static var nowPlayingCache: Show?
     static var scheduleCache: Schedule?
     static var djListCache: [DJ]?
+    
+    static func fetchNowPlaying(delegate: APIFetchDelegate?) {
+        if let cache = nowPlayingCache {
+            delegate?.cachedDataAvailable(cache)
+        }
+        
+        Alamofire.request(.GET, host+nowPlayingRoute).validate().responseJSON { response in
+            switch response.result {
+            case .Success(let json):
+                if let nowPlaying = Show.showFromJSON(json as! NSDictionary) {
+                    nowPlayingCache = nowPlaying
+                    delegate?.didFetchData(nowPlaying)
+                }
+            case .Failure(let error):
+                delegate?.failedToFetchData(error.localizedDescription)
+                print(error)
+            }
+        }
+    }
     
     static func fetchSchedule(delegate: APIFetchDelegate?) {
         if let cache = scheduleCache {
@@ -62,6 +83,10 @@ class RadioAPI {
                 print(error)
             }
         }
+    }
+    
+    static func absoluteURL(url: String) -> String {
+        return host+url
     }
     
 }

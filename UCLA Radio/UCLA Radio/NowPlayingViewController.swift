@@ -10,7 +10,7 @@ import UIKit
 import MediaPlayer
 import ASHorizontalScrollView
 
-class NowPlayingViewController: UIViewController, HistoryFetchDelegate {
+class NowPlayingViewController: UIViewController, HistoryFetchDelegate, APIFetchDelegate {
 
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var imageView: UIImageView!
@@ -91,6 +91,8 @@ class NowPlayingViewController: UIViewController, HistoryFetchDelegate {
         HistoryFetcher.delegate = self
         HistoryFetcher.fetchRecentTracks()
         recentUpdateTimer = NSTimer.scheduledTimerWithTimeInterval(30, target: self, selector: #selector(updateTick), userInfo: nil, repeats: true)
+        
+        RadioAPI.fetchNowPlaying(self)
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -106,6 +108,15 @@ class NowPlayingViewController: UIViewController, HistoryFetchDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func styleFromNowPlaying(nowPlaying: Show) {
+        if let picture = nowPlaying.picture {
+            imageView.sd_setImageWithURL(NSURL(string: RadioAPI.absoluteURL(picture)), placeholderImage: UIImage(named: "radio_banner"))
+        }
+        else {
+            imageView.image = UIImage(named: "radio_banner")
+        }
     }
     
     func updateRecentlyPlayed() {
@@ -139,6 +150,24 @@ class NowPlayingViewController: UIViewController, HistoryFetchDelegate {
 //            slider.updatePosition(newPosition, animated: true)
 //        }
 //    }
+    
+    // MARK: - Radio APIFetchDelegate
+    
+    func cachedDataAvailable(data: AnyObject) {
+        if let show = data as? Show {
+            styleFromNowPlaying(show)
+        }
+    }
+    
+    func didFetchData(data: AnyObject) {
+        if let show = data as? Show {
+            styleFromNowPlaying(show)
+        }
+    }
+    
+    func failedToFetchData(error: String) {
+        
+    }
     
     // HistoryFetchDelegate
     

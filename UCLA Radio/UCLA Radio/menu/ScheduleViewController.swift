@@ -22,6 +22,7 @@ class ScheduleViewController: UIViewController, APIFetchDelegate {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         RadioAPI.fetchSchedule(self)
+        currentWeekday()
     }
     
     func styleFromShows(shows: [Show]) {
@@ -30,6 +31,12 @@ class ScheduleViewController: UIViewController, APIFetchDelegate {
             print("* \(show.title)")
         }
         self.shows = shows
+    }
+    
+    func currentWeekday() {
+        let strings = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"]
+        let c = NSCalendar.currentCalendar().component(.Weekday, fromDate: NSDate())
+        print(strings[c-1])
     }
     
     // MARK: - API Fetch Delegate
