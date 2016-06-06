@@ -11,15 +11,13 @@ import UIKit
 
 private let reuseIdentifier = "ScheduleCell"
 
-class ScheduleDayViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    
-    var tableView: UITableView!
+class ScheduleDayViewController: UITableViewController {
     
     let shows: [Show]
     
     required init(shows: [Show]) {
         self.shows = shows
-        super.init(nibName: nil, bundle: nil)
+        super.init(style: .Grouped)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -34,27 +32,31 @@ class ScheduleDayViewController: UIViewController, UITableViewDataSource, UITabl
     
     // MARK: - UITableViewDataSource
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return shows.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return ScheduleShowCell.height
+    }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         return tableView.dequeueReusableCellWithIdentifier(reuseIdentifier, forIndexPath: indexPath)
     }
     
     // MARK: - UITableViewDelegate
     
-    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         if let showCell = cell as? ScheduleShowCell {
             showCell.styleFromShow(shows[indexPath.row])
         }
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     

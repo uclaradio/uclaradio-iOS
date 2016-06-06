@@ -46,7 +46,7 @@ class DJCollectionViewCell: UICollectionViewCell {
         }
         
         if let picture = dj.picture {
-            imageView.sd_setImageWithURL(NSURL(string: RadioAPI.host+picture))
+            imageView.sd_setImageWithURL(RadioAPI.absoluteURL(picture))
         }
         else {
             imageView.image = nil

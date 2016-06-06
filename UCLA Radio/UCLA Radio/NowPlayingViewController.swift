@@ -112,7 +112,7 @@ class NowPlayingViewController: UIViewController, HistoryFetchDelegate, APIFetch
     
     func styleFromNowPlaying(nowPlaying: Show?) {
         if let nowPlaying = nowPlaying, let picture = nowPlaying.picture {
-            imageView.sd_setImageWithURL(NSURL(string: RadioAPI.absoluteURL(picture)), placeholderImage: UIImage(named: "radio_banner"))
+            imageView.sd_setImageWithURL(RadioAPI.absoluteURL(picture), placeholderImage: UIImage(named: "radio_banner"))
         }
         else {
             imageView.image = UIImage(named: "radio_banner")
