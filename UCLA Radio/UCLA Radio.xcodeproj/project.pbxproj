@@ -30,7 +30,6 @@
 		83C28A711D0263350096D629 /* DJ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C28A701D0263350096D629 /* DJ.swift */; };
 		83C28A731D0270AA0096D629 /* DJCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C28A721D0270AA0096D629 /* DJCollectionViewCell.swift */; };
 		83C28A771D02CB980096D629 /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C28A761D02CB980096D629 /* Schedule.swift */; };
-		83C28A7B1D050F3B0096D629 /* ScheduleDayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C28A791D050F3B0096D629 /* ScheduleDayViewController.swift */; };
 		83C28A7C1D050F3B0096D629 /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C28A7A1D050F3B0096D629 /* ScheduleViewController.swift */; };
 		83C28A7E1D050FD40096D629 /* ScheduleShowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C28A7D1D050FD40096D629 /* ScheduleShowCell.swift */; };
 		83C4CC1D1CE25BB900FBA1EC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C4CC1C1CE25BB900FBA1EC /* Constants.swift */; };
@@ -87,7 +86,6 @@
 		83C28A701D0263350096D629 /* DJ.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DJ.swift; sourceTree = "<group>"; };
 		83C28A721D0270AA0096D629 /* DJCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DJCollectionViewCell.swift; sourceTree = "<group>"; };
 		83C28A761D02CB980096D629 /* Schedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
-		83C28A791D050F3B0096D629 /* ScheduleDayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleDayViewController.swift; sourceTree = "<group>"; };
 		83C28A7A1D050F3B0096D629 /* ScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
 		83C28A7D1D050FD40096D629 /* ScheduleShowCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleShowCell.swift; sourceTree = "<group>"; };
 		83C4CC1C1CE25BB900FBA1EC /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -227,7 +225,6 @@
 		83C28A781D050F3B0096D629 /* Schedule */ = {
 			isa = PBXGroup;
 			children = (
-				83C28A791D050F3B0096D629 /* ScheduleDayViewController.swift */,
 				83C28A7A1D050F3B0096D629 /* ScheduleViewController.swift */,
 				83C28A7D1D050FD40096D629 /* ScheduleShowCell.swift */,
 			);
@@ -445,7 +442,6 @@
 				83C28A6F1D02627A0096D629 /* Show.swift in Sources */,
 				832C65E01CD0800200B3479E /* AppDelegate.swift in Sources */,
 				83C28A7C1D050F3B0096D629 /* ScheduleViewController.swift in Sources */,
-				83C28A7B1D050F3B0096D629 /* ScheduleDayViewController.swift in Sources */,
 				833B169F1CE1BD2D00E711F5 /* UIImage+Color.swift in Sources */,
 				83C28A731D0270AA0096D629 /* DJCollectionViewCell.swift in Sources */,
 				8365ECF51CE99265001B96BF /* SlidingViewController.swift in Sources */,

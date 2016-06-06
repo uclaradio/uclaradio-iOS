@@ -13,7 +13,7 @@ import SDWebImage
 class ScheduleShowCell: UITableViewCell {
     
     static let height: CGFloat = 80
-    static let imageDimensions: CGFloat = 60
+    static let imageDimensions: CGFloat = 80
     
     let blurbImageView = UIImageView()
     let timeLabel = UILabel()

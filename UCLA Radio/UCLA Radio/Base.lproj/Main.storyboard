@@ -35,6 +35,7 @@
                     <view key="view" contentMode="scaleToFill" id="ffi-JD-AHM">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                 </viewController>
@@ -80,7 +81,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cim-tj-Ljo">
-                                                <rect key="frame" x="20" y="80" width="560" height="100"/>
+                                                <rect key="frame" x="20" y="80" width="560" height="101"/>
                                                 <attributedString key="attributedText">
                                                     <fragment content="UCLA Radio">
                                                         <attributes>
@@ -101,13 +102,12 @@
                                                     <fragment content="radio.web@media.ucla.edu">
                                                         <attributes>
                                                             <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <font key="NSFont" size="17" name="HelveticaNeue"/>
-                                                            <font key="NSOriginalFont" size="17" name="HelveticaNeue"/>
+                                                            <font key="NSFont" size="17" name="HelveticaNeue-Italic"/>
+                                                            <font key="NSOriginalFont" size="17" name="HelveticaNeue-Italic"/>
                                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                            <integer key="NSUnderline" value="1"/>
                                                         </attributes>
                                                     </fragment>
-                                                    <fragment content="  Find ">
+                                                    <fragment content="  Follow ">
                                                         <attributes>
                                                             <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <font key="NSFont" size="17" name="HelveticaNeue"/>
@@ -133,7 +133,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleAspectFit" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="cc9-sz-B5m">
-                                                <rect key="frame" x="158" y="200" width="285" height="60"/>
+                                                <rect key="frame" x="158" y="201" width="285" height="60"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9h7-JI-paf">
                                                         <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
