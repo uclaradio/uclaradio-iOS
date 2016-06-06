@@ -4,6 +4,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Container View Controller-->
@@ -55,6 +56,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ywD-Pu-jWG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -71,8 +73,24 @@
                     <view key="view" contentMode="scaleToFill" id="MS3-O0-ocM">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cim-tj-Ljo">
+                                <rect key="frame" x="20" y="40" width="560" height="260"/>
+                                <string key="text">UCLA Radio is a completely student-run organization offering a myriad of cultural content created by 100+ DJs. Please direct any feedback regarding this app to the web department at radio.web@media.ucla.edu :)</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="cim-tj-Ljo" firstAttribute="centerX" secondItem="MS3-O0-ocM" secondAttribute="centerX" id="4Tj-JO-53o"/>
+                            <constraint firstItem="cim-tj-Ljo" firstAttribute="width" secondItem="MS3-O0-ocM" secondAttribute="width" constant="-40" id="ZZq-6d-CV6"/>
+                            <constraint firstItem="cim-tj-Ljo" firstAttribute="height" secondItem="MS3-O0-ocM" secondAttribute="height" multiplier="0.5" constant="-40" id="gjb-C8-h6K"/>
+                            <constraint firstItem="cim-tj-Ljo" firstAttribute="top" secondItem="doX-td-2aO" secondAttribute="bottom" constant="20" id="yIa-CT-qU1"/>
+                        </constraints>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HKH-vZ-GrJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

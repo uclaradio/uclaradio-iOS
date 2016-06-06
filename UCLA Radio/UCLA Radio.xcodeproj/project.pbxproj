@@ -79,7 +79,7 @@
 		83B381001CE1ABD000BA22FE /* AudioStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioStream.swift; sourceTree = "<group>"; };
 		83B381011CE1ABD000BA22FE /* HistoryFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryFetcher.swift; sourceTree = "<group>"; };
 		83C28A621D025DED0096D629 /* MenuCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuCollectionViewCell.swift; sourceTree = "<group>"; };
-		83C28A631D025DED0096D629 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		83C28A631D025DED0096D629 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuViewController.swift; path = menu/MenuViewController.swift; sourceTree = "<group>"; };
 		83C28A681D025E360096D629 /* DJListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DJListViewController.swift; sourceTree = "<group>"; };
 		83C28A6A1D025E500096D629 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		83C28A6C1D025FB10096D629 /* RadioAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioAPI.swift; sourceTree = "<group>"; };
@@ -162,6 +162,7 @@
 				832C65DF1CD0800200B3479E /* AppDelegate.swift */,
 				832C65E11CD0800200B3479E /* NowPlayingViewController.swift */,
 				8365ECF61CE9945C001B96BF /* ContainerViewController.swift */,
+				83C28A631D025DED0096D629 /* MenuViewController.swift */,
 				832C65E31CD0800200B3479E /* Main.storyboard */,
 				832C65E61CD0800200B3479E /* Assets.xcassets */,
 				832C65E81CD0800200B3479E /* LaunchScreen.storyboard */,
@@ -215,7 +216,6 @@
 			isa = PBXGroup;
 			children = (
 				83C28A781D050F3B0096D629 /* Schedule */,
-				83C28A631D025DED0096D629 /* MenuViewController.swift */,
 				83C28A621D025DED0096D629 /* MenuCollectionViewCell.swift */,
 				83C28A681D025E360096D629 /* DJListViewController.swift */,
 				83C28A721D0270AA0096D629 /* DJCollectionViewCell.swift */,
