@@ -110,8 +110,8 @@ class NowPlayingViewController: UIViewController, HistoryFetchDelegate, APIFetch
         // Dispose of any resources that can be recreated.
     }
     
-    func styleFromNowPlaying(nowPlaying: Show) {
-        if let picture = nowPlaying.picture {
+    func styleFromNowPlaying(nowPlaying: Show?) {
+        if let nowPlaying = nowPlaying, let picture = nowPlaying.picture {
             imageView.sd_setImageWithURL(NSURL(string: RadioAPI.absoluteURL(picture)), placeholderImage: UIImage(named: "radio_banner"))
         }
         else {
@@ -127,28 +127,11 @@ class NowPlayingViewController: UIViewController, HistoryFetchDelegate, APIFetch
             recentlyPlayed.addItem(trackView)
         }
     }
-
-    @IBAction func hitPlayButton(sender: AnyObject) {
-        AudioStream.sharedInstance.togglePlay()
-    }
-
-    @IBAction func skipButtonHit(sender: AnyObject) {
-        AudioStream.sharedInstance.skipToLive()
-    }
     
     // Slider
     
 //    func didTap(gesture: UITapGestureRecognizer) {
-//        if let slider = slider {
-//            var newPosition: SlidingViewControllerPosition!
-//            switch(slider.position) {
-//            case .Open:
-//                newPosition = .Closed
-//            case .Closed:
-//                newPosition = .Open
-//            }
-//            slider.updatePosition(newPosition, animated: true)
-//        }
+//
 //    }
     
     // MARK: - Radio APIFetchDelegate
@@ -166,7 +149,7 @@ class NowPlayingViewController: UIViewController, HistoryFetchDelegate, APIFetch
     }
     
     func failedToFetchData(error: String) {
-        
+        styleFromNowPlaying(nil)
     }
     
     // HistoryFetchDelegate
@@ -179,6 +162,7 @@ class NowPlayingViewController: UIViewController, HistoryFetchDelegate, APIFetch
     
     func updateTick() {
         HistoryFetcher.fetchRecentTracks()
+        RadioAPI.fetchNowPlaying(self)
     }
     
 }
