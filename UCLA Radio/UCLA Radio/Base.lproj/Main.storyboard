@@ -4,7 +4,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Container View Controller-->
@@ -74,23 +73,174 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cim-tj-Ljo">
-                                <rect key="frame" x="20" y="40" width="560" height="260"/>
-                                <string key="text">UCLA Radio is a completely student-run organization offering a myriad of cultural content created by 100+ DJs. Please direct any feedback regarding this app to the web department at radio.web@media.ucla.edu :)</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1b8-KR-OyN">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f0U-ga-xMf" userLabel="ContentView">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cim-tj-Ljo">
+                                                <rect key="frame" x="20" y="80" width="560" height="100"/>
+                                                <attributedString key="attributedText">
+                                                    <fragment content="UCLA Radio">
+                                                        <attributes>
+                                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <font key="NSFont" size="17" name="HelveticaNeue-Bold"/>
+                                                            <font key="NSOriginalFont" size="17" name="HelveticaNeue-Bold"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                    <fragment>
+                                                        <string key="content"> is a completely student-run organization offering cultural content created by 100+ DJs. Please direct any feedback to the web department at </string>
+                                                        <attributes>
+                                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                    <fragment content="radio.web@media.ucla.edu">
+                                                        <attributes>
+                                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                                            <font key="NSOriginalFont" size="17" name="HelveticaNeue"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                            <integer key="NSUnderline" value="1"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                    <fragment content="  Find ">
+                                                        <attributes>
+                                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                    <fragment content="uclaradio">
+                                                        <attributes>
+                                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <font key="NSFont" size="17" name="HelveticaNeue-Bold"/>
+                                                            <font key="NSOriginalFont" size="17" name="HelveticaNeue-Bold"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                    <fragment content=" on social media!">
+                                                        <attributes>
+                                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleAspectFit" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="cc9-sz-B5m">
+                                                <rect key="frame" x="158" y="200" width="285" height="60"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9h7-JI-paf">
+                                                        <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" priority="999" constant="60" id="FaE-Jz-bQw"/>
+                                                            <constraint firstAttribute="width" priority="999" constant="60" id="vNb-29-ROx"/>
+                                                        </constraints>
+                                                        <state key="normal" image="facebook"/>
+                                                        <variation key="default">
+                                                            <mask key="constraints">
+                                                                <exclude reference="FaE-Jz-bQw"/>
+                                                            </mask>
+                                                        </variation>
+                                                        <connections>
+                                                            <action selector="facebookButtonHit:" destination="lfH-Bk-LZM" eventType="touchUpInside" id="Hhl-EZ-XHP"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iZM-mc-mKN">
+                                                        <rect key="frame" x="75" y="0.0" width="60" height="60"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" priority="999" constant="60" id="Qg0-VV-EAu"/>
+                                                            <constraint firstAttribute="width" priority="999" constant="60" id="WOP-aS-zUE"/>
+                                                        </constraints>
+                                                        <state key="normal" image="instagram"/>
+                                                        <variation key="default">
+                                                            <mask key="constraints">
+                                                                <exclude reference="Qg0-VV-EAu"/>
+                                                            </mask>
+                                                        </variation>
+                                                        <connections>
+                                                            <action selector="instagramButtonHit:" destination="lfH-Bk-LZM" eventType="touchUpInside" id="pS1-h2-EmI"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ySn-hL-bTf">
+                                                        <rect key="frame" x="150" y="0.0" width="60" height="60"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" priority="999" constant="60" id="lfl-3P-p1b"/>
+                                                            <constraint firstAttribute="height" priority="999" constant="60" id="qhe-nZ-hJG"/>
+                                                        </constraints>
+                                                        <state key="normal" image="tumblr"/>
+                                                        <variation key="default">
+                                                            <mask key="constraints">
+                                                                <exclude reference="qhe-nZ-hJG"/>
+                                                            </mask>
+                                                        </variation>
+                                                        <connections>
+                                                            <action selector="tumblrButtonHit:" destination="lfH-Bk-LZM" eventType="touchUpInside" id="aqB-3s-JHd"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aop-az-Gdp">
+                                                        <rect key="frame" x="225" y="0.0" width="60" height="60"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" priority="999" constant="60" id="Cwb-5s-9BN"/>
+                                                            <constraint firstAttribute="height" priority="999" constant="60" id="I9L-4m-ByC"/>
+                                                        </constraints>
+                                                        <state key="normal" image="soundcloud"/>
+                                                        <variation key="default">
+                                                            <mask key="constraints">
+                                                                <exclude reference="I9L-4m-ByC"/>
+                                                            </mask>
+                                                        </variation>
+                                                        <connections>
+                                                            <action selector="soundcloudButtonHit:" destination="lfH-Bk-LZM" eventType="touchUpInside" id="Vna-iX-8mF"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" priority="999" constant="60" id="dc0-O0-sPS"/>
+                                                </constraints>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="cim-tj-Ljo" firstAttribute="width" secondItem="f0U-ga-xMf" secondAttribute="width" constant="-40" id="4Oh-6P-Hfs"/>
+                                            <constraint firstItem="cc9-sz-B5m" firstAttribute="centerX" secondItem="f0U-ga-xMf" secondAttribute="centerX" id="6NO-Yb-bCh"/>
+                                            <constraint firstItem="cc9-sz-B5m" firstAttribute="width" relation="lessThanOrEqual" secondItem="f0U-ga-xMf" secondAttribute="width" constant="-40" id="KLt-4U-RKk"/>
+                                            <constraint firstItem="cc9-sz-B5m" firstAttribute="top" secondItem="cim-tj-Ljo" secondAttribute="bottom" constant="20" id="kx8-bm-8PH"/>
+                                            <constraint firstItem="cim-tj-Ljo" firstAttribute="top" secondItem="f0U-ga-xMf" secondAttribute="top" constant="80" id="q0h-cr-ShB"/>
+                                            <constraint firstItem="cim-tj-Ljo" firstAttribute="centerX" secondItem="f0U-ga-xMf" secondAttribute="centerX" id="spw-lW-3ig"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="f0U-ga-xMf" secondAttribute="bottom" id="CiZ-SX-R7d"/>
+                                    <constraint firstItem="f0U-ga-xMf" firstAttribute="top" secondItem="1b8-KR-OyN" secondAttribute="top" id="VZK-Vu-Vn2"/>
+                                    <constraint firstItem="f0U-ga-xMf" firstAttribute="leading" secondItem="1b8-KR-OyN" secondAttribute="leading" id="WDQ-1O-RJP"/>
+                                    <constraint firstAttribute="trailing" secondItem="f0U-ga-xMf" secondAttribute="trailing" id="hKw-9c-MgH"/>
+                                </constraints>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="cim-tj-Ljo" firstAttribute="centerX" secondItem="MS3-O0-ocM" secondAttribute="centerX" id="4Tj-JO-53o"/>
-                            <constraint firstItem="cim-tj-Ljo" firstAttribute="width" secondItem="MS3-O0-ocM" secondAttribute="width" constant="-40" id="ZZq-6d-CV6"/>
-                            <constraint firstItem="cim-tj-Ljo" firstAttribute="height" secondItem="MS3-O0-ocM" secondAttribute="height" multiplier="0.5" constant="-40" id="gjb-C8-h6K"/>
-                            <constraint firstItem="cim-tj-Ljo" firstAttribute="top" secondItem="doX-td-2aO" secondAttribute="bottom" constant="20" id="yIa-CT-qU1"/>
+                            <constraint firstAttribute="trailing" secondItem="1b8-KR-OyN" secondAttribute="trailing" id="3Oe-61-46d"/>
+                            <constraint firstItem="1b8-KR-OyN" firstAttribute="top" secondItem="MS3-O0-ocM" secondAttribute="top" id="Kpc-Vu-WcK"/>
+                            <constraint firstItem="f0U-ga-xMf" firstAttribute="width" secondItem="MS3-O0-ocM" secondAttribute="width" id="T4a-Va-Bsi"/>
+                            <constraint firstItem="KlL-3L-PRx" firstAttribute="top" secondItem="1b8-KR-OyN" secondAttribute="bottom" id="wNq-xL-Wdk"/>
+                            <constraint firstItem="f0U-ga-xMf" firstAttribute="height" secondItem="MS3-O0-ocM" secondAttribute="height" id="xYl-Nq-WgV"/>
+                            <constraint firstItem="1b8-KR-OyN" firstAttribute="leading" secondItem="MS3-O0-ocM" secondAttribute="leading" id="zfs-W5-Dk1"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <connections>
+                        <outlet property="facebookButton" destination="9h7-JI-paf" id="UcU-0i-ET5"/>
+                        <outlet property="instagramButton" destination="iZM-mc-mKN" id="abL-D0-Mu3"/>
+                        <outlet property="soundcloudButton" destination="Aop-az-Gdp" id="CC2-hj-E4x"/>
+                        <outlet property="tumblrButton" destination="ySn-hL-bTf" id="wbg-1w-HWk"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HKH-vZ-GrJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -156,4 +306,10 @@
             <point key="canvasLocation" x="543" y="494"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="facebook" width="57" height="57"/>
+        <image name="instagram" width="120" height="120"/>
+        <image name="soundcloud" width="173" height="173"/>
+        <image name="tumblr" width="167" height="167"/>
+    </resources>
 </document>

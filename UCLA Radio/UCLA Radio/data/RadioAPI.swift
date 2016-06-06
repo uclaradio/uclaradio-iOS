@@ -40,7 +40,7 @@ class RadioAPI {
             case .Failure(let error):
                 nowPlayingCache = nil
                 delegate?.failedToFetchData(error.localizedDescription)
-                print(error)
+//                print(error)
             }
         }
     }

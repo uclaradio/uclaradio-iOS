@@ -163,11 +163,11 @@
 				832C65E11CD0800200B3479E /* NowPlayingViewController.swift */,
 				8365ECF61CE9945C001B96BF /* ContainerViewController.swift */,
 				83C28A631D025DED0096D629 /* MenuViewController.swift */,
+				83C4CC1C1CE25BB900FBA1EC /* Constants.swift */,
 				832C65E31CD0800200B3479E /* Main.storyboard */,
 				832C65E61CD0800200B3479E /* Assets.xcassets */,
 				832C65E81CD0800200B3479E /* LaunchScreen.storyboard */,
 				832C65EB1CD0800200B3479E /* Info.plist */,
-				83C4CC1C1CE25BB900FBA1EC /* Constants.swift */,
 			);
 			path = "UCLA Radio";
 			sourceTree = "<group>";
