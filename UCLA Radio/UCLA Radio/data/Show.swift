@@ -15,7 +15,7 @@ class Show {
     let day: String
     let time: String
     let djString: String
-    var djs: [String]
+    var djs: [String]?
     var genre: String?
     var blurb: String?
     var picture: String? // url to picture on server
@@ -25,7 +25,6 @@ class Show {
         self.title = title
         self.day = day
         self.time = time
-        self.djs = djs
         self.genre = genre
         self.blurb = blurb
         self.picture = picture
@@ -43,10 +42,10 @@ class Show {
             let day = dict["day"] as? String,
             let time = dict["time"] as? String {
             
-            var djs: [String] = []
-            if let djsArray = dict["djs"] as? NSArray {
-                for o: AnyObject in djsArray {
-                    if let dj = o as? String {
+            var djs: [String] = [];
+            if let djsDict = dict["djs"] as? NSDictionary {
+                for o in djsDict.allKeys {
+                    if let username = o as? String, let dj = djsDict[username] as? String {
                         djs.append(dj)
                     }
                 }

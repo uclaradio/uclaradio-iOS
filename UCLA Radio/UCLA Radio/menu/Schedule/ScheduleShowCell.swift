@@ -1,4 +1,4 @@
-//
+
 //  ScheduleShowCell.swift
 //  UCLA Radio
 //
@@ -33,8 +33,8 @@ class ScheduleShowCell: UITableViewCell {
         contentView.addSubview(containerView)
         containerView.translatesAutoresizingMaskIntoConstraints = false
         containerView.backgroundColor = Constants.Colors.lightBackground
-//        containerView.layer.cornerRadius = ScheduleShowCell.containerOffset
-//        containerView.layer
+        containerView.layer.cornerRadius = 3
+        containerView.layer
         containerView.clipsToBounds = true
         
         containerView.addSubview(titleLabel)
@@ -48,11 +48,13 @@ class ScheduleShowCell: UITableViewCell {
         
         containerView.addSubview(genreLabel)
         genreLabel.font = UIFont.systemFontOfSize(14)
+        genreLabel.textColor = UIColor.darkGrayColor()
         genreLabel.textAlignment = .Right
         genreLabel.translatesAutoresizingMaskIntoConstraints = false
         
         containerView.addSubview(djsLabel)
         djsLabel.font = UIFont.systemFontOfSize(16)
+        djsLabel.textColor = UIColor.darkGrayColor()
         djsLabel.translatesAutoresizingMaskIntoConstraints = false
         
         containerView.addSubview(blurbImageView)
