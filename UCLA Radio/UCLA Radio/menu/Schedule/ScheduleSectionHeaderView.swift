@@ -16,7 +16,7 @@ public class ScheduleSectionHeaderView: UITableViewHeaderFooterView {
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         
-        contentView.backgroundColor = Constants.Colors.lightPink
+        contentView.backgroundColor = Constants.Colors.lightBlue
         
         addSubview(label)
         label.translatesAutoresizingMaskIntoConstraints = false

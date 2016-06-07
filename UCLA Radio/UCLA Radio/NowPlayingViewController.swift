@@ -10,6 +10,10 @@ import UIKit
 import MediaPlayer
 import ASHorizontalScrollView
 
+protocol NowPlayingActionDelegate {
+    func didTapShow(show: Show?)
+}
+
 class NowPlayingViewController: UIViewController, HistoryFetchDelegate, APIFetchDelegate {
 
     @IBOutlet weak var containerView: UIView!
@@ -20,8 +24,11 @@ class NowPlayingViewController: UIViewController, HistoryFetchDelegate, APIFetch
     var recentlyPlayedLabel: UILabel!
     var recentlyPlayed: ASHorizontalScrollView!
     
-    var recentUpdateTimer: NSTimer?
-    var tapGesture: UITapGestureRecognizer?
+    var actionDelegate: NowPlayingActionDelegate?
+    private var nowPlaying: Show?
+    
+    private var recentUpdateTimer: NSTimer?
+    private var tapGesture: UITapGestureRecognizer?
     
     // SlidingVCDelegate
     var slider: SlidingViewController?
@@ -78,9 +85,9 @@ class NowPlayingViewController: UIViewController, HistoryFetchDelegate, APIFetch
         // for smaller screens (iPhone 5)
         containerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[controls]-(>=8)-[recent]", options: [], metrics: nil, views: ["controls": controlsParentView, "recent": recentlyPlayed]))
         
-//        tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTap))
-//        imageView.userInteractionEnabled = true
-//        imageView.addGestureRecognizer(tapGesture!)
+        tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTap))
+        imageView.userInteractionEnabled = true
+        imageView.addGestureRecognizer(tapGesture!)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -117,6 +124,7 @@ class NowPlayingViewController: UIViewController, HistoryFetchDelegate, APIFetch
         else {
             imageView.image = UIImage(named: "radio_banner")
         }
+        self.nowPlaying = nowPlaying
     }
     
     func updateRecentlyPlayed() {
@@ -130,9 +138,9 @@ class NowPlayingViewController: UIViewController, HistoryFetchDelegate, APIFetch
     
     // Slider
     
-//    func didTap(gesture: UITapGestureRecognizer) {
-//
-//    }
+    func didTap(gesture: UITapGestureRecognizer) {
+        actionDelegate?.didTapShow(nowPlaying)
+    }
     
     // MARK: - Radio APIFetchDelegate
     

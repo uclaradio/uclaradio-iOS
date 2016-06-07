@@ -94,12 +94,18 @@ class ScheduleShowCell: UITableViewCell {
     
     // MARK: - Layout
     
+    override func setSelected(selected: Bool, animated: Bool) {
+        UIView.animateWithDuration(0.5) { 
+            self.containerView.alpha = selected ? 0.5 : 1.0
+        }
+    }
+    
     func preferredConstraints() -> [NSLayoutConstraint] {
         var constraints: [NSLayoutConstraint] = []
-        let metrics = ["offset": Constants.Floats.containerOffset]
+        let metrics = ["offset": Constants.Floats.containerOffset, "half": 0.5*Constants.Floats.containerOffset]
         let views = ["container": containerView]
         
-        constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|-(offset)-[container]-(offset)-|", options: [], metrics: metrics, views: views)
+        constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|-(half)-[container]-(half)-|", options: [], metrics: metrics, views: views)
         constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|-(offset)-[container]-(offset)-|", options: [], metrics: metrics, views: views)
         
         return constraints

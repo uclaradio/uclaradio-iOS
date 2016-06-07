@@ -54,10 +54,6 @@ class DJListViewController: UIViewController, APIFetchDelegate, UICollectionView
     }
     
     func styleFromDJs(djs: [DJ]) {
-        print("got djs:")
-        for dj in djs {
-            print("* \(dj.username)")
-        }
         djList = djs
         collectionView.reloadData()
     }
@@ -92,10 +88,7 @@ class DJListViewController: UIViewController, APIFetchDelegate, UICollectionView
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath)
-        
-        cell.contentView.backgroundColor = Constants.Colors.gold
-        return cell
+        return collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath)
     }
     
     // MARK: - UICollectionViewDelegate

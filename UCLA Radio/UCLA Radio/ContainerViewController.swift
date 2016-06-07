@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import KRLCollectionViewGridLayout
 
-class ContainerViewController: UIViewController {
+class ContainerViewController: UIViewController, NowPlayingActionDelegate {
     
     // Menu
     var rootNavController: UINavigationController!
@@ -52,6 +52,7 @@ class ContainerViewController: UIViewController {
         // set up content (NowPlayingViewController)
         if let nowPlaying = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("nowPlaying") as? NowPlayingViewController {
             self.nowPlaying = nowPlaying
+            nowPlaying.actionDelegate = self
             slider.addContent(nowPlaying)
             
             // set up slider tab (NowPlayingView)
@@ -62,6 +63,15 @@ class ContainerViewController: UIViewController {
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .LightContent
+    }
+    
+    // MARK: - NowPlayingActionDelegate
+    
+    func didTapShow(show: Show?) {
+        slider.updatePosition(.Closed, animated: true)
+        if let _ = show {
+            rootNavController.pushViewController(UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("scheduleViewController"), animated: true)
+        }
     }
     
 }
