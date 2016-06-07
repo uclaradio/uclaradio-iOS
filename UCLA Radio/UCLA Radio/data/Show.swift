@@ -8,17 +8,19 @@
 
 import Foundation
 
+
 class Show {
     let id: Int
     let title: String
     let day: String
     let time: String
-    var djs: [DJ]?
+    let djString: String
+    var djs: [String]
     var genre: String?
     var blurb: String?
     var picture: String? // url to picture on server
     
-    init(id: Int, title: String, day: String, time: String, djs: [DJ]?, genre: String?, blurb: String?, picture: String?) {
+    init(id: Int, title: String, day: String, time: String, djs: [String], genre: String?, blurb: String?, picture: String?) {
         self.id = id
         self.title = title
         self.day = day
@@ -27,10 +29,12 @@ class Show {
         self.genre = genre
         self.blurb = blurb
         self.picture = picture
+        self.djs = djs
+        self.djString = Show.makeDjsString(djs)
     }
     
-    convenience init(id: Int, title: String, day: String, time: String) {
-        self.init(id: id, title: title, day: day, time: time, djs: nil, genre: nil, blurb: nil, picture: nil)
+    convenience init(id: Int, title: String, day: String, time: String, djs: [String]) {
+        self.init(id: id, title: title, day: day, time: time, djs: djs, genre: nil, blurb: nil, picture: nil)
     }
     
     static func showFromJSON(dict: NSDictionary) -> Show? {
@@ -39,7 +43,16 @@ class Show {
             let day = dict["day"] as? String,
             let time = dict["time"] as? String {
             
-            let newShow = Show(id: id, title: title, day: day, time: time)
+            var djs: [String] = []
+            if let djsArray = dict["djs"] as? NSArray {
+                for o: AnyObject in djsArray {
+                    if let dj = o as? String {
+                        djs.append(dj)
+                    }
+                }
+            }
+            
+            let newShow = Show(id: id, title: title, day: day, time: time, djs: djs)
             
             // optional properties
             if let genre = dict["genre"] as? String where genre.characters.count > 0 {
@@ -63,6 +76,19 @@ class Show {
             if let dict = showObject as? NSDictionary, show = showFromJSON(dict) {
                 result.append(show)
             }
+        }
+        return result
+    }
+    
+    static func makeDjsString(djs: [String]) -> String {
+        var result = ""
+        var comma = false
+        for dj: String in djs {
+            if (comma) {
+                result += ", "
+            }
+            result += dj
+            comma = true
         }
         return result
     }

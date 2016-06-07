@@ -14,29 +14,26 @@ class DJ {
     var djName: String?
     var picture: String?
     
-    init(username: String, fullName: String?, djName: String?, picture: String?) {
+    init(username: String, djName: String, fullName: String?, picture: String?) {
         self.username = username
-        self.fullName = fullName
         self.djName = djName
+        self.fullName = fullName
         self.picture = picture
     }
     
-    convenience init(username: String) {
-        self.init(username: username, fullName: nil, djName: nil, picture: nil)
+    convenience init(username: String, djName: String) {
+        self.init(username: username, djName: djName, fullName: nil, picture: nil)
     }
     
     static func djsFromJSON(shows: NSArray) -> [DJ] {
         var result: [DJ] = []
         for djObject: AnyObject in shows {
-            if let dj = djObject as? NSDictionary, let username = dj["username"] as? String {
-                let newDJ = DJ(username: username)
+            if let dj = djObject as? NSDictionary, let username = dj["username"] as? String, let djName = dj["djName"] as? String {
+                let newDJ = DJ(username: username, djName: djName)
                 
                 // optional properties
                 if let fullName = dj["fullName"] as? String where fullName.characters.count > 0 {
                     newDJ.fullName = fullName
-                }
-                if let djName = dj["djName"] as? String where djName.characters.count > 0 {
-                    newDJ.djName = djName
                 }
                 if let picture = dj["picture"] as? String where picture.characters.count > 0 {
                     newDJ.picture = picture

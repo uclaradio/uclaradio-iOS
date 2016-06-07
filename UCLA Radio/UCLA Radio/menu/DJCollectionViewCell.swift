@@ -10,8 +10,8 @@ import Foundation
 import UIKit
 import SDWebImage
 
-private let textFontSize: CGFloat = 14
-private let labelHeight = 16
+private let textFontSize: CGFloat = 16
+private let labelHeight = 18
 
 class DJCollectionViewCell: UICollectionViewCell {
     
@@ -32,7 +32,7 @@ class DJCollectionViewCell: UICollectionViewCell {
         
         contentView.addSubview(nameLabel)
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        nameLabel.font = UIFont.systemFontOfSize(textFontSize)
+        nameLabel.font = UIFont.boldSystemFontOfSize(textFontSize)
         nameLabel.textAlignment = .Center
         
         contentView.addConstraints(preferredConstraints())

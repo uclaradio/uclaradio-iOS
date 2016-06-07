@@ -28,15 +28,12 @@ class ContainerViewController: UIViewController {
         addChildViewController(rootNavController)
         rootNavController.didMoveToParentViewController(self)
         rootNavController.view.translatesAutoresizingMaskIntoConstraints = false
-//        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[root]", options: [], metrics: nil, views: ["root": rootNavController]))
-//        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:[root(300)]", options: [], metrics: nil, views: ["root": rootNavController]))
-        // bar color
         rootNavController.view.frame.size = CGSize(width: rootNavController.view.frame.width, height: rootNavController.view.frame.size.height - NowPlayingView.PreferredHeight)
         rootNavController.navigationBar.barTintColor = Constants.Colors.darkBlue
         // back button color
         rootNavController.navigationBar.tintColor = UIColor.whiteColor()
         // title color
-        rootNavController.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: Constants.Colors.gold]
+        rootNavController.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: Constants.Colors.gold, NSFontAttributeName: UIFont(name: Constants.Fonts.titleBold, size: 21)!]
         
         installNowPlayingSlider()
     }

@@ -21,6 +21,9 @@
 		83A8ED6E1CE30248003D4286 /* RecentTrackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A8ED6D1CE30248003D4286 /* RecentTrackView.swift */; };
 		83B381021CE1ABD000BA22FE /* AudioStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B381001CE1ABD000BA22FE /* AudioStream.swift */; };
 		83B381031CE1ABD000BA22FE /* HistoryFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B381011CE1ABD000BA22FE /* HistoryFetcher.swift */; };
+		83B8C0721D066E2A00B80802 /* Typo_Round_Regular_Demo.otf in Resources */ = {isa = PBXBuildFile; fileRef = 83B8C0711D066E2A00B80802 /* Typo_Round_Regular_Demo.otf */; };
+		83B8C0741D06712200B80802 /* Typo_Round_Bold_Demo.otf in Resources */ = {isa = PBXBuildFile; fileRef = 83B8C0731D06712100B80802 /* Typo_Round_Bold_Demo.otf */; };
+		83B8C0761D067EDF00B80802 /* ScheduleSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B8C0751D067EDF00B80802 /* ScheduleSectionHeaderView.swift */; };
 		83C28A641D025DED0096D629 /* MenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C28A621D025DED0096D629 /* MenuCollectionViewCell.swift */; };
 		83C28A651D025DED0096D629 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C28A631D025DED0096D629 /* MenuViewController.swift */; };
 		83C28A691D025E360096D629 /* DJListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C28A681D025E360096D629 /* DJListViewController.swift */; };
@@ -77,6 +80,9 @@
 		83A8ED6D1CE30248003D4286 /* RecentTrackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecentTrackView.swift; path = ../RecentTrackView.swift; sourceTree = "<group>"; };
 		83B381001CE1ABD000BA22FE /* AudioStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioStream.swift; sourceTree = "<group>"; };
 		83B381011CE1ABD000BA22FE /* HistoryFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryFetcher.swift; sourceTree = "<group>"; };
+		83B8C0711D066E2A00B80802 /* Typo_Round_Regular_Demo.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Typo_Round_Regular_Demo.otf; sourceTree = "<group>"; };
+		83B8C0731D06712100B80802 /* Typo_Round_Bold_Demo.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Typo_Round_Bold_Demo.otf; sourceTree = "<group>"; };
+		83B8C0751D067EDF00B80802 /* ScheduleSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleSectionHeaderView.swift; sourceTree = "<group>"; };
 		83C28A621D025DED0096D629 /* MenuCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuCollectionViewCell.swift; sourceTree = "<group>"; };
 		83C28A631D025DED0096D629 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuViewController.swift; path = menu/MenuViewController.swift; sourceTree = "<group>"; };
 		83C28A681D025E360096D629 /* DJListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DJListViewController.swift; sourceTree = "<group>"; };
@@ -165,6 +171,8 @@
 				832C65E31CD0800200B3479E /* Main.storyboard */,
 				832C65E61CD0800200B3479E /* Assets.xcassets */,
 				832C65E81CD0800200B3479E /* LaunchScreen.storyboard */,
+				83B8C0711D066E2A00B80802 /* Typo_Round_Regular_Demo.otf */,
+				83B8C0731D06712100B80802 /* Typo_Round_Bold_Demo.otf */,
 				832C65EB1CD0800200B3479E /* Info.plist */,
 			);
 			path = "UCLA Radio";
@@ -227,6 +235,7 @@
 			children = (
 				83C28A7A1D050F3B0096D629 /* ScheduleViewController.swift */,
 				83C28A7D1D050FD40096D629 /* ScheduleShowCell.swift */,
+				83B8C0751D067EDF00B80802 /* ScheduleSectionHeaderView.swift */,
 			);
 			path = Schedule;
 			sourceTree = "<group>";
@@ -359,6 +368,8 @@
 			files = (
 				832C65EA1CD0800200B3479E /* LaunchScreen.storyboard in Resources */,
 				832C65E71CD0800200B3479E /* Assets.xcassets in Resources */,
+				83B8C0721D066E2A00B80802 /* Typo_Round_Regular_Demo.otf in Resources */,
+				83B8C0741D06712200B80802 /* Typo_Round_Bold_Demo.otf in Resources */,
 				832C65E51CD0800200B3479E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -441,6 +452,7 @@
 				832C65E21CD0800200B3479E /* NowPlayingViewController.swift in Sources */,
 				83C28A6F1D02627A0096D629 /* Show.swift in Sources */,
 				832C65E01CD0800200B3479E /* AppDelegate.swift in Sources */,
+				83B8C0761D067EDF00B80802 /* ScheduleSectionHeaderView.swift in Sources */,
 				83C28A7C1D050F3B0096D629 /* ScheduleViewController.swift in Sources */,
 				833B169F1CE1BD2D00E711F5 /* UIImage+Color.swift in Sources */,
 				83C28A731D0270AA0096D629 /* DJCollectionViewCell.swift in Sources */,

@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 private let reuseIdentifier = "ScheduleCell"
+private let headerReuseIdentifier = "ScheduleHeader"
 
 class ScheduleViewController: UIViewController, APIFetchDelegate, UITableViewDataSource, UITableViewDelegate {
     
@@ -23,9 +24,13 @@ class ScheduleViewController: UIViewController, APIFetchDelegate, UITableViewDat
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.registerClass(ScheduleShowCell.self, forCellReuseIdentifier: reuseIdentifier)
+        tableView.registerClass(ScheduleSectionHeaderView.self, forHeaderFooterViewReuseIdentifier: headerReuseIdentifier)
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.contentInset = UIEdgeInsetsZero
+        tableView.separatorStyle = .None
+        tableView.backgroundColor = UIColor.clearColor()
+        
+        view.backgroundColor = Constants.Colors.lightBlue
         
         view.addConstraints(preferredConstraints())
     }
@@ -141,14 +146,7 @@ class ScheduleViewController: UIViewController, APIFetchDelegate, UITableViewDat
     }
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = UIView(frame: CGRectMake(0, 0, tableView.frame.size.width, 30))
-        let label = UILabel(frame: CGRectMake(10, 5, tableView.frame.size.width, 18))
-        label.font = UIFont.systemFontOfSize(14)
-        label.text = stringForDay(section)
-        view.addSubview(label)
-        view.backgroundColor = Constants.Colors.lightPink
-        
-        return view
+        return tableView.dequeueReusableHeaderFooterViewWithIdentifier(headerReuseIdentifier)
     }
     
     // MARK: - UITableViewDelegate
@@ -157,6 +155,12 @@ class ScheduleViewController: UIViewController, APIFetchDelegate, UITableViewDat
         let shows = showsForDay(indexPath.section)
         if let showCell = cell as? ScheduleShowCell {
             showCell.styleFromShow(shows[indexPath.row])
+        }
+    }
+    
+    func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        if let scheduleHeader = view as? ScheduleSectionHeaderView {
+            scheduleHeader.styleForString(stringForDay(section))
         }
     }
     
