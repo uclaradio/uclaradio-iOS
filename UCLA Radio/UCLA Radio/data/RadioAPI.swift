@@ -20,6 +20,8 @@ protocol APIFetchDelegate {
     func failedToFetchData(error: String)
 }
 
+private let DocumentsDirectory = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first as NSString?
+
 class RadioAPI {
     static var nowPlayingCache: Show?
     static var scheduleCache: Schedule?
@@ -38,55 +40,115 @@ class RadioAPI {
                     delegate?.didFetchData(nowPlaying)
                 }
             case .Failure(let error):
+                // no show playing right now
                 nowPlayingCache = nil
                 delegate?.failedToFetchData(error.localizedDescription)
-//                print(error)
             }
         }
     }
     
     static func fetchSchedule(delegate: APIFetchDelegate?) {
-        if let cache = scheduleCache {
-            delegate?.cachedDataAvailable(cache)
-        }
-        
-        Alamofire.request(.GET, host+scheduleRoute).validate().responseJSON { response in
-            switch response.result {
-            case .Success(let json):
-                if let showsArray = json["shows"] as? NSArray {
-                    let shows = Show.showsFromJSON(showsArray)
-                    scheduleCache = Schedule(shows: shows)
-                    delegate?.didFetchData(shows)
-                    delegate?.didFetchData(scheduleCache!)
+        fetchSomethingCached(scheduleRoute, key: "shows", success: { (result, cached) in
+            if let showsArray = result as? NSArray {
+                let schedule = Schedule(shows: Show.showsFromJSON(showsArray))
+                if (cached) {
+                    delegate?.cachedDataAvailable(schedule)
                 }
-            case .Failure(let error):
-                delegate?.failedToFetchData(error.localizedDescription)
-                print(error)
+                else {
+                    delegate?.didFetchData(schedule)
+                }
             }
+            else {
+                delegate?.failedToFetchData("wrong data type")
+            }
+            }) { (error) in
+                print(error)
+                delegate?.failedToFetchData(error)
         }
     }
     
     static func fetchDJList(delegate: APIFetchDelegate?) {
-        if let cache = djListCache {
-            delegate?.cachedDataAvailable(cache)
-        }
-        
-        Alamofire.request(.GET, host+djRoute).validate().responseJSON { response in
-            switch response.result {
-            case .Success(let json):
-                if let djs = json["djs"] as? NSArray {
-                    djListCache = DJ.djsFromJSON(djs)
-                    delegate?.didFetchData(djListCache!)
+        fetchSomethingCached(djRoute, key: "djs", success: { (result, cached) in
+            if let djsArray = result as? NSArray {
+                let djList = DJ.djsFromJSON(djsArray)
+                if (cached) {
+                    delegate?.cachedDataAvailable(djList)
                 }
-            case .Failure(let error):
-                delegate?.failedToFetchData(error.localizedDescription)
+                else {
+                    delegate?.didFetchData(djList)
+                }
+            }
+            else {
+                delegate?.failedToFetchData("wrong data type")
+            }
+            }) { (error) in
                 print(error)
+                delegate?.failedToFetchData(error)
+        }
+    }
+    
+    /**
+     Convert relative file path string to absolute url by adding host
+     
+     - parameter url: relative url string
+     
+     - returns: absolute url
+     */
+    static func absoluteURL(url: String) -> NSURL {
+        return NSURL(string: host+url)!
+    }
+    
+    // MARK: - Private
+    
+    /**
+     Perform an API fetch with caching. Will call success with cached data if possible, and on request success, or failure once.
+     
+     - parameter route:   route to fetch, like: "/api/schedule"
+     - parameter key:     key of return object in JSON array, like "shows"
+     - parameter success: success block, may be called twice with cached data / live data
+     - parameter failure: failure block
+     */
+    private static func fetchSomethingCached(route: String, key: String, success: ((result: AnyObject, cached: Bool) -> ())?, failure: ((error: String) -> ())?) {
+        // Caching
+        let fileName = fileForRoute(route)
+        if let filePath = DocumentsDirectory?.stringByAppendingPathComponent(fileName) {
+            if (NSFileManager.defaultManager().fileExistsAtPath(filePath)) {
+                // cached file exists
+                if let cached = NSArray(contentsOfFile: filePath) {
+                    success?(result: cached, cached: true)
+                }
+                else if let cached = NSDictionary(contentsOfFile: filePath) {
+                    success?(result: cached, cached: true)
+                }
+            }
+            
+            Alamofire.request(.GET, host+route).validate().responseJSON { response in
+                switch response.result {
+                case .Success(let json):
+                    if let object = json[key] as? NSDictionary {
+                        object.writeToFile(filePath, atomically: true)
+                        success?(result: object, cached: false)
+                    }
+                    else if let object = json[key] as? NSArray {
+                        object.writeToFile(filePath, atomically: true)
+                        success?(result: object, cached: false)
+                    }
+                case .Failure(let error):
+                    failure?(error: error.localizedDescription)
+                }
             }
         }
     }
     
-    static func absoluteURL(url: String) -> NSURL {
-        return NSURL(string: host+url)!
+    /**
+     Local cached filename for a given API route like: /api/schedule (not a url)
+     
+     - parameter route: API route string
+     
+     - returns: mapped fileName for local cached object
+     */
+    private static func fileForRoute(route: String) -> String {
+        return route.stringByReplacingOccurrencesOfString("/", withString: "-") + ".json"
     }
     
 }

@@ -25,9 +25,9 @@ class DJ {
         self.init(username: username, djName: djName, fullName: nil, picture: nil)
     }
     
-    static func djsFromJSON(shows: NSArray) -> [DJ] {
+    static func djsFromJSON(djsArray: NSArray) -> [DJ] {
         var result: [DJ] = []
-        for djObject: AnyObject in shows {
+        for djObject: AnyObject in djsArray {
             if let dj = djObject as? NSDictionary, let username = dj["username"] as? String, let djName = dj["djName"] as? String {
                 let newDJ = DJ(username: username, djName: djName)
                 

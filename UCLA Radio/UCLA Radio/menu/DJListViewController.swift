@@ -105,6 +105,10 @@ class DJListViewController: UIViewController, APIFetchDelegate, UICollectionView
         
         let dj = djList[indexPath.row]
         print("tapped dj: \(dj.username)")
+        
+        if let cell = collectionView.cellForItemAtIndexPath(indexPath) as? DJCollectionViewCell {
+            cell.animateSelect()
+        }
     }
     
     // MARK: - Layout

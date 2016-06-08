@@ -67,6 +67,18 @@ class DJCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    func animateSelect() {
+//        UIView.animateWithDuration(0.5, animations: { 
+            self.contentView.alpha = 0.5
+//            }) { (complete) in
+//                if (complete) {
+                    UIView.animateWithDuration(0.5, animations: {
+                        self.contentView.alpha = 1.0
+                    })
+//                }
+//        }
+    }
+    
     // MARK: - Layout
     
     func preferredConstraints() -> [NSLayoutConstraint] {
