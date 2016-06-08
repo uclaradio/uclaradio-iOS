@@ -42,7 +42,7 @@ class ShowViewController: UIViewController {
         }
     }
     
-    func styleForShow(show: Show) {
+    private func styleForShow(show: Show) {
         let string = show.day + " " + show.time
         timeLabel.text = string
         titleLabel.text = show.title

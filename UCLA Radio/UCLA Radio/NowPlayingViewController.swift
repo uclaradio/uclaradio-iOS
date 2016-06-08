@@ -14,7 +14,7 @@ protocol NowPlayingActionDelegate {
     func didTapShow(show: Show?)
 }
 
-class NowPlayingViewController: UIViewController, HistoryFetchDelegate, APIFetchDelegate {
+class NowPlayingViewController: UIViewController, HistoryFetchDelegate {
 
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var imageView: UIImageView!
@@ -98,8 +98,9 @@ class NowPlayingViewController: UIViewController, HistoryFetchDelegate, APIFetch
         HistoryFetcher.delegate = self
         HistoryFetcher.fetchRecentTracks()
         recentUpdateTimer = NSTimer.scheduledTimerWithTimeInterval(30, target: self, selector: #selector(updateTick), userInfo: nil, repeats: true)
+        styleFromNowPlaying(RadioAPI.nowPlaying)
         
-        RadioAPI.fetchNowPlaying(self)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(nowPlayingUpdated), name: RadioAPI.NowPlayingUpdatedNotification, object: nil)
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -110,6 +111,8 @@ class NowPlayingViewController: UIViewController, HistoryFetchDelegate, APIFetch
         HistoryFetcher.delegate = nil
         recentUpdateTimer?.invalidate()
         recentUpdateTimer = nil
+        
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 
     override func didReceiveMemoryWarning() {
@@ -144,20 +147,8 @@ class NowPlayingViewController: UIViewController, HistoryFetchDelegate, APIFetch
     
     // MARK: - Radio APIFetchDelegate
     
-    func cachedDataAvailable(data: AnyObject) {
-        if let show = data as? Show {
-            styleFromNowPlaying(show)
-        }
-    }
-    
-    func didFetchData(data: AnyObject) {
-        if let show = data as? Show {
-            styleFromNowPlaying(show)
-        }
-    }
-    
-    func failedToFetchData(error: String) {
-        styleFromNowPlaying(nil)
+    func nowPlayingUpdated(notification: NSNotification) {
+        styleFromNowPlaying(RadioAPI.nowPlaying)
     }
     
     // HistoryFetchDelegate
@@ -170,7 +161,7 @@ class NowPlayingViewController: UIViewController, HistoryFetchDelegate, APIFetch
     
     func updateTick() {
         HistoryFetcher.fetchRecentTracks()
-        RadioAPI.fetchNowPlaying(self)
+        RadioAPI.fetchNowPlaying()
     }
     
 }

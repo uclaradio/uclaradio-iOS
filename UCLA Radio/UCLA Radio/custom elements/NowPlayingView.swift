@@ -44,7 +44,6 @@ class NowPlayingView: SliderTabView {
         containerView.addSubview(playButton)
         
         titleLabel = UILabel()
-        titleLabel.text = "Live Stream"
         titleLabel.textColor = Constants.Colors.gold
         titleLabel.textAlignment = .Center
         titleLabel.font = UIFont.boldSystemFontOfSize(17)
@@ -78,7 +77,9 @@ class NowPlayingView: SliderTabView {
     
     override func willAppear() {
         styleFromStream()
+        styleFromNowPlaying()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(streamUpdated), name: AudioStream.StreamUpdateNotificationKey, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(nowPlayingUpdated), name: RadioAPI.NowPlayingUpdatedNotification, object: nil)
     }
     
     override func willDisappear() {
@@ -121,6 +122,19 @@ class NowPlayingView: SliderTabView {
         }
         else {
             playButton.setImage(UIImage(named: "play"), forState: .Normal)
+        }
+    }
+    
+    func nowPlayingUpdated(notification: NSNotification) {
+        styleFromNowPlaying()
+    }
+    
+    func styleFromNowPlaying() {
+        if let show = RadioAPI.nowPlaying {
+            titleLabel.text = show.title
+        }
+        else {
+            titleLabel.text = "Live Stream"
         }
     }
     

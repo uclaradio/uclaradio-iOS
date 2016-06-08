@@ -310,10 +310,10 @@
             </objects>
             <point key="canvasLocation" x="543" y="494"/>
         </scene>
-        <!--Show View Controller-->
+        <!--Details-->
         <scene sceneID="lqw-hP-dFZ">
             <objects>
-                <viewController storyboardIdentifier="showViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="uJz-dA-P0s" customClass="ShowViewController" customModule="UCLA_Radio" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="showViewController" title="Details" useStoryboardIdentifierAsRestorationIdentifier="YES" id="uJz-dA-P0s" customClass="ShowViewController" customModule="UCLA_Radio" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8Fg-Hh-2rh"/>
                         <viewControllerLayoutGuide type="bottom" id="fV5-rs-63c"/>
@@ -331,8 +331,8 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Def-ft-YzS" userLabel="Column View">
                                                 <rect key="frame" x="125" y="0.0" width="350" height="518"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Day Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wug-EO-bPi">
-                                                        <rect key="frame" x="20" y="20" width="81" height="20"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Day Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wug-EO-bPi">
+                                                        <rect key="frame" x="20" y="20" width="72" height="20"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>

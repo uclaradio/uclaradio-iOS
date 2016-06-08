@@ -23,26 +23,22 @@ protocol APIFetchDelegate {
 private let DocumentsDirectory = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first as NSString?
 
 class RadioAPI {
-    static var nowPlayingCache: Show?
-    static var scheduleCache: Schedule?
-    static var djListCache: [DJ]?
     
-    static func fetchNowPlaying(delegate: APIFetchDelegate?) {
-        if let cache = nowPlayingCache {
-            delegate?.cachedDataAvailable(cache)
-        }
-        
+    static let NowPlayingUpdatedNotification = "NowPlayingUpdated"
+    static var nowPlaying: Show?
+    
+    static func fetchNowPlaying() {
         Alamofire.request(.GET, host+nowPlayingRoute).validate().responseJSON { response in
             switch response.result {
             case .Success(let json):
                 if let nowPlaying = Show.showFromJSON(json as! NSDictionary) {
-                    nowPlayingCache = nowPlaying
-                    delegate?.didFetchData(nowPlaying)
+                    self.nowPlaying = nowPlaying
+                    NSNotificationCenter.defaultCenter().postNotificationName(NowPlayingUpdatedNotification, object: nil)
                 }
-            case .Failure(let error):
+            case .Failure:
                 // no show playing right now
-                nowPlayingCache = nil
-                delegate?.failedToFetchData(error.localizedDescription)
+                nowPlaying = nil
+                NSNotificationCenter.defaultCenter().postNotificationName(NowPlayingUpdatedNotification, object: nil)
             }
         }
     }

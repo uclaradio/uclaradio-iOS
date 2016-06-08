@@ -38,7 +38,13 @@ class AudioStream: NSObject {
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(sessionInterrupted), name: AVAudioSessionInterruptionNotification, object: nil)
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(updateNowPlaying), name: RadioAPI.NowPlayingUpdatedNotification, object: nil)
+        
         updateNowPlaying()
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
     func play() {
@@ -83,8 +89,11 @@ class AudioStream: NSObject {
     func updateNowPlaying() {
         var nowPlayingDict: [String: AnyObject] = [:]
         nowPlayingDict[MPMediaItemPropertyArtist] = "UCLA Radio"
-        nowPlayingDict[MPMediaItemPropertyTitle] = "Live Stream"
-//        nowPlayingDict[MPNowPlayingInfoPropertyElapsedPlaybackTime] = 0.0
+        var title = "Live Stream"
+        if let nowPlayingTitle = RadioAPI.nowPlaying?.title {
+            title = nowPlayingTitle
+        }
+        nowPlayingDict[MPMediaItemPropertyTitle] = title
         MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = nowPlayingDict
     }
     
