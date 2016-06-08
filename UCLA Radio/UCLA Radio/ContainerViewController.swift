@@ -80,7 +80,9 @@ class ContainerViewController: UIViewController, NowPlayingActionDelegate {
             if let showViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier(ShowViewController.storyboardID) as? ShowViewController {
                 
                 showViewController.show = show
-                rootNavController.pushViewController(showViewController, animated: true)
+                delay(0.3, closure: {
+                    self.rootNavController.pushViewController(showViewController, animated: true)
+                })
             }
         }
     }
