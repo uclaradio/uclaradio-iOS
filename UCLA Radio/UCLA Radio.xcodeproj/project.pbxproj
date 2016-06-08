@@ -18,6 +18,7 @@
 		833B169F1CE1BD2D00E711F5 /* UIImage+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833B169E1CE1BD2D00E711F5 /* UIImage+Color.swift */; };
 		835CDF931D068B0300C3213B /* Typo_Round_Bold_Demo.otf in Resources */ = {isa = PBXBuildFile; fileRef = 835CDF911D068B0300C3213B /* Typo_Round_Bold_Demo.otf */; };
 		835CDF941D068B0300C3213B /* Typo_Round_Regular_Demo.otf in Resources */ = {isa = PBXBuildFile; fileRef = 835CDF921D068B0300C3213B /* Typo_Round_Regular_Demo.otf */; };
+		835CDF961D08016A00C3213B /* ShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835CDF951D08016A00C3213B /* ShowViewController.swift */; };
 		8365ECF51CE99265001B96BF /* SlidingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8365ECF41CE99265001B96BF /* SlidingViewController.swift */; };
 		8365ECF71CE9945C001B96BF /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8365ECF61CE9945C001B96BF /* ContainerViewController.swift */; };
 		83A8ED6E1CE30248003D4286 /* RecentTrackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A8ED6D1CE30248003D4286 /* RecentTrackView.swift */; };
@@ -77,6 +78,7 @@
 		833B169E1CE1BD2D00E711F5 /* UIImage+Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Color.swift"; sourceTree = "<group>"; };
 		835CDF911D068B0300C3213B /* Typo_Round_Bold_Demo.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Typo_Round_Bold_Demo.otf; sourceTree = SOURCE_ROOT; };
 		835CDF921D068B0300C3213B /* Typo_Round_Regular_Demo.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Typo_Round_Regular_Demo.otf; sourceTree = SOURCE_ROOT; };
+		835CDF951D08016A00C3213B /* ShowViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowViewController.swift; sourceTree = "<group>"; };
 		8365ECF41CE99265001B96BF /* SlidingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlidingViewController.swift; sourceTree = "<group>"; };
 		8365ECF61CE9945C001B96BF /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		83A8ED6D1CE30248003D4286 /* RecentTrackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecentTrackView.swift; path = ../RecentTrackView.swift; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 				83C28A681D025E360096D629 /* DJListViewController.swift */,
 				83C28A721D0270AA0096D629 /* DJCollectionViewCell.swift */,
 				83C28A6A1D025E500096D629 /* AboutViewController.swift */,
+				835CDF951D08016A00C3213B /* ShowViewController.swift */,
 			);
 			path = menu;
 			sourceTree = "<group>";
@@ -454,6 +457,7 @@
 				832C65E01CD0800200B3479E /* AppDelegate.swift in Sources */,
 				83B8C0761D067EDF00B80802 /* ScheduleSectionHeaderView.swift in Sources */,
 				83C28A7C1D050F3B0096D629 /* ScheduleViewController.swift in Sources */,
+				835CDF961D08016A00C3213B /* ShowViewController.swift in Sources */,
 				833B169F1CE1BD2D00E711F5 /* UIImage+Color.swift in Sources */,
 				83C28A731D0270AA0096D629 /* DJCollectionViewCell.swift in Sources */,
 				8365ECF51CE99265001B96BF /* SlidingViewController.swift in Sources */,

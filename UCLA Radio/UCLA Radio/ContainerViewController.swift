@@ -70,7 +70,7 @@ class ContainerViewController: UIViewController, NowPlayingActionDelegate {
     func didTapShow(show: Show?) {
         slider.updatePosition(.Closed, animated: true)
         if let _ = show {
-            rootNavController.pushViewController(UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("scheduleViewController"), animated: true)
+            rootNavController.pushViewController(UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier(ScheduleViewController.storyboardID), animated: true)
         }
     }
     

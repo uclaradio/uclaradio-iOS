@@ -11,6 +11,8 @@ import UIKit
 
 class AboutViewController: UIViewController {
     
+    static let storyboardID = "aboutViewController"
+    
     @IBOutlet weak var facebookButton: UIButton!
     @IBOutlet weak var instagramButton: UIButton!
     @IBOutlet weak var tumblrButton: UIButton!

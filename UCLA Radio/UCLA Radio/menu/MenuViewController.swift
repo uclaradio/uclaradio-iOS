@@ -28,9 +28,9 @@ class MenuItem {
 
 class MenuViewController: UICollectionViewController {
     
-    private let items = [MenuItem(title: "Schedule", image: "schedule", storyboardID: "scheduleViewController"),
-                         MenuItem(title: "DJs", image: "djs", storyboardID: "djListViewController"),
-                         MenuItem(title: "About", image: "about", storyboardID: "aboutViewController")]
+    private let items = [MenuItem(title: "Schedule", image: "schedule", storyboardID: ScheduleViewController.storyboardID),
+                         MenuItem(title: "DJs", image: "djs", storyboardID: DJListViewController.storyboardID),
+                         MenuItem(title: "About", image: "about", storyboardID: AboutViewController.storyboardID)]
     
     var layout: KRLCollectionViewGridLayout {
         return self.collectionView?.collectionViewLayout as! KRLCollectionViewGridLayout

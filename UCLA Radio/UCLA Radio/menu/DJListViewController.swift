@@ -16,6 +16,8 @@ private let itemSpacing: CGFloat = 15
 
 class DJListViewController: UIViewController, APIFetchDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
     
+    static let storyboardID = "djListViewController"
+    
     var djList: [DJ] = []
     
     var collectionView: UICollectionView!

@@ -14,6 +14,8 @@ private let headerReuseIdentifier = "ScheduleHeader"
 
 class ScheduleViewController: UIViewController, APIFetchDelegate, UITableViewDataSource, UITableViewDelegate {
     
+    static let storyboardID = "scheduleViewController"
+    
     var tableView = UITableView()
     
     var schedule: Schedule?
@@ -174,6 +176,12 @@ class ScheduleViewController: UIViewController, APIFetchDelegate, UITableViewDat
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        let show = showsForDay(indexPath.section)[indexPath.row]
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier(ShowViewController.storyboardID)
+        if let showViewController = vc as? ShowViewController {
+            showViewController.show = show
+            navigationController?.pushViewController(showViewController, animated: true)
+        }
     }
     
     // MARK: - Layout
