@@ -57,7 +57,6 @@ class ScheduleShowCell: UITableViewCell {
         djsLabel.textColor = UIColor.darkGrayColor()
         djsLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        containerView.addSubview(blurbImageView)
         blurbImageView.translatesAutoresizingMaskIntoConstraints = false
         
         contentView.addConstraints(preferredConstraints())
@@ -80,8 +79,12 @@ class ScheduleShowCell: UITableViewCell {
         }
         
         blurbImageView.image = nil
-        hasPicture = false
+        if (hasPicture) {
+            blurbImageView.removeFromSuperview()
+            hasPicture = false
+        }
         if let picture = show.picture {
+            containerView.addSubview(blurbImageView)
             hasPicture = true
             blurbImageView.sd_setImageWithURL(RadioAPI.absoluteURL(picture))
         }
@@ -123,11 +126,11 @@ class ScheduleShowCell: UITableViewCell {
         constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|-(bump)-[time]", options: [], metrics: metrics, views: views)
         constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|-(bump)-[genre]", options: [], metrics: metrics, views: views)
         constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:[djs]-(bump)-|", options: [], metrics: metrics, views: views)
-        constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|-(pad)-[image]-(pad)-|", options: [], metrics: metrics, views: views)
         constraints.append(NSLayoutConstraint(item: titleLabel, attribute: .CenterY, relatedBy: .Equal, toItem: containerView, attribute: .CenterY, multiplier: 1.0, constant: 0.0))
         
         if (hasPicture) {
             // with picture on right
+            constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|-(pad)-[image]-(pad)-|", options: [], metrics: metrics, views: views)
             constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|-(indent)-[title]-(indent)-[image(imageSize)]-(pad)-|", options: [], metrics: metrics, views: views)
             constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|-[time]-(>=15)-[genre]-[image(imageSize)]-(pad)-|", options: [], metrics: metrics, views: views)
             constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|-[djs]-[image]", options: [], metrics: metrics, views: views)

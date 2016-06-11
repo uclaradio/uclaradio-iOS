@@ -33,7 +33,7 @@ class ContainerViewController: UIViewController, NowPlayingActionDelegate {
         // back button color
         rootNavController.navigationBar.tintColor = UIColor.whiteColor()
         // title color
-        rootNavController.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: Constants.Colors.gold, NSFontAttributeName: UIFont(name: Constants.Fonts.titleBold, size: 21)!]
+        rootNavController.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor(), NSFontAttributeName: UIFont(name: Constants.Fonts.titleBold, size: 21)!]
         
         installNowPlayingSlider()
     }

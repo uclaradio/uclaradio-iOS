@@ -48,9 +48,9 @@ class NowPlayingViewController: UIViewController, HistoryFetchDelegate {
         controlsParentView.addSubview(volumeView)
         controlsParentView.backgroundColor = UIColor.clearColor()
         volumeView.translatesAutoresizingMaskIntoConstraints = false
-        volumeView.setVolumeThumbImage(UIImage(named: "volumeSlider")?.imageWithColor(Constants.Colors.gold), forState: .Normal)
-        volumeView.setRouteButtonImage(UIImage(named: "airplayIcon")?.imageWithColor(Constants.Colors.gold), forState: .Normal)
-        volumeView.tintColor = Constants.Colors.gold
+        volumeView.setVolumeThumbImage(UIImage(named: "volumeSlider")?.imageWithColor(UIColor.whiteColor()), forState: .Normal)
+        volumeView.setRouteButtonImage(UIImage(named: "airplayIcon")?.imageWithColor(UIColor.whiteColor()), forState: .Normal)
+        volumeView.tintColor = UIColor.whiteColor()
         
         let controlsViews = ["nowPlaying": nowPlayingView, "volume": volumeView]
         controlsParentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[nowPlaying]-[volume(30)]|", options: [], metrics: nil, views: controlsViews))

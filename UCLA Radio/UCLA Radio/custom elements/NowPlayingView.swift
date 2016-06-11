@@ -36,7 +36,7 @@ class NowPlayingView: SliderTabView {
         addSubview(containerView)
         
         playButton = UIButton(type: .System)
-        playButton.tintColor = Constants.Colors.gold
+        playButton.tintColor = UIColor.whiteColor()
         playButton.contentMode = .ScaleAspectFit
         playButton.imageEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         playButton.translatesAutoresizingMaskIntoConstraints = false
@@ -44,7 +44,7 @@ class NowPlayingView: SliderTabView {
         containerView.addSubview(playButton)
         
         titleLabel = UILabel()
-        titleLabel.textColor = Constants.Colors.gold
+        titleLabel.textColor = UIColor.whiteColor()
         titleLabel.textAlignment = .Center
         titleLabel.font = UIFont.boldSystemFontOfSize(17)
         titleLabel.userInteractionEnabled = false
@@ -53,7 +53,7 @@ class NowPlayingView: SliderTabView {
         
         subtitleLabel = UILabel()
         subtitleLabel.text = "UCLA Radio"
-        subtitleLabel.textColor = UIColor.whiteColor()
+        subtitleLabel.textColor = UIColor.lightGrayColor()
         subtitleLabel.textAlignment = .Center
         subtitleLabel.font = UIFont.systemFontOfSize(15)
         subtitleLabel.userInteractionEnabled = false
@@ -89,7 +89,7 @@ class NowPlayingView: SliderTabView {
     func addSkipButton() {
         skipButton = UIButton(type: .System)
         skipButton.setImage(UIImage(named: "reset"), forState: .Normal)
-        skipButton.tintColor = Constants.Colors.gold
+        skipButton.tintColor = UIColor.whiteColor()
         skipButton.contentMode = .ScaleAspectFit
         skipButton.imageEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         skipButton.translatesAutoresizingMaskIntoConstraints = false
