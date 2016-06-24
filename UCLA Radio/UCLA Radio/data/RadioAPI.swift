@@ -9,7 +9,7 @@
 import Foundation
 import Alamofire
 
-private let host = "https://radio.chrislaganiere.net"
+private let host = "https://uclaradio.com"
 private let nowPlayingRoute = "/api/nowplaying"
 private let scheduleRoute = "/api/schedule"
 private let djRoute = "/api/djs"
