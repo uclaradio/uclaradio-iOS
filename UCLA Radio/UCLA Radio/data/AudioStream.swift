@@ -10,44 +10,28 @@ import Foundation
 import AVFoundation
 import MediaPlayer
 
+let streamURL = NSURL(string: "http://stream.uclaradio.com:8000/listen")!
+
 class AudioStream: NSObject {
     
     static let sharedInstance = AudioStream()
     static let StreamUpdateNotificationKey = "StreamUpdated"
     
+    var readyToPlay = false
     var playing = false
     
-    private var audioPlayer = AVPlayer(URL: NSURL(string: "http://stream.uclaradio.com:8000/listen")!)
-    
-    // prevents others from using default '()' initializer for this class
-    private override init () {
-        super.init()
-
-        // Set up AVAudioSession
-        let audioSession = AVAudioSession.sharedInstance()
-        do {
-            try audioSession.setCategory(AVAudioSessionCategoryPlayback)
-            try audioSession.setActive(true)
-        }
-        catch let error as NSError {
-            print(error.localizedDescription)
-        }
-        
-        audioPlayer.addObserver(self, forKeyPath: "playbackBufferEmpty", options: .New, context: nil)
-        audioPlayer.addObserver(self, forKeyPath: "playbackLikelyToKeepUp", options: .New, context: nil)
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(sessionInterrupted), name: AVAudioSessionInterruptionNotification, object: nil)
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(updateNowPlaying), name: RadioAPI.NowPlayingUpdatedNotification, object: nil)
-        
-        updateNowPlaying()
-    }
+    private var audioPlayer = AVPlayer(URL: streamURL)
     
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
     func play() {
+        if (!readyToPlay) {
+            setupStream()
+            readyToPlay = true
+        }
+        
         if (audioPlayer.status == .ReadyToPlay && !playing) {
             audioPlayer.play()
             playing = true
@@ -73,11 +57,32 @@ class AudioStream: NSObject {
         }
     }
     
+    func setupStream() {
+        // Set up AVAudioSession
+        let audioSession = AVAudioSession.sharedInstance()
+        do {
+            try audioSession.setCategory(AVAudioSessionCategoryPlayback)
+            try audioSession.setActive(true)
+        }
+        catch let error as NSError {
+            print(error.localizedDescription)
+        }
+        
+        audioPlayer.addObserver(self, forKeyPath: "playbackBufferEmpty", options: .New, context: nil)
+        audioPlayer.addObserver(self, forKeyPath: "playbackLikelyToKeepUp", options: .New, context: nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(sessionInterrupted), name: AVAudioSessionInterruptionNotification, object: nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(updateNowPlaying), name: RadioAPI.NowPlayingUpdatedNotification, object: nil)
+        
+        updateNowPlaying()
+    }
+    
     /**
      Reset audio stream to get live stream
      */
     func skipToLive() {
-        let newItem = AVPlayerItem(URL: NSURL(string: "http://stream.uclaradio.com:8000/listen")!)
+        let newItem = AVPlayerItem(URL: streamURL)
         audioPlayer.replaceCurrentItemWithPlayerItem(newItem)
         play()
         NSNotificationCenter.defaultCenter().postNotificationName(AudioStream.StreamUpdateNotificationKey, object: nil)
@@ -97,19 +102,11 @@ class AudioStream: NSObject {
         MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = nowPlayingDict
     }
     
-//    func printData() {
-//        let item = audioPlayer.currentItem
-//        print("duration: \(item?.duration)")
-//        print("timebase: \(item?.timebase)")
-//        print("loadedTimeRanges: \(item?.loadedTimeRanges)")
-//        print("currentDate: \(item?.currentDate())")
-//        
-//    }
-    
     // Notifications
     
     func sessionInterrupted(notification: NSNotification) {
         playing = false
+        readyToPlay = false
         NSNotificationCenter.defaultCenter().postNotificationName(AudioStream.StreamUpdateNotificationKey, object: nil)
     }
     

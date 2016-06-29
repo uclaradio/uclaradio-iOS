@@ -70,6 +70,7 @@ class ScheduleShowCell: UITableViewCell {
         timeLabel.text = show.time
         titleLabel.text = show.title
         djsLabel.text = show.djString
+        blurbImageView.sd_cancelCurrentImageLoad()
         
         if let genre = show.genre {
             genreLabel.text = genre

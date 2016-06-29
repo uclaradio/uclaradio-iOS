@@ -10,8 +10,9 @@ import Foundation
 import UIKit
 import SDWebImage
 
-private let textFontSize: CGFloat = 16
-private let labelHeight = 18
+let textFontSize: CGFloat = 16
+let labelHeight = 18
+let placeholder = UIImage(named: "bear")
 
 class DJCollectionViewCell: UICollectionViewCell {
     
@@ -50,33 +51,27 @@ class DJCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+    }
+    
     func styleFromDJ(dj: DJ) {
+        nameLabel.text = ""
+        imageView.image = placeholder
+        imageView.sd_cancelCurrentImageLoad()
         if let name = dj.djName {
             nameLabel.text = name
         }
-        else {
-            nameLabel.text = ""
-        }
         
-        let placeholder = UIImage(named: "bear")
         if let picture = dj.picture {
             imageView.sd_setImageWithURL(RadioAPI.absoluteURL(picture), placeholderImage: placeholder)
-        }
-        else {
-            imageView.image = placeholder
         }
     }
     
     func animateSelect() {
-//        UIView.animateWithDuration(0.5, animations: { 
-            self.contentView.alpha = 0.5
-//            }) { (complete) in
-//                if (complete) {
-                    UIView.animateWithDuration(0.5, animations: {
-                        self.contentView.alpha = 1.0
-                    })
-//                }
-//        }
+        self.contentView.alpha = 0.5
+        UIView.animateWithDuration(0.5, animations: {
+            self.contentView.alpha = 1.0
+        })
     }
     
     // MARK: - Layout
@@ -94,7 +89,6 @@ class DJCollectionViewCell: UICollectionViewCell {
     
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         if (context == ImageChangeContext) {
-//            print("image changed: \(imageView.frame)")
             imageView.layer.cornerRadius = imageView.frame.size.height/2.0
         }
         else {

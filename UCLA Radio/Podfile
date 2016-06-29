@@ -4,7 +4,7 @@ use_frameworks!
 target 'UCLA Radio' do
   pod 'Alamofire', '~> 3.4'
   pod 'ASHorizontalScrollView', '~> 1.1'
-  pod 'SDWebImage', '~>3.7'
+  pod 'SDWebImage', '~>3.8'
   pod "KRLCollectionViewGridLayout", "~> 0.4.1"
   
   # potentially useful for schedule
