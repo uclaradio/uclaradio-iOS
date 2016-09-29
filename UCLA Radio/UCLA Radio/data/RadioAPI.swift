@@ -33,8 +33,10 @@ class RadioAPI {
             case .Success(let json):
                 if let nowPlaying = Show.showFromJSON(json as! NSDictionary) {
                     self.nowPlaying = nowPlaying
-                    NSNotificationCenter.defaultCenter().postNotificationName(NowPlayingUpdatedNotification, object: nil)
+                } else {
+                    nowPlaying = nil
                 }
+                NSNotificationCenter.defaultCenter().postNotificationName(NowPlayingUpdatedNotification, object: nil)
             case .Failure:
                 // no show playing right now
                 nowPlaying = nil
