@@ -21,7 +21,6 @@ class NowPlayingView: SliderTabView {
     var playButton: UIButton!
     var skipButton: UIButton!
     var titleLabel: UILabel!
-    var subtitleLabel: UILabel!
     
     private var containerConstraintsInstalled: [NSLayoutConstraint]?
     
@@ -47,18 +46,10 @@ class NowPlayingView: SliderTabView {
         titleLabel.textColor = UIColor.whiteColor()
         titleLabel.textAlignment = .Center
         titleLabel.font = UIFont.boldSystemFontOfSize(17)
+        titleLabel.numberOfLines = 2
         titleLabel.userInteractionEnabled = false
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         containerView.addSubview(titleLabel)
-        
-        subtitleLabel = UILabel()
-        subtitleLabel.text = "UCLA Radio"
-        subtitleLabel.textColor = UIColor.lightGrayColor()
-        subtitleLabel.textAlignment = .Center
-        subtitleLabel.font = UIFont.systemFontOfSize(15)
-        subtitleLabel.userInteractionEnabled = false
-        subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
-        containerView.addSubview(subtitleLabel)
         
         addConstraints(preferredConstraints())
         containerView.addConstraints(containerConstraints())
@@ -131,10 +122,10 @@ class NowPlayingView: SliderTabView {
     
     func styleFromNowPlaying() {
         if let show = RadioAPI.nowPlaying {
-            titleLabel.text = show.title
+            titleLabel.text = "LIVE: " + show.title
         }
         else {
-            titleLabel.text = "Live Stream"
+            titleLabel.text = "LIVE STREAM"
         }
     }
     
@@ -179,10 +170,7 @@ class NowPlayingView: SliderTabView {
         constraints.append(NSLayoutConstraint(item: playButton, attribute: .CenterY, relatedBy: .Equal, toItem: containerView, attribute: .CenterY, multiplier: 1.0, constant: 0.0))
         
         // title & subtitle labels
-        constraints.append(NSLayoutConstraint(item: titleLabel, attribute: .Top, relatedBy: .Equal, toItem: playButton, attribute: .Top, multiplier: 1.0, constant: 1))
-        constraints.append(NSLayoutConstraint(item: subtitleLabel, attribute: .Width, relatedBy: .Equal, toItem: titleLabel, attribute: .Width, multiplier: 1.0, constant: 0.0))
-        constraints.append(NSLayoutConstraint(item: subtitleLabel, attribute: .CenterX, relatedBy: .Equal, toItem: titleLabel, attribute: .CenterX, multiplier: 1.0, constant: 0.0))
-        constraints.append(NSLayoutConstraint(item: subtitleLabel, attribute: .Bottom, relatedBy: .Equal, toItem: playButton, attribute: .Bottom, multiplier: 1.0, constant: -1))
+        constraints.append(NSLayoutConstraint(item: titleLabel, attribute: .CenterY, relatedBy: .Equal, toItem: playButton, attribute: .CenterY, multiplier: 1.0, constant: 1))
         return constraints
     }
     

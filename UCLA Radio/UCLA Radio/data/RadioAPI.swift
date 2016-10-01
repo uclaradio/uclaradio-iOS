@@ -13,6 +13,7 @@ private let host = "https://uclaradio.com"
 private let nowPlayingRoute = "/api/nowplaying"
 private let scheduleRoute = "/api/schedule"
 private let djRoute = "/api/djs"
+private let eventsRoute = "/GiveawayCalendar/data"
 
 protocol APIFetchDelegate {
     func cachedDataAvailable(data: AnyObject)
@@ -82,6 +83,26 @@ class RadioAPI {
             }) { (error) in
                 print(error)
                 delegate?.failedToFetchData(error)
+        }
+    }
+    
+    static func fetchEvents(delegate: APIFetchDelegate?) {
+        fetchSomethingCached(eventsRoute, key: "events", success: { (result, cached) in
+            if let eventsMonthsArray = result as? NSArray {
+//                let schedule = Schedule(shows: Show.showsFromJSON(showsArray))
+//                if (cached) {
+//                    delegate?.cachedDataAvailable(schedule)
+//                }
+//                else {
+//                    delegate?.didFetchData(schedule)
+//                }
+            }
+            else {
+//                delegate?.failedToFetchData("wrong data type")
+            }
+        }) { (error) in
+            print(error)
+//            delegate?.failedToFetchData(error)
         }
     }
     

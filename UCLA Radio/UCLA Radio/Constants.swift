@@ -18,6 +18,7 @@ struct Constants {
         static let lightPink = UIColor(hex: 0xfde0dd)
         static let reallyDarkPink = UIColor(hex: 0xc51b8a)
         static let lightBackground = UIColor.whiteColor().colorWithAlphaComponent(0.85)
+        static let lightBackgroundHighlighted = UIColor.whiteColor()
         static let darkBackground = UIColor.blackColor().colorWithAlphaComponent(0.85)
     }
     
@@ -28,5 +29,6 @@ struct Constants {
     
     struct Floats {
         static let containerOffset: CGFloat = 8
+        static let menuOffset: CGFloat = 15
     }
 }

@@ -8,58 +8,56 @@
 
 import Foundation
 import UIKit
-import KRLCollectionViewGridLayout
 
 private let reuseIdentifier = "MenuCell"
+private let headerReuseIdentifier = "MenuHeaderView"
 private let sectionInset: CGFloat = 25
 private let itemSpacing: CGFloat = 15
+private let atractiveColorSchemes = ["BuGn", "BuPu", "RdPu", "Reds", "Oranges","Greens", "Blues", "Purples", "PuRd"]
 
 class MenuItem {
     let title: String
-    let image: String // image name (square)
     let storyboardID: String? // storyboard ID for view controller to push when tapped (or nil)
     
     init(title: String, image: String, storyboardID: String?) {
         self.title = title
-        self.image = image
         self.storyboardID = storyboardID
     }
 }
 
-class MenuViewController: UICollectionViewController {
+class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     private let items = [MenuItem(title: "Schedule", image: "schedule", storyboardID: ScheduleViewController.storyboardID),
                          MenuItem(title: "DJs", image: "djs", storyboardID: DJListViewController.storyboardID),
                          MenuItem(title: "About", image: "about", storyboardID: AboutViewController.storyboardID)]
     
-    var layout: KRLCollectionViewGridLayout {
-        return self.collectionView?.collectionViewLayout as! KRLCollectionViewGridLayout
-    }
-    
-    override init(collectionViewLayout layout: UICollectionViewLayout) {
-        super.init(collectionViewLayout: layout)
-        
-        collectionView!.registerClass(MenuCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    var tableView = UITableView(frame: CGRectZero, style: .Grouped)
+    var triangleView: TrianglifyView!
     
     // MARK: - ViewController Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        layout.numberOfItemsPerLine = 2
-        layout.sectionInset = UIEdgeInsets(top: sectionInset, left: sectionInset, bottom: sectionInset, right: sectionInset)
-        layout.interitemSpacing = itemSpacing
-        layout.lineSpacing = itemSpacing
-        
-        collectionView?.backgroundColor = UIColor.clearColor()
-        collectionView?.alwaysBounceVertical = true
-        
         view.backgroundColor = UIColor.clearColor()
+        
+        triangleView = TrianglifyView()
+        view.addSubview(triangleView)
+        triangleView.translatesAutoresizingMaskIntoConstraints = false
+        
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.backgroundColor = UIColor.clearColor()
+        tableView.alwaysBounceVertical = true
+        tableView.registerClass(MenuTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
+        tableView.registerClass(MenuSectionHeaderView.self, forHeaderFooterViewReuseIdentifier: headerReuseIdentifier)
+        tableView.backgroundColor = UIColor.clearColor()
+        tableView.contentInset = UIEdgeInsets(top: 40, left: 0, bottom: 0, right: 0)
+        tableView.separatorStyle = .None
+        view.addSubview(tableView)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        
+        view.addConstraints(preferredConstraints())
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -67,6 +65,9 @@ class MenuViewController: UICollectionViewController {
         if let navigationController = navigationController {
             navigationController.setNavigationBarHidden(true, animated: true)
         }
+        
+        // randomly set color scheme
+        triangleView.colorScheme = atractiveColorSchemes[Int(arc4random_uniform(UInt32(atractiveColorSchemes.count)))]
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -85,40 +86,64 @@ class MenuViewController: UICollectionViewController {
         }
     }
     
-    // MARK: - UICollectionViewDataSource
+    // MARK: - UITableViewDataSource
     
-    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
     
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }
     
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath)
-        
-        cell.contentView.backgroundColor = Constants.Colors.gold
-        return cell
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        return tableView.dequeueReusableCellWithIdentifier(reuseIdentifier, forIndexPath: indexPath)
     }
     
-    // MARK: - UICollectionViewDelegate
+    // MARK: - UITableViewDelegate
     
-    override func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return MenuTableViewCell.preferredHeight()
+    }
+    
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         let item = items[indexPath.row]
-        if let menuCell = cell as? MenuCollectionViewCell {
+        if let menuCell = cell as? MenuTableViewCell {
             menuCell.styleForMenuItem(item)
         }
     }
     
-    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        collectionView.deselectItemAtIndexPath(indexPath, animated: true)
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
         let item = items[indexPath.row]
         if let storyboardID = item.storyboardID {
             pushViewController(storyboardID)
         }
+    }
+    
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return MenuSectionHeaderView.preferredHeight()
+    }
+    
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return tableView.dequeueReusableHeaderFooterViewWithIdentifier(headerReuseIdentifier)
+    }
+    
+    // MARK: - Layout
+    
+    func preferredConstraints() -> [NSLayoutConstraint] {
+        var constraints = [NSLayoutConstraint]()
         
+        // table view
+        constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|[table]|", options: [], metrics: nil, views: ["table": tableView])
+        constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|[table]|", options: [], metrics: nil, views: ["table": tableView])
+        
+        // trianglify view
+        constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|[triangles]|", options: [], metrics: nil, views: ["triangles": triangleView])
+        constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|[triangles]|", options: [], metrics: nil, views: ["triangles": triangleView])
+        
+        return constraints
     }
     
 }

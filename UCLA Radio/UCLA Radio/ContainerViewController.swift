@@ -22,17 +22,14 @@ class ContainerViewController: UIViewController, NowPlayingActionDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let triangleView = TrianglifyView(frame: view.frame)
-        view.addSubview(triangleView)
-        
-        let menuVC = MenuViewController(collectionViewLayout: KRLCollectionViewGridLayout())
+        let menuVC = MenuViewController()
         rootNavController = UINavigationController(rootViewController: menuVC)
         view.addSubview(rootNavController.view)
         addChildViewController(rootNavController)
         rootNavController.didMoveToParentViewController(self)
         rootNavController.view.translatesAutoresizingMaskIntoConstraints = false
         rootNavController.view.frame.size = CGSize(width: rootNavController.view.frame.width, height: rootNavController.view.frame.size.height - NowPlayingView.PreferredHeight)
-        rootNavController.view.backgroundColor = UIColor.clearColor()
+        rootNavController.view.backgroundColor = Constants.Colors.lightPink
         rootNavController.navigationBar.barTintColor = Constants.Colors.darkPink
         // back button color
         rootNavController.navigationBar.tintColor = UIColor.whiteColor()

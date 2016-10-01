@@ -26,7 +26,19 @@ public class TrianglifyView: UIView {
             variation = min(1.0, max(0.0, variation))
         }
     }
-    public var colors: [UIColor] = Colorbrewer.colors("GnBu") ?? []
+    public var colors: [UIColor] = Colorbrewer.colors("GnBu") ?? [] {
+        didSet {
+            setNeedsLayout()
+        }
+    }
+    public var colorScheme: String? {
+        didSet {
+            if let colorScheme = colorScheme,
+                newColors = Colorbrewer.colors(colorScheme) {
+                colors = newColors
+            }
+        }
+    }
     
     /// private
     

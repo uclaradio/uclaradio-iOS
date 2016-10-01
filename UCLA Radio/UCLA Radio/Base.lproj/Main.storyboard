@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="DuL-GS-bCM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="DuL-GS-bCM">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -185,14 +185,14 @@
                                                             <constraint firstAttribute="width" priority="999" constant="60" id="lfl-3P-p1b"/>
                                                             <constraint firstAttribute="height" priority="999" constant="60" id="qhe-nZ-hJG"/>
                                                         </constraints>
-                                                        <state key="normal" image="tumblr"/>
+                                                        <state key="normal" image="twitter"/>
                                                         <variation key="default">
                                                             <mask key="constraints">
                                                                 <exclude reference="qhe-nZ-hJG"/>
                                                             </mask>
                                                         </variation>
                                                         <connections>
-                                                            <action selector="tumblrButtonHit:" destination="lfH-Bk-LZM" eventType="touchUpInside" id="aqB-3s-JHd"/>
+                                                            <action selector="twitterButtonHit:" destination="lfH-Bk-LZM" eventType="touchUpInside" id="VKc-7u-Bnh"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aop-az-Gdp">
@@ -201,14 +201,14 @@
                                                             <constraint firstAttribute="width" priority="999" constant="60" id="Cwb-5s-9BN"/>
                                                             <constraint firstAttribute="height" priority="999" constant="60" id="I9L-4m-ByC"/>
                                                         </constraints>
-                                                        <state key="normal" image="soundcloud"/>
+                                                        <state key="normal" image="tumblr"/>
                                                         <variation key="default">
                                                             <mask key="constraints">
                                                                 <exclude reference="I9L-4m-ByC"/>
                                                             </mask>
                                                         </variation>
                                                         <connections>
-                                                            <action selector="soundcloudButtonHit:" destination="lfH-Bk-LZM" eventType="touchUpInside" id="Vna-iX-8mF"/>
+                                                            <action selector="tumblrButtonHit:" destination="lfH-Bk-LZM" eventType="touchUpInside" id="RXB-4R-TYb"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -250,8 +250,8 @@
                     <connections>
                         <outlet property="facebookButton" destination="9h7-JI-paf" id="UcU-0i-ET5"/>
                         <outlet property="instagramButton" destination="iZM-mc-mKN" id="abL-D0-Mu3"/>
-                        <outlet property="soundcloudButton" destination="Aop-az-Gdp" id="CC2-hj-E4x"/>
-                        <outlet property="tumblrButton" destination="ySn-hL-bTf" id="wbg-1w-HWk"/>
+                        <outlet property="tumblrButton" destination="Aop-az-Gdp" id="hgu-cc-guq"/>
+                        <outlet property="twitterButton" destination="ySn-hL-bTf" id="tkt-4G-hss"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HKH-vZ-GrJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -443,7 +443,7 @@
     <resources>
         <image name="facebook" width="57" height="57"/>
         <image name="instagram" width="120" height="120"/>
-        <image name="soundcloud" width="173" height="173"/>
         <image name="tumblr" width="167" height="167"/>
+        <image name="twitter" width="57" height="57"/>
     </resources>
 </document>
