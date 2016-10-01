@@ -26,13 +26,16 @@ class ShowViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = Constants.Colors.lightBackground
+        view.backgroundColor = Constants.Colors.lightPink
         
         timeLabel.textColor = UIColor.lightGrayColor()
         
         genreLabel.textColor = UIColor.darkGrayColor()
         blurbLabel.textColor = UIColor.darkGrayColor()
         djsLabel.textColor = UIColor.darkGrayColor()
+        
+        imageView.contentMode = .ScaleAspectFill
+        imageView.clipsToBounds = true
     }
     
     override func viewWillAppear(animated: Bool) {

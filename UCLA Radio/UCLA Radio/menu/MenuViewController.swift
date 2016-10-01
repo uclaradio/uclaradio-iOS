@@ -59,7 +59,7 @@ class MenuViewController: UICollectionViewController {
         collectionView?.backgroundColor = UIColor.clearColor()
         collectionView?.alwaysBounceVertical = true
         
-        view.backgroundColor = Constants.Colors.lightBlue
+        view.backgroundColor = UIColor.clearColor()
     }
     
     override func viewWillAppear(animated: Bool) {

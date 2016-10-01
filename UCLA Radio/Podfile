@@ -6,7 +6,7 @@ target 'UCLA Radio' do
   pod 'ASHorizontalScrollView', '~> 1.1'
   pod 'SDWebImage', '~>3.8'
   pod "KRLCollectionViewGridLayout", "~> 0.4.1"
-  pod 'DynamicColor', '~> 3.1.0'
+  pod 'DynamicColor', '~> 2.4.0'
   
   # potentially useful for schedule
   # pod 'HTHorizontalSelectionList', '~> 0.7.0'

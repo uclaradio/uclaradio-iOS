@@ -1,50 +1,14 @@
-<p align="center">
-  <img src="http://yannickloriot.com/resources/dynamiccolor-header.png">
-</p>
+![DynamicColor](http://yannickloriot.com/resources/dynamiccolor-header.png)
 
-<p align="center">
-  <a href="https://cocoapod-badges.herokuapp.com/l/DynamicColor/badge.svg"><img alt="License" src="https://cocoapod-badges.herokuapp.com/l/DynamicColor/badge.svg"/></a>
-  <a href="http://cocoadocs.org/docsets/DynamicColor/"><img alt="Supported Plateforms" src="https://cocoapod-badges.herokuapp.com/p/DynamicColor/badge.svg"/></a>
-  <a href="http://cocoadocs.org/docsets/DynamicColor/"><img alt="Version" src="https://cocoapod-badges.herokuapp.com/v/DynamicColor/badge.svg"/></a>
-  <a href="https://github.com/Carthage/Carthage"><img alt="Carthage compatible" src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat"/></a>
-  <a href="https://travis-ci.org/yannickl/DynamicColor"><img alt="Build status" src="https://travis-ci.org/yannickl/DynamicColor.svg?branch=master"/></a>
-  <a href="http://codecov.io/github/yannickl/DynamicColor"><img alt="Code coverage status" src="http://codecov.io/github/yannickl/DynamicColor/coverage.svg?branch=master"/></a>
-</p>
+[![Supported Plateforms](https://cocoapod-badges.herokuapp.com/p/DynamicColor/badge.svg)](http://cocoadocs.org/docsets/DynamicColor/) [![Version](https://cocoapod-badges.herokuapp.com/v/DynamicColor/badge.svg)](http://cocoadocs.org/docsets/DynamicColor/) [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage) [![Build Status](https://travis-ci.org/yannickl/DynamicColor.svg?branch=master)](https://travis-ci.org/yannickl/DynamicColor) [![codecov.io](http://codecov.io/github/yannickl/DynamicColor/coverage.svg?branch=master)](http://codecov.io/github/yannickl/DynamicColor?branch=master)
 
-**DynamicColor** provides powerful methods to manipulate colours in an easy way in Swift.
+DynamicColor provides powerful methods to manipulate colours in an easy way.
 
 <p align="center">
   <img src="http://yannickloriot.com/resources/dynamiccolor-sample-screenshot.png" alt="example screenshot" width="300" />
-  <img src="http://yannickloriot.com/resources/dynamicgradient-sample-screenshot.png" alt="example screenshot" width="300" />
-</p>
-
-<p align="center">
-    <a href="#usage">Usage</a> • <a href="#installation">Installation</a> • <a href="#contact">Contact</a> • <a href="#license-mit">License</a>
 </p>
 
 ## Usage
-
-*This branch is Swift 3 compatible, use the [v2 version](https://github.com/yannickl/DynamicColor/tree/2.4.0) for Swift 2.x.*
-
-#### Creation (Hex String)
-
-Firstly, DynamicColor provides useful initializers to create colors using hex strings or values:
-
-```swift
-let color = UIColor(hexString: "#3498db")
-// equivalent to
-// color = UIColor(hex: 0x3498db)
-```
-
-To be platform independent, the typealias `DynamicColor` can also be used:
-
-```swift
-let color = DynamicColor(hex: 0x3498db)
-// On iOS, WatchOS or tvOS, equivalent to
-// color = UIColor(hex: 0x3498db)
-// On OSX, equivalent to
-// color = NSColor(hex: 0x3498db)
-```
 
 #### Darken & Lighten
 
@@ -55,37 +19,37 @@ These two create a new color by adjusting the lightness of the receiver. You hav
 </p>
 
 ```swift
-let originalColor = DynamicColor(hexString: "#c0392b")
+let originalColor = UIColor(hexString: "#c0392b")
 
-let lighterColor = originalColor.lighter()
+let lighterColor = originalColor.lighterColor()
 // equivalent to
-// lighterColor = originalColor.lighter(amount: 0.2)
+// lighterColor = originalColor.lightenColor(0.2)
 
-let darkerColor = originalColor.darkened()
+let darkerColor = originalColor.darkerColor()
 // equivalent to
-// darkerColor = originalColor.darkened(amount: 0.2)
+// darkerColor = originalColor.darkenColor(0.2)
 ```
 
 #### Saturate, Desaturate & Grayscale
 
-These will adjust the saturation of the color object, much like `darkened` and `lighter` adjusted the lightness. Again, you need to use a value between 0 and 1.
+These will adjust the saturation of the color object, much like `darkenColor` and `lightenColor` adjusted the lightness. Again, you need to use a value between 0 and 1.
 
 <p align="center">
   <img src="http://yannickloriot.com/resources/dynamiccolor-saturateddesaturatedgrayscale.png" alt="saturate, desaturate and grayscale color" width="373"/>
 </p>
 
 ```swift
-let originalColor = DynamicColor(hexString: "#c0392b")
+let originalColor = UIColor(hexString: "#c0392b")
 
-let saturatedColor = originalColor.saturated()
+let saturatedColor = originalColor.saturatedColor()
 // equivalent to
-// saturatedColor = originalColor.saturated(amount: 0.2)
+// saturatedColor = originalColor.saturateColor(0.2)
 
-let desaturatedColor = originalColor.desaturated()
+let desaturatedColor = originalColor.desaturatedColor()
 // equivalent to
-// desaturatedColor = originalColor.desaturated(amount: 0.2)
+// desaturatedColor = originalColor.desaturateColor(0.2)
 
-let grayscaledColor = originalColor.grayscaled()
+let grayscaleColor = originalColor.grayscaledColor()
 ```
 
 #### Adjust-hue & Complement
@@ -97,12 +61,11 @@ These adjust the hue value of the color in the same way like the others do. Agai
 </p>
 
 ```swift
-let originalColor = DynamicColor(hex: 0xc0392b)
+let originalColor = UIColor(hexString: "#c0392b")
 
-// Hue values are in degrees
-let adjustHueColor = originalColor.adjustedHue(amount: 45)
+let adjustHueColor = originalColor.adjustedHueColor(45 / 360)
 
-let complementedColor = originalColor.complemented()
+let complementColor = originalColor.complementColor()
 ````
 
 #### Tint & Shade
@@ -114,15 +77,15 @@ A tint is the mixture of a color with white and a shade is the mixture of a colo
 </p>
 
 ```swift
-let originalColor = DynamicColor(hexString: "#c0392b")
+let originalColor = UIColor(hexString: "#c0392b")
 
-let tintedColor = originalColor.tinted()
+let tintColor = originalColor.tintColor()
 // equivalent to
-// tintedColor = originalColor.tinted(amount: 0.2)
+// tintColor = originalColor.tintColor(amount: 0.2)
 
-let shadedColor = originalColor.shaded()
+let shadeColor = originalColor.shadeColor()
 // equivalent to
-// shadedColor = originalColor.shaded(amount: 0.2)
+// shadeColor = originalColor.shadeColor(amount: 0.2)
 ```
 
 #### Invert
@@ -134,9 +97,9 @@ This can invert the color object. The red, green, and blue values are inverted, 
 </p>
 
 ```swift
-let originalColor = DynamicColor(hexString: "#c0392b")
+let originalColor = UIColor(hexString: "#c0392b")
 
-let invertedColor = originalColor.inverted()
+let invertColor = originalColor.invertColor()
 ```
 
 #### Mix
@@ -148,68 +111,16 @@ This can mix a given color with the receiver. It takes the average of each of th
 </p>
 
 ```swift
-let originalColor = DynamicColor(hexString: "#c0392b")
+let originalColor = UIColor(hexString: "#c0392b")
 
-let mixedColor = originalColor.mixed(withColor: .blue)
+let mixColor = originalColor.mixWithColor(UIColor.blueColor())
 // equivalent to
-// mixedColor = originalColor.mixed(withColor: .blue, weight: 0.5)
-// or
-// mixedColor = originalColor.mixed(withColor: .blue, weight: 0.5, inColorSpace: .rgb)
-```
-
-#### Gradients
-
-**DynamicColor** provides an useful object to work with gradients: **DynamicGradient**. It'll allow you to pick color from gradients, or to build to build a palette using different color spaces (.e.g.: *RGB*, *HSL*, *HSB*, *Cie L\*a\*b\**).
-
-Let's define our reference colors and the gradient object:
-```swift
-let blue   = UIColor(hex: 0x3498db)
-let red    = UIColor(hex: 0xe74c3c)
-let yellow = UIColor(hex: 0xf1c40f)
-
-let gradient = DynamicGradient(colors: [blue, red, yellow])
-// equivalent to
-// let gradient = [blue, red, yellow].gradient
-```
-
-##### RGB
-
-Let's build the RGB palette (the default color space) with 8 colors:
-
-<p align="center">
-<img src="http://yannickloriot.com/resources/dynamicgradient-rgb" alt="RGB gradient"/>
-</p>
-```swift
-let rgbPalette = gradient.colorPalette(amount: 8)
-```
-
-##### HSL
-
-Now if you want to change the gradient color space to have a different effect, just write the following lines:
-
-<p align="center">
-<img src="http://yannickloriot.com/resources/dynamicgradient-hsl" alt="HSL gradient"/>
-</p>
-
-```swift
-let hslPalette = gradient.colorPalette(amount: 8, inColorSpace: .hsl)
-```
-
-##### Cie L\*a\*b\*
-
-Or if you prefer to work directly with array of colors, you can:
-
-<p align="center">
-<img src="http://yannickloriot.com/resources/dynamicgradient-lab" alt="Cie L*a*b* gradient"/>
-</p>
-
-```swift
-let labPalette = [blue, red, yellow].gradient.colorPalette(amount: 8, inColorSpace: .lab)
+// mixColor = originalColor.mixWithColor(UIColor.blueColor(), weight: 0.5)
 ```
 
 #### And many more...
 
-`DynamicColor` also provides many another useful methods to manipulate the colors like hex strings, color components, color spaces, etc. To go further, take a look at the example project.
+`DynamicColor` also provides many another useful methods to manipulate the colors like hex strings, color components, etc. To go further, take a look at the example project.
 
 ## Installation
 
@@ -221,7 +132,7 @@ Install CocoaPods if not already available:
 $ [sudo] gem install cocoapods
 $ pod setup
 ```
-Go to the directory of your Xcode project, and Create and Edit your *Podfile* and add _DynamicColor_:
+Go to the directory of your Xcode project, and Create and Edit your Podfile and add _DynamicColor_:
 
 ``` bash
 $ cd /path/to/MyProject
@@ -231,7 +142,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0'
 
 use_frameworks!
-pod 'DynamicColor', '~> 3.1.0'
+pod 'DynamicColor', '~> 2.4.0'
 ```
 
 Install into your project:
@@ -262,7 +173,7 @@ $ brew install carthage
 To integrate `DynamicColor` into your Xcode project using Carthage, specify it in your `Cartfile` file:
 
 ```ogdl
-github "yannickl/DynamicColor" >= 3.1.0
+github "yannickl/DynamicColor" >= 2.4.0
 ```
 
 #### Swift Package Manager
@@ -274,7 +185,7 @@ let package = Package(
     name: "YOUR_PROJECT_NAME",
     targets: [],
     dependencies: [
-        .Package(url: "https://github.com/yannickl/DynamicColor.git", versions: "3.1.0" ..< Version.max)
+        .Package(url: "https://github.com/yannickl/DynamicColor.git", versions: "2.4.0" ..< Version.max)
     ]
 )
 ```

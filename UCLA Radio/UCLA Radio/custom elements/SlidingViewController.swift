@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import DynamicColor
 
 @objc enum SlidingViewControllerPosition: Int {
     case Open
@@ -41,6 +42,7 @@ class SlidingViewController: UIViewController {
     private var contentYPositionContraint: NSLayoutConstraint?
     private var contentHeightPositionContraint: NSLayoutConstraint?
     private var initialRelativeYPosition: CGFloat?
+    private var initialContentBackgroundColor: UIColor?
     
     init () {
         super.init(nibName: nil, bundle: nil)
@@ -66,6 +68,8 @@ class SlidingViewController: UIViewController {
             sliderDelegate = delegate
             sliderDelegate?.slider = self
         }
+        
+        initialContentBackgroundColor = content.view.backgroundColor
     }
     
     func addTabView(tabView: SliderTabView) {
@@ -140,11 +144,14 @@ class SlidingViewController: UIViewController {
 //        sliderDelegate?.positionUpdated(position)
         
         let alpha: CGFloat = (position == .Closed) ? 1.0 : 0.0
+        let newColor = (position == .Closed) ? UIColor.blackColor() : initialContentBackgroundColor
         if (animated) {
             UIView.animateWithDuration(AnimationDuration, animations: {
-                    self.view.superview?.layoutIfNeeded()
+                self.view.superview?.layoutIfNeeded()
                 self.tabView?.alpha = alpha
-                })
+//                self.tabView?.backgroundColor = newColor
+                self.contentViewController?.view.backgroundColor = newColor
+            })
         }
     }
     
@@ -168,6 +175,9 @@ class SlidingViewController: UIViewController {
                 let openPercentage = 1.0 - (newYPosition-MinimumYPosition)/(MaximumYPosition-MinimumYPosition)
 //                sliderDelegate?.openPercentageChanged(openPercentage)
                 tabView?.alpha = 0.3 + 0.7*(1.0 - openPercentage)
+                let newColor = UIColor.blackColor().mixWithColor(initialContentBackgroundColor ?? Constants.Colors.darkBlue, weight: openPercentage)
+//                self.tabView?.backgroundColor = newColor
+                self.contentViewController?.view.backgroundColor = newColor
             }
         default:
             let shouldOpen = touchLocation.y < view.frame.size.height/2 || gesture.velocityInView(view?.superview).y < -300

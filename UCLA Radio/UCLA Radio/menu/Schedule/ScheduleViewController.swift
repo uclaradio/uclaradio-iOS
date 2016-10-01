@@ -32,7 +32,7 @@ class ScheduleViewController: UIViewController, APIFetchDelegate, UITableViewDat
         tableView.separatorStyle = .None
         tableView.backgroundColor = UIColor.clearColor()
         
-        view.backgroundColor = Constants.Colors.lightBlue
+        view.backgroundColor = Constants.Colors.lightPink
         
         view.addConstraints(preferredConstraints())
     }
@@ -132,11 +132,11 @@ class ScheduleViewController: UIViewController, APIFetchDelegate, UITableViewDat
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return ScheduleShowCell.height
+        return ScheduleShowCell.preferredHeight(indexPath.row == self.tableView(tableView, numberOfRowsInSection: indexPath.section) - 1)
     }
     
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 30
+        return ScheduleSectionHeaderView.height
     }
     
     func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
@@ -146,6 +146,9 @@ class ScheduleViewController: UIViewController, APIFetchDelegate, UITableViewDat
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifier, forIndexPath: indexPath)
         cell.selectionStyle = .None
+        if let cell = cell as? ScheduleShowCell {
+            cell.addBottomPadding = (indexPath.row == self.tableView(tableView, numberOfRowsInSection: indexPath.section) - 1)
+        }
         return cell
     }
     

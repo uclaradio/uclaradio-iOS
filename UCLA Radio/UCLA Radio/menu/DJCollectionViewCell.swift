@@ -24,7 +24,7 @@ class DJCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        contentView.backgroundColor = Constants.Colors.gold.colorWithAlphaComponent(0.8)
+        contentView.backgroundColor = Constants.Colors.lightBackground
         
         contentView.addSubview(imageView)
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -39,8 +39,6 @@ class DJCollectionViewCell: UICollectionViewCell {
         nameLabel.textAlignment = .Center
         
         contentView.addConstraints(preferredConstraints())
-        contentView.layer.cornerRadius = 5
-        contentView.clipsToBounds = true
     }
     
     deinit {

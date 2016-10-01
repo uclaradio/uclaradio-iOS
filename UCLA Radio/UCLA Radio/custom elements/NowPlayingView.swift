@@ -28,7 +28,7 @@ class NowPlayingView: SliderTabView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = Constants.Colors.darkBlue
+        backgroundColor = UIColor.clearColor()
         
         containerView = UIView()
         containerView.backgroundColor = UIColor.clearColor()

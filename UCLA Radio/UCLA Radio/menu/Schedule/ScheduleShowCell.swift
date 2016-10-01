@@ -12,8 +12,9 @@ import SDWebImage
 
 class ScheduleShowCell: UITableViewCell {
     
-    static let height: CGFloat = 100
-    static let imageDimensions: CGFloat = 92
+    private static let height: CGFloat = 100
+    
+    var addBottomPadding = false
     
     let containerView = UIView()
     let titleLabel = UILabel()
@@ -22,8 +23,9 @@ class ScheduleShowCell: UITableViewCell {
     let djsLabel = UILabel()
     let blurbImageView = UIImageView()
     
-    var hasPicture = false
-    var installedConstraints: [NSLayoutConstraint]?
+    private var hasPicture = false
+    private var installedConstraints: [NSLayoutConstraint]?
+    private var installedContainerConstraints: [NSLayoutConstraint]?
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -33,9 +35,6 @@ class ScheduleShowCell: UITableViewCell {
         contentView.addSubview(containerView)
         containerView.translatesAutoresizingMaskIntoConstraints = false
         containerView.backgroundColor = Constants.Colors.lightBackground
-        containerView.layer.cornerRadius = 3
-        containerView.layer
-        containerView.clipsToBounds = true
         
         containerView.addSubview(titleLabel)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -58,8 +57,8 @@ class ScheduleShowCell: UITableViewCell {
         djsLabel.translatesAutoresizingMaskIntoConstraints = false
         
         blurbImageView.translatesAutoresizingMaskIntoConstraints = false
-        
-        contentView.addConstraints(preferredConstraints())
+        blurbImageView.contentMode = .ScaleAspectFill
+        blurbImageView.clipsToBounds = true
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -92,10 +91,16 @@ class ScheduleShowCell: UITableViewCell {
         
         // update constraints
         if let installed = installedConstraints {
-            containerView.removeConstraints(installed)
+            contentView.removeConstraints(installed)
         }
-        installedConstraints = containerConstraints()
-        containerView.addConstraints(installedConstraints!)
+        installedConstraints = preferredConstraints()
+        contentView.addConstraints(installedConstraints!)
+        
+        if let installedContainerConstraints = installedContainerConstraints {
+            containerView.removeConstraints(installedContainerConstraints)
+        }
+        installedContainerConstraints = containerConstraints()
+        containerView.addConstraints(installedContainerConstraints!)
     }
     
     // MARK: - Layout
@@ -106,12 +111,16 @@ class ScheduleShowCell: UITableViewCell {
         }
     }
     
+    static func preferredHeight(addBottomPadding: Bool) -> CGFloat {
+        return addBottomPadding ? ScheduleShowCell.height + Constants.Floats.containerOffset : ScheduleShowCell.height
+    }
+    
     func preferredConstraints() -> [NSLayoutConstraint] {
         var constraints: [NSLayoutConstraint] = []
-        let metrics = ["offset": Constants.Floats.containerOffset, "half": 0.5*Constants.Floats.containerOffset]
+        let metrics = ["offset": Constants.Floats.containerOffset, "bottomOffset": addBottomPadding ? Constants.Floats.containerOffset : 0]
         let views = ["container": containerView]
         
-        constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|-(half)-[container]-(half)-|", options: [], metrics: metrics, views: views)
+        constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|-(offset)-[container]-(bottomOffset)-|", options: [], metrics: metrics, views: views)
         constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|-(offset)-[container]-(offset)-|", options: [], metrics: metrics, views: views)
         
         return constraints
@@ -121,8 +130,8 @@ class ScheduleShowCell: UITableViewCell {
         var constraints: [NSLayoutConstraint] = []
         
         let views = ["time": timeLabel, "title": titleLabel, "image": blurbImageView, "genre": genreLabel, "djs": djsLabel]
-        let imagePadding = (ScheduleShowCell.height - 2*Constants.Floats.containerOffset - ScheduleShowCell.imageDimensions)/2.0
-        let metrics = ["pad": imagePadding, "imageSize": ScheduleShowCell.imageDimensions, "bump": 5, "indent": 23]
+        let imageSize = (ScheduleShowCell.height - 2*Constants.Floats.containerOffset)
+        let metrics = ["imageSize": imageSize, "bump": 5, "indent": 23]
         
         constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|-(bump)-[time]", options: [], metrics: metrics, views: views)
         constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|-(bump)-[genre]", options: [], metrics: metrics, views: views)
@@ -131,9 +140,9 @@ class ScheduleShowCell: UITableViewCell {
         
         if (hasPicture) {
             // with picture on right
-            constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|-(pad)-[image]-(pad)-|", options: [], metrics: metrics, views: views)
-            constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|-(indent)-[title]-(indent)-[image(imageSize)]-(pad)-|", options: [], metrics: metrics, views: views)
-            constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|-[time]-(>=15)-[genre]-[image(imageSize)]-(pad)-|", options: [], metrics: metrics, views: views)
+            constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|[image]|", options: [], metrics: metrics, views: views)
+            constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|-(indent)-[title]-(indent)-[image(imageSize)]|", options: [], metrics: metrics, views: views)
+            constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|-[time]-(>=15)-[genre]-[image(imageSize)]|", options: [], metrics: metrics, views: views)
             constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|-[djs]-[image]", options: [], metrics: metrics, views: views)
         }
         else {

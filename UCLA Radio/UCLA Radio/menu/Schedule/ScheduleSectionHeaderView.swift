@@ -11,12 +11,14 @@ import UIKit
 
 public class ScheduleSectionHeaderView: UITableViewHeaderFooterView {
     
+    static let height: CGFloat = 30
+    
     let label = UILabel()
     
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         
-        contentView.backgroundColor = Constants.Colors.lightBlue
+        contentView.backgroundColor = Constants.Colors.darkPink
         
         addSubview(label)
         label.translatesAutoresizingMaskIntoConstraints = false

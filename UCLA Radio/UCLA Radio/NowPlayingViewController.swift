@@ -87,6 +87,8 @@ class NowPlayingViewController: UIViewController, HistoryFetchDelegate {
         
         tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTap))
         imageView.userInteractionEnabled = true
+        imageView.contentMode = .ScaleAspectFill
+        imageView.clipsToBounds = true
         imageView.addGestureRecognizer(tapGesture!)
     }
     

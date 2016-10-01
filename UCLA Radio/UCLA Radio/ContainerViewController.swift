@@ -22,6 +22,9 @@ class ContainerViewController: UIViewController, NowPlayingActionDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let triangleView = TrianglifyView(frame: view.frame)
+        view.addSubview(triangleView)
+        
         let menuVC = MenuViewController(collectionViewLayout: KRLCollectionViewGridLayout())
         rootNavController = UINavigationController(rootViewController: menuVC)
         view.addSubview(rootNavController.view)
@@ -29,11 +32,12 @@ class ContainerViewController: UIViewController, NowPlayingActionDelegate {
         rootNavController.didMoveToParentViewController(self)
         rootNavController.view.translatesAutoresizingMaskIntoConstraints = false
         rootNavController.view.frame.size = CGSize(width: rootNavController.view.frame.width, height: rootNavController.view.frame.size.height - NowPlayingView.PreferredHeight)
-        rootNavController.navigationBar.barTintColor = Constants.Colors.darkBlue
+        rootNavController.view.backgroundColor = UIColor.clearColor()
+        rootNavController.navigationBar.barTintColor = Constants.Colors.darkPink
         // back button color
         rootNavController.navigationBar.tintColor = UIColor.whiteColor()
         // title color
-        rootNavController.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor(), NSFontAttributeName: UIFont(name: Constants.Fonts.titleBold, size: 21)!]
+        rootNavController.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor(), NSFontAttributeName: UIFont.boldSystemFontOfSize(21)]
         
         installNowPlayingSlider()
     }
@@ -58,6 +62,7 @@ class ContainerViewController: UIViewController, NowPlayingActionDelegate {
             // set up slider tab (NowPlayingView)
             let tabView = NowPlayingView(canSkipStream: false)
             slider.addTabView(tabView)
+            tabView.backgroundColor = Constants.Colors.darkBackground
         }
     }
     

@@ -47,7 +47,7 @@ class DJListViewController: UIViewController, APIFetchDelegate, UICollectionView
         
         view.addConstraints(preferredConstraints())
         
-        view.backgroundColor = Constants.Colors.lightBlue
+        view.backgroundColor = Constants.Colors.lightPink
     }
     
     override func viewWillAppear(animated: Bool) {
