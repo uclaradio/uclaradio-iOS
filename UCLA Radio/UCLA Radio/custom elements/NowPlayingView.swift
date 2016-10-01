@@ -170,7 +170,7 @@ class NowPlayingView: SliderTabView {
         constraints.append(NSLayoutConstraint(item: playButton, attribute: .CenterY, relatedBy: .Equal, toItem: containerView, attribute: .CenterY, multiplier: 1.0, constant: 0.0))
         
         // title & subtitle labels
-        constraints.append(NSLayoutConstraint(item: titleLabel, attribute: .CenterY, relatedBy: .Equal, toItem: playButton, attribute: .CenterY, multiplier: 1.0, constant: 1))
+        constraints.append(NSLayoutConstraint(item: titleLabel, attribute: .CenterY, relatedBy: .Equal, toItem: containerView, attribute: .CenterY, multiplier: 1.0, constant: 1))
         return constraints
     }
     

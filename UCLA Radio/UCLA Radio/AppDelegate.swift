@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         HistoryFetcher.fetchRecentTracks()
         RadioAPI.fetchNowPlaying()
+        RadioAPI.fetchGiveaways(nil)
         return true
     }
 

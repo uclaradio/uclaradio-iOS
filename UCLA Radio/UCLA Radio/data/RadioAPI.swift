@@ -13,7 +13,7 @@ private let host = "https://uclaradio.com"
 private let nowPlayingRoute = "/api/nowplaying"
 private let scheduleRoute = "/api/schedule"
 private let djRoute = "/api/djs"
-private let eventsRoute = "/GiveawayCalendar/data"
+private let giveawaysRoute = "/GiveawayCalendar/data"
 
 protocol APIFetchDelegate {
     func cachedDataAvailable(data: AnyObject)
@@ -86,9 +86,10 @@ class RadioAPI {
         }
     }
     
-    static func fetchEvents(delegate: APIFetchDelegate?) {
-        fetchSomethingCached(eventsRoute, key: "events", success: { (result, cached) in
+    static func fetchGiveaways(delegate: APIFetchDelegate?) {
+        fetchSomethingCached(giveawaysRoute, key: "events", success: { (result, cached) in
             if let eventsMonthsArray = result as? NSArray {
+                let giveaways = Giveaway.giveawaysFromJSON(eventsMonthsArray)
 //                let schedule = Schedule(shows: Show.showsFromJSON(showsArray))
 //                if (cached) {
 //                    delegate?.cachedDataAvailable(schedule)
