@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>DynamicColor.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>KRLCollectionViewGridLayout.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -32,12 +37,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>18BA33499E43E0D8C2024131C72D4804</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>2F609F8D498C8F58DCD18E913EAA946B</key>
+		<key>6E76BB2312EFB55230589412BC376DB5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -52,7 +52,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>9C97BBB7AD3136FB5B457127CEF75189</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>BCC9977AA9316CA3F11E052D6BC5AB9D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CFFBC5872E8601EFB87550B6ED6301ED</key>
 		<dict>
 			<key>primary</key>
 			<true/>
