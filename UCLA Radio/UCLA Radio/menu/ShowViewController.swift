@@ -27,6 +27,9 @@ class ShowViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = Constants.Colors.lightPink
+        if let navigationController = navigationController {
+            navigationController.navigationBar.barTintColor = Constants.Colors.reallyDarkPink
+        }
         
         timeLabel.textColor = UIColor.lightGrayColor()
         

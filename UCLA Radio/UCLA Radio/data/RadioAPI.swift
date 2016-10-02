@@ -90,20 +90,19 @@ class RadioAPI {
         fetchSomethingCached(giveawaysRoute, key: "events", success: { (result, cached) in
             if let eventsMonthsArray = result as? NSArray {
                 let giveaways = Giveaway.giveawaysFromJSON(eventsMonthsArray)
-//                let schedule = Schedule(shows: Show.showsFromJSON(showsArray))
-//                if (cached) {
-//                    delegate?.cachedDataAvailable(schedule)
-//                }
-//                else {
-//                    delegate?.didFetchData(schedule)
-//                }
+                if (cached) {
+                    delegate?.cachedDataAvailable(giveaways)
+                }
+                else {
+                    delegate?.didFetchData(giveaways)
+                }
             }
             else {
-//                delegate?.failedToFetchData("wrong data type")
+                delegate?.failedToFetchData("wrong data type: should be [String: [Giveaway]]")
             }
         }) { (error) in
             print(error)
-//            delegate?.failedToFetchData(error)
+            delegate?.failedToFetchData(error)
         }
     }
     

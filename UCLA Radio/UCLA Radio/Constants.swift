@@ -11,8 +11,9 @@ import UIKit
 
 struct Constants {
     struct Colors {
-        static let darkBlue = UIColor(hex: 0x3284bf)
-        static let lightBlue = UIColor(hex: 0x93d3eb)
+        static let reallyDarkBlue = UIColor(hex: 0x2b8cbe)
+        static let darkBlue = UIColor(hex: 0xa6bddb)
+        static let lightBlue = UIColor(hex: 0xece7f2)
         static let gold = UIColor(hex: 0xffd970)
         static let darkPink = UIColor(hex: 0xfa9fb5)
         static let lightPink = UIColor(hex: 0xfde0dd)

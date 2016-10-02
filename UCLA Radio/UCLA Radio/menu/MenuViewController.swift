@@ -19,7 +19,7 @@ class MenuItem {
     let title: String
     let storyboardID: String? // storyboard ID for view controller to push when tapped (or nil)
     
-    init(title: String, image: String, storyboardID: String?) {
+    init(title: String, storyboardID: String?) {
         self.title = title
         self.storyboardID = storyboardID
     }
@@ -27,9 +27,12 @@ class MenuItem {
 
 class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    private let items = [MenuItem(title: "Schedule", image: "schedule", storyboardID: ScheduleViewController.storyboardID),
-                         MenuItem(title: "DJs", image: "djs", storyboardID: DJListViewController.storyboardID),
-                         MenuItem(title: "About", image: "about", storyboardID: AboutViewController.storyboardID)]
+    private let items = [
+        MenuItem(title: "Schedule", storyboardID: ScheduleViewController.storyboardID),
+        MenuItem(title: "DJs", storyboardID: DJListViewController.storyboardID),
+        MenuItem(title: "Events", storyboardID: EventsViewController.storyboardID),
+        MenuItem(title: "About", storyboardID: AboutViewController.storyboardID)
+    ]
     
     var tableView = UITableView(frame: CGRectZero, style: .Grouped)
     var triangleView: TrianglifyView!

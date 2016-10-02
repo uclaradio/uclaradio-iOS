@@ -22,6 +22,9 @@ class AboutViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = Constants.Colors.lightPink
+        if let navigationController = navigationController {
+            navigationController.navigationBar.barTintColor = Constants.Colors.reallyDarkPink
+        }
     }
     
     // MARK: - Actions

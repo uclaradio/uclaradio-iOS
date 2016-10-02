@@ -48,6 +48,9 @@ class DJListViewController: UIViewController, APIFetchDelegate, UICollectionView
         view.addConstraints(preferredConstraints())
         
         view.backgroundColor = Constants.Colors.lightPink
+        if let navigationController = navigationController {
+            navigationController.navigationBar.barTintColor = Constants.Colors.reallyDarkPink
+        }
     }
     
     override func viewWillAppear(animated: Bool) {

@@ -36,7 +36,7 @@ class NowPlayingViewController: UIViewController, HistoryFetchDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = Constants.Colors.darkBlue
+        view.backgroundColor = Constants.Colors.reallyDarkBlue
         
         imageView.image = UIImage(named: "radio_banner")
         

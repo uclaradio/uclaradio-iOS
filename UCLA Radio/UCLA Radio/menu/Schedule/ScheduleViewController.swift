@@ -33,6 +33,9 @@ class ScheduleViewController: UIViewController, APIFetchDelegate, UITableViewDat
         tableView.backgroundColor = UIColor.clearColor()
         
         view.backgroundColor = Constants.Colors.lightPink
+        if let navigationController = navigationController {
+            navigationController.navigationBar.barTintColor = Constants.Colors.reallyDarkPink
+        }
         
         view.addConstraints(preferredConstraints())
     }
