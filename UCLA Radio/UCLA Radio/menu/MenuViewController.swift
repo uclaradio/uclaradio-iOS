@@ -27,14 +27,14 @@ class MenuItem {
 
 class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    private let items = [
+    fileprivate let items = [
         MenuItem(title: "Schedule", storyboardID: ScheduleViewController.storyboardID),
         MenuItem(title: "DJs", storyboardID: DJListViewController.storyboardID),
         MenuItem(title: "Events", storyboardID: EventsViewController.storyboardID),
         MenuItem(title: "About", storyboardID: AboutViewController.storyboardID)
     ]
     
-    var tableView = UITableView(frame: CGRectZero, style: .Grouped)
+    var tableView = UITableView(frame: CGRect.zero, style: .grouped)
     var triangleView: TrianglifyView!
     
     // MARK: - ViewController Life Cycle
@@ -42,7 +42,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor.clearColor()
+        view.backgroundColor = UIColor.clear
         
         triangleView = TrianglifyView()
         view.addSubview(triangleView)
@@ -50,20 +50,20 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.backgroundColor = UIColor.clearColor()
+        tableView.backgroundColor = UIColor.clear
         tableView.alwaysBounceVertical = true
-        tableView.registerClass(MenuTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
-        tableView.registerClass(MenuSectionHeaderView.self, forHeaderFooterViewReuseIdentifier: headerReuseIdentifier)
-        tableView.backgroundColor = UIColor.clearColor()
+        tableView.register(MenuTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
+        tableView.register(MenuSectionHeaderView.self, forHeaderFooterViewReuseIdentifier: headerReuseIdentifier)
+        tableView.backgroundColor = UIColor.clear
         tableView.contentInset = UIEdgeInsets(top: 40, left: 0, bottom: 0, right: 0)
-        tableView.separatorStyle = .None
+        tableView.separatorStyle = .none
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
         view.addConstraints(preferredConstraints())
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if let navigationController = navigationController {
             navigationController.setNavigationBarHidden(true, animated: true)
@@ -73,7 +73,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         triangleView.colorScheme = atractiveColorSchemes[Int(arc4random_uniform(UInt32(atractiveColorSchemes.count)))]
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         if let navigationController = navigationController {
             navigationController.setNavigationBarHidden(false, animated: true)
@@ -82,8 +82,8 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     // MARK: - Actions
     
-    func pushViewController(storyboardID: String) {
-        let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier(storyboardID)
+    func pushViewController(_ storyboardID: String) {
+        let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: storyboardID)
         if let navigationController = navigationController {
             navigationController.pushViewController(viewController, animated: true)
         }
@@ -91,46 +91,46 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     // MARK: - UITableViewDataSource
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        return tableView.dequeueReusableCellWithIdentifier(reuseIdentifier, forIndexPath: indexPath)
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
     }
     
     // MARK: - UITableViewDelegate
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return MenuTableViewCell.preferredHeight()
     }
     
-    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-        let item = items[indexPath.row]
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let item = items[(indexPath as NSIndexPath).row]
         if let menuCell = cell as? MenuTableViewCell {
             menuCell.styleForMenuItem(item)
         }
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         
-        let item = items[indexPath.row]
+        let item = items[(indexPath as NSIndexPath).row]
         if let storyboardID = item.storyboardID {
             pushViewController(storyboardID)
         }
     }
     
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return MenuSectionHeaderView.preferredHeight()
     }
     
-    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return tableView.dequeueReusableHeaderFooterViewWithIdentifier(headerReuseIdentifier)
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return tableView.dequeueReusableHeaderFooterView(withIdentifier: headerReuseIdentifier)
     }
     
     // MARK: - Layout
@@ -139,12 +139,12 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         var constraints = [NSLayoutConstraint]()
         
         // table view
-        constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|[table]|", options: [], metrics: nil, views: ["table": tableView])
-        constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|[table]|", options: [], metrics: nil, views: ["table": tableView])
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|[table]|", options: [], metrics: nil, views: ["table": tableView])
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[table]|", options: [], metrics: nil, views: ["table": tableView])
         
         // trianglify view
-        constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|[triangles]|", options: [], metrics: nil, views: ["triangles": triangleView])
-        constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|[triangles]|", options: [], metrics: nil, views: ["triangles": triangleView])
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|[triangles]|", options: [], metrics: nil, views: ["triangles": triangleView])
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[triangles]|", options: [], metrics: nil, views: ["triangles": triangleView])
         
         return constraints
     }

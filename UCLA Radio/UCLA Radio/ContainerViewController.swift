@@ -26,15 +26,15 @@ class ContainerViewController: UIViewController, NowPlayingActionDelegate {
         rootNavController = UINavigationController(rootViewController: menuVC)
         view.addSubview(rootNavController.view)
         addChildViewController(rootNavController)
-        rootNavController.didMoveToParentViewController(self)
+        rootNavController.didMove(toParentViewController: self)
         rootNavController.view.translatesAutoresizingMaskIntoConstraints = false
         rootNavController.view.frame.size = CGSize(width: rootNavController.view.frame.width, height: rootNavController.view.frame.size.height - NowPlayingView.PreferredHeight)
         rootNavController.view.backgroundColor = Constants.Colors.lightPink
         rootNavController.navigationBar.barTintColor = Constants.Colors.darkPink
         // back button color
-        rootNavController.navigationBar.tintColor = UIColor.whiteColor()
+        rootNavController.navigationBar.tintColor = UIColor.white
         // title color
-        rootNavController.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor(), NSFontAttributeName: UIFont.boldSystemFontOfSize(21)]
+        rootNavController.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont.boldSystemFont(ofSize: 21)]
         
         installNowPlayingSlider()
     }
@@ -47,11 +47,11 @@ class ContainerViewController: UIViewController, NowPlayingActionDelegate {
         slider = SlidingViewController()
         view.addSubview(slider.view)
         addChildViewController(slider)
-        slider.didMoveToParentViewController(self)
+        slider.didMove(toParentViewController: self)
         view.addConstraints(slider.preferredConstraints())
         
         // set up content (NowPlayingViewController)
-        if let nowPlaying = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("nowPlaying") as? NowPlayingViewController {
+        if let nowPlaying = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "nowPlaying") as? NowPlayingViewController {
             self.nowPlaying = nowPlaying
             nowPlaying.actionDelegate = self
             slider.addContent(nowPlaying)
@@ -63,14 +63,14 @@ class ContainerViewController: UIViewController, NowPlayingActionDelegate {
         }
     }
     
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return .lightContent
     }
     
     // MARK: - NowPlayingActionDelegate
     
-    func didTapShow(show: Show?) {
-        slider.updatePosition(.Closed, animated: true)
+    func didTapShow(_ show: Show?) {
+        slider.updatePosition(.closed, animated: true)
         if let show = show {
             if let showVC = rootNavController.visibleViewController as? ShowViewController, let presentedShow = showVC.show {
                 if (show.id == presentedShow.id) {
@@ -79,7 +79,7 @@ class ContainerViewController: UIViewController, NowPlayingActionDelegate {
                 }
             }
             
-            if let showViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier(ShowViewController.storyboardID) as? ShowViewController {
+            if let showViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: ShowViewController.storyboardID) as? ShowViewController {
                 
                 showViewController.show = show
                 delay(0.3, closure: {

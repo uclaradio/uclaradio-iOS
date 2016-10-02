@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class AboutViewController: UIViewController {
+class AboutViewController: BaseViewController {
     
     static let storyboardID = "aboutViewController"
     
@@ -18,47 +18,38 @@ class AboutViewController: UIViewController {
     @IBOutlet weak var twitterButton: UIButton!
     @IBOutlet weak var tumblrButton: UIButton!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        view.backgroundColor = Constants.Colors.lightPink
-        if let navigationController = navigationController {
-            navigationController.navigationBar.barTintColor = Constants.Colors.reallyDarkPink
-        }
-    }
-    
     // MARK: - Actions
     
-    @IBAction func facebookButtonHit(sender: AnyObject) {
-        UIApplication.sharedApplication().openURL(NSURL(string: "https://www.facebook.com/UCLARadio")!)
+    @IBAction func facebookButtonHit(_ sender: AnyObject) {
+        UIApplication.shared.openURL(URL(string: "https://www.facebook.com/UCLARadio")!)
     }
     
-    @IBAction func instagramButtonHit(sender: AnyObject) {
-        let deepURL = NSURL(string: "instagram:://user?username=uclaradio")!
-        if UIApplication.sharedApplication().canOpenURL(deepURL) {
-            UIApplication.sharedApplication().openURL(deepURL)
+    @IBAction func instagramButtonHit(_ sender: AnyObject) {
+        let deepURL = URL(string: "instagram:://user?username=uclaradio")!
+        if UIApplication.shared.canOpenURL(deepURL) {
+            UIApplication.shared.openURL(deepURL)
         }
         else {
-            UIApplication.sharedApplication().openURL(NSURL(string: "https://www.instagram.com/uclaradio")!)
+            UIApplication.shared.openURL(URL(string: "https://www.instagram.com/uclaradio")!)
         }
     }
     
-    @IBAction func twitterButtonHit(sender: AnyObject) {
-        let deepURL = NSURL(string: "twitter://user?screen_name=uclaradio")!
-        if UIApplication.sharedApplication().canOpenURL(deepURL) {
-            UIApplication.sharedApplication().openURL(deepURL)
+    @IBAction func twitterButtonHit(_ sender: AnyObject) {
+        let deepURL = URL(string: "twitter://user?screen_name=uclaradio")!
+        if UIApplication.shared.canOpenURL(deepURL) {
+            UIApplication.shared.openURL(deepURL)
         } else {
-            UIApplication.sharedApplication().openURL(NSURL(string: "https://twitter.com/uclaradio")!)
+            UIApplication.shared.openURL(URL(string: "https://twitter.com/uclaradio")!)
         }
     }
     
-    @IBAction func tumblrButtonHit(sender: AnyObject) {
-        let deepURL = NSURL(string: "tumblr://x-callback-url/blog?blogName=uclaradio")!
-        if UIApplication.sharedApplication().canOpenURL(deepURL) {
-            UIApplication.sharedApplication().openURL(deepURL)
+    @IBAction func tumblrButtonHit(_ sender: AnyObject) {
+        let deepURL = URL(string: "tumblr://x-callback-url/blog?blogName=uclaradio")!
+        if UIApplication.shared.canOpenURL(deepURL) {
+            UIApplication.shared.openURL(deepURL)
         }
         else {
-            UIApplication.sharedApplication().openURL(NSURL(string: "https://uclaradio.tumblr.com")!)
+            UIApplication.shared.openURL(URL(string: "https://uclaradio.tumblr.com")!)
         }
     }
 }

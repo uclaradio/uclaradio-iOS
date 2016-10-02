@@ -14,7 +14,7 @@ private let reuseIdentifier = "DJCell"
 private let sectionInset: CGFloat = 25
 private let itemSpacing: CGFloat = 15
 
-class DJListViewController: UIViewController, APIFetchDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
+class DJListViewController: BaseViewController, APIFetchDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
     
     static let storyboardID = "djListViewController"
     
@@ -29,11 +29,11 @@ class DJListViewController: UIViewController, APIFetchDelegate, UICollectionView
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        collectionView = UICollectionView(frame: CGRectZero, collectionViewLayout: KRLCollectionViewGridLayout())
+        collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: KRLCollectionViewGridLayout())
         view.addSubview(collectionView)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.backgroundColor = UIColor.clearColor()
-        collectionView.registerClass(DJCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        collectionView.backgroundColor = UIColor.clear
+        collectionView.register(DJCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.alwaysBounceVertical = true
@@ -43,22 +43,17 @@ class DJListViewController: UIViewController, APIFetchDelegate, UICollectionView
         layout.interitemSpacing = itemSpacing
         layout.lineSpacing = itemSpacing
         
-        collectionView?.backgroundColor = UIColor.clearColor()
+        collectionView?.backgroundColor = UIColor.clear
         
         view.addConstraints(preferredConstraints())
-        
-        view.backgroundColor = Constants.Colors.lightPink
-        if let navigationController = navigationController {
-            navigationController.navigationBar.barTintColor = Constants.Colors.reallyDarkPink
-        }
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         RadioAPI.fetchDJList(self)
     }
     
-    func styleFromDJs(djs: [DJ]) {
+    func styleFromDJs(_ djs: [DJ]) {
         djList = djs
         collectionView.reloadData()
     }
@@ -66,53 +61,42 @@ class DJListViewController: UIViewController, APIFetchDelegate, UICollectionView
     
     // MARK: - APIFetchDelegate
     
-    func cachedDataAvailable(data: AnyObject) {
+    func cachedDataAvailable(_ data: Any) {
         if let djs = data as? [DJ] {
             styleFromDJs(djs)
         }
     }
     
-    func didFetchData(data: AnyObject) {
+    func didFetchData(_ data: Any) {
         if let djs = data as? [DJ] {
             styleFromDJs(djs)
         }
     }
     
-    func failedToFetchData(error: String) {
+    func failedToFetchData(_ error: String) {
         
     }
     
     // MARK: - UICollectionViewDataSource
     
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return djList.count
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        return collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath)
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        return collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
     }
     
     // MARK: - UICollectionViewDelegate
     
-    func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
-        let dj = djList[indexPath.row]
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let dj = djList[(indexPath as NSIndexPath).row]
         if let djCell = cell as? DJCollectionViewCell {
             djCell.styleFromDJ(dj)
-        }
-    }
-    
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        collectionView.deselectItemAtIndexPath(indexPath, animated: true)
-        
-        let dj = djList[indexPath.row]
-        print("tapped dj: \(dj.username)")
-        
-        if let cell = collectionView.cellForItemAtIndexPath(indexPath) as? DJCollectionViewCell {
-            cell.animateSelect()
         }
     }
     
@@ -120,8 +104,8 @@ class DJListViewController: UIViewController, APIFetchDelegate, UICollectionView
     
     func preferredConstraints() -> [NSLayoutConstraint] {
         var constraints: [NSLayoutConstraint] = []
-        constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|[list]|", options: [], metrics: nil, views: ["list": collectionView])
-        constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|[list]|", options: [], metrics: nil, views: ["list": collectionView])
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[list]|", options: [], metrics: nil, views: ["list": collectionView])
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|[list]|", options: [], metrics: nil, views: ["list": collectionView])
         return constraints
     }
     

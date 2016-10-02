@@ -10,31 +10,31 @@ import Foundation
 import UIKit
 import DynamicColor
 
-public class TrianglifyView: UIView {
+open class TrianglifyView: UIView {
     
     /// public
     
-    public var cellSize = CGRectMake(50, 50, 50, 50) {
+    open var cellSize = CGRect(x: 50, y: 50, width: 50, height: 50) {
         didSet {
             setNeedsLayout()
         }
     }
-    public var offset: Int = 25
-    public var variation: CGFloat = 0.65 {
+    open var offset: Int = 25
+    open var variation: CGFloat = 0.65 {
         didSet {
             // 0.0 < x < 1.0
             variation = min(1.0, max(0.0, variation))
         }
     }
-    public var colors: [UIColor] = Colorbrewer.colors("GnBu") ?? [] {
+    open var colors: [UIColor] = Colorbrewer.colors("GnBu") ?? [] {
         didSet {
             setNeedsLayout()
         }
     }
-    public var colorScheme: String? {
+    open var colorScheme: String? {
         didSet {
             if let colorScheme = colorScheme,
-                newColors = Colorbrewer.colors(colorScheme) {
+                let newColors = Colorbrewer.colors(colorScheme) {
                 colors = newColors
             }
         }
@@ -42,10 +42,10 @@ public class TrianglifyView: UIView {
     
     /// private
     
-    private var shapeLayers = [CAShapeLayer]()
-    private let colorResolution = 100
+    fileprivate var shapeLayers = [CAShapeLayer]()
+    fileprivate let colorResolution = 100
     
-    public override func layoutSubviews() {
+    open override func layoutSubviews() {
         super.layoutSubviews()
         updateTrianglePoints()
     }
@@ -58,27 +58,27 @@ public class TrianglifyView: UIView {
                 return nil
             }
             
-            let triangleCenterX = points.reduce(0, combine: { sum, next in
+            let triangleCenterX = points.reduce(0, { sum, next in
                 sum + next.x
             }) / 3.0
             
-            let triangleCenterY = points.reduce(0, combine: { sum, next in
+            let triangleCenterY = points.reduce(0, { sum, next in
                 sum + next.y
             }) / 3.0
             
             // percent down diagonal axis (TL / BR) at which triangle's center point sits
             let triangleAxisPercent = 0.5 * (triangleCenterX / parentFrame.width) + 0.5 * (triangleCenterY / parentFrame.height)
             
-            let firstColor = potentialColors[1] ?? UIColor.greenColor() // potentialColors[Int(floor(CGFloat(potentialColors.count - 1) * triangleAxisPercent))]
-            let secondColor = potentialColors[7] ?? UIColor.blueColor() // potentialColors[Int(ceil(CGFloat(potentialColors.count - 1) * triangleAxisPercent))]
+            let firstColor = potentialColors[1] // potentialColors[Int(floor(CGFloat(potentialColors.count - 1) * triangleAxisPercent))]
+            let secondColor = potentialColors[7] // potentialColors[Int(ceil(CGFloat(potentialColors.count - 1) * triangleAxisPercent))]
             let colorMixWeight = triangleAxisPercent // CGFloat(potentialColors.count) * triangleAxisPercent - floor(CGFloat(potentialColors.count) * triangleAxisPercent)
             
-            self.color = firstColor.mixWithColor(secondColor, weight: colorMixWeight)
+            self.color = firstColor.mixed(withColor: secondColor, weight: colorMixWeight)
             self.points = points
         }
     }
     
-    private func updateTrianglePoints() {
+    fileprivate func updateTrianglePoints() {
         let numRows = Int(frame.width / cellSize.width)
         let xSpacing = frame.width / CGFloat(numRows)
         
@@ -94,7 +94,7 @@ public class TrianglifyView: UIView {
                 
                 // calculate triangle point position
                 let startPoint = CGPoint(x: CGFloat(r) * xSpacing, y: CGFloat(c) * ySpacing)
-                let angle = CGFloat(arc4random_uniform(UInt32(variation * 2 * CGFloat(M_PI)))) % CGFloat(2 * M_PI)
+                let angle = CGFloat(arc4random_uniform(UInt32(variation * 2 * CGFloat(M_PI)))).truncatingRemainder(dividingBy: CGFloat(2 * M_PI))
                 var newPoint = CGPoint(
                     x: startPoint.x + cos(angle) * variation * CGFloat(arc4random_uniform(UInt32(offset))),
                     y: startPoint.y + sin(angle) * variation * CGFloat(arc4random_uniform(UInt32(offset))))
@@ -144,16 +144,16 @@ public class TrianglifyView: UIView {
         // layout triangles
         for triangle in triangles {
             let trianglePath = UIBezierPath()
-            trianglePath.moveToPoint(triangle.points[0])
-            trianglePath.addLineToPoint(triangle.points[1])
-            trianglePath.addLineToPoint(triangle.points[2])
-            trianglePath.closePath()
+            trianglePath.move(to: triangle.points[0])
+            trianglePath.addLine(to: triangle.points[1])
+            trianglePath.addLine(to: triangle.points[2])
+            trianglePath.close()
             
             let shapeLayer = CAShapeLayer()
-            shapeLayer.path = trianglePath.CGPath
-            shapeLayer.fillColor = triangle.color.CGColor
+            shapeLayer.path = trianglePath.cgPath
+            shapeLayer.fillColor = triangle.color.cgColor
             shapeLayer.lineWidth = 1.0
-            shapeLayer.strokeColor = triangle.color.CGColor
+            shapeLayer.strokeColor = triangle.color.cgColor
             layer.addSublayer(shapeLayer)
             shapeLayers.append(shapeLayer)
         }

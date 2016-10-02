@@ -18,9 +18,9 @@ struct Constants {
         static let darkPink = UIColor(hex: 0xfa9fb5)
         static let lightPink = UIColor(hex: 0xfde0dd)
         static let reallyDarkPink = UIColor(hex: 0xc51b8a)
-        static let lightBackground = UIColor.whiteColor().colorWithAlphaComponent(0.85)
-        static let lightBackgroundHighlighted = UIColor.whiteColor()
-        static let darkBackground = UIColor.blackColor().colorWithAlphaComponent(0.85)
+        static let lightBackground = UIColor.white.withAlphaComponent(0.85)
+        static let lightBackgroundHighlighted = UIColor.white
+        static let darkBackground = UIColor.black.withAlphaComponent(0.85)
     }
     
     struct Fonts {

@@ -16,12 +16,12 @@ private let djRoute = "/api/djs"
 private let giveawaysRoute = "/GiveawayCalendar/data"
 
 protocol APIFetchDelegate {
-    func cachedDataAvailable(data: AnyObject)
-    func didFetchData(data: AnyObject)
-    func failedToFetchData(error: String)
+    func cachedDataAvailable(_ data: Any)
+    func didFetchData(_ data: Any)
+    func failedToFetchData(_ error: String)
 }
 
-private let DocumentsDirectory = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first as NSString?
+private let DocumentsDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first as NSString?
 
 class RadioAPI {
     
@@ -29,24 +29,24 @@ class RadioAPI {
     static var nowPlaying: Show?
     
     static func fetchNowPlaying() {
-        Alamofire.request(.GET, host+nowPlayingRoute).validate().responseJSON { response in
+        Alamofire.request(host+nowPlayingRoute).validate().responseJSON { response in
             switch response.result {
-            case .Success(let json):
+            case .success(let json):
                 if let nowPlaying = Show.showFromJSON(json as! NSDictionary) {
                     self.nowPlaying = nowPlaying
                 } else {
                     nowPlaying = nil
                 }
-                NSNotificationCenter.defaultCenter().postNotificationName(NowPlayingUpdatedNotification, object: nil)
-            case .Failure:
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: NowPlayingUpdatedNotification), object: nil)
+            case .failure:
                 // no show playing right now
                 nowPlaying = nil
-                NSNotificationCenter.defaultCenter().postNotificationName(NowPlayingUpdatedNotification, object: nil)
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: NowPlayingUpdatedNotification), object: nil)
             }
         }
     }
     
-    static func fetchSchedule(delegate: APIFetchDelegate?) {
+    static func fetchSchedule(_ delegate: APIFetchDelegate?) {
         fetchSomethingCached(scheduleRoute, key: "shows", success: { (result, cached) in
             if let showsArray = result as? NSArray {
                 let schedule = Schedule(shows: Show.showsFromJSON(showsArray))
@@ -66,7 +66,7 @@ class RadioAPI {
         }
     }
     
-    static func fetchDJList(delegate: APIFetchDelegate?) {
+    static func fetchDJList(_ delegate: APIFetchDelegate?) {
         fetchSomethingCached(djRoute, key: "djs", success: { (result, cached) in
             if let djsArray = result as? NSArray {
                 let djList = DJ.djsFromJSON(djsArray)
@@ -86,7 +86,7 @@ class RadioAPI {
         }
     }
     
-    static func fetchGiveaways(delegate: APIFetchDelegate?) {
+    static func fetchGiveaways(_ delegate: APIFetchDelegate?) {
         fetchSomethingCached(giveawaysRoute, key: "events", success: { (result, cached) in
             if let eventsMonthsArray = result as? NSArray {
                 let giveaways = Giveaway.giveawaysFromJSON(eventsMonthsArray)
@@ -113,8 +113,8 @@ class RadioAPI {
      
      - returns: absolute url
      */
-    static func absoluteURL(url: String) -> NSURL {
-        return NSURL(string: host+url)!
+    static func absoluteURL(_ url: String) -> URL {
+        return URL(string: host+url)!
     }
     
     // MARK: - Private
@@ -127,33 +127,35 @@ class RadioAPI {
      - parameter success: success block, may be called twice with cached data / live data
      - parameter failure: failure block
      */
-    private static func fetchSomethingCached(route: String, key: String, success: ((result: AnyObject, cached: Bool) -> ())?, failure: ((error: String) -> ())?) {
+    fileprivate static func fetchSomethingCached(_ route: String, key: String, success: ((_ result: Any, _ cached: Bool) -> ())?, failure: ((_ error: String) -> ())?) {
         // Caching
         let fileName = fileForRoute(route)
-        if let filePath = DocumentsDirectory?.stringByAppendingPathComponent(fileName) {
-            if (NSFileManager.defaultManager().fileExistsAtPath(filePath)) {
+        if let filePath = DocumentsDirectory?.appendingPathComponent(fileName) {
+            if (FileManager.default.fileExists(atPath: filePath)) {
                 // cached file exists
                 if let cached = NSArray(contentsOfFile: filePath) {
-                    success?(result: cached, cached: true)
+                    success?(cached, true)
                 }
                 else if let cached = NSDictionary(contentsOfFile: filePath) {
-                    success?(result: cached, cached: true)
+                    success?(cached, true)
                 }
             }
             
-            Alamofire.request(.GET, host+route).validate().responseJSON { response in
+            Alamofire.request(host+route).validate().responseJSON { response in
                 switch response.result {
-                case .Success(let json):
-                    if let object = json[key] as? NSDictionary {
-                        object.writeToFile(filePath, atomically: true)
-                        success?(result: object, cached: false)
+                case .success(let json):
+                    if let json = json as? NSDictionary,
+                        let object = json[key] as? NSDictionary {
+                        object.write(toFile: filePath, atomically: true)
+                        success?(object, false)
                     }
-                    else if let object = json[key] as? NSArray {
-                        object.writeToFile(filePath, atomically: true)
-                        success?(result: object, cached: false)
+                    else if let json = json as? NSDictionary,
+                        let object = json[key] as? NSArray {
+                        object.write(toFile: filePath, atomically: true)
+                        success?(object, false)
                     }
-                case .Failure(let error):
-                    failure?(error: error.localizedDescription)
+                case .failure(let error):
+                    failure?(error.localizedDescription)
                 }
             }
         }
@@ -166,8 +168,8 @@ class RadioAPI {
      
      - returns: mapped fileName for local cached object
      */
-    private static func fileForRoute(route: String) -> String {
-        return route.stringByReplacingOccurrencesOfString("/", withString: "-") + ".json"
+    fileprivate static func fileForRoute(_ route: String) -> String {
+        return route.replacingOccurrences(of: "/", with: "-") + ".json"
     }
     
 }

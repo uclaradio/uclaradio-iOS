@@ -29,7 +29,7 @@ class HistoryFetcher {
     
     static var recentTracks: [RecentTrack] = []
     static weak var delegate: HistoryFetchDelegate?
-    private static var currentPage = 1;
+    fileprivate static var currentPage = 1;
     
     /**
      Fetch and store fresh recently played song data from the Last.fm API
@@ -53,8 +53,8 @@ class HistoryFetcher {
      - parameter page:    page to fetch (1 to start from top)
      - parameter replace: should replace existing data in this.recentlyPlayed
      */
-    static func fetchTracks(page: Int, replace: Bool) {
-        Alamofire.request(.GET, "https://ws.audioscrobbler.com/2.0/",
+    static func fetchTracks(_ page: Int, replace: Bool) {
+        Alamofire.request("https://ws.audioscrobbler.com/2.0/",
             parameters: ["method": "user.getrecenttracks",
                 "user": "uclaradio",
                 "api_key": "d3e63e89b35e60885c944fe9b7341b76",
@@ -64,13 +64,16 @@ class HistoryFetcher {
             .validate()
             .responseJSON { response in
                 switch response.result {
-                case .Success(let json):
+                case .success(let json):
                     self.currentPage = page
-                    if let tracksDict = json["recenttracks"] as? NSDictionary, let tracks = tracksDict["track"] as? NSArray {
+                    if let json = json as? NSDictionary,
+                        let tracksDict = json["recenttracks"] as? NSDictionary,
+                        let tracks = tracksDict["track"] as? NSArray {
+                        
                         self.processRecentTracks(tracks, replace: true);
                         delegate?.updatedHistory()
                     }
-                case .Failure(let error):
+                case .failure(let error):
                     print(error)
                 }
         }
@@ -82,11 +85,11 @@ class HistoryFetcher {
      - parameter tracks:  track dictionary array from Last.fm
      - parameter replace: should replace info currently in this.recentTracks with updated data
      */
-    private static func processRecentTracks(tracks: NSArray, replace: Bool) {
+    fileprivate static func processRecentTracks(_ tracks: NSArray, replace: Bool) {
         if (replace) {
             recentTracks = []
         }
-        for dataObject: AnyObject in tracks
+        for dataObject: Any in tracks
         {
             if let track = dataObject as? NSDictionary, let artistInfo = track["artist"] as? NSDictionary, let imageInfo = track["image"] as? [NSDictionary]
             {
@@ -94,7 +97,7 @@ class HistoryFetcher {
                     var newTrack = RecentTrack(title: title, artist: artist)
                     // image data not available for all tracks
                     let medium = imageInfo[2]
-                    if let image = medium["#text"] as? String where image.characters.count > 0 {
+                    if let image = medium["#text"] as? String , image.characters.count > 0 {
                         newTrack.image = image
                     }
                     //print("\(title) by \(artist)")

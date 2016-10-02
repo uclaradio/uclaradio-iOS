@@ -11,7 +11,7 @@ import MediaPlayer
 import ASHorizontalScrollView
 
 protocol NowPlayingActionDelegate {
-    func didTapShow(show: Show?)
+    func didTapShow(_ show: Show?)
 }
 
 class NowPlayingViewController: UIViewController, HistoryFetchDelegate {
@@ -25,10 +25,10 @@ class NowPlayingViewController: UIViewController, HistoryFetchDelegate {
     var recentlyPlayed: ASHorizontalScrollView!
     
     var actionDelegate: NowPlayingActionDelegate?
-    private var nowPlaying: Show?
+    fileprivate var nowPlaying: Show?
     
-    private var recentUpdateTimer: NSTimer?
-    private var tapGesture: UITapGestureRecognizer?
+    fileprivate var recentUpdateTimer: Timer?
+    fileprivate var tapGesture: UITapGestureRecognizer?
     
     // SlidingVCDelegate
     var slider: SlidingViewController?
@@ -46,24 +46,24 @@ class NowPlayingViewController: UIViewController, HistoryFetchDelegate {
         
         let volumeView = MPVolumeView()
         controlsParentView.addSubview(volumeView)
-        controlsParentView.backgroundColor = UIColor.clearColor()
+        controlsParentView.backgroundColor = UIColor.clear
         volumeView.translatesAutoresizingMaskIntoConstraints = false
-        volumeView.setVolumeThumbImage(UIImage(named: "volumeSlider")?.imageWithColor(UIColor.whiteColor()), forState: .Normal)
-        volumeView.setRouteButtonImage(UIImage(named: "airplayIcon")?.imageWithColor(UIColor.whiteColor()), forState: .Normal)
-        volumeView.tintColor = UIColor.whiteColor()
+        volumeView.setVolumeThumbImage(UIImage(named: "volumeSlider")?.imageWithColor(UIColor.white), for: UIControlState())
+        volumeView.setRouteButtonImage(UIImage(named: "airplayIcon")?.imageWithColor(UIColor.white), for: UIControlState())
+        volumeView.tintColor = UIColor.white
         
         let controlsViews = ["nowPlaying": nowPlayingView, "volume": volumeView]
-        controlsParentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[nowPlaying]-[volume(30)]|", options: [], metrics: nil, views: controlsViews))
-        controlsParentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[nowPlaying]-|", options: [], metrics: nil, views: controlsViews))
-        controlsParentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-(40)-[volume]-(40)-|", options: [], metrics: nil, views: controlsViews))
+        controlsParentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[nowPlaying]-[volume(30)]|", options: [], metrics: nil, views: controlsViews))
+        controlsParentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-[nowPlaying]-|", options: [], metrics: nil, views: controlsViews))
+        controlsParentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-(40)-[volume]-(40)-|", options: [], metrics: nil, views: controlsViews))
         
         recentlyPlayedLabel = UILabel()
         recentlyPlayedLabel.text = "Recently Played"
-        recentlyPlayedLabel.textColor = UIColor.lightTextColor()
-        recentlyPlayedLabel.font = UIFont.boldSystemFontOfSize(14)
+        recentlyPlayedLabel.textColor = UIColor.lightText
+        recentlyPlayedLabel.font = UIFont.boldSystemFont(ofSize: 14)
         containerView.addSubview(recentlyPlayedLabel)
         recentlyPlayedLabel.translatesAutoresizingMaskIntoConstraints = false
-        containerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-(15)-[recentLabel(150)]", options: [], metrics: nil, views: ["recentLabel": recentlyPlayedLabel]))
+        containerView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-(15)-[recentLabel(150)]", options: [], metrics: nil, views: ["recentLabel": recentlyPlayedLabel]))
         
         let recentTrackSize = CGSize(width: (view.frame.size.width-20)/4, height: 90)
         
@@ -80,32 +80,32 @@ class NowPlayingViewController: UIViewController, HistoryFetchDelegate {
         
         containerView.addSubview(recentlyPlayed)
         recentlyPlayed.translatesAutoresizingMaskIntoConstraints = false
-        containerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[controls]-(>=15)-[recentLabel(15)]-(5)-[recent(trackHeight@999)]-(30@998,>=8)-|", options: [], metrics: ["trackHeight": recentTrackSize.height], views: ["controls": controlsParentView, "recent": recentlyPlayed, "recentLabel": recentlyPlayedLabel]))
-        containerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[recent]|", options: [], metrics: nil, views: ["recent": recentlyPlayed]))
+        containerView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[controls]-(>=15)-[recentLabel(15)]-(5)-[recent(trackHeight@999)]-(30@998,>=8)-|", options: [], metrics: ["trackHeight": recentTrackSize.height], views: ["controls": controlsParentView, "recent": recentlyPlayed, "recentLabel": recentlyPlayedLabel]))
+        containerView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[recent]|", options: [], metrics: nil, views: ["recent": recentlyPlayed]))
         // for smaller screens (iPhone 5)
-        containerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[controls]-(>=8)-[recent]", options: [], metrics: nil, views: ["controls": controlsParentView, "recent": recentlyPlayed]))
+        containerView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[controls]-(>=8)-[recent]", options: [], metrics: nil, views: ["controls": controlsParentView, "recent": recentlyPlayed]))
         
         tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTap))
-        imageView.userInteractionEnabled = true
-        imageView.contentMode = .ScaleAspectFill
+        imageView.isUserInteractionEnabled = true
+        imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.addGestureRecognizer(tapGesture!)
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         nowPlayingView.willAppear()
         
         // fetch recently played
         HistoryFetcher.delegate = self
         HistoryFetcher.fetchRecentTracks()
-        recentUpdateTimer = NSTimer.scheduledTimerWithTimeInterval(30, target: self, selector: #selector(updateTick), userInfo: nil, repeats: true)
+        recentUpdateTimer = Timer.scheduledTimer(timeInterval: 30, target: self, selector: #selector(updateTick), userInfo: nil, repeats: true)
         styleFromNowPlaying(RadioAPI.nowPlaying)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(nowPlayingUpdated), name: RadioAPI.NowPlayingUpdatedNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(nowPlayingUpdated), name: NSNotification.Name(rawValue: RadioAPI.NowPlayingUpdatedNotification), object: nil)
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         nowPlayingView.willDisappear()
         
@@ -114,7 +114,7 @@ class NowPlayingViewController: UIViewController, HistoryFetchDelegate {
         recentUpdateTimer?.invalidate()
         recentUpdateTimer = nil
         
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
 
     override func didReceiveMemoryWarning() {
@@ -122,9 +122,9 @@ class NowPlayingViewController: UIViewController, HistoryFetchDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    func styleFromNowPlaying(nowPlaying: Show?) {
+    func styleFromNowPlaying(_ nowPlaying: Show?) {
         if let nowPlaying = nowPlaying, let picture = nowPlaying.picture {
-            imageView.sd_setImageWithURL(RadioAPI.absoluteURL(picture), placeholderImage: UIImage(named: "radio_banner"))
+            imageView.sd_setImage(with: RadioAPI.absoluteURL(picture), placeholderImage: UIImage(named: "radio_banner"))
         }
         else {
             imageView.image = UIImage(named: "radio_banner")
@@ -133,9 +133,13 @@ class NowPlayingViewController: UIViewController, HistoryFetchDelegate {
     }
     
     func updateRecentlyPlayed() {
-        recentlyPlayed.removeAllItems()
+        if recentlyPlayed.items.count > 0 {
+            if !recentlyPlayed.removeAllItems() {
+                print("failed to remove recently played items")
+            }
+        }
         for track in HistoryFetcher.recentTracks {
-            let trackView = RecentTrackView(frame: CGRectZero)
+            let trackView = RecentTrackView(frame: CGRect.zero)
             trackView.styleFromTrack(track)
             recentlyPlayed.addItem(trackView)
         }
@@ -143,13 +147,13 @@ class NowPlayingViewController: UIViewController, HistoryFetchDelegate {
     
     // Slider
     
-    func didTap(gesture: UITapGestureRecognizer) {
+    func didTap(_ gesture: UITapGestureRecognizer) {
         actionDelegate?.didTapShow(nowPlaying)
     }
     
     // MARK: - Radio APIFetchDelegate
     
-    func nowPlayingUpdated(notification: NSNotification) {
+    func nowPlayingUpdated(_ notification: Notification) {
         styleFromNowPlaying(RadioAPI.nowPlaying)
     }
     

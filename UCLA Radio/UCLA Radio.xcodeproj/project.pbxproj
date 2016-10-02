@@ -15,6 +15,7 @@
 		832C65EA1CD0800200B3479E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 832C65E81CD0800200B3479E /* LaunchScreen.storyboard */; };
 		832C65F51CD0800200B3479E /* UCLA_RadioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832C65F41CD0800200B3479E /* UCLA_RadioTests.swift */; };
 		832C66001CD0800200B3479E /* UCLA_RadioUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832C65FF1CD0800200B3479E /* UCLA_RadioUITests.swift */; };
+		832F7EC91DA19D87001462C6 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832F7EC81DA19D87001462C6 /* BaseViewController.swift */; };
 		833B169F1CE1BD2D00E711F5 /* UIImage+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833B169E1CE1BD2D00E711F5 /* UIImage+Color.swift */; };
 		8356DDFD1DA03A3A00B2B63B /* Giveaway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8356DDFC1DA03A3A00B2B63B /* Giveaway.swift */; };
 		8356DDFF1DA043E900B2B63B /* MenuSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8356DDFE1DA043E900B2B63B /* MenuSectionHeaderView.swift */; };
@@ -82,6 +83,7 @@
 		832C65FB1CD0800200B3479E /* UCLA RadioUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "UCLA RadioUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		832C65FF1CD0800200B3479E /* UCLA_RadioUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UCLA_RadioUITests.swift; sourceTree = "<group>"; };
 		832C66011CD0800200B3479E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		832F7EC81DA19D87001462C6 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		833B169E1CE1BD2D00E711F5 /* UIImage+Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Color.swift"; sourceTree = "<group>"; };
 		8356DDFC1DA03A3A00B2B63B /* Giveaway.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Giveaway.swift; sourceTree = "<group>"; };
 		8356DDFE1DA043E900B2B63B /* MenuSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuSectionHeaderView.swift; sourceTree = "<group>"; };
@@ -286,6 +288,7 @@
 				8365ECF41CE99265001B96BF /* SlidingViewController.swift */,
 				83A8ED6D1CE30248003D4286 /* RecentTrackView.swift */,
 				83E424791CEECCF700662EDD /* NowPlayingView.swift */,
+				832F7EC81DA19D87001462C6 /* BaseViewController.swift */,
 			);
 			path = "custom elements";
 			sourceTree = "<group>";
@@ -370,13 +373,16 @@
 					832C65DB1CD0800200B3479E = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = DGUKNK322A;
+						LastSwiftMigration = 0800;
 					};
 					832C65EF1CD0800200B3479E = {
 						CreatedOnToolsVersion = 7.3;
+						LastSwiftMigration = 0800;
 						TestTargetID = 832C65DB1CD0800200B3479E;
 					};
 					832C65FA1CD0800200B3479E = {
 						CreatedOnToolsVersion = 7.3;
+						LastSwiftMigration = 0800;
 						TestTargetID = 832C65DB1CD0800200B3479E;
 					};
 				};
@@ -496,6 +502,7 @@
 				83B8C0761D067EDF00B80802 /* ScheduleSectionHeaderView.swift in Sources */,
 				83C28A7C1D050F3B0096D629 /* ScheduleViewController.swift in Sources */,
 				835CDF961D08016A00C3213B /* ShowViewController.swift in Sources */,
+				832F7EC91DA19D87001462C6 /* BaseViewController.swift in Sources */,
 				833B169F1CE1BD2D00E711F5 /* UIImage+Color.swift in Sources */,
 				83C28A731D0270AA0096D629 /* DJCollectionViewCell.swift in Sources */,
 				837C71561D9F4CD800E5C472 /* TrianglifyView.swift in Sources */,
@@ -661,6 +668,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.chrislaganiere.uclaradio;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -674,6 +682,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.chrislaganiere.uclaradio;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -685,6 +694,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "ChrisLaganiere.UCLA-RadioTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UCLA Radio.app/UCLA Radio";
 			};
 			name = Debug;
@@ -697,6 +707,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "ChrisLaganiere.UCLA-RadioTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UCLA Radio.app/UCLA Radio";
 			};
 			name = Release;
@@ -708,6 +719,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "ChrisLaganiere.UCLA-RadioUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = "UCLA Radio";
 			};
 			name = Debug;
@@ -719,6 +731,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "ChrisLaganiere.UCLA-RadioUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = "UCLA Radio";
 			};
 			name = Release;

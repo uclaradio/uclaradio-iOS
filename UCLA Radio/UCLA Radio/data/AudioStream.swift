@@ -10,7 +10,7 @@ import Foundation
 import AVFoundation
 import MediaPlayer
 
-let streamURL = NSURL(string: "http://stream.uclaradio.com:8000/listen")!
+let streamURL = URL(string: "http://stream.uclaradio.com:8000/listen")!
 
 class AudioStream: NSObject {
     
@@ -20,10 +20,10 @@ class AudioStream: NSObject {
     var readyToPlay = false
     var playing = false
     
-    private var audioPlayer = AVPlayer(URL: streamURL)
+    fileprivate var audioPlayer = AVPlayer(url: streamURL)
     
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
     
     func play() {
@@ -32,11 +32,11 @@ class AudioStream: NSObject {
             readyToPlay = true
         }
         
-        if (audioPlayer.status == .ReadyToPlay && !playing) {
+        if (audioPlayer.status == .readyToPlay && !playing) {
             audioPlayer.play()
             playing = true
-            UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
-            NSNotificationCenter.defaultCenter().postNotificationName(AudioStream.StreamUpdateNotificationKey, object: nil)
+            UIApplication.shared.beginReceivingRemoteControlEvents()
+            NotificationCenter.default.post(name: Notification.Name(rawValue: AudioStream.StreamUpdateNotificationKey), object: nil)
         }
     }
     
@@ -44,7 +44,7 @@ class AudioStream: NSObject {
         if (playing) {
             audioPlayer.pause()
             playing = false
-            NSNotificationCenter.defaultCenter().postNotificationName(AudioStream.StreamUpdateNotificationKey, object: nil)
+            NotificationCenter.default.post(name: Notification.Name(rawValue: AudioStream.StreamUpdateNotificationKey), object: nil)
         }
     }
     
@@ -68,12 +68,12 @@ class AudioStream: NSObject {
             print(error.localizedDescription)
         }
         
-        audioPlayer.addObserver(self, forKeyPath: "playbackBufferEmpty", options: .New, context: nil)
-        audioPlayer.addObserver(self, forKeyPath: "playbackLikelyToKeepUp", options: .New, context: nil)
+        audioPlayer.addObserver(self, forKeyPath: "playbackBufferEmpty", options: .new, context: nil)
+        audioPlayer.addObserver(self, forKeyPath: "playbackLikelyToKeepUp", options: .new, context: nil)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(sessionInterrupted), name: AVAudioSessionInterruptionNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(sessionInterrupted), name: NSNotification.Name.AVAudioSessionInterruption, object: nil)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(updateNowPlaying), name: RadioAPI.NowPlayingUpdatedNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateNowPlaying), name: NSNotification.Name(rawValue: RadioAPI.NowPlayingUpdatedNotification), object: nil)
         
         updateNowPlaying()
     }
@@ -82,10 +82,10 @@ class AudioStream: NSObject {
      Reset audio stream to get live stream
      */
     func skipToLive() {
-        let newItem = AVPlayerItem(URL: streamURL)
-        audioPlayer.replaceCurrentItemWithPlayerItem(newItem)
+        let newItem = AVPlayerItem(url: streamURL)
+        audioPlayer.replaceCurrentItem(with: newItem)
         play()
-        NSNotificationCenter.defaultCenter().postNotificationName(AudioStream.StreamUpdateNotificationKey, object: nil)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: AudioStream.StreamUpdateNotificationKey), object: nil)
     }
     
     /**
@@ -93,27 +93,27 @@ class AudioStream: NSObject {
      */
     func updateNowPlaying() {
         var nowPlayingDict: [String: AnyObject] = [:]
-        nowPlayingDict[MPMediaItemPropertyArtist] = "UCLA Radio"
+        nowPlayingDict[MPMediaItemPropertyArtist] = "UCLA Radio" as AnyObject?
         var title = "Live Stream"
         if let nowPlayingTitle = RadioAPI.nowPlaying?.title {
             title = nowPlayingTitle
         }
-        nowPlayingDict[MPMediaItemPropertyTitle] = title
-        MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = nowPlayingDict
+        nowPlayingDict[MPMediaItemPropertyTitle] = title as AnyObject?
+        MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingDict
     }
     
     // Notifications
     
-    func sessionInterrupted(notification: NSNotification) {
+    func sessionInterrupted(_ notification: Notification) {
         playing = false
         readyToPlay = false
-        NSNotificationCenter.defaultCenter().postNotificationName(AudioStream.StreamUpdateNotificationKey, object: nil)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: AudioStream.StreamUpdateNotificationKey), object: nil)
     }
     
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if let player = object as? AVPlayer {
             if keyPath == "playbackBufferEmpty" {
-                if let empty = player.currentItem?.playbackBufferEmpty where empty {
+                if let empty = player.currentItem?.isPlaybackBufferEmpty , empty {
                     player.play()
                     print("playbackBufferEmpty")
                 }

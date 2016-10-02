@@ -13,8 +13,8 @@ import UIKit
  Attractive color palets
  Colors taken from http://colorbrewer2.org/
  */
-public class Colorbrewer {
-    private static var rawColors: [String: [Int]] = [
+open class Colorbrewer {
+    fileprivate static var rawColors: [String: [Int]] = [
         "YlGn": [0xffffe5, 0xf7fcb9, 0xd9f0a3, 0xaddd8e, 0x78c679, 0x41ab5d, 0x238443, 0x006837, 0x004529],
         "YlGnBu": [0xffffd9, 0xedf8b1, 0xc7e9b4, 0x7fcdbb, 0x41b6c4, 0x1d91c0, 0x225ea8, 0x253494, 0x081d58],
         "GnBu": [0xf7fcf0, 0xe0f3db, 0xccebc5, 0xa8ddb5, 0x7bccc4, 0x4eb3d3, 0x2b8cbe, 0x0868ac, 0x084081],
@@ -44,7 +44,7 @@ public class Colorbrewer {
         "RdYlGn": [0xa50026, 0xd73027, 0xf46d43, 0xfdae61, 0xfee08b, 0xffffbf, 0xd9ef8b, 0xa6d96a, 0x66bd63, 0x1a9850, 0x006837]
     ]
     
-    static func colors(name: String) -> [UIColor]? {
+    static func colors(_ name: String) -> [UIColor]? {
         if let rawColors = rawColors[name] {
             var colorPalet = [UIColor]()
             for hex in rawColors {

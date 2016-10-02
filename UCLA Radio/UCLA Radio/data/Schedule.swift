@@ -7,6 +7,17 @@
 //
 
 import Foundation
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
 
 class Schedule {
     let monday: [Show]
@@ -60,16 +71,16 @@ class Schedule {
                   friday: friday, saturday: saturday, sunday: sunday)
     }
     
-    static func sortShows(shows: [Show]) -> [Show] {
+    static func sortShows(_ shows: [Show]) -> [Show] {
         var shows = shows
-        shows.sortInPlace { (a, b) -> Bool in
+        shows.sort { (a, b) -> Bool in
             let aMatch = matches(for: "[0-9]*", in: a.time)
             let bMatch = matches(for: "[0-9]*", in: b.time)
             let aTime = Int(aMatch[0])
             let bTime = Int(bMatch[0])
             
-            if let _ = a.time.rangeOfString("am", options: .RegularExpressionSearch) {
-                if let _ = b.time.rangeOfString("am", options: .RegularExpressionSearch) {
+            if let _ = a.time.range(of: "am", options: .regularExpression) {
+                if let _ = b.time.range(of: "am", options: .regularExpression) {
                     return aTime < bTime
                 }
                 else {
@@ -77,7 +88,7 @@ class Schedule {
                 }
             }
             else {
-                if let _ = b.time.rangeOfString("am", options: .RegularExpressionSearch) {
+                if let _ = b.time.range(of: "am", options: .regularExpression) {
                     return false
                 }
                 else {
@@ -93,8 +104,8 @@ class Schedule {
         do {
             let regex = try NSRegularExpression(pattern: regex, options: [])
             let nsString = text as NSString
-            let results = regex.matchesInString(text, options:[], range: NSMakeRange(0, nsString.length))
-            return results.map { nsString.substringWithRange($0.range)}
+            let results = regex.matches(in: text, options:[], range: NSMakeRange(0, nsString.length))
+            return results.map { nsString.substring(with: $0.range)}
         } catch let error as NSError {
             print("invalid regex: \(error.localizedDescription)")
             return []

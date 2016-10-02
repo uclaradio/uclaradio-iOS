@@ -15,27 +15,36 @@ class GiveawayTableViewCell: UITableViewCell {
     let dateLabel = UILabel()
     let summaryLabel = UILabel()
     
+    let ContainerChangeContext:UnsafeMutableRawPointer? = nil
+    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        backgroundColor = UIColor.clearColor()
-        selectionStyle = .None
+        backgroundColor = UIColor.clear
         
-        containerView.backgroundColor = Constants.Colors.lightBackground
-        containerView.layer.borderColor = UIColor.blackColor().CGColor
+        containerView.backgroundColor = UIColor.clear
         containerView.layer.borderWidth = 2.0
+        containerView.layer.borderColor = UIColor.black.cgColor
         containerView.clipsToBounds = true
         contentView.addSubview(containerView)
         containerView.translatesAutoresizingMaskIntoConstraints = false
+        containerView.layer.addObserver(self, forKeyPath: "bounds", options: .new, context: ContainerChangeContext)
         
+        dateLabel.textAlignment = .center
         containerView.addSubview(dateLabel)
         dateLabel.translatesAutoresizingMaskIntoConstraints = false
         
+        summaryLabel.numberOfLines = 2
+        summaryLabel.textAlignment = .center
         containerView.addSubview(summaryLabel)
         summaryLabel.translatesAutoresizingMaskIntoConstraints = false
         
         contentView.addConstraints(preferredConstraints())
         containerView.addConstraints(containerConstraints())
+    }
+    
+    deinit {
+        containerView.layer.removeObserver(self, forKeyPath: "bounds", context: ContainerChangeContext)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -46,11 +55,9 @@ class GiveawayTableViewCell: UITableViewCell {
         return 80.0
     }
     
-    func styleForGiveaway(giveaway: Giveaway) {
-        summaryLabel.text = giveaway.summary
+    func styleForGiveaway(_ giveaway: Giveaway) {
+        summaryLabel.text = "TICKET GIVEAWAY: " + giveaway.summary
         dateLabel.text = giveaway.date
-        
-        containerView.layer.cornerRadius = containerView.frame.height / 2
     }
     
     func preferredConstraints() -> [NSLayoutConstraint] {
@@ -58,8 +65,8 @@ class GiveawayTableViewCell: UITableViewCell {
         
         let metrics = ["padding": Constants.Floats.containerOffset]
         
-        constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|-(padding)-[container]-(padding)-|", options: [], metrics: metrics, views: ["container": containerView])
-        constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|-(padding)-[container]-(padding)-|", options: [], metrics: metrics, views: ["container": containerView])
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|-(padding)-[container]-(padding)-|", options: [], metrics: metrics, views: ["container": containerView])
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-(padding)-[container]-(padding)-|", options: [], metrics: metrics, views: ["container": containerView])
         
         return constraints
     }
@@ -70,12 +77,23 @@ class GiveawayTableViewCell: UITableViewCell {
         let views = ["date": dateLabel, "summary": summaryLabel]
         let metrics = ["date": 40, "padding": Constants.Floats.containerOffset, "dateSpace": 40 + 2*Constants.Floats.containerOffset]
         
-        constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|-[date]-|", options: [], metrics: nil, views: views)
-        constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|-[summary]-|", options: [], metrics: nil, views: views)
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|-[date]-|", options: [], metrics: nil, views: views)
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|-[summary]-|", options: [], metrics: nil, views: views)
         
-        constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|-(padding)-[date(dateSpace)]-(padding)-[summary]-(dateSpace)-|", options: [], metrics: metrics, views: views)
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-(padding)-[date(dateSpace)]-(padding)-[summary]-(dateSpace)-|", options: [], metrics: metrics, views: views)
         
         return constraints
+    }
+    
+    // MARK: - KVO
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if (context == ContainerChangeContext) {
+            containerView.layer.cornerRadius = containerView.frame.size.height/2.0
+        }
+        else {
+            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
+        }
     }
     
 }

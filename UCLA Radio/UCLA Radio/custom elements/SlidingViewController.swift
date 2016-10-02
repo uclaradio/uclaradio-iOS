@@ -11,8 +11,8 @@ import UIKit
 import DynamicColor
 
 @objc enum SlidingViewControllerPosition: Int {
-    case Open
-    case Closed
+    case open
+    case closed
 }
 
 @objc protocol SlidingVCDelegate {
@@ -29,20 +29,20 @@ class SlidingViewController: UIViewController {
     var contentViewController: UIViewController?
     var tabView: SliderTabView?
     
-    var position: SlidingViewControllerPosition = .Open
+    var position: SlidingViewControllerPosition = .open
     weak var sliderDelegate: SlidingVCDelegate?
     
-    private let AnimationDuration = 0.3
+    fileprivate let AnimationDuration = 0.3
     
-    private var panGesture: UIPanGestureRecognizer?
-    private var tabPanGesture: UIPanGestureRecognizer?
-    private var tabTapGesture: UITapGestureRecognizer?
-    private var yPositionConstraint: NSLayoutConstraint?
-    private var heightConstraint: NSLayoutConstraint?
-    private var contentYPositionContraint: NSLayoutConstraint?
-    private var contentHeightPositionContraint: NSLayoutConstraint?
-    private var initialRelativeYPosition: CGFloat?
-    private var initialContentBackgroundColor: UIColor?
+    fileprivate var panGesture: UIPanGestureRecognizer?
+    fileprivate var tabPanGesture: UIPanGestureRecognizer?
+    fileprivate var tabTapGesture: UITapGestureRecognizer?
+    fileprivate var yPositionConstraint: NSLayoutConstraint?
+    fileprivate var heightConstraint: NSLayoutConstraint?
+    fileprivate var contentYPositionContraint: NSLayoutConstraint?
+    fileprivate var contentHeightPositionContraint: NSLayoutConstraint?
+    fileprivate var initialRelativeYPosition: CGFloat?
+    fileprivate var initialContentBackgroundColor: UIColor?
     
     init () {
         super.init(nibName: nil, bundle: nil)
@@ -52,18 +52,18 @@ class SlidingViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func addContent(content: UIViewController) {
+    func addContent(_ content: UIViewController) {
         contentViewController = content
         addChildViewController(content)
         view.addSubview(content.view)
         content.view.translatesAutoresizingMaskIntoConstraints = false
         
-        contentHeightPositionContraint = NSLayoutConstraint(item: content.view, attribute: .Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: 1.0, constant: 0.0)
+        contentHeightPositionContraint = NSLayoutConstraint(item: content.view, attribute: .height, relatedBy: .equal, toItem: view, attribute: .height, multiplier: 1.0, constant: 0.0)
         view.addConstraint(contentHeightPositionContraint!)
-        contentYPositionContraint = NSLayoutConstraint(item: content.view, attribute: .Top, relatedBy: .Equal, toItem: view, attribute: .Top, multiplier: 1.0, constant: 0.0)
+        contentYPositionContraint = NSLayoutConstraint(item: content.view, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1.0, constant: 0.0)
         view.addConstraint(contentYPositionContraint!)
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[content]|", options: [], metrics: nil, views: ["content": content.view]))
-        content.didMoveToParentViewController(self)
+        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[content]|", options: [], metrics: nil, views: ["content": content.view]))
+        content.didMove(toParentViewController: self)
         if let delegate = content as? SlidingVCDelegate {
             sliderDelegate = delegate
             sliderDelegate?.slider = self
@@ -72,21 +72,21 @@ class SlidingViewController: UIViewController {
         initialContentBackgroundColor = content.view.backgroundColor
     }
     
-    func addTabView(tabView: SliderTabView) {
+    func addTabView(_ tabView: SliderTabView) {
         self.tabView = tabView
         view.addSubview(tabView)
         let tabHeight = tabView.frame.size.height
         tabView.translatesAutoresizingMaskIntoConstraints = false
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[tab]|", options: [], metrics: nil, views: ["tab": tabView]))
-        view.addConstraint(NSLayoutConstraint(item: tabView, attribute: .Top, relatedBy: .Equal, toItem: view, attribute: .Top, multiplier: 1.0, constant: 0))
-        view.addConstraint(NSLayoutConstraint(item: tabView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: tabHeight))
+        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[tab]|", options: [], metrics: nil, views: ["tab": tabView]))
+        view.addConstraint(NSLayoutConstraint(item: tabView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1.0, constant: 0))
+        view.addConstraint(NSLayoutConstraint(item: tabView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: tabHeight))
         view.superview?.setNeedsLayout()
         
         heightConstraint?.constant = tabHeight
         contentYPositionContraint?.constant = tabHeight
         contentHeightPositionContraint?.constant = -tabHeight
         
-        tabView.userInteractionEnabled = true
+        tabView.isUserInteractionEnabled = true
         tabPanGesture = UIPanGestureRecognizer(target: self, action: #selector(didPan))
         tabView.addGestureRecognizer(tabPanGesture!)
         
@@ -97,42 +97,42 @@ class SlidingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.clearColor()
+        view.backgroundColor = UIColor.clear
         view.translatesAutoresizingMaskIntoConstraints = false
         
         panGesture = UIPanGestureRecognizer(target: self, action: #selector(didPan))
         view.addGestureRecognizer(panGesture!)
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        updatePosition(.Open, animated: false)
+        updatePosition(.open, animated: false)
         tabView?.willAppear()
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         tabView?.willDisappear()
     }
     
     func preferredConstraints() -> [NSLayoutConstraint] {
         var constraints: [NSLayoutConstraint] = []
-        constraints.append(NSLayoutConstraint(item: view, attribute: .Width, relatedBy: .Equal, toItem: view.superview, attribute: .Width, multiplier: 1.0, constant: 0))
-        heightConstraint = NSLayoutConstraint(item: view, attribute: .Height, relatedBy: .Equal, toItem: view.superview, attribute: .Height, multiplier: 1.0, constant: 0)
+        constraints.append(NSLayoutConstraint(item: view, attribute: .width, relatedBy: .equal, toItem: view.superview, attribute: .width, multiplier: 1.0, constant: 0))
+        heightConstraint = NSLayoutConstraint(item: view, attribute: .height, relatedBy: .equal, toItem: view.superview, attribute: .height, multiplier: 1.0, constant: 0)
         constraints.append(heightConstraint!)
-        constraints.append(NSLayoutConstraint(item: view, attribute: .CenterX, relatedBy: .Equal, toItem: view.superview, attribute: .CenterX, multiplier: 1.0, constant: 0))
-        yPositionConstraint = NSLayoutConstraint(item: view, attribute: .Top, relatedBy: .Equal, toItem: view.superview, attribute: .Bottom, multiplier: 1.0, constant: 0)
+        constraints.append(NSLayoutConstraint(item: view, attribute: .centerX, relatedBy: .equal, toItem: view.superview, attribute: .centerX, multiplier: 1.0, constant: 0))
+        yPositionConstraint = NSLayoutConstraint(item: view, attribute: .top, relatedBy: .equal, toItem: view.superview, attribute: .bottom, multiplier: 1.0, constant: 0)
         constraints.append(yPositionConstraint!)
         return constraints
     }
     
-    func updatePosition(position: SlidingViewControllerPosition, animated: Bool) {
+    func updatePosition(_ position: SlidingViewControllerPosition, animated: Bool) {
         view.superview?.layoutIfNeeded()
         switch position {
-        case .Open:
+        case .open:
             let constant = -view.frame.size.height
             yPositionConstraint?.constant = constant
-        case .Closed:
+        case .closed:
             var constant: CGFloat = 0
             if let tab = tabView {
                 constant -= tab.frame.size.height
@@ -143,10 +143,10 @@ class SlidingViewController: UIViewController {
         self.position = position
 //        sliderDelegate?.positionUpdated(position)
         
-        let alpha: CGFloat = (position == .Closed) ? 1.0 : 0.0
-        let newColor = (position == .Closed) ? UIColor.blackColor() : initialContentBackgroundColor
+        let alpha: CGFloat = (position == .closed) ? 1.0 : 0.0
+        let newColor = (position == .closed) ? UIColor.black : initialContentBackgroundColor
         if (animated) {
-            UIView.animateWithDuration(AnimationDuration, animations: {
+            UIView.animate(withDuration: AnimationDuration, animations: {
                 self.view.superview?.layoutIfNeeded()
                 self.tabView?.alpha = alpha
 //                self.tabView?.backgroundColor = newColor
@@ -155,39 +155,39 @@ class SlidingViewController: UIViewController {
         }
     }
     
-    func didPan(gesture: UIPanGestureRecognizer) {
-        let touchLocation = gesture.locationInView(view.superview)
+    func didPan(_ gesture: UIPanGestureRecognizer) {
+        let touchLocation = gesture.location(in: view.superview)
         if initialRelativeYPosition == nil {
-            initialRelativeYPosition = gesture.locationInView(view).y
+            initialRelativeYPosition = gesture.location(in: view).y
         }
         
         switch(gesture.state) {
-        case .Began:
+        case .began:
             break;
-        case .Changed:
+        case .changed:
             if let relativeYPosition = initialRelativeYPosition {
                 let MinimumYPosition = -tabView!.frame.size.height
                 let MaximumYPosition = 15 + -tabView!.frame.size.height + contentViewController!.view.frame.size.height
                 let touchYPosition = touchLocation.y - relativeYPosition
                 let newYPosition: CGFloat = max(MinimumYPosition, min(MaximumYPosition, touchYPosition))
-                view.frame.origin = CGPointMake(0, newYPosition)
+                view.frame.origin = CGPoint(x: 0, y: newYPosition)
                 
                 let openPercentage = 1.0 - (newYPosition-MinimumYPosition)/(MaximumYPosition-MinimumYPosition)
 //                sliderDelegate?.openPercentageChanged(openPercentage)
                 tabView?.alpha = 0.3 + 0.7*(1.0 - openPercentage)
-                let newColor = UIColor.blackColor().mixWithColor(initialContentBackgroundColor ?? Constants.Colors.darkBlue, weight: openPercentage)
+                let newColor = UIColor.black.mixed(withColor: initialContentBackgroundColor ?? Constants.Colors.darkBlue, weight: openPercentage)
 //                self.tabView?.backgroundColor = newColor
                 self.contentViewController?.view.backgroundColor = newColor
             }
         default:
-            let shouldOpen = touchLocation.y < view.frame.size.height/2 || gesture.velocityInView(view?.superview).y < -300
-            updatePosition((shouldOpen ? .Open : .Closed), animated: true)
+            let shouldOpen = touchLocation.y < view.frame.size.height/2 || gesture.velocity(in: view?.superview).y < -300
+            updatePosition((shouldOpen ? .open : .closed), animated: true)
             initialRelativeYPosition = nil
         }
     }
     
-    func didTap(gesture: UITapGestureRecognizer) {
+    func didTap(_ gesture: UITapGestureRecognizer) {
         initialRelativeYPosition = nil
-        updatePosition((position == .Closed) ? .Open : .Closed, animated: true)
+        updatePosition((position == .closed) ? .open : .closed, animated: true)
     }
 }

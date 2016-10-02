@@ -9,13 +9,13 @@
 import Foundation
 import UIKit
 
-class EventsViewController: UIViewController, APIFetchDelegate, UITableViewDataSource, UITableViewDelegate {
+class EventsViewController: BaseViewController, APIFetchDelegate, UITableViewDataSource, UITableViewDelegate {
     
-    let tableView = UITableView(frame: CGRectZero, style: .Grouped)
+    let tableView = UITableView(frame: CGRect.zero, style: .grouped)
     
     static let storyboardID = "eventsViewController"
     
-    private let reuseIdentifier = "GiveawayCell"
+    fileprivate let reuseIdentifier = "GiveawayCell"
     
     var events: [String: [Giveaway]]?
     
@@ -29,49 +29,49 @@ class EventsViewController: UIViewController, APIFetchDelegate, UITableViewDataS
         
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.separatorStyle = .None
-        tableView.registerClass(GiveawayTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
+        tableView.separatorStyle = .none
+        tableView.register(GiveawayTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
         view.addConstraints(preferredConstraints())
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         RadioAPI.fetchGiveaways(self)
     }
     
     // MARK: - APIFetchDelegate
     
-    func cachedDataAvailable(data: AnyObject) {
+    func cachedDataAvailable(_ data: Any) {
         if let data = data as? [String: [Giveaway]] {
             events = data
             tableView.reloadData()
         }
     }
     
-    func didFetchData(data: AnyObject) {
+    func didFetchData(_ data: Any) {
         if let data = data as? [String: [Giveaway]] {
             events = data
             tableView.reloadData()
         }
     }
     
-    func failedToFetchData(error: String) {
+    func failedToFetchData(_ error: String) {
         // no-op
     }
     
     // MARK: - UITableViewDataSource
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         if let events = events {
             return events.count
         }
         return 0
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let events = events {
             let months = [String](events.keys)
             return events[months[section]]?.count ?? 0
@@ -79,33 +79,39 @@ class EventsViewController: UIViewController, APIFetchDelegate, UITableViewDataS
         return 0
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        return tableView.dequeueReusableCellWithIdentifier(reuseIdentifier, forIndexPath: indexPath)
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
+        cell.selectionStyle = .none
+        return cell
     }
     
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if let events = events {
             let months = [String](events.keys)
-            return months[section] ?? nil
+            return months[section]
         }
         return nil
     }
     
     // MARK: - UITableViewDelegate
     
-    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return GiveawayTableViewCell.preferredHeight()
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if let events = events {
             let months = [String](events.keys)
-            if let event = events[months[indexPath.section]]?[indexPath.row],
-                giveawayCell = cell as? GiveawayTableViewCell {
+            if let event = events[months[(indexPath as NSIndexPath).section]]?[(indexPath as NSIndexPath).row],
+                let giveawayCell = cell as? GiveawayTableViewCell {
                 
                 giveawayCell.styleForGiveaway(event)
             }
         }
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         
         // TO DO
     }
@@ -115,8 +121,8 @@ class EventsViewController: UIViewController, APIFetchDelegate, UITableViewDataS
     func preferredConstraints() -> [NSLayoutConstraint] {
         var constraints = [NSLayoutConstraint]()
         
-        constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|[tableView]|", options: [], metrics: nil, views: ["tableView": tableView])
-        constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|[tableView]|", options: [], metrics: nil, views: ["tableView": tableView])
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[tableView]|", options: [], metrics: nil, views: ["tableView": tableView])
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|[tableView]|", options: [], metrics: nil, views: ["tableView": tableView])
         
         return constraints
     }

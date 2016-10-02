@@ -17,7 +17,7 @@ class Giveaway {
         self.date = date
     }
     
-    static func formattedDateFromRawString(rawString: String) -> String? {
+    static func formattedDateFromRawString(_ rawString: String) -> String? {
         guard let day = Int(rawString) else {
             return nil
         }
@@ -34,7 +34,7 @@ class Giveaway {
         return "\(day)th"
     }
     
-    static func giveawaysFromJSON(rawGiveaways: NSArray) -> [String: [Giveaway]] {
+    static func giveawaysFromJSON(_ rawGiveaways: NSArray) -> [String: [Giveaway]] {
         var giveaways = [String: [Giveaway]]()
         
         // regex patterns
@@ -44,21 +44,21 @@ class Giveaway {
         do {
             let regex = try NSRegularExpression(pattern: searchPattern, options: [])
             
-            for rawGiveaway: AnyObject in rawGiveaways {
+            for rawGiveaway: Any in rawGiveaways {
                 if let monthDict = rawGiveaway as? NSDictionary,
-                    currentMonth = monthDict["month"] as? String,
-                    monthGiveaways = monthDict["arr"] as? NSArray {
+                    let currentMonth = monthDict["month"] as? String,
+                    let monthGiveaways = monthDict["arr"] as? NSArray {
                     
                     // giveaways for given month
                     var month = [Giveaway]()
-                    for monthGiveaway: AnyObject in monthGiveaways {
+                    for monthGiveaway: Any in monthGiveaways {
                         if let monthGiveaway = monthGiveaway as? NSDictionary,
-                            summary = monthGiveaway["summary"] as? String,
-                            rawDate = monthGiveaway["start"] as? String {
+                            let summary = monthGiveaway["summary"] as? String,
+                            let rawDate = monthGiveaway["start"] as? String {
                             
                             let day = NSMutableString(string: rawDate)
-                            regex.replaceMatchesInString(day, options: [], range: NSRange(location: 0, length: rawDate.characters.count), withTemplate: replacementPattern)
-                            let date = formattedDateFromRawString(day.substringFromIndex(0)) ?? ""
+                            regex.replaceMatches(in: day, options: [], range: NSRange(location: 0, length: rawDate.characters.count), withTemplate: replacementPattern)
+                            let date = formattedDateFromRawString(day.substring(from: 0)) ?? ""
                             month.append(Giveaway(summary: summary, date: date))
                         }
                     }

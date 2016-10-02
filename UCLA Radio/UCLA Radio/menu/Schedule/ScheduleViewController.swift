@@ -12,7 +12,7 @@ import UIKit
 private let reuseIdentifier = "ScheduleCell"
 private let headerReuseIdentifier = "ScheduleHeader"
 
-class ScheduleViewController: UIViewController, APIFetchDelegate, UITableViewDataSource, UITableViewDelegate {
+class ScheduleViewController: BaseViewController, APIFetchDelegate, UITableViewDataSource, UITableViewDelegate {
     
     static let storyboardID = "scheduleViewController"
     
@@ -25,29 +25,24 @@ class ScheduleViewController: UIViewController, APIFetchDelegate, UITableViewDat
         
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.registerClass(ScheduleShowCell.self, forCellReuseIdentifier: reuseIdentifier)
-        tableView.registerClass(ScheduleSectionHeaderView.self, forHeaderFooterViewReuseIdentifier: headerReuseIdentifier)
+        tableView.register(ScheduleShowCell.self, forCellReuseIdentifier: reuseIdentifier)
+        tableView.register(ScheduleSectionHeaderView.self, forHeaderFooterViewReuseIdentifier: headerReuseIdentifier)
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.separatorStyle = .None
-        tableView.backgroundColor = UIColor.clearColor()
-        
-        view.backgroundColor = Constants.Colors.lightPink
-        if let navigationController = navigationController {
-            navigationController.navigationBar.barTintColor = Constants.Colors.reallyDarkPink
-        }
+        tableView.separatorStyle = .none
+        tableView.backgroundColor = UIColor.clear
         
         view.addConstraints(preferredConstraints())
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         RadioAPI.fetchSchedule(self)
         scrollToToday()
     }
     
     func today() -> Int {
-        var day =  NSCalendar.currentCalendar().component(.Weekday, fromDate: NSDate())
+        var day =  (Calendar.current as NSCalendar).component(.weekday, from: Date())
 //        var hour =  NSCalendar.currentCalendar().component(.Hour, fromDate: NSDate())
         // convert from Apple format (Sunday starting) to our format (Monday starting)
         day -= 2
@@ -57,7 +52,7 @@ class ScheduleViewController: UIViewController, APIFetchDelegate, UITableViewDat
         return day
     }
     
-    func showsForDay(day: Int) -> [Show] {
+    func showsForDay(_ day: Int) -> [Show] {
         if let schedule = schedule {
             switch(day) {
             case 0:
@@ -81,7 +76,7 @@ class ScheduleViewController: UIViewController, APIFetchDelegate, UITableViewDat
         return []
     }
     
-    func stringForDay(day:Int) -> String {
+    func stringForDay(_ day:Int) -> String {
         switch(day) {
         case 0:
             return "Monday"
@@ -104,7 +99,7 @@ class ScheduleViewController: UIViewController, APIFetchDelegate, UITableViewDat
     
     // MARK: - API Fetch Delegate
     
-    func cachedDataAvailable(data: AnyObject) {
+    func cachedDataAvailable(_ data: Any) {
         if let schedule = data as? Schedule {
             self.schedule = schedule
             tableView.reloadData()
@@ -112,7 +107,7 @@ class ScheduleViewController: UIViewController, APIFetchDelegate, UITableViewDat
         }
     }
     
-    func didFetchData(data: AnyObject) {
+    func didFetchData(_ data: Any) {
         if let schedule = data as? Schedule {
             self.schedule = schedule
             tableView.reloadData()
@@ -120,70 +115,70 @@ class ScheduleViewController: UIViewController, APIFetchDelegate, UITableViewDat
         }
     }
     
-    func failedToFetchData(error: String) {
+    func failedToFetchData(_ error: String) {
         
     }
     
     // MARK: - UITableViewDataSource
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 7
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return showsForDay(section).count
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return ScheduleShowCell.preferredHeight(indexPath.row == self.tableView(tableView, numberOfRowsInSection: indexPath.section) - 1)
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return ScheduleShowCell.preferredHeight((indexPath as NSIndexPath).row == self.tableView(tableView, numberOfRowsInSection: (indexPath as NSIndexPath).section) - 1)
     }
     
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return ScheduleSectionHeaderView.height
     }
     
-    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifier, forIndexPath: indexPath)
-        cell.selectionStyle = .None
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
+        cell.selectionStyle = .none
         if let cell = cell as? ScheduleShowCell {
-            cell.addBottomPadding = (indexPath.row == self.tableView(tableView, numberOfRowsInSection: indexPath.section) - 1)
+            cell.addBottomPadding = ((indexPath as NSIndexPath).row == self.tableView(tableView, numberOfRowsInSection: (indexPath as NSIndexPath).section) - 1)
         }
         return cell
     }
     
-    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return tableView.dequeueReusableHeaderFooterViewWithIdentifier(headerReuseIdentifier)
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return tableView.dequeueReusableHeaderFooterView(withIdentifier: headerReuseIdentifier)
     }
     
-    func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let footer = UIView()
-        footer.backgroundColor = UIColor.clearColor()
+        footer.backgroundColor = UIColor.clear
         return footer
     }
     
     // MARK: - UITableViewDelegate
     
-    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-        let shows = showsForDay(indexPath.section)
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let shows = showsForDay((indexPath as NSIndexPath).section)
         if let showCell = cell as? ScheduleShowCell {
-            showCell.styleFromShow(shows[indexPath.row])
+            showCell.styleFromShow(shows[(indexPath as NSIndexPath).row])
         }
     }
     
-    func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         if let scheduleHeader = view as? ScheduleSectionHeaderView {
             scheduleHeader.styleForString(stringForDay(section))
         }
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        let show = showsForDay(indexPath.section)[indexPath.row]
-        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier(ShowViewController.storyboardID)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let show = showsForDay((indexPath as NSIndexPath).section)[(indexPath as NSIndexPath).row]
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: ShowViewController.storyboardID)
         if let showViewController = vc as? ShowViewController {
             showViewController.show = show
             navigationController?.pushViewController(showViewController, animated: true)
@@ -194,15 +189,15 @@ class ScheduleViewController: UIViewController, APIFetchDelegate, UITableViewDat
     
     func scrollToToday() {
         if (showsForDay(today()).count > 0) {
-            tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: today()), atScrollPosition: .Top, animated: false)
+            tableView.scrollToRow(at: IndexPath(row: 0, section: today()), at: .top, animated: false)
         }
     }
     
     func preferredConstraints() -> [NSLayoutConstraint] {
         var constraints: [NSLayoutConstraint] = []
         let views = ["table": tableView]
-        constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|[table]|", options: [], metrics: nil, views: views)
-        constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|[table]|", options: [], metrics: nil, views: views)
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[table]|", options: [], metrics: nil, views: views)
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|[table]|", options: [], metrics: nil, views: views)
         return constraints
     }
     

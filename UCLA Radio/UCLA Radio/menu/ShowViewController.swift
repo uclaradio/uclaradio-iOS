@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import SDWebImage
 
-class ShowViewController: UIViewController {
+class ShowViewController: BaseViewController {
     
     static let storyboardID = "showViewController"
     
@@ -26,29 +26,24 @@ class ShowViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = Constants.Colors.lightPink
-        if let navigationController = navigationController {
-            navigationController.navigationBar.barTintColor = Constants.Colors.reallyDarkPink
-        }
+        timeLabel.textColor = UIColor.lightGray
         
-        timeLabel.textColor = UIColor.lightGrayColor()
+        genreLabel.textColor = UIColor.darkGray
+        blurbLabel.textColor = UIColor.darkGray
+        djsLabel.textColor = UIColor.darkGray
         
-        genreLabel.textColor = UIColor.darkGrayColor()
-        blurbLabel.textColor = UIColor.darkGrayColor()
-        djsLabel.textColor = UIColor.darkGrayColor()
-        
-        imageView.contentMode = .ScaleAspectFill
+        imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if let show = show {
             styleForShow(show)
         }
     }
     
-    private func styleForShow(show: Show) {
+    fileprivate func styleForShow(_ show: Show) {
         let string = show.day + " " + show.time
         timeLabel.text = string
         titleLabel.text = show.title
@@ -56,7 +51,7 @@ class ShowViewController: UIViewController {
         
         imageView.image = UIImage(named: "radio")
         if let picture = show.picture {
-            imageView.sd_setImageWithURL(RadioAPI.absoluteURL(picture))
+            imageView.sd_setImage(with: RadioAPI.absoluteURL(picture))
         }
         
         genreLabel.text = ""

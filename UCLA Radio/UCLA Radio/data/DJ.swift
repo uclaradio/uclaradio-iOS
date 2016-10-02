@@ -25,17 +25,17 @@ class DJ {
         self.init(username: username, djName: djName, fullName: nil, picture: nil)
     }
     
-    static func djsFromJSON(djsArray: NSArray) -> [DJ] {
+    static func djsFromJSON(_ djsArray: NSArray) -> [DJ] {
         var result: [DJ] = []
-        for djObject: AnyObject in djsArray {
+        for djObject: Any in djsArray {
             if let dj = djObject as? NSDictionary, let username = dj["username"] as? String, let djName = dj["djName"] as? String {
                 let newDJ = DJ(username: username, djName: djName)
                 
                 // optional properties
-                if let fullName = dj["fullName"] as? String where fullName.characters.count > 0 {
+                if let fullName = dj["fullName"] as? String , fullName.characters.count > 0 {
                     newDJ.fullName = fullName
                 }
-                if let picture = dj["picture"] as? String where picture.characters.count > 0 {
+                if let picture = dj["picture"] as? String , picture.characters.count > 0 {
                     newDJ.picture = picture
                 }
                 

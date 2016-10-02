@@ -22,32 +22,32 @@ class NowPlayingView: SliderTabView {
     var skipButton: UIButton!
     var titleLabel: UILabel!
     
-    private var containerConstraintsInstalled: [NSLayoutConstraint]?
+    fileprivate var containerConstraintsInstalled: [NSLayoutConstraint]?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = UIColor.clearColor()
+        backgroundColor = UIColor.clear
         
         containerView = UIView()
-        containerView.backgroundColor = UIColor.clearColor()
+        containerView.backgroundColor = UIColor.clear
         containerView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(containerView)
         
-        playButton = UIButton(type: .System)
-        playButton.tintColor = UIColor.whiteColor()
-        playButton.contentMode = .ScaleAspectFit
+        playButton = UIButton(type: .system)
+        playButton.tintColor = UIColor.white
+        playButton.contentMode = .scaleAspectFit
         playButton.imageEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         playButton.translatesAutoresizingMaskIntoConstraints = false
-        playButton.addTarget(self, action: #selector(hitPlay), forControlEvents: .TouchUpInside)
+        playButton.addTarget(self, action: #selector(hitPlay), for: .touchUpInside)
         containerView.addSubview(playButton)
         
         titleLabel = UILabel()
-        titleLabel.textColor = UIColor.whiteColor()
-        titleLabel.textAlignment = .Center
-        titleLabel.font = UIFont.boldSystemFontOfSize(17)
+        titleLabel.textColor = UIColor.white
+        titleLabel.textAlignment = .center
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 17)
         titleLabel.numberOfLines = 2
-        titleLabel.userInteractionEnabled = false
+        titleLabel.isUserInteractionEnabled = false
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         containerView.addSubview(titleLabel)
         
@@ -69,22 +69,22 @@ class NowPlayingView: SliderTabView {
     override func willAppear() {
         styleFromStream()
         styleFromNowPlaying()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(streamUpdated), name: AudioStream.StreamUpdateNotificationKey, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(nowPlayingUpdated), name: RadioAPI.NowPlayingUpdatedNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(streamUpdated), name: NSNotification.Name(rawValue: AudioStream.StreamUpdateNotificationKey), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(nowPlayingUpdated), name: NSNotification.Name(rawValue: RadioAPI.NowPlayingUpdatedNotification), object: nil)
     }
     
     override func willDisappear() {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
     
     func addSkipButton() {
-        skipButton = UIButton(type: .System)
-        skipButton.setImage(UIImage(named: "reset"), forState: .Normal)
-        skipButton.tintColor = UIColor.whiteColor()
-        skipButton.contentMode = .ScaleAspectFit
+        skipButton = UIButton(type: .system)
+        skipButton.setImage(UIImage(named: "reset"), for: UIControlState())
+        skipButton.tintColor = UIColor.white
+        skipButton.contentMode = .scaleAspectFit
         skipButton.imageEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         skipButton.translatesAutoresizingMaskIntoConstraints = false
-        skipButton.addTarget(self, action: #selector(hitSkip), forControlEvents: .TouchUpInside)
+        skipButton.addTarget(self, action: #selector(hitSkip), for: .touchUpInside)
         containerView.addSubview(skipButton)
         
         canSkipStream = true
@@ -93,30 +93,30 @@ class NowPlayingView: SliderTabView {
     
     // Actions
     
-    func hitPlay(button: UIButton) {
+    func hitPlay(_ button: UIButton) {
         AudioStream.sharedInstance.togglePlay()
     }
     
-    func hitSkip(button: UIButton) {
+    func hitSkip(_ button: UIButton) {
         AudioStream.sharedInstance.skipToLive()
     }
     
     // Notifications
     
-    func streamUpdated(notification: NSNotification) {
+    func streamUpdated(_ notification: Notification) {
         styleFromStream()
     }
     
     func styleFromStream() {
         if (AudioStream.sharedInstance.playing) {
-            playButton.setImage(UIImage(named: "pause"), forState: .Normal)
+            playButton.setImage(UIImage(named: "pause"), for: UIControlState())
         }
         else {
-            playButton.setImage(UIImage(named: "play"), forState: .Normal)
+            playButton.setImage(UIImage(named: "play"), for: UIControlState())
         }
     }
     
-    func nowPlayingUpdated(notification: NSNotification) {
+    func nowPlayingUpdated(_ notification: Notification) {
         styleFromNowPlaying()
     }
     
@@ -144,9 +144,9 @@ class NowPlayingView: SliderTabView {
         var constraints: [NSLayoutConstraint] = []
         
         // container view (max at 400 width)
-        constraints.append(NSLayoutConstraint(item: containerView, attribute: .CenterX, relatedBy: .Equal, toItem: self, attribute: .CenterX, multiplier: 1.0, constant: 0.0))
-        constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|-(8@999)-[container(<=400)]-(8@999)-|", options: [], metrics: nil, views: ["container": containerView])
-        constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|[container]|", options: [], metrics: nil, views: ["container": containerView])
+        constraints.append(NSLayoutConstraint(item: containerView, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1.0, constant: 0.0))
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-(8@999)-[container(<=400)]-(8@999)-|", options: [], metrics: nil, views: ["container": containerView])
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[container]|", options: [], metrics: nil, views: ["container": containerView])
         return constraints
     }
     
@@ -157,20 +157,20 @@ class NowPlayingView: SliderTabView {
         
         // Horizontal
         if (canSkipStream) {
-            constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|-(item)-[play(button)]-(item)-[title]-(item)-[skip(button)]-(item)-|", options: [], metrics: metrics, views: ["play": playButton, "title": titleLabel, "skip": skipButton])
-            constraints.append(NSLayoutConstraint(item: skipButton, attribute: .Height, relatedBy: .Equal, toItem: playButton, attribute: .Height, multiplier: 1.0, constant: 0.0))
-            constraints.append(NSLayoutConstraint(item: skipButton, attribute: .CenterY, relatedBy: .Equal, toItem: playButton, attribute: .CenterY, multiplier: 1.0, constant: 0.0))
+            constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-(item)-[play(button)]-(item)-[title]-(item)-[skip(button)]-(item)-|", options: [], metrics: metrics, views: ["play": playButton, "title": titleLabel, "skip": skipButton])
+            constraints.append(NSLayoutConstraint(item: skipButton, attribute: .height, relatedBy: .equal, toItem: playButton, attribute: .height, multiplier: 1.0, constant: 0.0))
+            constraints.append(NSLayoutConstraint(item: skipButton, attribute: .centerY, relatedBy: .equal, toItem: playButton, attribute: .centerY, multiplier: 1.0, constant: 0.0))
         }
         else {
-            constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|-(item)-[play(button)]-(item)-[title]-(noButton)-|", options: [], metrics: metrics, views: ["play": playButton, "title": titleLabel])
+            constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-(item)-[play(button)]-(item)-[title]-(noButton)-|", options: [], metrics: metrics, views: ["play": playButton, "title": titleLabel])
         }
         
         // play button
-        constraints.append(NSLayoutConstraint(item: playButton, attribute: .Height, relatedBy: .Equal, toItem: playButton, attribute: .Width, multiplier: 1.0, constant: 0.0))
-        constraints.append(NSLayoutConstraint(item: playButton, attribute: .CenterY, relatedBy: .Equal, toItem: containerView, attribute: .CenterY, multiplier: 1.0, constant: 0.0))
+        constraints.append(NSLayoutConstraint(item: playButton, attribute: .height, relatedBy: .equal, toItem: playButton, attribute: .width, multiplier: 1.0, constant: 0.0))
+        constraints.append(NSLayoutConstraint(item: playButton, attribute: .centerY, relatedBy: .equal, toItem: containerView, attribute: .centerY, multiplier: 1.0, constant: 0.0))
         
         // title & subtitle labels
-        constraints.append(NSLayoutConstraint(item: titleLabel, attribute: .CenterY, relatedBy: .Equal, toItem: containerView, attribute: .CenterY, multiplier: 1.0, constant: 1))
+        constraints.append(NSLayoutConstraint(item: titleLabel, attribute: .centerY, relatedBy: .equal, toItem: containerView, attribute: .centerY, multiplier: 1.0, constant: 1))
         return constraints
     }
     

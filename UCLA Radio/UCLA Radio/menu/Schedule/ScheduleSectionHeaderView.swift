@@ -22,8 +22,8 @@ class ScheduleSectionHeaderView: UITableViewHeaderFooterView {
         
         addSubview(label)
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.boldSystemFontOfSize(16)
-        label.textColor = UIColor.whiteColor()
+        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.textColor = UIColor.white
         
         addConstraints(preferredConstraints())
     }
@@ -32,7 +32,7 @@ class ScheduleSectionHeaderView: UITableViewHeaderFooterView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func styleForString(title: String) {
+    func styleForString(_ title: String) {
         label.text = title
     }
     
@@ -42,8 +42,8 @@ class ScheduleSectionHeaderView: UITableViewHeaderFooterView {
         var constraints: [NSLayoutConstraint] = []
         let views = ["label": label]
         
-        constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|[label]|", options: [], metrics: nil, views: views)
-        constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|-[label]-|", options: [], metrics: nil, views: views)
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[label]|", options: [], metrics: nil, views: views)
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-[label]-|", options: [], metrics: nil, views: views)
         
         return constraints
     }

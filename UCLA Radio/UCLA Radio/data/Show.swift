@@ -36,7 +36,7 @@ class Show {
         self.init(id: id, title: title, day: day, time: time, djs: djs, genre: nil, blurb: nil, picture: nil)
     }
     
-    static func showFromJSON(dict: NSDictionary) -> Show? {
+    static func showFromJSON(_ dict: NSDictionary) -> Show? {
         if let id = dict["id"] as? Int,
             let title = dict["title"] as? String,
             let day = dict["day"] as? String,
@@ -54,13 +54,13 @@ class Show {
             let newShow = Show(id: id, title: title, day: day, time: time, djs: djs)
             
             // optional properties
-            if let genre = dict["genre"] as? String where genre.characters.count > 0 {
+            if let genre = dict["genre"] as? String , genre.characters.count > 0 {
                 newShow.genre = genre
             }
-            if let blurb = dict["blurb"] as? String where blurb.characters.count > 0 {
+            if let blurb = dict["blurb"] as? String , blurb.characters.count > 0 {
                 newShow.blurb = blurb
             }
-            if let picture = dict["picture"] as? String where picture.characters.count > 0 {
+            if let picture = dict["picture"] as? String , picture.characters.count > 0 {
                 newShow.picture = picture
             }
             
@@ -69,17 +69,17 @@ class Show {
         return nil
     }
     
-    static func showsFromJSON(shows: NSArray) -> [Show] {
+    static func showsFromJSON(_ shows: NSArray) -> [Show] {
         var result: [Show] = []
-        for showObject: AnyObject in shows {
-            if let dict = showObject as? NSDictionary, show = showFromJSON(dict) {
+        for showObject: Any in shows {
+            if let dict = showObject as? NSDictionary, let show = showFromJSON(dict) {
                 result.append(show)
             }
         }
         return result
     }
     
-    static func makeDjsString(djs: [String]) -> String {
+    static func makeDjsString(_ djs: [String]) -> String {
         var result = ""
         var comma = false
         for dj: String in djs {

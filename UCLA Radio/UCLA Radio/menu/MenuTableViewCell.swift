@@ -17,13 +17,13 @@ class MenuTableViewCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        backgroundColor = UIColor.clearColor()
-        selectionStyle = .None
+        backgroundColor = UIColor.clear
+        selectionStyle = .none
         
         contentView.addSubview(containerView)
         containerView.translatesAutoresizingMaskIntoConstraints = false
         
-        label.textAlignment = .Center
+        label.textAlignment = .center
         label.font = UIFont(name: Constants.Fonts.title, size: 21)
         containerView.addSubview(label)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -40,11 +40,11 @@ class MenuTableViewCell: UITableViewCell {
         return 90.0
     }
     
-    func styleForMenuItem(item: MenuItem) {
+    func styleForMenuItem(_ item: MenuItem) {
         label.text = item.title
     }
     
-    override func setHighlighted(highlighted: Bool, animated: Bool) {
+    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         if highlighted {
             containerView.backgroundColor = Constants.Colors.lightBackgroundHighlighted
         } else {
@@ -52,22 +52,22 @@ class MenuTableViewCell: UITableViewCell {
         }
     }
     
-    private func preferredConstraints() -> [NSLayoutConstraint] {
+    fileprivate func preferredConstraints() -> [NSLayoutConstraint] {
         var constraints:[NSLayoutConstraint] = []
         let metrics = ["menu": Constants.Floats.menuOffset, "container": Constants.Floats.containerOffset]
         
-        constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|-(container)-[container]-(container)-|", options: [], metrics: metrics, views: ["container": containerView])
-        constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|-(menu)-[container]-(menu)-|", options: [], metrics: metrics, views: ["container": containerView])
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|-(container)-[container]-(container)-|", options: [], metrics: metrics, views: ["container": containerView])
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-(menu)-[container]-(menu)-|", options: [], metrics: metrics, views: ["container": containerView])
         
         return constraints
     }
     
-    private func preferredContainerConstraints() -> [NSLayoutConstraint] {
+    fileprivate func preferredContainerConstraints() -> [NSLayoutConstraint] {
         var constraints:[NSLayoutConstraint] = []
         let metrics = ["padding": Constants.Floats.containerOffset]
         
-        constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|[label]|", options: [], metrics: nil, views: ["label": label])
-        constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|-(padding)-[label]-(padding)-|", options: [], metrics: metrics, views: ["label": label])
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[label]|", options: [], metrics: nil, views: ["label": label])
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-(padding)-[label]-(padding)-|", options: [], metrics: metrics, views: ["label": label])
         
         return constraints
     }

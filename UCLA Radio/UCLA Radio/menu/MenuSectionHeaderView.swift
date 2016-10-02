@@ -16,9 +16,9 @@ class MenuSectionHeaderView: UITableViewHeaderFooterView {
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         
-        contentView.backgroundColor = UIColor.clearColor()
+        contentView.backgroundColor = UIColor.clear
         
-        imageView.contentMode = .ScaleAspectFit
+        imageView.contentMode = .scaleAspectFit
         addSubview(imageView)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -33,11 +33,11 @@ class MenuSectionHeaderView: UITableViewHeaderFooterView {
         return 80
     }
     
-    private func preferredConstraints() -> [NSLayoutConstraint] {
+    fileprivate func preferredConstraints() -> [NSLayoutConstraint] {
         var constraints = [NSLayoutConstraint]()
         
-        constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|[image]|", options: [], metrics: nil, views: ["image": imageView])
-        constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|-(padding)-[image]-(padding)-|", options: [], metrics: ["padding": Constants.Floats.menuOffset], views: ["image": imageView])
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[image]|", options: [], metrics: nil, views: ["image": imageView])
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-(padding)-[image]-(padding)-|", options: [], metrics: ["padding": Constants.Floats.menuOffset], views: ["image": imageView])
         
         return constraints
     }
