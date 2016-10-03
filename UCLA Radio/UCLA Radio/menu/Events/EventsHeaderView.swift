@@ -15,8 +15,9 @@ class EventsHeaderView: UITableViewHeaderFooterView {
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         
-        backgroundColor = UIColor.clear
+        contentView.backgroundColor = UIColor.clear
         
+        label.textAlignment = .center
         label.font = UIFont.boldSystemFont(ofSize: 30)
         addSubview(label)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -29,7 +30,7 @@ class EventsHeaderView: UITableViewHeaderFooterView {
     }
     
     func style(month: String) {
-        label.text = month.lowercased()
+        label.text = month.capitalized
     }
     
     // MARK: - Layout
@@ -42,7 +43,7 @@ class EventsHeaderView: UITableViewHeaderFooterView {
         var constraints = [NSLayoutConstraint]()
         
         constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:[label]|", options: [], metrics: nil, views: ["label": label])
-        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-(40)-[label]|", options: [], metrics: nil, views: ["label": label])
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|[label]|", options: [], metrics: nil, views: ["label": label])
         
         return constraints
     }

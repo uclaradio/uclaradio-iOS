@@ -22,13 +22,12 @@ class ContainerViewController: UIViewController, NowPlayingActionDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let menuVC = MenuViewController()
-        rootNavController = UINavigationController(rootViewController: menuVC)
+        let menu = MenuViewController()
+        rootNavController = UINavigationController(rootViewController: menu)
         view.addSubview(rootNavController.view)
         addChildViewController(rootNavController)
         rootNavController.didMove(toParentViewController: self)
         rootNavController.view.translatesAutoresizingMaskIntoConstraints = false
-        rootNavController.view.frame.size = CGSize(width: rootNavController.view.frame.width, height: rootNavController.view.frame.size.height - NowPlayingView.PreferredHeight)
         rootNavController.view.backgroundColor = Constants.Colors.lightPink
         rootNavController.navigationBar.barTintColor = Constants.Colors.darkPink
         // back button color
@@ -37,6 +36,8 @@ class ContainerViewController: UIViewController, NowPlayingActionDelegate {
         rootNavController.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont.boldSystemFont(ofSize: 21)]
         
         installNowPlayingSlider()
+        
+        view.addConstraints(preferredConstraints())
     }
     
     func installNowPlayingSlider() {
@@ -87,6 +88,18 @@ class ContainerViewController: UIViewController, NowPlayingActionDelegate {
                 })
             }
         }
+    }
+    
+    // MARK: - Layout
+    
+    func preferredConstraints() -> [NSLayoutConstraint] {
+        var constraints = [NSLayoutConstraint]()
+        
+        let metrics = ["tabSpace": NowPlayingView.PreferredHeight]
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[nav]-(tabSpace)-|", options: [], metrics: metrics, views: ["nav": rootNavController.view])
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|[nav]|", options: [], metrics: nil, views: ["nav": rootNavController.view])
+        
+        return constraints
     }
     
 }

@@ -34,6 +34,7 @@ class GiveawayTableViewCell: UITableViewCell {
         containerView.addSubview(dateLabel)
         dateLabel.translatesAutoresizingMaskIntoConstraints = false
         
+        summaryLabel.font = UIFont.systemFont(ofSize: 18)
         summaryLabel.numberOfLines = 2
         summaryLabel.textAlignment = .center
         containerView.addSubview(summaryLabel)
@@ -59,13 +60,11 @@ class GiveawayTableViewCell: UITableViewCell {
     
     func styleForGiveaway(_ giveaway: Giveaway, infoToggled: Bool) {
         if infoToggled {
-            summaryLabel.text = "Ticket Giveaway"
-            summaryLabel.font = UIFont.systemFont(ofSize: 21)
+            summaryLabel.text = "On-Air Ticket Giveaway"
             dateLabel.text = ""
             containerView.backgroundColor = Constants.Colors.darkBlue.withAlphaComponent(0.5)
         } else {
             summaryLabel.text = giveaway.summary
-            summaryLabel.font = UIFont.systemFont(ofSize: 18)
             dateLabel.text = giveaway.date
             containerView.backgroundColor = UIColor.clear
         }

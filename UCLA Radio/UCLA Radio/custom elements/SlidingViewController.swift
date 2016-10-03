@@ -167,7 +167,7 @@ class SlidingViewController: UIViewController {
         case .changed:
             if let relativeYPosition = initialRelativeYPosition {
                 let MinimumYPosition = -tabView!.frame.size.height
-                let MaximumYPosition = 15 + -tabView!.frame.size.height + contentViewController!.view.frame.size.height
+                let MaximumYPosition = -tabView!.frame.size.height + contentViewController!.view.frame.size.height
                 let touchYPosition = touchLocation.y - relativeYPosition
                 let newYPosition: CGFloat = max(MinimumYPosition, min(MaximumYPosition, touchYPosition))
                 view.frame.origin = CGPoint(x: 0, y: newYPosition)
@@ -180,7 +180,9 @@ class SlidingViewController: UIViewController {
                 self.contentViewController?.view.backgroundColor = newColor
             }
         default:
-            let shouldOpen = touchLocation.y < view.frame.size.height/2 || gesture.velocity(in: view?.superview).y < -300
+            let upperHalfOfScreen = touchLocation.y < view.frame.size.height/2
+            let dragUp = gesture.velocity(in: view?.superview).y < -300
+            let shouldOpen = upperHalfOfScreen || dragUp
             updatePosition((shouldOpen ? .open : .closed), animated: true)
             initialRelativeYPosition = nil
         }
