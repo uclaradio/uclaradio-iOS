@@ -49,9 +49,11 @@ class ShowViewController: BaseViewController {
         titleLabel.text = show.title
         djsLabel.text = show.djString
         
-        imageView.image = UIImage(named: "radio")
+        let placeholder = UIImage(named: "radio")
         if let picture = show.picture {
-            imageView.sd_setImage(with: RadioAPI.absoluteURL(picture))
+            imageView.sd_setImage(with: RadioAPI.absoluteURL(picture), placeholderImage: placeholder)
+        } else {
+            imageView.image = placeholder
         }
         
         genreLabel.text = ""

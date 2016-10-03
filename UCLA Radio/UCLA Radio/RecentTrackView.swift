@@ -11,6 +11,9 @@ import SDWebImage
 
 class RecentTrackView: UIView {
     
+    var track: RecentTrack?
+    fileprivate var tapGesture: UITapGestureRecognizer?
+    
     var imageView: UIImageView!
     var title: UILabel!
     var subtitle: UILabel!
@@ -34,6 +37,9 @@ class RecentTrackView: UIView {
         addSubview(title)
         addSubview(subtitle)
         addConstraints(preferredConstraints())
+        
+        tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTap))
+        addGestureRecognizer(tapGesture!)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -49,6 +55,7 @@ class RecentTrackView: UIView {
         }
         title.text = track.title
         subtitle.text = track.artist
+        self.track = track
     }
     
     func preferredConstraints() -> [NSLayoutConstraint] {
@@ -60,4 +67,14 @@ class RecentTrackView: UIView {
         constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-[subtitle]-|", options: [], metrics: nil, views: views)
         return constraints
     }
+    
+    // Actions
+    
+    func didTap(_ tapGesture: UITapGestureRecognizer) {
+        if let track = track,
+            let url = NSURL(string: track.url) as? URL {
+            UIApplication.shared.openURL(url)
+        }
+    }
+    
 }

@@ -12,12 +12,14 @@ import Alamofire
 struct RecentTrack {
     let title: String
     let artist: String
+    let url: String
     // image data might not be supplied
     var image: String?
     
-    init(title: String, artist: String) {
+    init(title: String, artist: String, url: String) {
         self.title = title
         self.artist = artist
+        self.url = url
     }
 }
 
@@ -89,15 +91,18 @@ class HistoryFetcher {
         if (replace) {
             recentTracks = []
         }
-        for dataObject: Any in tracks
-        {
-            if let track = dataObject as? NSDictionary, let artistInfo = track["artist"] as? NSDictionary, let imageInfo = track["image"] as? [NSDictionary]
+        for dataObject: Any in tracks {
+            if let track = dataObject as? NSDictionary,
+                let artistInfo = track["artist"] as? NSDictionary,
+                let imageInfo = track["image"] as? [NSDictionary]
             {
-                if let title = track["name"] as? String, let artist = artistInfo["#text"] as? String{
-                    var newTrack = RecentTrack(title: title, artist: artist)
+                if let title = track["name"] as? String,
+                    let artist = artistInfo["#text"] as? String,
+                    let url = track["url"] as? String {
+                    var newTrack = RecentTrack(title: title, artist: artist, url: url)
                     // image data not available for all tracks
                     let medium = imageInfo[2]
-                    if let image = medium["#text"] as? String , image.characters.count > 0 {
+                    if let image = medium["#text"] as? String, image.characters.count > 0 {
                         newTrack.image = image
                     }
                     //print("\(title) by \(artist)")

@@ -21,8 +21,8 @@ class GiveawayTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         backgroundColor = UIColor.clear
+        selectionStyle = .none
         
-        containerView.backgroundColor = UIColor.clear
         containerView.layer.borderWidth = 2.0
         containerView.layer.borderColor = UIColor.black.cgColor
         containerView.clipsToBounds = true
@@ -55,10 +55,31 @@ class GiveawayTableViewCell: UITableViewCell {
         return 80.0
     }
     
-    func styleForGiveaway(_ giveaway: Giveaway) {
-        summaryLabel.text = "TICKET GIVEAWAY: " + giveaway.summary
-        dateLabel.text = giveaway.date
+    // MARK: - Layout
+    
+    func styleForGiveaway(_ giveaway: Giveaway, infoToggled: Bool) {
+        if infoToggled {
+            summaryLabel.text = "Ticket Giveaway"
+            summaryLabel.font = UIFont.systemFont(ofSize: 21)
+            dateLabel.text = ""
+            containerView.backgroundColor = Constants.Colors.darkBlue.withAlphaComponent(0.5)
+        } else {
+            summaryLabel.text = giveaway.summary
+            summaryLabel.font = UIFont.systemFont(ofSize: 18)
+            dateLabel.text = giveaway.date
+            containerView.backgroundColor = UIColor.clear
+        }
     }
+    
+    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+        if highlighted {
+            containerView.backgroundColor = Constants.Colors.darkBlue
+        } else {
+            containerView.backgroundColor = UIColor.clear
+        }
+    }
+    
+    // MARK: - Layout
     
     func preferredConstraints() -> [NSLayoutConstraint] {
         var constraints = [NSLayoutConstraint]()

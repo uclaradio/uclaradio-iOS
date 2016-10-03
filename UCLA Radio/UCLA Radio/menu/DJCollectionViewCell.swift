@@ -24,7 +24,7 @@ class DJCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        contentView.backgroundColor = Constants.Colors.lightBackground
+        contentView.backgroundColor = UIColor.clear
         
         contentView.addSubview(imageView)
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -50,12 +50,10 @@ class DJCollectionViewCell: UICollectionViewCell {
     }
     
     func styleFromDJ(_ dj: DJ) {
-        nameLabel.text = ""
         imageView.image = placeholder
         imageView.sd_cancelCurrentImageLoad()
-        if let name = dj.djName {
-            nameLabel.text = name
-        }
+
+        nameLabel.text = dj.djName ?? dj.fullName ?? dj.username
         
         if let picture = dj.picture {
             imageView.sd_setImage(with: RadioAPI.absoluteURL(picture), placeholderImage: placeholder)

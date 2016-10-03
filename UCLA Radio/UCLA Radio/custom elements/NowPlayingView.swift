@@ -45,7 +45,7 @@ class NowPlayingView: SliderTabView {
         titleLabel = UILabel()
         titleLabel.textColor = UIColor.white
         titleLabel.textAlignment = .center
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 17)
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
         titleLabel.numberOfLines = 2
         titleLabel.isUserInteractionEnabled = false
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -91,7 +91,7 @@ class NowPlayingView: SliderTabView {
         resetConstraints()
     }
     
-    // Actions
+    // MARK: - Actions
     
     func hitPlay(_ button: UIButton) {
         AudioStream.sharedInstance.togglePlay()
@@ -101,7 +101,7 @@ class NowPlayingView: SliderTabView {
         AudioStream.sharedInstance.skipToLive()
     }
     
-    // Notifications
+    // MARK: - Notifications
     
     func streamUpdated(_ notification: Notification) {
         styleFromStream()
@@ -129,7 +129,7 @@ class NowPlayingView: SliderTabView {
         }
     }
     
-    // Layout
+    // MARK: - Layout
     
     func resetConstraints() {
         if let constraints = containerConstraintsInstalled {

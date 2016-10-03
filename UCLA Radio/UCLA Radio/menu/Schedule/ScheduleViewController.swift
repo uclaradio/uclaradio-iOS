@@ -33,12 +33,8 @@ class ScheduleViewController: BaseViewController, APIFetchDelegate, UITableViewD
         tableView.backgroundColor = UIColor.clear
         
         view.addConstraints(preferredConstraints())
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+        
         RadioAPI.fetchSchedule(self)
-        scrollToToday()
     }
     
     func today() -> Int {

@@ -85,10 +85,10 @@ class NowPlayingViewController: UIViewController, HistoryFetchDelegate {
         // for smaller screens (iPhone 5)
         containerView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[controls]-(>=8)-[recent]", options: [], metrics: nil, views: ["controls": controlsParentView, "recent": recentlyPlayed]))
         
-        tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTap))
         imageView.isUserInteractionEnabled = true
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
+        tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTap))
         imageView.addGestureRecognizer(tapGesture!)
     }
     

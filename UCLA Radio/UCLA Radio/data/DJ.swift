@@ -28,7 +28,7 @@ class DJ {
     static func djsFromJSON(_ djsArray: NSArray) -> [DJ] {
         var result: [DJ] = []
         for djObject: Any in djsArray {
-            if let dj = djObject as? NSDictionary, let username = dj["username"] as? String, let djName = dj["djName"] as? String {
+            if let dj = djObject as? NSDictionary, let username = dj["username"] as? String, let djName = dj["djName"] as? String, djName.characters.count > 0 {
                 let newDJ = DJ(username: username, djName: djName)
                 
                 // optional properties

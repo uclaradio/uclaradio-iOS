@@ -16,8 +16,10 @@ class EventsViewController: BaseViewController, APIFetchDelegate, UITableViewDat
     static let storyboardID = "eventsViewController"
     
     fileprivate let reuseIdentifier = "GiveawayCell"
+    fileprivate let headerReuseIdentifier = "GiveawayHeaderView"
     
     var events: [String: [Giveaway]]?
+    private var expandedCellIndex = -1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +33,7 @@ class EventsViewController: BaseViewController, APIFetchDelegate, UITableViewDat
         tableView.delegate = self
         tableView.separatorStyle = .none
         tableView.register(GiveawayTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
+        tableView.register(EventsHeaderView.self, forHeaderFooterViewReuseIdentifier: headerReuseIdentifier)
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -47,6 +50,7 @@ class EventsViewController: BaseViewController, APIFetchDelegate, UITableViewDat
     func cachedDataAvailable(_ data: Any) {
         if let data = data as? [String: [Giveaway]] {
             events = data
+            expandedCellIndex = -1
             tableView.reloadData()
         }
     }
@@ -54,6 +58,7 @@ class EventsViewController: BaseViewController, APIFetchDelegate, UITableViewDat
     func didFetchData(_ data: Any) {
         if let data = data as? [String: [Giveaway]] {
             events = data
+            expandedCellIndex = -1
             tableView.reloadData()
         }
     }
@@ -80,17 +85,11 @@ class EventsViewController: BaseViewController, APIFetchDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
-        cell.selectionStyle = .none
-        return cell
+        return tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if let events = events {
-            let months = [String](events.keys)
-            return months[section]
-        }
-        return nil
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return tableView.dequeueReusableHeaderFooterView(withIdentifier: headerReuseIdentifier)
     }
     
     // MARK: - UITableViewDelegate
@@ -99,21 +98,42 @@ class EventsViewController: BaseViewController, APIFetchDelegate, UITableViewDat
         return GiveawayTableViewCell.preferredHeight()
     }
     
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return EventsHeaderView.preferredHeight()
+    }
+    
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if let events = events {
             let months = [String](events.keys)
             if let event = events[months[(indexPath as NSIndexPath).section]]?[(indexPath as NSIndexPath).row],
                 let giveawayCell = cell as? GiveawayTableViewCell {
                 
-                giveawayCell.styleForGiveaway(event)
+                giveawayCell.styleForGiveaway(event, infoToggled: (indexPath.row == expandedCellIndex))
             }
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        if let events = events,
+            let view = view as? EventsHeaderView {
+            let months = [String](events.keys)
+            view.style(month: months[section])
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        // TO DO
+        var reloadIndexPaths = [indexPath] as [IndexPath]
+        if indexPath.row != expandedCellIndex {
+            if expandedCellIndex >= 0 {
+                reloadIndexPaths.append(IndexPath(row: expandedCellIndex, section: 0))
+            }
+            expandedCellIndex = indexPath.row
+        } else {
+            expandedCellIndex = -1
+        }
+        tableView.reloadRows(at: reloadIndexPaths, with: .none)
     }
     
     // MARK: - Layout

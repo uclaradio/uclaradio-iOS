@@ -71,7 +71,7 @@ class ContainerViewController: UIViewController, NowPlayingActionDelegate {
     
     func didTapShow(_ show: Show?) {
         slider.updatePosition(.closed, animated: true)
-        if let show = show {
+        if let show = show, show.picture != nil {
             if let showVC = rootNavController.visibleViewController as? ShowViewController, let presentedShow = showVC.show {
                 if (show.id == presentedShow.id) {
                     // don't push the show's view controller if it's already up
