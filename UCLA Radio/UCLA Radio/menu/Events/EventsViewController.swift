@@ -19,7 +19,7 @@ class EventsViewController: BaseViewController, APIFetchDelegate, UITableViewDat
     fileprivate let headerReuseIdentifier = "GiveawayHeaderView"
     
     var events: [String: [Giveaway]]?
-    private var expandedCellIndex = -1
+    private var expandedCellIndex: IndexPath?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,7 +50,7 @@ class EventsViewController: BaseViewController, APIFetchDelegate, UITableViewDat
     func cachedDataAvailable(_ data: Any) {
         if let data = data as? [String: [Giveaway]] {
             events = data
-            expandedCellIndex = -1
+            expandedCellIndex = nil
             tableView.reloadData()
         }
     }
@@ -58,7 +58,7 @@ class EventsViewController: BaseViewController, APIFetchDelegate, UITableViewDat
     func didFetchData(_ data: Any) {
         if let data = data as? [String: [Giveaway]] {
             events = data
-            expandedCellIndex = -1
+            expandedCellIndex = nil
             tableView.reloadData()
         }
     }
@@ -108,7 +108,7 @@ class EventsViewController: BaseViewController, APIFetchDelegate, UITableViewDat
             if let event = events[months[(indexPath as NSIndexPath).section]]?[(indexPath as NSIndexPath).row],
                 let giveawayCell = cell as? GiveawayTableViewCell {
                 
-                giveawayCell.styleForGiveaway(event, infoToggled: (indexPath.row == expandedCellIndex))
+                giveawayCell.styleForGiveaway(event, infoToggled: (indexPath == expandedCellIndex))
             }
         }
     }
@@ -125,13 +125,13 @@ class EventsViewController: BaseViewController, APIFetchDelegate, UITableViewDat
         tableView.deselectRow(at: indexPath, animated: true)
         
         var reloadIndexPaths = [indexPath] as [IndexPath]
-        if indexPath.row != expandedCellIndex {
-            if expandedCellIndex >= 0 {
-                reloadIndexPaths.append(IndexPath(row: expandedCellIndex, section: 0))
+        if indexPath != expandedCellIndex {
+            if let expandedCellIndex = expandedCellIndex {
+                reloadIndexPaths.append(expandedCellIndex)
             }
-            expandedCellIndex = indexPath.row
+            expandedCellIndex = indexPath
         } else {
-            expandedCellIndex = -1
+            expandedCellIndex = nil
         }
         tableView.reloadRows(at: reloadIndexPaths, with: .none)
     }

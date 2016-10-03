@@ -21,44 +21,41 @@ class ScheduleShowCell: UITableViewCell {
     let timeLabel = UILabel()
     let genreLabel = UILabel()
     let djsLabel = UILabel()
-    let blurbImageView = UIImageView()
     
     fileprivate var installedConstraints: [NSLayoutConstraint]?
-    fileprivate var installedContainerConstraints: [NSLayoutConstraint]?
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        self.backgroundColor = UIColor.clear
+        backgroundColor = UIColor.clear
+        selectionStyle = .none
         
         contentView.addSubview(containerView)
         containerView.translatesAutoresizingMaskIntoConstraints = false
         containerView.backgroundColor = Constants.Colors.lightBackground
         
+        titleLabel.textAlignment = .center
+        titleLabel.font = UIFont.systemFont(ofSize: 21)
         containerView.addSubview(titleLabel)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.font = UIFont.systemFont(ofSize: 21)
         
-        containerView.addSubview(timeLabel)
         timeLabel.font = UIFont.boldSystemFont(ofSize: 14)
         timeLabel.textColor = UIColor.lightGray
+        containerView.addSubview(timeLabel)
         timeLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        containerView.addSubview(genreLabel)
         genreLabel.font = UIFont.systemFont(ofSize: 14)
         genreLabel.textColor = UIColor.darkGray
         genreLabel.textAlignment = .right
+        containerView.addSubview(genreLabel)
         genreLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        containerView.addSubview(djsLabel)
         djsLabel.font = UIFont.systemFont(ofSize: 16)
         djsLabel.textColor = UIColor.darkGray
+        containerView.addSubview(djsLabel)
         djsLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        containerView.addSubview(blurbImageView)
-        blurbImageView.translatesAutoresizingMaskIntoConstraints = false
-        blurbImageView.contentMode = .scaleAspectFill
-        blurbImageView.clipsToBounds = true
+        containerView.addConstraints(containerConstraints())
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -69,19 +66,11 @@ class ScheduleShowCell: UITableViewCell {
         timeLabel.text = show.time
         titleLabel.text = show.title
         djsLabel.text = show.djString
-        blurbImageView.sd_cancelCurrentImageLoad()
         
         if let genre = show.genre {
             genreLabel.text = genre
         } else {
             genreLabel.text = ""
-        }
-        
-        let placeholder = UIImage(named: "radio")
-        if let picture = show.picture {
-            blurbImageView.sd_setImage(with: RadioAPI.absoluteURL(picture), placeholderImage: placeholder)
-        } else {
-            blurbImageView.image = placeholder
         }
         
         // update constraints
@@ -90,20 +79,16 @@ class ScheduleShowCell: UITableViewCell {
         }
         installedConstraints = preferredConstraints()
         contentView.addConstraints(installedConstraints!)
-        
-        if let installedContainerConstraints = installedContainerConstraints {
-            containerView.removeConstraints(installedContainerConstraints)
-        }
-        installedContainerConstraints = containerConstraints()
-        containerView.addConstraints(installedContainerConstraints!)
     }
     
     // MARK: - Layout
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        UIView.animate(withDuration: 0.5, animations: { 
-            self.containerView.alpha = selected ? 0.5 : 1.0
-        }) 
+    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+        if highlighted {
+            containerView.backgroundColor = Constants.Colors.lightBackgroundAltHighlighted
+        } else {
+            containerView.backgroundColor = Constants.Colors.lightBackground
+        }
     }
     
     static func preferredHeight(_ addBottomPadding: Bool) -> CGFloat {
@@ -124,7 +109,7 @@ class ScheduleShowCell: UITableViewCell {
     func containerConstraints() -> [NSLayoutConstraint] {
         var constraints: [NSLayoutConstraint] = []
         
-        let views = ["time": timeLabel, "title": titleLabel, "image": blurbImageView, "genre": genreLabel, "djs": djsLabel]
+        let views = ["time": timeLabel, "title": titleLabel, "genre": genreLabel, "djs": djsLabel]
         let imageSize = (ScheduleShowCell.height - 2*Constants.Floats.containerOffset)
         let metrics = ["imageSize": imageSize, "bump": 5, "indent": 23]
         
@@ -133,11 +118,9 @@ class ScheduleShowCell: UITableViewCell {
         constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:[djs]-(bump)-|", options: [], metrics: metrics, views: views)
         constraints.append(NSLayoutConstraint(item: titleLabel, attribute: .centerY, relatedBy: .equal, toItem: containerView, attribute: .centerY, multiplier: 1.0, constant: 0.0))
         
-        // with picture on right
-        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[image]|", options: [], metrics: metrics, views: views)
-        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-(indent)-[title]-(indent)-[image(imageSize)]|", options: [], metrics: metrics, views: views)
-        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-[time]-(>=15)-[genre]-[image(imageSize)]|", options: [], metrics: metrics, views: views)
-        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-[djs]-[image]", options: [], metrics: metrics, views: views)
+        constraints += NSLayoutConstraint.constraints(withVisualFormat:"H:|-(indent)-[title]-(indent)-|", options: [], metrics: metrics, views: views)
+        constraints += NSLayoutConstraint.constraints(withVisualFormat:"H:|-[time]-(>=15)-[genre]-|", options: [], metrics: metrics, views: views)
+        constraints += NSLayoutConstraint.constraints(withVisualFormat:"H:|-[djs]-|", options: [], metrics: metrics, views: views)
         
         return constraints
     }

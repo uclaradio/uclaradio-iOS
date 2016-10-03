@@ -139,9 +139,9 @@ class ScheduleViewController: BaseViewController, APIFetchDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
-        cell.selectionStyle = .none
         if let cell = cell as? ScheduleShowCell {
-            cell.addBottomPadding = ((indexPath as NSIndexPath).row == self.tableView(tableView, numberOfRowsInSection: (indexPath as NSIndexPath).section) - 1)
+            let lastRowInSection = ((indexPath as NSIndexPath).row == self.tableView(tableView, numberOfRowsInSection: (indexPath as NSIndexPath).section) - 1)
+            cell.addBottomPadding = lastRowInSection
         }
         return cell
     }

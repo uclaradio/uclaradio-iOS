@@ -20,6 +20,7 @@ struct Constants {
         static let reallyDarkPink = UIColor(hex: 0xc51b8a)
         static let lightBackground = UIColor.white.withAlphaComponent(0.85)
         static let lightBackgroundHighlighted = UIColor.white
+        static let lightBackgroundAltHighlighted = darkPink.withAlphaComponent(0.5)
         static let darkBackground = UIColor.black.withAlphaComponent(0.85)
     }
     
