@@ -11,8 +11,8 @@ import UIKit
 import KRLCollectionViewGridLayout
 
 private let reuseIdentifier = "DJCell"
-private let sectionInset: CGFloat = 25
-private let itemSpacing: CGFloat = 15
+private let sectionInset: CGFloat = 8
+private let itemSpacing: CGFloat = 8
 
 class DJListViewController: BaseViewController, APIFetchDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
     

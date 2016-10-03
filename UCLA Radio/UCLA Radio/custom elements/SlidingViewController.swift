@@ -17,6 +17,7 @@ import DynamicColor
 
 @objc protocol SlidingVCDelegate {
     weak var slider: SlidingViewController? { get set }
+    func positionUpdated(_ position: SlidingViewControllerPosition)
 }
 
 class SliderTabView: UIView {
@@ -42,6 +43,7 @@ class SlidingViewController: UIViewController {
     fileprivate var contentYPositionContraint: NSLayoutConstraint?
     fileprivate var contentHeightPositionContraint: NSLayoutConstraint?
     fileprivate var initialRelativeYPosition: CGFloat?
+    fileprivate var initialAbsoluteYPosition: CGFloat?
     fileprivate var initialContentBackgroundColor: UIColor?
     
     init () {
@@ -141,7 +143,7 @@ class SlidingViewController: UIViewController {
         }
         view.superview?.setNeedsLayout()
         self.position = position
-//        sliderDelegate?.positionUpdated(position)
+        self.sliderDelegate?.positionUpdated(position)
         
         let alpha: CGFloat = (position == .closed) ? 1.0 : 0.0
         let newColor = (position == .closed) ? UIColor.black : initialContentBackgroundColor
@@ -160,6 +162,9 @@ class SlidingViewController: UIViewController {
         if initialRelativeYPosition == nil {
             initialRelativeYPosition = gesture.location(in: view).y
         }
+        if initialAbsoluteYPosition == nil {
+            initialAbsoluteYPosition = touchLocation.y
+        }
         
         switch(gesture.state) {
         case .began:
@@ -176,20 +181,28 @@ class SlidingViewController: UIViewController {
 //                sliderDelegate?.openPercentageChanged(openPercentage)
                 tabView?.alpha = 0.3 + 0.7*(1.0 - openPercentage)
                 let newColor = UIColor.black.mixed(withColor: initialContentBackgroundColor ?? Constants.Colors.darkBlue, weight: openPercentage)
-//                self.tabView?.backgroundColor = newColor
                 self.contentViewController?.view.backgroundColor = newColor
             }
         default:
-            let upperHalfOfScreen = touchLocation.y < view.frame.size.height/2
-            let dragUp = gesture.velocity(in: view?.superview).y < -300
-            let shouldOpen = upperHalfOfScreen || dragUp
-            updatePosition((shouldOpen ? .open : .closed), animated: true)
+            if position == .closed {
+                // check if should open
+                let draggedUp = initialAbsoluteYPosition! - touchLocation.y > 50
+                let highVelocity = gesture.velocity(in: view?.superview).y < -300
+                updatePosition((draggedUp || highVelocity ? .open : .closed), animated: true)
+            } else {
+                // check if should close
+                let draggedDown = touchLocation.y - initialAbsoluteYPosition! > 50
+                let highVelocity = gesture.velocity(in: view?.superview).y > 300
+                updatePosition((draggedDown || highVelocity ? .closed : .open), animated: true)
+            }
             initialRelativeYPosition = nil
+            initialAbsoluteYPosition = nil
         }
     }
     
     func didTap(_ gesture: UITapGestureRecognizer) {
         initialRelativeYPosition = nil
+        initialAbsoluteYPosition = nil
         updatePosition((position == .closed) ? .open : .closed, animated: true)
     }
 }

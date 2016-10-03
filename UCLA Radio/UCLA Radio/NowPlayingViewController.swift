@@ -14,15 +14,17 @@ protocol NowPlayingActionDelegate {
     func didTapShow(_ show: Show?)
 }
 
-class NowPlayingViewController: UIViewController, HistoryFetchDelegate {
+class NowPlayingViewController: UIViewController, HistoryFetchDelegate, SlidingVCDelegate {
 
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var controlsParentView: UIView!
+    @IBOutlet weak var pullTabImageView: UIImageView!
     
     var nowPlayingView: NowPlayingView!
     var recentlyPlayedLabel: UILabel!
     var recentlyPlayed: ASHorizontalScrollView!
+    weak var sliderDelegate: SlidingVCDelegate?
     
     var actionDelegate: NowPlayingActionDelegate?
     fileprivate var nowPlaying: Show?
@@ -80,7 +82,7 @@ class NowPlayingViewController: UIViewController, HistoryFetchDelegate {
         
         containerView.addSubview(recentlyPlayed)
         recentlyPlayed.translatesAutoresizingMaskIntoConstraints = false
-        containerView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[controls]-(>=15)-[recentLabel(15)]-(5)-[recent(trackHeight@999)]-(30@998,>=8)-|", options: [], metrics: ["trackHeight": recentTrackSize.height], views: ["controls": controlsParentView, "recent": recentlyPlayed, "recentLabel": recentlyPlayedLabel]))
+        containerView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[controls]-(>=15)-[recentLabel(15)]-(5)-[recent(trackHeight)]-(30@998,>=8)-|", options: [], metrics: ["trackHeight": recentTrackSize.height], views: ["controls": controlsParentView, "recent": recentlyPlayed, "recentLabel": recentlyPlayedLabel]))
         containerView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[recent]|", options: [], metrics: nil, views: ["recent": recentlyPlayed]))
         // for smaller screens (iPhone 5)
         containerView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[controls]-(>=8)-[recent]", options: [], metrics: nil, views: ["controls": controlsParentView, "recent": recentlyPlayed]))
@@ -90,6 +92,13 @@ class NowPlayingViewController: UIViewController, HistoryFetchDelegate {
         imageView.clipsToBounds = true
         tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTap))
         imageView.addGestureRecognizer(tapGesture!)
+        
+        // pull tab
+        pullTabImageView.image = UIImage(named: "pull_tab")
+        pullTabImageView.isUserInteractionEnabled = true
+        pullTabImageView.tintColor = UIColor.white
+        let pullTabTap = UITapGestureRecognizer(target: self, action: #selector(didTapPullTab))
+        pullTabImageView.addGestureRecognizer(pullTabTap)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -149,6 +158,22 @@ class NowPlayingViewController: UIViewController, HistoryFetchDelegate {
     
     func didTap(_ gesture: UITapGestureRecognizer) {
         actionDelegate?.didTapShow(nowPlaying)
+    }
+    
+    func didTapPullTab(_ gesture: UITapGestureRecognizer) {
+        actionDelegate?.didTapShow(nil)
+    }
+    
+    // MARK: - SlidingVCDelegate
+    
+    func positionUpdated(_ position: SlidingViewControllerPosition) {
+        if let slider = slider {
+            if (slider.position == .closed) {
+                pullTabImageView.transform = CGAffineTransform(rotationAngle: (180.0 * CGFloat(M_PI)) / 180.0)
+            } else {
+                pullTabImageView.transform = CGAffineTransform.identity
+            }
+        }
     }
     
     // MARK: - Radio APIFetchDelegate

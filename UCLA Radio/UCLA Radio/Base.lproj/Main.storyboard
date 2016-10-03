@@ -278,6 +278,11 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4dO-ik-ILl">
                                 <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pull_tab" translatesAutoresizingMaskIntoConstraints="NO" id="0Oj-Wf-kJL">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="11" id="G3H-x0-WX0"/>
+                                        </constraints>
+                                    </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AEg-ei-x8z">
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="AEg-ei-x8z" secondAttribute="height" multiplier="1:1" id="ncc-B7-WDO"/>
@@ -292,9 +297,12 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstItem="0Oj-Wf-kJL" firstAttribute="width" secondItem="4dO-ik-ILl" secondAttribute="width" constant="-40" id="3tw-KC-gSD"/>
+                                    <constraint firstItem="0Oj-Wf-kJL" firstAttribute="centerX" secondItem="4dO-ik-ILl" secondAttribute="centerX" id="HXv-QI-X8T"/>
                                     <constraint firstItem="AEg-ei-x8z" firstAttribute="centerX" secondItem="4dO-ik-ILl" secondAttribute="centerX" id="Lcg-MG-hZo"/>
-                                    <constraint firstItem="AEg-ei-x8z" firstAttribute="top" secondItem="4dO-ik-ILl" secondAttribute="top" constant="30" id="Tny-In-56t"/>
-                                    <constraint firstItem="AEg-ei-x8z" firstAttribute="width" secondItem="4dO-ik-ILl" secondAttribute="width" constant="-40" id="ZR7-5p-K6E"/>
+                                    <constraint firstItem="AEg-ei-x8z" firstAttribute="top" secondItem="4dO-ik-ILl" secondAttribute="top" constant="47" id="Tny-In-56t"/>
+                                    <constraint firstItem="0Oj-Wf-kJL" firstAttribute="top" secondItem="4dO-ik-ILl" secondAttribute="top" constant="28" id="YQ8-hK-Y7I"/>
+                                    <constraint firstItem="AEg-ei-x8z" firstAttribute="width" secondItem="4dO-ik-ILl" secondAttribute="width" priority="999" constant="-40" id="ZR7-5p-K6E"/>
                                     <constraint firstItem="9GG-Ph-86M" firstAttribute="width" secondItem="4dO-ik-ILl" secondAttribute="width" id="bUJ-W7-nBd"/>
                                     <constraint firstItem="9GG-Ph-86M" firstAttribute="centerX" secondItem="4dO-ik-ILl" secondAttribute="centerX" id="fHY-ib-YGh"/>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="400" id="lae-oB-thT"/>
@@ -314,6 +322,7 @@
                         <outlet property="containerView" destination="4dO-ik-ILl" id="cmE-fo-GdR"/>
                         <outlet property="controlsParentView" destination="9GG-Ph-86M" id="nzF-Wu-aPV"/>
                         <outlet property="imageView" destination="AEg-ei-x8z" id="Gk6-Nl-oU4"/>
+                        <outlet property="pullTabImageView" destination="0Oj-Wf-kJL" id="att-US-XXl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -440,6 +449,7 @@
     <resources>
         <image name="facebook" width="57" height="57"/>
         <image name="instagram" width="120" height="120"/>
+        <image name="pull_tab" width="36" height="11"/>
         <image name="tumblr" width="167" height="167"/>
         <image name="twitter" width="57" height="57"/>
     </resources>

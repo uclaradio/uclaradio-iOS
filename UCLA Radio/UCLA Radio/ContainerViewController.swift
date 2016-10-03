@@ -60,7 +60,7 @@ class ContainerViewController: UIViewController, NowPlayingActionDelegate {
             // set up slider tab (NowPlayingView)
             let tabView = NowPlayingView(canSkipStream: false)
             slider.addTabView(tabView)
-            tabView.backgroundColor = Constants.Colors.darkBackground
+            tabView.backgroundColor = UIColor.black
         }
     }
     

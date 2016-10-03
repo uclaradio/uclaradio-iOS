@@ -65,7 +65,7 @@ class ScheduleShowCell: UITableViewCell {
     func styleFromShow(_ show: Show) {
         timeLabel.text = show.time
         titleLabel.text = show.title
-        djsLabel.text = show.djString
+//        djsLabel.text = show.djString
         
         if let genre = show.genre {
             genreLabel.text = genre
