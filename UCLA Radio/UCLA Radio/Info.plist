@@ -19,7 +19,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>2</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>instagram</string>
@@ -60,6 +60,8 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSHumanReadableCopyright</key>
+	<string>Copyright © UCLA Radio. All rights reserved.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Typo_Round_Bold_Demo.otf</string>
@@ -81,7 +83,5 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
-	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © UCLA Radio. All rights reserved.</string>
 </dict>
 </plist>

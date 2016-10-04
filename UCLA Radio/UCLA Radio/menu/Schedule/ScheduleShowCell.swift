@@ -21,8 +21,10 @@ class ScheduleShowCell: UITableViewCell {
     let timeLabel = UILabel()
     let genreLabel = UILabel()
     let djsLabel = UILabel()
+    let blurbImageView = UIImageView()
     
     fileprivate var installedConstraints: [NSLayoutConstraint]?
+    fileprivate var installedContainerConstraints: [NSLayoutConstraint]?
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -55,7 +57,10 @@ class ScheduleShowCell: UITableViewCell {
         containerView.addSubview(djsLabel)
         djsLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        containerView.addConstraints(containerConstraints())
+        containerView.addSubview(blurbImageView)
+        blurbImageView.translatesAutoresizingMaskIntoConstraints = false
+        blurbImageView.contentMode = .scaleAspectFill
+        blurbImageView.clipsToBounds = true
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -66,11 +71,19 @@ class ScheduleShowCell: UITableViewCell {
         timeLabel.text = show.time
         titleLabel.text = show.title
 //        djsLabel.text = show.djString
+        blurbImageView.sd_cancelCurrentImageLoad()
         
         if let genre = show.genre {
             genreLabel.text = genre
         } else {
             genreLabel.text = ""
+        }
+        
+        let placeholder = UIImage(named: "radio")
+        if let picture = show.picture {
+            blurbImageView.sd_setImage(with: RadioAPI.absoluteURL(picture), placeholderImage: placeholder)
+        } else {
+            blurbImageView.image = placeholder
         }
         
         // update constraints
@@ -79,6 +92,12 @@ class ScheduleShowCell: UITableViewCell {
         }
         installedConstraints = preferredConstraints()
         contentView.addConstraints(installedConstraints!)
+        
+        if let installedContainerConstraints = installedContainerConstraints {
+            containerView.removeConstraints(installedContainerConstraints)
+        }
+        installedContainerConstraints = containerConstraints()
+        containerView.addConstraints(installedContainerConstraints!)
     }
     
     // MARK: - Layout
@@ -109,18 +128,20 @@ class ScheduleShowCell: UITableViewCell {
     func containerConstraints() -> [NSLayoutConstraint] {
         var constraints: [NSLayoutConstraint] = []
         
-        let views = ["time": timeLabel, "title": titleLabel, "genre": genreLabel, "djs": djsLabel]
+        let views = ["time": timeLabel, "title": titleLabel, "image": blurbImageView, "genre": genreLabel, "djs": djsLabel]
         let imageSize = (ScheduleShowCell.height - 2*Constants.Floats.containerOffset)
-        let metrics = ["imageSize": imageSize, "bump": 5, "indent": 23]
+        let metrics = ["imageSize": imageSize, "bump": 5, "indent": 23, "timeWidth": 40]
         
         constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|-(bump)-[time]", options: [], metrics: metrics, views: views)
         constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|-(bump)-[genre]", options: [], metrics: metrics, views: views)
         constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:[djs]-(bump)-|", options: [], metrics: metrics, views: views)
         constraints.append(NSLayoutConstraint(item: titleLabel, attribute: .centerY, relatedBy: .equal, toItem: containerView, attribute: .centerY, multiplier: 1.0, constant: 0.0))
         
-        constraints += NSLayoutConstraint.constraints(withVisualFormat:"H:|-(indent)-[title]-(indent)-|", options: [], metrics: metrics, views: views)
-        constraints += NSLayoutConstraint.constraints(withVisualFormat:"H:|-[time]-(>=15)-[genre]-|", options: [], metrics: metrics, views: views)
-        constraints += NSLayoutConstraint.constraints(withVisualFormat:"H:|-[djs]-|", options: [], metrics: metrics, views: views)
+        // with picture on right
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[image]|", options: [], metrics: metrics, views: views)
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-(indent)-[title]-(indent)-[image(imageSize)]|", options: [], metrics: metrics, views: views)
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-[time(timeWidth)]-(>=15)-[genre]-[image(imageSize)]|", options: [], metrics: metrics, views: views)
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-[djs]-[image]", options: [], metrics: metrics, views: views)
         
         return constraints
     }

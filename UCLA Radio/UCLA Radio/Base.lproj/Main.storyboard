@@ -389,14 +389,13 @@
                                                     <constraint firstItem="cnT-mJ-wpD" firstAttribute="top" secondItem="vKc-nU-KpX" secondAttribute="bottom" constant="8" id="G0b-HH-t7c"/>
                                                     <constraint firstItem="vKc-nU-KpX" firstAttribute="top" secondItem="v9q-ek-3Nv" secondAttribute="bottom" constant="8" id="G8U-Qz-3K0"/>
                                                     <constraint firstItem="Wug-EO-bPi" firstAttribute="top" secondItem="Def-ft-YzS" secondAttribute="top" constant="15" id="HAX-9P-eVR"/>
-                                                    <constraint firstAttribute="trailing" secondItem="cnT-mJ-wpD" secondAttribute="trailing" id="IIr-OF-BzR"/>
                                                     <constraint firstItem="vKc-nU-KpX" firstAttribute="width" secondItem="Def-ft-YzS" secondAttribute="width" id="IdK-Az-NZ5"/>
                                                     <constraint firstAttribute="bottom" secondItem="cnT-mJ-wpD" secondAttribute="bottom" constant="8" id="MA5-Ym-PsP"/>
                                                     <constraint firstItem="Wug-EO-bPi" firstAttribute="leading" secondItem="Def-ft-YzS" secondAttribute="leading" constant="15" id="X69-4K-Ehd"/>
                                                     <constraint firstAttribute="width" constant="350" id="Zkg-mc-LVt"/>
                                                     <constraint firstItem="O5I-mc-huj" firstAttribute="centerX" secondItem="Def-ft-YzS" secondAttribute="centerX" id="eSL-cG-bvB"/>
                                                     <constraint firstItem="v9q-ek-3Nv" firstAttribute="width" secondItem="Def-ft-YzS" secondAttribute="width" id="gED-mu-z54"/>
-                                                    <constraint firstItem="cnT-mJ-wpD" firstAttribute="width" secondItem="Def-ft-YzS" secondAttribute="width" id="hsY-43-TRY"/>
+                                                    <constraint firstItem="cnT-mJ-wpD" firstAttribute="width" secondItem="Def-ft-YzS" secondAttribute="width" constant="-30" id="hsY-43-TRY"/>
                                                     <constraint firstItem="cue-Gc-Mmx" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Wug-EO-bPi" secondAttribute="trailing" constant="8" id="ixj-Kw-XCd"/>
                                                     <constraint firstItem="vKc-nU-KpX" firstAttribute="centerX" secondItem="Def-ft-YzS" secondAttribute="centerX" id="k4l-cb-sCP"/>
                                                     <constraint firstItem="cue-Gc-Mmx" firstAttribute="top" secondItem="Def-ft-YzS" secondAttribute="top" constant="15" id="lrp-DP-HyS"/>
