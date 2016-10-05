@@ -18,6 +18,7 @@ import DynamicColor
 @objc protocol SlidingVCDelegate {
     weak var slider: SlidingViewController? { get set }
     func positionUpdated(_ position: SlidingViewControllerPosition)
+    func openPercentageChanged(_ openPercentage: CGFloat)
 }
 
 class SliderTabView: UIView {
@@ -143,7 +144,6 @@ class SlidingViewController: UIViewController {
         }
         view.superview?.setNeedsLayout()
         self.position = position
-        self.sliderDelegate?.positionUpdated(position)
         
         let alpha: CGFloat = (position == .closed) ? 1.0 : 0.0
         let newColor = (position == .closed) ? UIColor.black : initialContentBackgroundColor
@@ -153,6 +153,10 @@ class SlidingViewController: UIViewController {
                 self.tabView?.alpha = alpha
 //                self.tabView?.backgroundColor = newColor
                 self.contentViewController?.view.backgroundColor = newColor
+            }, completion: { (completed) in
+                if completed {
+                    self.sliderDelegate?.positionUpdated(position)
+                }
             })
         }
     }
@@ -178,7 +182,7 @@ class SlidingViewController: UIViewController {
                 view.frame.origin = CGPoint(x: 0, y: newYPosition)
                 
                 let openPercentage = 1.0 - (newYPosition-MinimumYPosition)/(MaximumYPosition-MinimumYPosition)
-//                sliderDelegate?.openPercentageChanged(openPercentage)
+                sliderDelegate?.openPercentageChanged(openPercentage)
                 tabView?.alpha = 0.3 + 0.7*(1.0 - openPercentage)
                 let newColor = UIColor.black.mixed(withColor: initialContentBackgroundColor ?? Constants.Colors.darkBlue, weight: openPercentage)
                 self.contentViewController?.view.backgroundColor = newColor

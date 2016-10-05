@@ -31,6 +31,7 @@ class NowPlayingViewController: UIViewController, HistoryFetchDelegate, SlidingV
     
     fileprivate var recentUpdateTimer: Timer?
     fileprivate var tapGesture: UITapGestureRecognizer?
+    private var lastOpenPercentage: CGFloat?
     
     // SlidingVCDelegate
     var slider: SlidingViewController?
@@ -174,6 +175,18 @@ class NowPlayingViewController: UIViewController, HistoryFetchDelegate, SlidingV
                 pullTabImageView.transform = CGAffineTransform.identity
             }
         }
+        lastOpenPercentage = nil
+    }
+    
+    func openPercentageChanged(_ openPercentage: CGFloat) {
+        if let lastOpenPercentage = lastOpenPercentage {
+            if (openPercentage < lastOpenPercentage) {
+                pullTabImageView.transform = CGAffineTransform.identity
+            } else {
+                pullTabImageView.transform = CGAffineTransform(rotationAngle: (180.0 * CGFloat(M_PI)) / 180.0)
+            }
+        }
+        lastOpenPercentage = openPercentage
     }
     
     // MARK: - Radio APIFetchDelegate

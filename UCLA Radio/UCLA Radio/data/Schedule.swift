@@ -74,10 +74,10 @@ class Schedule {
     static func sortShows(_ shows: [Show]) -> [Show] {
         var shows = shows
         shows.sort { (a, b) -> Bool in
-            let aMatch = matches(for: "[0-9]*", in: a.time)
-            let bMatch = matches(for: "[0-9]*", in: b.time)
-            let aTime = Int(aMatch[0])
-            let bTime = Int(bMatch[0])
+            var aMatch = matches(for: "[0-9]*", in: a.time)
+            var bMatch = matches(for: "[0-9]*", in: b.time)
+            let aTime = (Int(aMatch[0]) ?? 0) % 12
+            let bTime = (Int(bMatch[0]) ?? 0) % 12
             
             if let _ = a.time.range(of: "am", options: .regularExpression) {
                 if let _ = b.time.range(of: "am", options: .regularExpression) {

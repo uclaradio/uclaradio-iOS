@@ -18,6 +18,7 @@
 		832F7EC91DA19D87001462C6 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832F7EC81DA19D87001462C6 /* BaseViewController.swift */; };
 		832F7ECB1DA1D155001462C6 /* EventsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832F7ECA1DA1D155001462C6 /* EventsHeaderView.swift */; };
 		833B169F1CE1BD2D00E711F5 /* UIImage+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833B169E1CE1BD2D00E711F5 /* UIImage+Color.swift */; };
+		834A33A31DA4B2A3008155E6 /* EventsInfoHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834A33A21DA4B2A3008155E6 /* EventsInfoHeaderView.swift */; };
 		8356DDFD1DA03A3A00B2B63B /* Giveaway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8356DDFC1DA03A3A00B2B63B /* Giveaway.swift */; };
 		8356DDFF1DA043E900B2B63B /* MenuSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8356DDFE1DA043E900B2B63B /* MenuSectionHeaderView.swift */; };
 		835CDF931D068B0300C3213B /* Typo_Round_Bold_Demo.otf in Resources */ = {isa = PBXBuildFile; fileRef = 835CDF911D068B0300C3213B /* Typo_Round_Bold_Demo.otf */; };
@@ -87,6 +88,7 @@
 		832F7EC81DA19D87001462C6 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		832F7ECA1DA1D155001462C6 /* EventsHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsHeaderView.swift; sourceTree = "<group>"; };
 		833B169E1CE1BD2D00E711F5 /* UIImage+Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Color.swift"; sourceTree = "<group>"; };
+		834A33A21DA4B2A3008155E6 /* EventsInfoHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsInfoHeaderView.swift; sourceTree = "<group>"; };
 		8356DDFC1DA03A3A00B2B63B /* Giveaway.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Giveaway.swift; sourceTree = "<group>"; };
 		8356DDFE1DA043E900B2B63B /* MenuSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuSectionHeaderView.swift; sourceTree = "<group>"; };
 		835CDF911D068B0300C3213B /* Typo_Round_Bold_Demo.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Typo_Round_Bold_Demo.otf; sourceTree = SOURCE_ROOT; };
@@ -232,6 +234,7 @@
 				835EC1C41DA09C3700599860 /* EventsViewController.swift */,
 				835EC1C61DA0A02D00599860 /* GiveawayTableViewCell.swift */,
 				832F7ECA1DA1D155001462C6 /* EventsHeaderView.swift */,
+				834A33A21DA4B2A3008155E6 /* EventsInfoHeaderView.swift */,
 			);
 			path = Events;
 			sourceTree = "<group>";
@@ -497,6 +500,7 @@
 				83C28A691D025E360096D629 /* DJListViewController.swift in Sources */,
 				8356DDFD1DA03A3A00B2B63B /* Giveaway.swift in Sources */,
 				83C28A771D02CB980096D629 /* Schedule.swift in Sources */,
+				834A33A31DA4B2A3008155E6 /* EventsInfoHeaderView.swift in Sources */,
 				832F7ECB1DA1D155001462C6 /* EventsHeaderView.swift in Sources */,
 				83C28A6D1D025FB10096D629 /* RadioAPI.swift in Sources */,
 				8365ECF71CE9945C001B96BF /* ContainerViewController.swift in Sources */,

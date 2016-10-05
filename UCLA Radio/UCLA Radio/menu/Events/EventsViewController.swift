@@ -17,6 +17,7 @@ class EventsViewController: BaseViewController, APIFetchDelegate, UITableViewDat
     
     fileprivate let reuseIdentifier = "GiveawayCell"
     fileprivate let headerReuseIdentifier = "GiveawayHeaderView"
+    fileprivate let infoHeaderReuseIdentifier = "GiveawayInfoHeaderView"
     
     var events: [String: [Giveaway]]?
     private var expandedCellIndex: IndexPath?
@@ -34,6 +35,7 @@ class EventsViewController: BaseViewController, APIFetchDelegate, UITableViewDat
         tableView.separatorStyle = .none
         tableView.register(GiveawayTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
         tableView.register(EventsHeaderView.self, forHeaderFooterViewReuseIdentifier: headerReuseIdentifier)
+        tableView.register(EventsInfoHeaderView.self, forHeaderFooterViewReuseIdentifier: infoHeaderReuseIdentifier)
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -71,17 +73,22 @@ class EventsViewController: BaseViewController, APIFetchDelegate, UITableViewDat
     
     func numberOfSections(in tableView: UITableView) -> Int {
         if let events = events {
-            return events.count
+            return events.count + 1
         }
-        return 0
+        return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let events = events {
-            let months = [String](events.keys)
-            return events[months[section]]?.count ?? 0
+        switch(section) {
+        case 0:
+            return 0
+        default:
+            if let events = events {
+                let months = [String](events.keys)
+                return events[months[section-1]]?.count ?? 0
+            }
+            return 0
         }
-        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -89,7 +96,12 @@ class EventsViewController: BaseViewController, APIFetchDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return tableView.dequeueReusableHeaderFooterView(withIdentifier: headerReuseIdentifier)
+        switch(section) {
+        case 0:
+            return tableView.dequeueReusableHeaderFooterView(withIdentifier: infoHeaderReuseIdentifier)
+        default:
+            return tableView.dequeueReusableHeaderFooterView(withIdentifier: headerReuseIdentifier)
+        }
     }
     
     // MARK: - UITableViewDelegate
@@ -99,13 +111,22 @@ class EventsViewController: BaseViewController, APIFetchDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return EventsHeaderView.preferredHeight()
+        switch(section) {
+        case 0:
+            return EventsInfoHeaderView.preferredHeight()
+        default:
+            return EventsHeaderView.preferredHeight()
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0.01
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if let events = events {
             let months = [String](events.keys)
-            if let event = events[months[(indexPath as NSIndexPath).section]]?[(indexPath as NSIndexPath).row],
+            if let event = events[months[(indexPath as NSIndexPath).section-1]]?[(indexPath as NSIndexPath).row],
                 let giveawayCell = cell as? GiveawayTableViewCell {
                 
                 giveawayCell.styleForGiveaway(event, infoToggled: (indexPath == expandedCellIndex))
@@ -114,10 +135,15 @@ class EventsViewController: BaseViewController, APIFetchDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        if let events = events,
-            let view = view as? EventsHeaderView {
-            let months = [String](events.keys)
-            view.style(month: months[section])
+        switch(section) {
+        case 0:
+            break
+        default:
+            if let events = events,
+                let view = view as? EventsHeaderView {
+                let months = [String](events.keys)
+                view.style(month: months[section-1])
+            }
         }
     }
     

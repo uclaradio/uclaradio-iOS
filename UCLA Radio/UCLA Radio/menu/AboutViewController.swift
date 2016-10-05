@@ -21,11 +21,22 @@ class AboutViewController: BaseViewController {
     // MARK: - Actions
     
     @IBAction func facebookButtonHit(_ sender: AnyObject) {
-        UIApplication.shared.openURL(URL(string: "https://www.facebook.com/UCLARadio")!)
+        guard let deepURL = URL(string: "fb://page/uclaradio") else {
+            return
+        }
+        
+        if UIApplication.shared.canOpenURL(deepURL) {
+            UIApplication.shared.openURL(deepURL)
+        } else {
+            UIApplication.shared.openURL(URL(string: "https://www.facebook.com/UCLARadio")!)
+        }
     }
     
     @IBAction func instagramButtonHit(_ sender: AnyObject) {
-        let deepURL = URL(string: "instagram:://user?username=uclaradio")!
+        guard let deepURL = URL(string: "instagram://user?username=uclaradio") else {
+            return
+        }
+        
         if UIApplication.shared.canOpenURL(deepURL) {
             UIApplication.shared.openURL(deepURL)
         }
@@ -35,7 +46,10 @@ class AboutViewController: BaseViewController {
     }
     
     @IBAction func twitterButtonHit(_ sender: AnyObject) {
-        let deepURL = URL(string: "twitter://user?screen_name=uclaradio")!
+        guard let deepURL = URL(string: "twitter://user?screen_name=uclaradio") else {
+            return
+        }
+        
         if UIApplication.shared.canOpenURL(deepURL) {
             UIApplication.shared.openURL(deepURL)
         } else {
@@ -44,7 +58,10 @@ class AboutViewController: BaseViewController {
     }
     
     @IBAction func tumblrButtonHit(_ sender: AnyObject) {
-        let deepURL = URL(string: "tumblr://x-callback-url/blog?blogName=uclaradio")!
+        guard let deepURL = URL(string: "tumblr://x-callback-url/blog?blogName=uclaradio") else {
+            return
+        }
+        
         if UIApplication.shared.canOpenURL(deepURL) {
             UIApplication.shared.openURL(deepURL)
         }
