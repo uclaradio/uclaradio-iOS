@@ -9,6 +9,7 @@
 import Foundation
 import AVFoundation
 import MediaPlayer
+import SDWebImage
 
 let streamURL = URL(string: "http://stream.uclaradio.com:8000/listen")!
 
@@ -98,6 +99,30 @@ class AudioStream: NSObject {
         if let nowPlayingTitle = RadioAPI.nowPlaying?.title {
             title = nowPlayingTitle
         }
+        
+        var artworkSet = false
+        if let picture = RadioAPI.nowPlaying?.picture {
+            let imageURL = RadioAPI.absoluteURL(picture)
+            // Picture available for show
+            if SDWebImageManager.shared().cachedImageExists(for: imageURL),
+                let picture = SDImageCache.shared().imageFromMemoryCache(forKey: SDWebImageManager.shared().cacheKey(for: imageURL)) {
+                // Set image
+                let artwork = MPMediaItemArtwork(image: picture)
+                nowPlayingDict[MPMediaItemPropertyArtwork] = artwork
+                artworkSet = true
+            } else {
+                // Download image
+                SDWebImageManager.shared().downloadImage(with: imageURL, options: [.continueInBackground], progress: nil, completed: { (image, error, source, finished, url) in
+                    self.updateNowPlaying()
+                })
+            }
+        }
+        if !artworkSet, let picture = UIImage(named: "radio") {
+            // No picture for show, use placeholder
+            let artwork = MPMediaItemArtwork(image: picture)
+            nowPlayingDict[MPMediaItemPropertyArtwork] = artwork
+        }
+        
         nowPlayingDict[MPMediaItemPropertyTitle] = title as AnyObject?
         MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingDict
     }

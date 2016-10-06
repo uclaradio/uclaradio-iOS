@@ -11,7 +11,7 @@ import UIKit
 import SDWebImage
 
 let textFontSize: CGFloat = 16
-let labelHeight = 18
+let labelHeight = 40
 let placeholder = UIImage(named: "bear")
 
 class DJCollectionViewCell: UICollectionViewCell {
@@ -26,17 +26,16 @@ class DJCollectionViewCell: UICollectionViewCell {
         
         contentView.backgroundColor = UIColor.clear
         
-        contentView.addSubview(imageView)
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.layer.addObserver(self, forKeyPath: "bounds", options: .new, context: ImageChangeContext)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(imageView)
         
-        
-        contentView.addSubview(nameLabel)
-        nameLabel.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.font = UIFont.boldSystemFont(ofSize: textFontSize)
         nameLabel.textAlignment = .center
+        nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(nameLabel)
         
         contentView.addConstraints(preferredConstraints())
     }
@@ -54,6 +53,7 @@ class DJCollectionViewCell: UICollectionViewCell {
         imageView.sd_cancelCurrentImageLoad()
 
         nameLabel.text = dj.djName ?? dj.fullName ?? dj.username
+        nameLabel.numberOfLines = 2
         
         if let picture = dj.picture {
             imageView.sd_setImage(with: RadioAPI.absoluteURL(picture), placeholderImage: placeholder)
@@ -64,7 +64,7 @@ class DJCollectionViewCell: UICollectionViewCell {
     
     func preferredConstraints() -> [NSLayoutConstraint] {
         var constraints: [NSLayoutConstraint] = []
-        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|-(15)-[image]-[name(label)]-|", options: [], metrics: ["label": labelHeight], views: ["image": imageView, "name": nameLabel])
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|-(15)-[image][name(label)]-|", options: [], metrics: ["label": labelHeight], views: ["image": imageView, "name": nameLabel])
         constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-[name]-|", options: [], metrics: nil, views: ["image": imageView, "name": nameLabel])
         constraints.append(NSLayoutConstraint(item: imageView, attribute: .width, relatedBy: .equal, toItem: imageView, attribute: .height, multiplier: 1.0, constant: 0.0))
         constraints.append(NSLayoutConstraint(item: imageView, attribute: .centerX, relatedBy: .equal, toItem: contentView, attribute: .centerX, multiplier: 1.0, constant: 0.0))

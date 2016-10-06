@@ -107,12 +107,12 @@
 		83B8C0751D067EDF00B80802 /* ScheduleSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleSectionHeaderView.swift; sourceTree = "<group>"; };
 		83C28A621D025DED0096D629 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
 		83C28A631D025DED0096D629 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
-		83C28A681D025E360096D629 /* DJListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DJListViewController.swift; sourceTree = "<group>"; };
+		83C28A681D025E360096D629 /* DJListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DJListViewController.swift; path = ../DJListViewController.swift; sourceTree = "<group>"; };
 		83C28A6A1D025E500096D629 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		83C28A6C1D025FB10096D629 /* RadioAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioAPI.swift; sourceTree = "<group>"; };
 		83C28A6E1D02627A0096D629 /* Show.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Show.swift; sourceTree = "<group>"; };
 		83C28A701D0263350096D629 /* DJ.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DJ.swift; sourceTree = "<group>"; };
-		83C28A721D0270AA0096D629 /* DJCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DJCollectionViewCell.swift; sourceTree = "<group>"; };
+		83C28A721D0270AA0096D629 /* DJCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DJCollectionViewCell.swift; path = ../DJCollectionViewCell.swift; sourceTree = "<group>"; };
 		83C28A761D02CB980096D629 /* Schedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
 		83C28A7A1D050F3B0096D629 /* ScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
 		83C28A7D1D050FD40096D629 /* ScheduleShowCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleShowCell.swift; sourceTree = "<group>"; };
@@ -228,6 +228,15 @@
 			path = extensions;
 			sourceTree = "<group>";
 		};
+		834A33A41DA611F5008155E6 /* DJs */ = {
+			isa = PBXGroup;
+			children = (
+				83C28A681D025E360096D629 /* DJListViewController.swift */,
+				83C28A721D0270AA0096D629 /* DJCollectionViewCell.swift */,
+			);
+			path = DJs;
+			sourceTree = "<group>";
+		};
 		835EC1C31DA09C2100599860 /* Events */ = {
 			isa = PBXGroup;
 			children = (
@@ -265,13 +274,12 @@
 		83C28A611D025DED0096D629 /* menu */ = {
 			isa = PBXGroup;
 			children = (
-				835EC1C31DA09C2100599860 /* Events */,
 				83C28A781D050F3B0096D629 /* Schedule */,
+				834A33A41DA611F5008155E6 /* DJs */,
+				835EC1C31DA09C2100599860 /* Events */,
 				83C28A621D025DED0096D629 /* MenuTableViewCell.swift */,
 				8356DDFE1DA043E900B2B63B /* MenuSectionHeaderView.swift */,
 				83C28A631D025DED0096D629 /* MenuViewController.swift */,
-				83C28A681D025E360096D629 /* DJListViewController.swift */,
-				83C28A721D0270AA0096D629 /* DJCollectionViewCell.swift */,
 				83C28A6A1D025E500096D629 /* AboutViewController.swift */,
 				835CDF951D08016A00C3213B /* ShowViewController.swift */,
 			);

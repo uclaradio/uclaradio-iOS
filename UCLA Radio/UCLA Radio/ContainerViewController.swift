@@ -22,6 +22,9 @@ class ContainerViewController: UIViewController, NowPlayingActionDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        view.backgroundColor = UIColor.black
+        
         let menu = MenuViewController()
         rootNavController = UINavigationController(rootViewController: menu)
         view.addSubview(rootNavController.view)
