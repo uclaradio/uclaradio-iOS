@@ -16,10 +16,6 @@ Written in Swift, fetching from [an API](https://github.com/uclaradio/uclaradio)
 * [DynamicColor](https://github.com/yannickl/DynamicColor)
 * TO DO: I created an iOS clone of the Javascript package [Trianglify](http://qrohlf.com/trianglify/) for this app and plan to release it on CocoaPods!
 
-### Contributors
-
-* [Chris Laganiere](https://github.com/chrislaganiere)
-
 ### Copyright
 
 Copyright © UCLA Student Media 2016
