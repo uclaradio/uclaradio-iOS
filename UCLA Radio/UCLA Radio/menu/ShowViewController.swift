@@ -40,6 +40,14 @@ class ShowViewController: BaseViewController {
         super.viewWillAppear(animated)
         if let show = show {
             styleForShow(show)
+            
+            // track view analytics
+            let tracker = GAI.sharedInstance().defaultTracker
+            tracker?.set(kGAIScreenName, value: "Show: \(show.title)")
+            let builder = GAIDictionaryBuilder.createScreenView()
+            if let builder = builder {
+                tracker?.send(builder.build() as [NSObject : AnyObject])
+            }
         }
     }
     

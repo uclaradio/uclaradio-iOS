@@ -20,6 +20,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         HistoryFetcher.fetchRecentTracks()
         RadioAPI.fetchNowPlaying()
         RadioAPI.fetchGiveaways(nil)
+        
+        // Configure tracker from GoogleService-Info.plist.
+        var configureError:NSError?
+        GGLContext.sharedInstance().configureWithError(&configureError)
+        assert(configureError == nil, "Error configuring Google services: \(configureError)")
+        
+        // Optional: configure GAI options.
+        let gai = GAI.sharedInstance()
+        gai?.trackUncaughtExceptions = true  // report uncaught exceptions
+        gai?.logger.logLevel = GAILogLevel.verbose  // remove before app release
+        
         return true
     }
 

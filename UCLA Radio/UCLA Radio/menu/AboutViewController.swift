@@ -18,6 +18,18 @@ class AboutViewController: BaseViewController {
     @IBOutlet weak var twitterButton: UIButton!
     @IBOutlet weak var tumblrButton: UIButton!
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // track view analytics
+        let tracker = GAI.sharedInstance().defaultTracker
+        tracker?.set(kGAIScreenName, value: "About")
+        let builder = GAIDictionaryBuilder.createScreenView()
+        if let builder = builder {
+            tracker?.send(builder.build() as [NSObject : AnyObject])
+        }
+    }
+    
     // MARK: - Actions
     
     @IBAction func facebookButtonHit(_ sender: AnyObject) {
