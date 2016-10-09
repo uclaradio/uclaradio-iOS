@@ -11,7 +11,7 @@ import AVFoundation
 import MediaPlayer
 import SDWebImage
 
-let streamURL = URL(string: "http://stream.uclaradio.com:8000/listen")!
+let streamURL = URL(string: "http://uclaradio.com:8000/listen")!
 
 class AudioStream: NSObject {
     

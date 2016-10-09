@@ -70,13 +70,13 @@ class GiveawayTableViewCell: UITableViewCell {
         }
     }
     
-    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
-        if highlighted {
-            containerView.backgroundColor = Constants.Colors.darkBlue
-        } else {
-            containerView.backgroundColor = UIColor.clear
-        }
-    }
+//    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+//        if highlighted {
+//            containerView.backgroundColor = Constants.Colors.darkBlue
+//        } else {
+//            containerView.backgroundColor = UIColor.clear
+//        }
+//    }
     
     // MARK: - Layout
     

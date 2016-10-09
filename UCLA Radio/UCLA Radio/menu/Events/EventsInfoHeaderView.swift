@@ -8,11 +8,12 @@
 
 import UIKit
 
-class EventsInfoHeaderView: UITableViewHeaderFooterView {
+class EventsInfoHeaderView: UITableViewHeaderFooterView, APIFetchDelegate {
 
     let label = UILabel()
     
-    static let info = "We're always hosting events and doing giveaways. Listen and follow us on Facebook and Instagram for your chance to win tickets!"
+    // returned from server, default value:
+    static var info: String = "We give a lot of tickets away to our listeners.. Tune in and follow us on Facebook and Instagram for your chance to see these shows!"
     
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
@@ -26,11 +27,35 @@ class EventsInfoHeaderView: UITableViewHeaderFooterView {
         
         contentView.addConstraints(preferredConstraints())
         
-        label.text = EventsInfoHeaderView.info;
+        RadioAPI.fetchGiveawayDescription(self)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func style() {
+        label.text = EventsInfoHeaderView.info;
+    }
+    
+    // MARK: - APIFetchDelegate
+    
+    func cachedDataAvailable(_ data: Any) {
+        if let info = data as? String {
+            EventsInfoHeaderView.info = info
+            style()
+        }
+    }
+    
+    func didFetchData(_ data: Any) {
+        if let info = data as? String {
+            EventsInfoHeaderView.info = info
+            style()
+        }
+    }
+    
+    func failedToFetchData(_ error: String) {
+        
     }
     
     // MARK: - Layout

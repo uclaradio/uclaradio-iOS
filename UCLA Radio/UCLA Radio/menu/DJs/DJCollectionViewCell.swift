@@ -64,7 +64,7 @@ class DJCollectionViewCell: UICollectionViewCell {
     
     func preferredConstraints() -> [NSLayoutConstraint] {
         var constraints: [NSLayoutConstraint] = []
-        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|-(15)-[image][name(label)]-|", options: [], metrics: ["label": labelHeight], views: ["image": imageView, "name": nameLabel])
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|-[image][name(label)]|", options: [], metrics: ["label": labelHeight], views: ["image": imageView, "name": nameLabel])
         constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-[name]-|", options: [], metrics: nil, views: ["image": imageView, "name": nameLabel])
         constraints.append(NSLayoutConstraint(item: imageView, attribute: .width, relatedBy: .equal, toItem: imageView, attribute: .height, multiplier: 1.0, constant: 0.0))
         constraints.append(NSLayoutConstraint(item: imageView, attribute: .centerX, relatedBy: .equal, toItem: contentView, attribute: .centerX, multiplier: 1.0, constant: 0.0))

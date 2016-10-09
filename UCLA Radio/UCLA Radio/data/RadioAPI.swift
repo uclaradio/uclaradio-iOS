@@ -13,6 +13,7 @@ private let host = "https://uclaradio.com"
 private let nowPlayingRoute = "/api/nowplaying"
 private let scheduleRoute = "/api/schedule"
 private let djRoute = "/api/djs"
+private let giveawayDescriptionRoute = "/api/giveawayDescription"
 private let giveawaysRoute = "/GiveawayCalendar/data"
 
 protocol APIFetchDelegate {
@@ -106,6 +107,23 @@ class RadioAPI {
         }
     }
     
+    static func fetchGiveawayDescription(_ delegate: APIFetchDelegate?) {
+        fetchSomethingCached(giveawayDescriptionRoute, key: "info", success: { (result, cached) in
+            if let description = result as? String {
+                if cached {
+                    delegate?.cachedDataAvailable(description)
+                } else {
+                    delegate?.didFetchData(description)
+                }
+            } else {
+                delegate?.failedToFetchData("wrong data type: should be String")
+            }
+        }) { (error) in
+            print(error)
+            delegate?.failedToFetchData(error)
+        }
+    }
+    
     /**
      Convert relative file path string to absolute url by adding host
      
@@ -139,14 +157,31 @@ class RadioAPI {
                 else if let cached = NSDictionary(contentsOfFile: filePath) {
                     success?(cached, true)
                 }
+                else {
+                    do {
+                        let cached = try String(contentsOfFile: filePath, encoding: .utf8)
+                        success?(cached, true)
+                    } catch let error {
+                        print("radio cache read error: \(error.localizedDescription)")
+                    }
+                }
             }
             
             Alamofire.request(host+route).validate().responseJSON { response in
-                switch response.result {
+switch response.result {
                 case .success(let json):
                     if let json = json as? NSDictionary,
                         let object = json[key] as? NSDictionary {
                         object.write(toFile: filePath, atomically: true)
+                        success?(object, false)
+                    }
+                    if let json = json as? NSDictionary,
+                        let object = json[key] as? String {
+                        do {
+                            try object.write(toFile: filePath, atomically: true, encoding: .utf8)
+                        } catch let error {
+                            print("radio api cache save file error: \(error.localizedDescription)")
+                        }
                         success?(object, false)
                     }
                     else if let json = json as? NSDictionary,

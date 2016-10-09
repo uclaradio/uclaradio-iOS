@@ -106,7 +106,11 @@ class EventsViewController: BaseViewController, APIFetchDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         switch(section) {
         case 0:
-            return tableView.dequeueReusableHeaderFooterView(withIdentifier: infoHeaderReuseIdentifier)
+            let cell = tableView.dequeueReusableHeaderFooterView(withIdentifier: infoHeaderReuseIdentifier)
+            if let infoCell = cell as? EventsInfoHeaderView {
+                infoCell.style()
+            }
+            return cell
         default:
             return tableView.dequeueReusableHeaderFooterView(withIdentifier: headerReuseIdentifier)
         }
@@ -155,20 +159,20 @@ class EventsViewController: BaseViewController, APIFetchDelegate, UITableViewDat
         }
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        
-        var reloadIndexPaths = [indexPath] as [IndexPath]
-        if indexPath != expandedCellIndex {
-            if let expandedCellIndex = expandedCellIndex {
-                reloadIndexPaths.append(expandedCellIndex)
-            }
-            expandedCellIndex = indexPath
-        } else {
-            expandedCellIndex = nil
-        }
-        tableView.reloadRows(at: reloadIndexPaths, with: .none)
-    }
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        tableView.deselectRow(at: indexPath, animated: true)
+//        
+//        var reloadIndexPaths = [indexPath] as [IndexPath]
+//        if indexPath != expandedCellIndex {
+//            if let expandedCellIndex = expandedCellIndex {
+//                reloadIndexPaths.append(expandedCellIndex)
+//            }
+//            expandedCellIndex = indexPath
+//        } else {
+//            expandedCellIndex = nil
+//        }
+//        tableView.reloadRows(at: reloadIndexPaths, with: .none)
+//    }
     
     // MARK: - Layout
     

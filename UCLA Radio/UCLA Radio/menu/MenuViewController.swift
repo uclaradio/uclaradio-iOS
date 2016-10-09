@@ -30,7 +30,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     fileprivate let items = [
         MenuItem(title: "Schedule", storyboardID: ScheduleViewController.storyboardID),
         MenuItem(title: "DJs", storyboardID: DJListViewController.storyboardID),
-        MenuItem(title: "Events", storyboardID: EventsViewController.storyboardID),
+        MenuItem(title: "Tickets", storyboardID: EventsViewController.storyboardID),
         MenuItem(title: "About", storyboardID: AboutViewController.storyboardID)
     ]
     

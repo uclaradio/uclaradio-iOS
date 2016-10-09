@@ -63,10 +63,10 @@
             </objects>
             <point key="canvasLocation" x="1939" y="-296"/>
         </scene>
-        <!--Events-->
+        <!--Tickets-->
         <scene sceneID="2YU-Vc-Ix0">
             <objects>
-                <viewController storyboardIdentifier="eventsViewController" title="Events" useStoryboardIdentifierAsRestorationIdentifier="YES" id="W4Z-D9-2DX" customClass="EventsViewController" customModule="UCLA_Radio" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="eventsViewController" title="Tickets" useStoryboardIdentifierAsRestorationIdentifier="YES" id="W4Z-D9-2DX" customClass="EventsViewController" customModule="UCLA_Radio" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2ai-50-oqF"/>
                         <viewControllerLayoutGuide type="bottom" id="p0W-LB-Ldn"/>

@@ -20,11 +20,91 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "UCLA Radio/menu/Events/EventsViewController.swift"
-            timestampString = "497584275.058565"
+            timestampString = "497686395.803505"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "185"
-            endingLineNumber = "185">
+            startingLineNumber = "189"
+            endingLineNumber = "189">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "UCLA Radio/data/RadioAPI.swift"
+            timestampString = "497686577.026418"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "112"
+            endingLineNumber = "112"
+            landmarkName = "fetchGiveawayDescription(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "UCLA Radio/data/RadioAPI.swift"
+            timestampString = "497686609.157604"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
+            landmarkName = "fetchGiveawayDescription(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "UCLA Radio/data/RadioAPI.swift"
+            timestampString = "497686637.967924"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
+            landmarkName = "fetchGiveawayDescription(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static UCLA_Radio.RadioAPI.fetchGiveawayDescription (Swift.Optional&lt;UCLA_Radio.APIFetchDelegate&gt;) -&gt; ()"
+                  moduleName = "UCLA Radio"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Chris/Developer/uclaRadioiOS/UCLA%20Radio/UCLA%20Radio/data/RadioAPI.swift"
+                  timestampString = "497687019.240641"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "111"
+                  endingLineNumber = "111"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static UCLA_Radio.RadioAPI.(fetchGiveawayDescription (Swift.Optional&lt;UCLA_Radio.APIFetchDelegate&gt;) -&gt; ()).(closure #1)"
+                  moduleName = "UCLA Radio"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Chris/Developer/uclaRadioiOS/UCLA%20Radio/UCLA%20Radio/data/RadioAPI.swift"
+                  timestampString = "497687019.24184"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "110"
+                  endingLineNumber = "110"
+                  offsetFromSymbolStart = "34">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
