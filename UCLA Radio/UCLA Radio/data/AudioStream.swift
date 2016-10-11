@@ -11,17 +11,19 @@ import AVFoundation
 import MediaPlayer
 import SDWebImage
 
-let streamURL = URL(string: "http://uclaradio.com:8000/listen")!
+// will be overriden by api at uclaradio.com/api/streamurl
+fileprivate let DefaultStreamURL = "http://uclaradio.com:8000/listen"
 
-class AudioStream: NSObject {
+class AudioStream: NSObject, APIFetchDelegate {
     
     static let sharedInstance = AudioStream()
     static let StreamUpdateNotificationKey = "StreamUpdated"
     
     var readyToPlay = false
     var playing = false
+    private var streamURL = URL(string: DefaultStreamURL)!
     
-    fileprivate var audioPlayer = AVPlayer(url: streamURL)
+    private var audioPlayer = AVPlayer()
     
     deinit {
         NotificationCenter.default.removeObserver(self)
@@ -33,7 +35,7 @@ class AudioStream: NSObject {
             readyToPlay = true
         }
         
-        if (audioPlayer.status == .readyToPlay && !playing) {
+        if !playing {
             audioPlayer.play()
             playing = true
             UIApplication.shared.beginReceivingRemoteControlEvents()
@@ -42,7 +44,7 @@ class AudioStream: NSObject {
     }
     
     func pause() {
-        if (playing) {
+        if playing {
             audioPlayer.pause()
             playing = false
             NotificationCenter.default.post(name: Notification.Name(rawValue: AudioStream.StreamUpdateNotificationKey), object: nil)
@@ -58,7 +60,7 @@ class AudioStream: NSObject {
         }
     }
     
-    func setupStream() {
+    private func setupStream() {
         // Set up AVAudioSession
         let audioSession = AVAudioSession.sharedInstance()
         do {
@@ -77,6 +79,10 @@ class AudioStream: NSObject {
         NotificationCenter.default.addObserver(self, selector: #selector(updateNowPlaying), name: NSNotification.Name(rawValue: RadioAPI.NowPlayingUpdatedNotification), object: nil)
         
         updateNowPlaying()
+        
+        let newItem = AVPlayerItem(url: streamURL)
+        audioPlayer.replaceCurrentItem(with: newItem)
+        RadioAPI.fetchStreamURL(self)
     }
     
     /**
@@ -95,10 +101,7 @@ class AudioStream: NSObject {
     func updateNowPlaying() {
         var nowPlayingDict: [String: AnyObject] = [:]
         nowPlayingDict[MPMediaItemPropertyArtist] = "UCLA Radio" as AnyObject?
-        var title = "Live Stream"
-        if let nowPlayingTitle = RadioAPI.nowPlaying?.title {
-            title = nowPlayingTitle
-        }
+        let title =  RadioAPI.nowPlaying?.title ?? "Live Stream"
         
         var artworkSet = false
         if let picture = RadioAPI.nowPlaying?.picture {
@@ -125,6 +128,30 @@ class AudioStream: NSObject {
         
         nowPlayingDict[MPMediaItemPropertyTitle] = title as AnyObject?
         MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingDict
+    }
+    
+    // MARK:- APIFetchDelegate
+    
+    func cachedDataAvailable(_ data: Any) {
+        if let streamURLString = data as? String,
+            streamURLString != self.streamURL.absoluteString,
+            let streamURL = URL(string: streamURLString) {
+            self.streamURL = streamURL
+            skipToLive()
+        }
+    }
+    
+    func didFetchData(_ data: Any) {
+        if let streamURLString = data as? String,
+            streamURLString != self.streamURL.absoluteString,
+            let streamURL = URL(string: streamURLString) {
+            self.streamURL = streamURL
+            skipToLive()
+        }
+    }
+    
+    func failedToFetchData(_ error: String) {
+        // No-op
     }
     
     // Notifications

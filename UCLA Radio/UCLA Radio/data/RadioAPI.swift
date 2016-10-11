@@ -14,6 +14,7 @@ private let nowPlayingRoute = "/api/nowplaying"
 private let scheduleRoute = "/api/schedule"
 private let djRoute = "/api/djs"
 private let giveawayDescriptionRoute = "/api/giveawayDescription"
+private let streamURLRoute = "/api/streamURL"
 private let giveawaysRoute = "/GiveawayCalendar/data"
 
 protocol APIFetchDelegate {
@@ -121,6 +122,23 @@ class RadioAPI {
         }) { (error) in
             print(error)
             delegate?.failedToFetchData(error)
+        }
+    }
+    
+    static func fetchStreamURL(_ delegate: APIFetchDelegate?) {
+        fetchSomethingCached(streamURLRoute, key: "url", success: { (result, cached) in
+            if let description = result as? String {
+                if cached {
+                    delegate?.cachedDataAvailable(description)
+                } else {
+                    delegate?.didFetchData(description)
+                }
+            } else {
+                delegate?.failedToFetchData("wrong data type: should be String")
+            }
+            }) { (error) in
+                print(error)
+                delegate?.failedToFetchData(error)
         }
     }
     
