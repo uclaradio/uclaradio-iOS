@@ -473,6 +473,7 @@
                         <outlet property="djsLabel" destination="vKc-nU-KpX" id="jXM-k2-7lW"/>
                         <outlet property="genreLabel" destination="cue-Gc-Mmx" id="XLa-Mb-hlG"/>
                         <outlet property="imageView" destination="O5I-mc-huj" id="agU-KW-sC3"/>
+                        <outlet property="notificationsSwitch" destination="dcR-Og-DRM" id="ht0-Qw-Ipb"/>
                         <outlet property="timeLabel" destination="Wug-EO-bPi" id="SfE-ff-Vv0"/>
                         <outlet property="titleLabel" destination="v9q-ek-3Nv" id="Wgy-AC-9Q7"/>
                     </connections>

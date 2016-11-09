@@ -50,6 +50,7 @@
 		83C4CC1D1CE25BB900FBA1EC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C4CC1C1CE25BB900FBA1EC /* Constants.swift */; };
 		83C4CC1F1CE25C1500FBA1EC /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C4CC1E1CE25C1500FBA1EC /* UIColor+Hex.swift */; };
 		83E4247A1CEECCF700662EDD /* NowPlayingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E424791CEECCF700662EDD /* NowPlayingView.swift */; };
+		D8AD9FE91DCA8AE200C74D87 /* String+DateComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AD9FE81DCA8AE200C74D87 /* String+DateComponents.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -122,6 +123,7 @@
 		83C4CC1C1CE25BB900FBA1EC /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		83C4CC1E1CE25C1500FBA1EC /* UIColor+Hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
 		83E424791CEECCF700662EDD /* NowPlayingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NowPlayingView.swift; sourceTree = "<group>"; };
+		D8AD9FE81DCA8AE200C74D87 /* String+DateComponents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+DateComponents.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -229,6 +231,7 @@
 			children = (
 				833B169E1CE1BD2D00E711F5 /* UIImage+Color.swift */,
 				83C4CC1E1CE25C1500FBA1EC /* UIColor+Hex.swift */,
+				D8AD9FE81DCA8AE200C74D87 /* String+DateComponents.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -394,6 +397,11 @@
 						DevelopmentTeam = DGUKNK322A;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 0;
+							};
+						};
 					};
 					832C65EF1CD0800200B3479E = {
 						CreatedOnToolsVersion = 7.3;
@@ -521,6 +529,7 @@
 				832C65E21CD0800200B3479E /* NowPlayingViewController.swift in Sources */,
 				836279271DA88501008C2B1D /* DJCollectionViewCell.swift in Sources */,
 				83C28A6F1D02627A0096D629 /* Show.swift in Sources */,
+				D8AD9FE91DCA8AE200C74D87 /* String+DateComponents.swift in Sources */,
 				832C65E01CD0800200B3479E /* AppDelegate.swift in Sources */,
 				83B8C0761D067EDF00B80802 /* ScheduleSectionHeaderView.swift in Sources */,
 				83C28A7C1D050F3B0096D629 /* ScheduleViewController.swift in Sources */,
@@ -697,6 +706,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "Chris dev";
 				SWIFT_OBJC_BRIDGING_HEADER = "./UCLA Radio/UCLA_Radio-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -716,6 +726,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "UCLA Radio Dist";
 				SWIFT_OBJC_BRIDGING_HEADER = "./UCLA Radio/UCLA_Radio-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

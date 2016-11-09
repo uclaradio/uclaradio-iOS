@@ -24,6 +24,7 @@ class ShowViewController: BaseViewController {
     @IBOutlet weak var djsLabel: UILabel!
     @IBOutlet weak var blurbLabel: UILabel!
     
+    @IBOutlet weak var notificationsSwitch: UISwitch!
     
     
     @IBAction func notificationsToggled(_ sender: UISwitch) {
@@ -60,6 +61,8 @@ class ShowViewController: BaseViewController {
                 } else {
                     current.removePendingNotificationRequests(withIdentifiers: [show.title])
                 }
+                UserDefaults.standard.set(notificationsSwitch.isOn, forKey: show.title + "-switchState")
+
             }
         }
     }
@@ -75,6 +78,10 @@ class ShowViewController: BaseViewController {
         
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
+        
+        if let show = show {
+            notificationsSwitch.isOn =  UserDefaults.standard.bool(forKey: show.title + "-switchState")
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
