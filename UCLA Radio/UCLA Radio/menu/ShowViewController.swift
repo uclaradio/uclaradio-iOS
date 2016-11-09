@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import SDWebImage
+import UserNotifications
 
 class ShowViewController: BaseViewController {
     
@@ -22,6 +23,46 @@ class ShowViewController: BaseViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var djsLabel: UILabel!
     @IBOutlet weak var blurbLabel: UILabel!
+    
+    
+    
+    @IBAction func notificationsToggled(_ sender: UISwitch) {
+        if #available(iOS 10.0, *) {
+            let current = UNUserNotificationCenter.current()
+            if let show = show {
+                if sender.isOn {
+    
+                        let formatter = DateComponentsFormatter()
+                        formatter.calendar = Calendar.current
+                        var dateComponents = DateComponents()
+                        dateComponents.hour = formatter.getHourComponentFromString(show.time)
+                        dateComponents.weekday = formatter.getWeekdayComponentFromString(show.day)
+                        
+                        let requestIdentifier = show.title
+                        
+                        let content = UNMutableNotificationContent()
+                        content.title = "UCLA Radio"
+                        content.subtitle = show.title + " is on right now!"
+                        content.body = "Woah! These new notifications look amazing! Don’t you agree?"
+                        
+                        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents,
+                                                                    repeats: true)
+                        
+                        let request = UNNotificationRequest(identifier: requestIdentifier,
+                                                            content: content,
+                                                            trigger: trigger)
+                        
+                        current.add(request) { (error) in
+                            print("Formatted: \(formatter.string(from: dateComponents)!)")
+                            print("Date Components (hour): \(dateComponents.hour!)")
+                            print("Date Components (weekday): \(dateComponents.weekday!)")
+                        }
+                } else {
+                    current.removePendingNotificationRequests(withIdentifiers: [show.title])
+                }
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,6 +114,5 @@ class ShowViewController: BaseViewController {
         if let blurb = show.blurb {
             blurbLabel.text = blurb
         }
-        
     }
 }
