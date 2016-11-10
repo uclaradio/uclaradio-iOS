@@ -12,18 +12,16 @@ import Foundation
 class Show {
     let id: Int
     let title: String
-    let day: String
-    let time: String
+    let time: DateComponents
     let djString: String
     var djs: [String]?
     var genre: String?
     var blurb: String?
     var picture: String? // url to picture on server
     
-    init(id: Int, title: String, day: String, time: String, djs: [String], genre: String?, blurb: String?, picture: String?) {
+    init(id: Int, title: String, time: DateComponents, djs: [String], genre: String?, blurb: String?, picture: String?) {
         self.id = id
         self.title = title
-        self.day = day
         self.time = time
         self.genre = genre
         self.blurb = blurb
@@ -32,8 +30,8 @@ class Show {
         self.djString = Show.makeDjsString(djs)
     }
     
-    convenience init(id: Int, title: String, day: String, time: String, djs: [String]) {
-        self.init(id: id, title: title, day: day, time: time, djs: djs, genre: nil, blurb: nil, picture: nil)
+    convenience init(id: Int, title: String, time: DateComponents, djs: [String]) {
+        self.init(id: id, title: title, time: time, djs: djs, genre: nil, blurb: nil, picture: nil)
     }
     
     static func showFromJSON(_ dict: NSDictionary) -> Show? {
@@ -51,7 +49,24 @@ class Show {
                 }
             }
             
-            let newShow = Show(id: id, title: title, day: day, time: time, djs: djs)
+            let formatter = DateComponentsFormatter()
+            let calendar = Calendar.current
+            let now = Date()
+            let weekdayToday = calendar.component(.weekday, from: now)
+            let weekdayOfShow = formatter.getWeekdayComponentFromString(day)!
+            
+            let daysToShow = ((7 + weekdayOfShow) - weekdayToday) % 7
+            
+            let nextShowDate = calendar.date(byAdding: .day, value: daysToShow, to: now)!
+            var nextShowComponents = calendar.dateComponents([.month, .day, .year], from: nextShowDate)
+            nextShowComponents.hour = formatter.getHourComponentFromString(time)
+            nextShowComponents.weekday = weekdayOfShow
+            nextShowComponents.timeZone = TimeZone(identifier: "America/Los_Angeles")
+            
+            
+            let newShow = Show(id: id, title: title, time: nextShowComponents, djs: djs)
+            
+            print("Show \(newShow.title) with time \(newShow.time.hour) at \(newShow.time.weekday)")
             
             // optional properties
             if let genre = dict["genre"] as? String , genre.characters.count > 0 {

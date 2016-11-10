@@ -15,9 +15,15 @@ extension DateComponentsFormatter {
 
         let stringHour = s.substring(to: s.index(before: s.index(s.endIndex, offsetBy: -1)))
         if var hour = Int(stringHour) {
-            if s.hasSuffix("pm") && hour != 12 {
+            if s.hasSuffix("am") && hour == 12 {
+                hour = 0
+            } else if s.hasSuffix("pm") && hour != 12 {
                 hour += 12
             }
+            
+            print("String: \(stringHour)")
+            print("Int: \(hour)")
+            
             return hour
         }
         return nil

@@ -47,21 +47,21 @@ class Schedule {
         var saturday: [Show] = []
         var sunday: [Show] = []
         for show in shows {
-            switch show.day {
-            case "Mon":
-                monday.append(show)
-            case "Tue":
-                tuesday.append(show)
-            case "Wed":
-                wednesday.append(show)
-            case "Thu":
-                thursday.append(show)
-            case "Fri":
-                friday.append(show)
-            case "Sat":
-                saturday.append(show)
-            case "Sun":
+            switch show.time.weekday! {
+            case 1:
                 sunday.append(show)
+            case 2:
+                monday.append(show)
+            case 3:
+                tuesday.append(show)
+            case 4:
+                wednesday.append(show)
+            case 5:
+                thursday.append(show)
+            case 6:
+                friday.append(show)
+            case 7:
+                saturday.append(show)
             default:
                 break
             }
@@ -71,6 +71,11 @@ class Schedule {
                   friday: friday, saturday: saturday, sunday: sunday)
     }
     
+    static func sortShows(_ shows: [Show]) -> [Show] {
+        return shows.sorted { $0.time.hour < $1.time.hour }
+    }
+    
+    /*
     static func sortShows(_ shows: [Show]) -> [Show] {
         var shows = shows
         shows.sort { (a, b) -> Bool in
@@ -111,5 +116,6 @@ class Schedule {
             return []
         }
     }
+    */
     
 }

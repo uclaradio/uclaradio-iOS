@@ -32,13 +32,7 @@ class ShowViewController: BaseViewController {
             let current = UNUserNotificationCenter.current()
             if let show = show {
                 if sender.isOn {
-    
-                        let formatter = DateComponentsFormatter()
-                        formatter.calendar = Calendar.current
-                        var dateComponents = DateComponents()
-                        dateComponents.hour = formatter.getHourComponentFromString(show.time)
-                        dateComponents.weekday = formatter.getWeekdayComponentFromString(show.day)
-                        
+                    
                         let requestIdentifier = show.title
                         
                         let content = UNMutableNotificationContent()
@@ -46,18 +40,14 @@ class ShowViewController: BaseViewController {
                         content.subtitle = show.title + " is on right now!"
                         content.body = "Woah! These new notifications look amazing! Don’t you agree?"
                         
-                        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents,
+                        let trigger = UNCalendarNotificationTrigger(dateMatching: show.time,
                                                                     repeats: true)
                         
                         let request = UNNotificationRequest(identifier: requestIdentifier,
                                                             content: content,
                                                             trigger: trigger)
                         
-                        current.add(request) { (error) in
-                            print("Formatted: \(formatter.string(from: dateComponents)!)")
-                            print("Date Components (hour): \(dateComponents.hour!)")
-                            print("Date Components (weekday): \(dateComponents.weekday!)")
-                        }
+                        current.add(request)
                 } else {
                     current.removePendingNotificationRequests(withIdentifiers: [show.title])
                 }
@@ -99,9 +89,21 @@ class ShowViewController: BaseViewController {
         }
     }
     
+    //func getLocalizedTimeString(showTime: DateComponents)
+    
     fileprivate func styleForShow(_ show: Show) {
-        let string = show.day + " " + show.time
-        timeLabel.text = string
+        
+        let formatter = DateFormatter()
+        formatter.amSymbol = formatter.amSymbol.lowercased()
+        formatter.pmSymbol = formatter.pmSymbol.lowercased()
+
+        // Format: Shorterned day of week (EEE), Shortened 12 hour (h), AM/PM (a)
+        formatter.dateFormat = "EEE ha"
+        
+        let showDate = Calendar.current.date(from: show.time)
+        
+        
+        timeLabel.text = formatter.string(from: showDate!)
         titleLabel.text = show.title
         djsLabel.text = show.djString
         
