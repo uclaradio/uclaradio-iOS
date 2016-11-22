@@ -96,14 +96,13 @@ class ShowViewController: BaseViewController {
         let formatter = DateFormatter()
         formatter.amSymbol = formatter.amSymbol.lowercased()
         formatter.pmSymbol = formatter.pmSymbol.lowercased()
-
+        
         // Format: Shorterned day of week (EEE), Shortened 12 hour (h), AM/PM (a)
         formatter.dateFormat = "EEE ha"
         
-        let showDate = Calendar.current.date(from: show.time)
+        let showDate = show.getClosestDateOfShow()
         
-        
-        timeLabel.text = formatter.string(from: showDate!)
+        timeLabel.text = formatter.string(from: showDate)
         titleLabel.text = show.title
         djsLabel.text = show.djString
         

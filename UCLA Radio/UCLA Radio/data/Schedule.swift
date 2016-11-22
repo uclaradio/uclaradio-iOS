@@ -47,7 +47,10 @@ class Schedule {
         var saturday: [Show] = []
         var sunday: [Show] = []
         for show in shows {
-            switch show.time.weekday! {
+            let date = show.getClosestDateOfShow()
+            let weekday = Calendar.current.component(.weekday, from: date)
+        
+            switch weekday {
             case 1:
                 sunday.append(show)
             case 2:
@@ -72,50 +75,6 @@ class Schedule {
     }
     
     static func sortShows(_ shows: [Show]) -> [Show] {
-        return shows.sorted { $0.time.hour < $1.time.hour }
+        return shows.sorted { $0.getClosestDateOfShow() < $1.getClosestDateOfShow() }
     }
-    
-    /*
-    static func sortShows(_ shows: [Show]) -> [Show] {
-        var shows = shows
-        shows.sort { (a, b) -> Bool in
-            var aMatch = matches(for: "[0-9]*", in: a.time)
-            var bMatch = matches(for: "[0-9]*", in: b.time)
-            let aTime = (Int(aMatch[0]) ?? 0) % 12
-            let bTime = (Int(bMatch[0]) ?? 0) % 12
-            
-            if let _ = a.time.range(of: "am", options: .regularExpression) {
-                if let _ = b.time.range(of: "am", options: .regularExpression) {
-                    return aTime < bTime
-                }
-                else {
-                    return true
-                }
-            }
-            else {
-                if let _ = b.time.range(of: "am", options: .regularExpression) {
-                    return false
-                }
-                else {
-                    return aTime < bTime
-                }
-            }
-        }
-        return shows
-    }
-    
-    static func matches(for regex: String!, in text: String!) -> [String] {
-        
-        do {
-            let regex = try NSRegularExpression(pattern: regex, options: [])
-            let nsString = text as NSString
-            let results = regex.matches(in: text, options:[], range: NSMakeRange(0, nsString.length))
-            return results.map { nsString.substring(with: $0.range)}
-        } catch let error as NSError {
-            print("invalid regex: \(error.localizedDescription)")
-            return []
-        }
-    }
-    */
-    
 }

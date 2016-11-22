@@ -34,6 +34,33 @@ class Show {
         self.init(id: id, title: title, time: time, djs: djs, genre: nil, blurb: nil, picture: nil)
     }
     
+    func getClosestDateOfShow() -> Date {
+        let previous = getPreviousDateOfShow()
+        let next = getNextDateOfShow()
+        
+        if abs(next.timeIntervalSinceNow) < abs(previous.timeIntervalSinceNow) {
+            return next
+        } else {
+            return previous
+        }
+    }
+    
+    func getPreviousDateOfShow() -> Date {
+        let nextShow = getNextDateOfShow()
+        let components = DateComponents(day: -7)
+        let calendar = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)!
+        calendar.timeZone = self.time.timeZone!
+        return calendar.date(byAdding: components, to: nextShow)!
+    }
+    
+    func getNextDateOfShow() -> Date {
+        let now = Date()
+        let calendar = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)!
+        calendar.timeZone = self.time.timeZone!
+        return calendar.nextDate(after: now, matching: self.time, options: [.matchNextTime])!
+    }
+    
+    
     static func showFromJSON(_ dict: NSDictionary) -> Show? {
         if let id = dict["id"] as? Int,
             let title = dict["title"] as? String,
@@ -49,24 +76,30 @@ class Show {
                 }
             }
             
+            print("day: \(day)")
+            print("time: \(time)")
             let formatter = DateComponentsFormatter()
-            let calendar = Calendar.current
-            let now = Date()
-            let weekdayToday = calendar.component(.weekday, from: now)
-            let weekdayOfShow = formatter.getWeekdayComponentFromString(day)!
+            //let dateFormatter = DateFormatter()
+            //dateFormatter.dateFormat = "EEEHa"
+            //let gregorianCalendar = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)!
             
-            let daysToShow = ((7 + weekdayOfShow) - weekdayToday) % 7
+            //let date = dateFormatter.date(from: day+time)!
+            //print("date: \(date)")
             
-            let nextShowDate = calendar.date(byAdding: .day, value: daysToShow, to: now)!
-            var nextShowComponents = calendar.dateComponents([.month, .day, .year], from: nextShowDate)
-            nextShowComponents.hour = formatter.getHourComponentFromString(time)
-            nextShowComponents.weekday = weekdayOfShow
-            nextShowComponents.timeZone = TimeZone(identifier: "America/Los_Angeles")
+            //var components = gregorianCalendar.components([.hour, .weekday], from: date)
             
             
-            let newShow = Show(id: id, title: title, time: nextShowComponents, djs: djs)
+            var components = DateComponents()
+            components.timeZone = TimeZone(identifier: "America/Los_Angeles")
+            components.hour = formatter.getHourComponentFromString(time)
+            components.weekday = formatter.getWeekdayComponentFromString(day)
+   
+            let newShow = Show(id: id, title: title, time: components, djs: djs)
+            print("Show: \(newShow.title)")
+            print("c: \(newShow.getClosestDateOfShow())")
+            print("n: \(newShow.getNextDateOfShow())")
+            print("p: \(newShow.getPreviousDateOfShow())")
             
-            print("Show \(newShow.title) with time \(newShow.time.hour) at \(newShow.time.weekday)")
             
             // optional properties
             if let genre = dict["genre"] as? String , genre.characters.count > 0 {

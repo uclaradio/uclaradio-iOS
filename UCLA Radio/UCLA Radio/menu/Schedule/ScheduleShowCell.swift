@@ -74,10 +74,10 @@ class ScheduleShowCell: UITableViewCell {
         formatter.pmSymbol = formatter.pmSymbol.lowercased()
         // Format: Shortened 12 hour (h), AM/PM (a)
         formatter.dateFormat = "ha"
+        formatter.timeZone = TimeZone.current
+        print("tz: \(formatter.timeZone)")
         
-        let showDate = Calendar.current.date(from: show.time)!
-        
-        
+        let showDate = show.getClosestDateOfShow()
         
         timeLabel.text = formatter.string(from: showDate)
         titleLabel.text = show.title
