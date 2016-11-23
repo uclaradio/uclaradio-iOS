@@ -24,6 +24,9 @@ class ShowViewController: BaseViewController {
     @IBOutlet weak var djsLabel: UILabel!
     @IBOutlet weak var blurbLabel: UILabel!
     
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var notificationsView: UIView!
     @IBOutlet weak var notificationsSwitch: UISwitch!
     
     
@@ -88,7 +91,6 @@ class ShowViewController: BaseViewController {
         super.viewDidLoad()
         
         timeLabel.textColor = UIColor.lightGray
-        
         genreLabel.textColor = UIColor.darkGray
         blurbLabel.textColor = UIColor.darkGray
         djsLabel.textColor = UIColor.darkGray
