@@ -48,7 +48,7 @@ class Show {
     func getPreviousDateOfShow() -> Date {
         let nextShow = getNextDateOfShow()
         let components = DateComponents(day: -7)
-        let calendar = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)!
+        let calendar = NSCalendar(calendarIdentifier: .gregorian)!
         calendar.timeZone = self.time.timeZone!
         return calendar.date(byAdding: components, to: nextShow)!
     }
@@ -76,8 +76,6 @@ class Show {
                 }
             }
             
-            print("day: \(day)")
-            print("time: \(time)")
             let formatter = DateComponentsFormatter()
             //let dateFormatter = DateFormatter()
             //dateFormatter.dateFormat = "EEEHa"
@@ -95,12 +93,7 @@ class Show {
             components.weekday = formatter.getWeekdayComponentFromString(day)
    
             let newShow = Show(id: id, title: title, time: components, djs: djs)
-            print("Show: \(newShow.title)")
-            print("c: \(newShow.getClosestDateOfShow())")
-            print("n: \(newShow.getNextDateOfShow())")
-            print("p: \(newShow.getPreviousDateOfShow())")
-            
-            
+
             // optional properties
             if let genre = dict["genre"] as? String , genre.characters.count > 0 {
                 newShow.genre = genre

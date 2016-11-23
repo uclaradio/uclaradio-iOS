@@ -20,10 +20,7 @@ extension DateComponentsFormatter {
             } else if s.hasSuffix("pm") && hour != 12 {
                 hour += 12
             }
-            
-            print("String: \(stringHour)")
-            print("Int: \(hour)")
-            
+
             return hour
         }
         return nil

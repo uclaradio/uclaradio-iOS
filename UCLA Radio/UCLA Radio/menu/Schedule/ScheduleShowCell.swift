@@ -75,7 +75,6 @@ class ScheduleShowCell: UITableViewCell {
         // Format: Shortened 12 hour (h), AM/PM (a)
         formatter.dateFormat = "ha"
         formatter.timeZone = TimeZone.current
-        print("tz: \(formatter.timeZone)")
         
         let showDate = show.getClosestDateOfShow()
         
