@@ -12,18 +12,16 @@ import Foundation
 class Show {
     let id: Int
     let title: String
-    let day: String
-    let time: String
+    let time: DateComponents
     let djString: String
     var djs: [String]?
     var genre: String?
     var blurb: String?
     var picture: String? // url to picture on server
     
-    init(id: Int, title: String, day: String, time: String, djs: [String], genre: String?, blurb: String?, picture: String?) {
+    init(id: Int, title: String, time: DateComponents, djs: [String], genre: String?, blurb: String?, picture: String?) {
         self.id = id
         self.title = title
-        self.day = day
         self.time = time
         self.genre = genre
         self.blurb = blurb
@@ -32,9 +30,36 @@ class Show {
         self.djString = Show.makeDjsString(djs)
     }
     
-    convenience init(id: Int, title: String, day: String, time: String, djs: [String]) {
-        self.init(id: id, title: title, day: day, time: time, djs: djs, genre: nil, blurb: nil, picture: nil)
+    convenience init(id: Int, title: String, time: DateComponents, djs: [String]) {
+        self.init(id: id, title: title, time: time, djs: djs, genre: nil, blurb: nil, picture: nil)
     }
+    
+    func getClosestDateOfShow() -> Date {
+        let previous = getPreviousDateOfShow()
+        let next = getNextDateOfShow()
+        
+        if abs(next.timeIntervalSinceNow) < abs(previous.timeIntervalSinceNow) {
+            return next
+        } else {
+            return previous
+        }
+    }
+    
+    func getPreviousDateOfShow() -> Date {
+        let nextShow = getNextDateOfShow()
+        let components = DateComponents(day: -7)
+        let calendar = NSCalendar(calendarIdentifier: .gregorian)!
+        calendar.timeZone = self.time.timeZone!
+        return calendar.date(byAdding: components, to: nextShow)!
+    }
+    
+    func getNextDateOfShow() -> Date {
+        let now = Date()
+        let calendar = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)!
+        calendar.timeZone = self.time.timeZone!
+        return calendar.nextDate(after: now, matching: self.time, options: [.matchNextTime])!
+    }
+    
     
     static func showFromJSON(_ dict: NSDictionary) -> Show? {
         if let id = dict["id"] as? Int,
@@ -51,8 +76,24 @@ class Show {
                 }
             }
             
-            let newShow = Show(id: id, title: title, day: day, time: time, djs: djs)
+            let formatter = DateComponentsFormatter()
+            //let dateFormatter = DateFormatter()
+            //dateFormatter.dateFormat = "EEEHa"
+            //let gregorianCalendar = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)!
             
+            //let date = dateFormatter.date(from: day+time)!
+            //print("date: \(date)")
+            
+            //var components = gregorianCalendar.components([.hour, .weekday], from: date)
+            
+            
+            var components = DateComponents()
+            components.timeZone = TimeZone(identifier: "America/Los_Angeles")
+            components.hour = formatter.getHourComponentFromString(time)
+            components.weekday = formatter.getWeekdayComponentFromString(day)
+   
+            let newShow = Show(id: id, title: title, time: components, djs: djs)
+
             // optional properties
             if let genre = dict["genre"] as? String , genre.characters.count > 0 {
                 newShow.genre = genre

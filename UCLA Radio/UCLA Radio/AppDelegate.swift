@@ -8,18 +8,35 @@
 
 import UIKit
 import SDWebImage
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         HistoryFetcher.fetchRecentTracks()
         RadioAPI.fetchNowPlaying()
         RadioAPI.fetchGiveaways(nil)
+        
+        // Configure Notifications
+        // User UNUSerNotificationCenter if >= iOS 10, UIUserNotificationSettings otherwise
+        if #available(iOS 10.0, *) {
+            let center = UNUserNotificationCenter.current()
+            center.requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
+                if granted {
+                    print("Yay!")
+                } else {
+                    print("D'oh")
+                }
+            }
+        } else {
+            let settings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+            application.registerUserNotificationSettings(settings)
+        }
+        
         
         // Configure tracker from GoogleService-Info.plist.
         var configureError:NSError?
@@ -29,7 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Optional: configure GAI options.
         let gai = GAI.sharedInstance()
         gai?.trackUncaughtExceptions = true  // report uncaught exceptions
-        gai?.logger.logLevel = GAILogLevel.verbose  // remove before app release
+        gai?.logger.logLevel = GAILogLevel.error  // remove before app release
         
         return true
     }
