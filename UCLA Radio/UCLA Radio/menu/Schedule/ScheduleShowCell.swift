@@ -70,15 +70,11 @@ class ScheduleShowCell: UITableViewCell {
     func styleFromShow(_ show: Show) {
         
         let formatter = DateFormatter()
-        formatter.amSymbol = formatter.amSymbol.lowercased()
-        formatter.pmSymbol = formatter.pmSymbol.lowercased()
-        // Format: Shortened 12 hour (h), AM/PM (a)
-        formatter.dateFormat = "ha"
         formatter.timeZone = TimeZone.current
         
         let showDate = show.getClosestDateOfShow()
         
-        timeLabel.text = formatter.string(from: showDate)
+        timeLabel.text = formatter.formatDateForShow(showDate, format: .Time)
         titleLabel.text = show.title
 //        djsLabel.text = show.djString
         blurbImageView.sd_cancelCurrentImageLoad()

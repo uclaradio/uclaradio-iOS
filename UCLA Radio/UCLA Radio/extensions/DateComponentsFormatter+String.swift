@@ -1,5 +1,5 @@
 //
-//  String+DateComponents.swift
+//  DateComponentsFormatter+String.swift
 //  UCLA Radio
 //
 //  Created by Nathan Smith on 11/2/16.
