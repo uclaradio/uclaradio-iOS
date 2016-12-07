@@ -98,15 +98,13 @@ class ShowViewController: BaseViewController {
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         
-        if let show = show {
-            notificationsSwitch.isOn =  UserDefaults.standard.bool(forKey: show.title + "-switchState")
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if let show = show {
             styleForShow(show)
+            
             
             // track view analytics
             let tracker = GAI.sharedInstance().defaultTracker
@@ -151,5 +149,7 @@ class ShowViewController: BaseViewController {
         if let blurb = show.blurb {
             blurbLabel.text = blurb
         }
+        
+        notificationsSwitch.isOn =  UserDefaults.standard.bool(forKey: show.title + "-switchState")
     }
 }
