@@ -51,6 +51,7 @@
 		83C4CC1F1CE25C1500FBA1EC /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C4CC1E1CE25C1500FBA1EC /* UIColor+Hex.swift */; };
 		83E4247A1CEECCF700662EDD /* NowPlayingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E424791CEECCF700662EDD /* NowPlayingView.swift */; };
 		D80C7AA51DF7D7B0003375F6 /* DateFormatter+ShowDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80C7AA41DF7D7B0003375F6 /* DateFormatter+ShowDate.swift */; };
+		D80C7AA71DF7D92B003375F6 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80C7AA61DF7D92B003375F6 /* NotificationManager.swift */; };
 		D8AD9FE91DCA8AE200C74D87 /* DateComponentsFormatter+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AD9FE81DCA8AE200C74D87 /* DateComponentsFormatter+String.swift */; };
 /* End PBXBuildFile section */
 
@@ -125,6 +126,7 @@
 		83C4CC1E1CE25C1500FBA1EC /* UIColor+Hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
 		83E424791CEECCF700662EDD /* NowPlayingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NowPlayingView.swift; sourceTree = "<group>"; };
 		D80C7AA41DF7D7B0003375F6 /* DateFormatter+ShowDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DateFormatter+ShowDate.swift"; sourceTree = "<group>"; };
+		D80C7AA61DF7D92B003375F6 /* NotificationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		D8AD9FE81DCA8AE200C74D87 /* DateComponentsFormatter+String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DateComponentsFormatter+String.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -195,6 +197,7 @@
 				833EA2E51CE1BC4F00952BA0 /* extensions */,
 				832C65DF1CD0800200B3479E /* AppDelegate.swift */,
 				832C65E11CD0800200B3479E /* NowPlayingViewController.swift */,
+				D80C7AA61DF7D92B003375F6 /* NotificationManager.swift */,
 				8365ECF61CE9945C001B96BF /* ContainerViewController.swift */,
 				83C4CC1C1CE25BB900FBA1EC /* Constants.swift */,
 				835CDF971D0818AD00C3213B /* Global.swift */,
@@ -529,6 +532,7 @@
 				83C28A6D1D025FB10096D629 /* RadioAPI.swift in Sources */,
 				8365ECF71CE9945C001B96BF /* ContainerViewController.swift in Sources */,
 				D80C7AA51DF7D7B0003375F6 /* DateFormatter+ShowDate.swift in Sources */,
+				D80C7AA71DF7D92B003375F6 /* NotificationManager.swift in Sources */,
 				83A8ED6E1CE30248003D4286 /* RecentTrackView.swift in Sources */,
 				832C65E21CD0800200B3479E /* NowPlayingViewController.swift in Sources */,
 				836279271DA88501008C2B1D /* DJCollectionViewCell.swift in Sources */,

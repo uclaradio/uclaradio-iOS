@@ -32,57 +32,7 @@ class ShowViewController: BaseViewController {
     
     @IBAction func notificationsToggled(_ sender: UISwitch) {
         if let show = show {
-            if #available(iOS 10.0, *) {
-                let current = UNUserNotificationCenter.current()
-                if sender.isOn {
-                    let requestIdentifier = show.title
-                    
-                    let content = UNMutableNotificationContent()
-                    content.title = "UCLA Radio"
-                    content.subtitle = show.title + " is on in 15 minutes!"
-                    content.body = "Woah! These new notifications look amazing! Don’t you agree?"
-                    
-                    var notificationTime = show.time
-                    notificationTime.minute = -15
-                    
-                    
-                    let trigger = UNCalendarNotificationTrigger(dateMatching: notificationTime,
-                                                                repeats: true)
-                    
-                    let request = UNNotificationRequest(identifier: requestIdentifier,
-                                                        content: content,
-                                                        trigger: trigger)
-                    
-                    current.add(request)
-                } else {
-                    current.removePendingNotificationRequests(withIdentifiers: [show.title])
-                }
-                
-
-            } else {
-                
-                let notification = UILocalNotification()
-                
-                notification.alertBody = show.title + " is on in 15 minutes!!"
-                
-                let calendar = NSCalendar(calendarIdentifier: .gregorian)!
-
-                let notificationDate = calendar.date(byAdding: DateComponents(minute: -15), to: show.getNextDateOfShow())!
-                
-                
-                print("Notification Date: \(notificationDate)")
-                
-                notification.fireDate = notificationDate
-                notification.repeatInterval = .weekOfYear
-                notification.repeatCalendar = Calendar.current
-                notification.soundName = UILocalNotificationDefaultSoundName;
-                
-                if sender.isOn {
-                    UIApplication.shared.scheduleLocalNotification(notification)
-                } else {
-                    UIApplication.shared.cancelLocalNotification(notification)
-                }
-            }
+            NotificationManager.sharedInstance.notificationsToggledForShow(show, isOn: notificationsSwitch.isOn)
         }
         UserDefaults.standard.set(notificationsSwitch.isOn, forKey: (show?.title)! + "-switchState")
     }

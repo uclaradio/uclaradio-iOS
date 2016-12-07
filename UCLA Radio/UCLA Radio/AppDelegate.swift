@@ -21,22 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         RadioAPI.fetchNowPlaying()
         RadioAPI.fetchGiveaways(nil)
         
-        // Configure Notifications
-        // User UNUSerNotificationCenter if >= iOS 10, UIUserNotificationSettings otherwise
-        if #available(iOS 10.0, *) {
-            let center = UNUserNotificationCenter.current()
-            center.requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
-                if granted {
-                    print("Yay!")
-                } else {
-                    print("D'oh")
-                }
-            }
-        } else {
-            let settings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
-            application.registerUserNotificationSettings(settings)
-        }
-        
+        NotificationManager.sharedInstance.requestNotificationPermission(application: application)
         
         // Configure tracker from GoogleService-Info.plist.
         var configureError:NSError?

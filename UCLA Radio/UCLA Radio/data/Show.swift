@@ -48,7 +48,7 @@ class Show {
     func getPreviousDateOfShow() -> Date {
         let nextShow = getNextDateOfShow()
         let components = DateComponents(day: -7)
-        let calendar = NSCalendar(calendarIdentifier: .gregorian)!
+        var calendar = Calendar(identifier: .gregorian)
         calendar.timeZone = self.time.timeZone!
         return calendar.date(byAdding: components, to: nextShow)!
     }
