@@ -73,30 +73,38 @@ class NotificationManager {
                 
                 
             } else {
-                
-                let notification = UILocalNotification()
-                
-                notification.alertBody = show.title + " is on in 15 minutes!"
-                //notification.userInfo =
-                    
-                  //  show.title
-                
-                let calendar = Calendar(calendarIdentifier: .gregorian)
-                
-                let notificationDate = calendar.date(byAdding: DateComponents(minute: -15), to: show.getNextDateOfShow())!
-                
-                
-                print("Notification Date: \(notificationDate)")
-                
-                notification.fireDate = notificationDate
-                notification.repeatInterval = .weekOfYear
-                notification.repeatCalendar = Calendar.current
-                notification.soundName = UILocalNotificationDefaultSoundName;
-                
+                let app = UIApplication.shared
                 if isOn {
-                    UIApplication.shared.scheduleLocalNotification(notification)
+                    let notification = UILocalNotification()
+                    
+                    notification.alertBody = show.title + " is on in 15 minutes!"
+                    notification.userInfo = ["id": show.title]
+                    
+                    //  show.title
+                    
+                    let calendar = Calendar(identifier: .gregorian)
+                    
+                    let notificationDate = calendar.date(byAdding: DateComponents(minute: -15), to: show.getNextDateOfShow())!
+                    
+                    
+                    print("Notification Date: \(notificationDate)")
+                    
+                    notification.fireDate = notificationDate
+                    notification.repeatInterval = .weekOfYear
+                    notification.repeatCalendar = Calendar.current
+                    notification.soundName = UILocalNotificationDefaultSoundName;
+                    
+                    app.scheduleLocalNotification(notification)
                 } else {
-                    UIApplication.shared.cancelLocalNotification(notification)
+                    for event in app.scheduledLocalNotifications! {
+                        let notification = event as UILocalNotification
+                        let userInfoCurrent = notification.userInfo! as! [String:String]
+                        let id = userInfoCurrent["id"]!
+                        if id == show.title {
+                            app.cancelLocalNotification(notification)
+                            break
+                        }
+                    }
                 }
             }
         }
