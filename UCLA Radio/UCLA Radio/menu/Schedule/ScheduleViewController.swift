@@ -50,8 +50,7 @@ class ScheduleViewController: BaseViewController, APIFetchDelegate, UITableViewD
     }
     
     func today() -> Int {
-        var day =  (Calendar.current as NSCalendar).component(.weekday, from: Date())
-//        var hour =  NSCalendar.currentCalendar().component(.Hour, fromDate: NSDate())
+        var day =  (Calendar.current as Calendar).component(.weekday, from: Date())
         // convert from Apple format (Sunday starting) to our format (Monday starting)
         day -= 2
         if (day < 0) {

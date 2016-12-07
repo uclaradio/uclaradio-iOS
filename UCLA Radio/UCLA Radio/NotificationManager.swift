@@ -81,7 +81,7 @@ class NotificationManager {
                     
                   //  show.title
                 
-                let calendar = NSCalendar(calendarIdentifier: .gregorian)!
+                let calendar = Calendar(calendarIdentifier: .gregorian)
                 
                 let notificationDate = calendar.date(byAdding: DateComponents(minute: -15), to: show.getNextDateOfShow())!
                 

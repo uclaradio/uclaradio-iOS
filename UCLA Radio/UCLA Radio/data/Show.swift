@@ -55,9 +55,9 @@ class Show {
     
     func getNextDateOfShow() -> Date {
         let now = Date()
-        let calendar = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)!
+        var calendar = Calendar(identifier: .gregorian)
         calendar.timeZone = self.time.timeZone!
-        return calendar.nextDate(after: now, matching: self.time, options: [.matchNextTime])!
+        return calendar.nextDate(after: now, matching: self.time, matchingPolicy: .nextTime)!
     }
     
     
