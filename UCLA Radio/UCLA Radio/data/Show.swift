@@ -76,22 +76,15 @@ class Show {
                 }
             }
             
-            let formatter = DateComponentsFormatter()
-            //let dateFormatter = DateFormatter()
-            //dateFormatter.dateFormat = "EEEHa"
-            //let gregorianCalendar = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)!
+            let formatter = DateFormatter()
+            formatter.dateFormat = "EEEha"
+            let gregorian = Calendar(identifier: .gregorian)
             
-            //let date = dateFormatter.date(from: day+time)!
-            //print("date: \(date)")
+            let date = formatter.date(from: day+time)!
             
-            //var components = gregorianCalendar.components([.hour, .weekday], from: date)
-            
-            
-            var components = DateComponents()
+            var components = gregorian.dateComponents([.hour, .weekday], from: date)
             components.timeZone = TimeZone(identifier: "America/Los_Angeles")
-            components.hour = formatter.getHourComponentFromString(time)
-            components.weekday = formatter.getWeekdayComponentFromString(day)
-   
+
             let newShow = Show(id: id, title: title, time: components, djs: djs)
 
             // optional properties

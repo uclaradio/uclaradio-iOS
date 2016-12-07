@@ -52,7 +52,6 @@
 		83E4247A1CEECCF700662EDD /* NowPlayingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E424791CEECCF700662EDD /* NowPlayingView.swift */; };
 		D80C7AA51DF7D7B0003375F6 /* DateFormatter+ShowDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80C7AA41DF7D7B0003375F6 /* DateFormatter+ShowDate.swift */; };
 		D80C7AA71DF7D92B003375F6 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80C7AA61DF7D92B003375F6 /* NotificationManager.swift */; };
-		D8AD9FE91DCA8AE200C74D87 /* DateComponentsFormatter+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AD9FE81DCA8AE200C74D87 /* DateComponentsFormatter+String.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -127,7 +126,6 @@
 		83E424791CEECCF700662EDD /* NowPlayingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NowPlayingView.swift; sourceTree = "<group>"; };
 		D80C7AA41DF7D7B0003375F6 /* DateFormatter+ShowDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DateFormatter+ShowDate.swift"; sourceTree = "<group>"; };
 		D80C7AA61DF7D92B003375F6 /* NotificationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
-		D8AD9FE81DCA8AE200C74D87 /* DateComponentsFormatter+String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DateComponentsFormatter+String.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -236,7 +234,6 @@
 			children = (
 				833B169E1CE1BD2D00E711F5 /* UIImage+Color.swift */,
 				83C4CC1E1CE25C1500FBA1EC /* UIColor+Hex.swift */,
-				D8AD9FE81DCA8AE200C74D87 /* DateComponentsFormatter+String.swift */,
 				D80C7AA41DF7D7B0003375F6 /* DateFormatter+ShowDate.swift */,
 			);
 			path = extensions;
@@ -537,7 +534,6 @@
 				832C65E21CD0800200B3479E /* NowPlayingViewController.swift in Sources */,
 				836279271DA88501008C2B1D /* DJCollectionViewCell.swift in Sources */,
 				83C28A6F1D02627A0096D629 /* Show.swift in Sources */,
-				D8AD9FE91DCA8AE200C74D87 /* DateComponentsFormatter+String.swift in Sources */,
 				832C65E01CD0800200B3479E /* AppDelegate.swift in Sources */,
 				83B8C0761D067EDF00B80802 /* ScheduleSectionHeaderView.swift in Sources */,
 				83C28A7C1D050F3B0096D629 /* ScheduleViewController.swift in Sources */,
