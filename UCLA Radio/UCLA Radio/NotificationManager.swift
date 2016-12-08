@@ -45,7 +45,7 @@ class NotificationManager {
                     let notificationDate = calendar.date(byAdding: offset, to: nextShowDate, wrappingComponents: false)!
                     let notificationTime = calendar.dateComponents([.hour, .minute, .timeZone, .day, .month], from: notificationDate)
                 
-                    let requestIdentifier = show.title
+                    let requestIdentifier = String(show.id)
                     
                     let trigger = UNCalendarNotificationTrigger(dateMatching: notificationTime,
                                                                 repeats: true)
@@ -67,7 +67,7 @@ class NotificationManager {
                     
                     current.add(request)
                 } else {
-                    current.removePendingNotificationRequests(withIdentifiers: [show.title])
+                    current.removePendingNotificationRequests(withIdentifiers: [String(show.id)])
                 }
                 
                 
@@ -77,7 +77,7 @@ class NotificationManager {
                     let notification = UILocalNotification()
                     
                     notification.alertBody = show.title + " is on in 15 minutes!"
-                    notification.userInfo = ["id": show.title]
+                    notification.userInfo = ["id": show.id]
                     
                     //  show.title
                     
@@ -97,9 +97,9 @@ class NotificationManager {
                 } else {
                     for event in app.scheduledLocalNotifications! {
                         let notification = event as UILocalNotification
-                        let userInfoCurrent = notification.userInfo! as! [String:String]
+                        let userInfoCurrent = notification.userInfo! as! [String:Int]
                         let id = userInfoCurrent["id"]!
-                        if id == show.title {
+                        if id == show.id {
                             app.cancelLocalNotification(notification)
                             break
                         }
