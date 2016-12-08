@@ -10,22 +10,27 @@ import Foundation
 
 extension DateFormatter {
     
-    enum DateFormat {
-        case DayAndTime, Time
+    enum DateFormat: String {
+        case DayAndTime = "EEE ha"
+        case Time = "ha"
+    }
+    
+    // Expect string of DayAndTime DateFormat ("EEE ha")
+    func formatShowTimeStringToDateComponents(_ s: String) -> DateComponents? {
+        dateFormat = DateFormat.DayAndTime.rawValue
+        if let date = self.date(from: s) {
+            var components = Calendar(identifier: .gregorian).dateComponents([.hour, .weekday], from: date)
+            components.timeZone = TimeZone(identifier: "America/Los_Angeles")
+            
+            return components
+        }
+        return nil
     }
     
     func formatDateForShow(_ date: Date, format: DateFormat) -> String {
         amSymbol = amSymbol.lowercased()
         pmSymbol = pmSymbol.lowercased()
-        
-        switch format {
-        case .DayAndTime:
-            // Format: Shorterned day of week (EEE), Shortened 12 hour (h), AM/PM (a)
-            dateFormat = "EEE ha"
-        case .Time:
-            // Format: Shortened 12 hour (h), AM/PM (a)
-            dateFormat = "ha"
-        }
+        dateFormat = format.rawValue
         
         return string(from: date)
     }

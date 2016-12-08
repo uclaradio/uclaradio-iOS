@@ -95,13 +95,15 @@ class NotificationManager {
                     
                     app.scheduleLocalNotification(notification)
                 } else {
-                    for event in app.scheduledLocalNotifications! {
-                        let notification = event as UILocalNotification
-                        let userInfoCurrent = notification.userInfo! as! [String:Int]
-                        let id = userInfoCurrent["id"]!
-                        if id == show.id {
-                            app.cancelLocalNotification(notification)
-                            break
+                    if let scheduledNotifications = app.scheduledLocalNotifications {
+                        for notification in scheduledNotifications {
+                            if let userInfoCurrent = notification.userInfo as? [String:Int] {
+                                let id = userInfoCurrent["id"]
+                                if id == show.id {
+                                    app.cancelLocalNotification(notification)
+                                    break
+                                }
+                            }
                         }
                     }
                 }

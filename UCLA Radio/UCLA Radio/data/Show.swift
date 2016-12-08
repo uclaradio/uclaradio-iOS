@@ -65,7 +65,8 @@ class Show {
         if let id = dict["id"] as? Int,
             let title = dict["title"] as? String,
             let day = dict["day"] as? String,
-            let time = dict["time"] as? String {
+            let time = dict["time"] as? String,
+            let components = DateFormatter().formatShowTimeStringToDateComponents(day + " " + time) {
             
             var djs: [String] = [];
             if let djsDict = dict["djs"] as? NSDictionary {
@@ -76,15 +77,6 @@ class Show {
                 }
             }
             
-            let formatter = DateFormatter()
-            formatter.dateFormat = "EEEha"
-            let gregorian = Calendar(identifier: .gregorian)
-            
-            let date = formatter.date(from: day+time)!
-            
-            var components = gregorian.dateComponents([.hour, .weekday], from: date)
-            components.timeZone = TimeZone(identifier: "America/Los_Angeles")
-
             let newShow = Show(id: id, title: title, time: components, djs: djs)
 
             // optional properties
