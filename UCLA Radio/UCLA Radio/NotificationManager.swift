@@ -13,16 +13,26 @@ class NotificationManager {
     
     static let sharedInstance = NotificationManager()
     
+    /*
+    var notificationsAuthorized:Bool {
+        get {
+            if #available(iOS 10.0, *) {
+                let center = UNUserNotificationCenter.current()
+                center.getNotificationSettings() {_ in 
+                    
+                }
+            }
+        }
+    }*/
+    
     func requestNotificationPermission(application: UIApplication) {
         // Configure Notifications
         // User UNUSerNotificationCenter if >= iOS 10, UIUserNotificationSettings otherwise
         if #available(iOS 10.0, *) {
             let center = UNUserNotificationCenter.current()
             center.requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
-                if granted {
-                    print("Yay!")
-                } else {
-                    print("D'oh")
+                if !granted {
+                    print("Error: Notifications not authorized by user.")
                 }
             }
         } else {
@@ -109,4 +119,5 @@ class NotificationManager {
                 }
             }
         }
+    
 }
