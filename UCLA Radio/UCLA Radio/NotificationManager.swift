@@ -12,7 +12,6 @@ import UserNotifications
 class NotificationManager {
     
     static let sharedInstance = NotificationManager()
-    private init() {} // This prevents others from using the default '()' initializer for this class.
     
     func requestNotificationPermission(application: UIApplication) {
         // Configure Notifications
