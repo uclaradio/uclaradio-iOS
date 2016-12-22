@@ -23,6 +23,8 @@ class ScheduleViewController: BaseViewController, APIFetchDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "bell"), style: .plain, target: self, action: #selector(goToNavigation))
+        
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(ScheduleShowCell.self, forCellReuseIdentifier: reuseIdentifier)
@@ -35,6 +37,13 @@ class ScheduleViewController: BaseViewController, APIFetchDelegate, UITableViewD
         view.addConstraints(preferredConstraints())
         
         RadioAPI.fetchSchedule(self)
+    }
+    
+    func goToNavigation() {
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: NotificationViewController.storyboardID)
+        if let notificationViewController = vc as? NotificationViewController {
+            navigationController?.pushViewController(notificationViewController, animated: true)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
