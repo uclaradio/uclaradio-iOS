@@ -9,14 +9,14 @@
 import Foundation
 import UIKit
 import SDWebImage
-import UserNotifications
 
 class ShowViewController: BaseViewController {
-    
+
     static let storyboardID = "showViewController"
-    
+
     var show: Show?
-    
+
+    @IBOutlet weak var notificationsImageView: UIImageView!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var genreLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
@@ -25,21 +25,12 @@ class ShowViewController: BaseViewController {
     @IBOutlet weak var blurbLabel: UILabel!
     
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var contentView: UIView!
-    @IBOutlet weak var notificationsView: UIView!
-    @IBOutlet weak var notificationsSwitch: UISwitch!
-    
-    
-    @IBAction func notificationsToggled(_ sender: UISwitch) {
-        if let show = show {
-            NotificationManager.sharedInstance.notificationsToggledForShow(show, isOn: notificationsSwitch.isOn)
-        }
-        UserDefaults.standard.set(notificationsSwitch.isOn, forKey: (show?.title)! + "-switchState")
-    }
-    
+    @IBOutlet weak var columnContainerView: UIView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        notificationsImageView.tintColor = UIColor.lightGray
         timeLabel.textColor = UIColor.lightGray
         genreLabel.textColor = UIColor.darkGray
         blurbLabel.textColor = UIColor.darkGray
@@ -48,13 +39,20 @@ class ShowViewController: BaseViewController {
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         
+        let notificationsImageGesture = UITapGestureRecognizer(target: self, action: #selector(toggleNotifications))
+        notificationsImageView.addGestureRecognizer(notificationsImageGesture)
+        notificationsImageView.isUserInteractionEnabled = true
+        
+        let timeLabelGesture = UITapGestureRecognizer(target: self, action: #selector(toggleNotifications))
+        timeLabel.addGestureRecognizer(timeLabelGesture)
+        timeLabel.isUserInteractionEnabled = true
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if let show = show {
             styleForShow(show)
-            
             
             // track view analytics
             let tracker = GAI.sharedInstance().defaultTracker
@@ -66,32 +64,51 @@ class ShowViewController: BaseViewController {
         }
     }
     
-    fileprivate func styleForShow(_ show: Show) {
-        
+    // MARK: - Styling
+    
+    private func styleForShow(_ show: Show) {
         let formatter = DateFormatter()
         let showDate = show.getClosestDateOfShow()
-        
+
         timeLabel.text = formatter.formatDateForShow(showDate, format: .DayAndTime)
         titleLabel.text = show.title
         djsLabel.text = show.djString
-        
+
         let placeholder = UIImage(named: "radio")
         if let picture = show.picture {
             imageView.sd_setImage(with: RadioAPI.absoluteURL(picture), placeholderImage: placeholder)
         } else {
             imageView.image = placeholder
         }
-        
+
         genreLabel.text = ""
         if let genre = show.genre {
             genreLabel.text = genre
         }
-        
+
         blurbLabel.text = ""
         if let blurb = show.blurb {
             blurbLabel.text = blurb
         }
-        
-        notificationsSwitch.isOn =  UserDefaults.standard.bool(forKey: show.title + "-switchState")
+
+        let notificationsEnabled = UserDefaults.standard.bool(forKey: show.title + "-switchState")
+        notificationsImageView.image = notificationsEnabled ? #imageLiteral(resourceName: "bell") : #imageLiteral(resourceName: "bell_hollow")
+    }
+    
+    // MARK: - Actions
+    
+    @objc private func toggleNotifications(tap: UITapGestureRecognizer) {
+        if let show = show {
+            let notificationsEnabled = UserDefaults.standard.bool(forKey: show.title + "-switchState")
+            NotificationManager.sharedInstance.notificationsToggledForShow(show, isOn: !notificationsEnabled)
+            UserDefaults.standard.set(!notificationsEnabled, forKey: show.title + "-switchState")
+            UserDefaults.standard.synchronize()
+            
+            styleForShow(show)
+            if #available(iOS 10.0, *) {
+                // taptic feedback
+                UISelectionFeedbackGenerator().selectionChanged()
+            }
+        }
     }
 }

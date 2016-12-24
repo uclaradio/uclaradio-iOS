@@ -21,8 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         RadioAPI.fetchNowPlaying()
         RadioAPI.fetchGiveaways(nil)
         
-        NotificationManager.sharedInstance.requestNotificationPermission(application: application)
-        
         // Configure tracker from GoogleService-Info.plist.
         var configureError:NSError?
         GGLContext.sharedInstance().configureWithError(&configureError)
