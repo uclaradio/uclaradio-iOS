@@ -536,6 +536,7 @@
 				83A8ED6E1CE30248003D4286 /* RecentTrackView.swift in Sources */,
 				832C65E21CD0800200B3479E /* NowPlayingViewController.swift in Sources */,
 				836279271DA88501008C2B1D /* DJCollectionViewCell.swift in Sources */,
+				D865CBB21E0F0C0E008C050E /* AnalyticsManager.swift in Sources */,
 				83C28A6F1D02627A0096D629 /* Show.swift in Sources */,
 				832C65E01CD0800200B3479E /* AppDelegate.swift in Sources */,
 				83B8C0761D067EDF00B80802 /* ScheduleSectionHeaderView.swift in Sources */,

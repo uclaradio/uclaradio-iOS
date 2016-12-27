@@ -20,14 +20,7 @@ class AboutViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        // track view analytics
-        let tracker = GAI.sharedInstance().defaultTracker
-        tracker?.set(kGAIScreenName, value: "About")
-        let builder = GAIDictionaryBuilder.createScreenView()
-        if let builder = builder {
-            tracker?.send(builder.build() as [NSObject : AnyObject])
-        }
+        AnalyticsManager.sharedInstance.trackPageWithValue("About")
     }
     
     // MARK: - Actions
