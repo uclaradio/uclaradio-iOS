@@ -32,7 +32,7 @@ class NotificationViewController: ScheduleBaseViewController  {
             self.schedule = schedule
             for day in 0...7 {
                 for show in showsForDay(day) {
-                    if !UserDefaults.standard.bool(forKey: show.title + "-switchState") {
+                    if !NotificationManager.sharedInstance.areNotificationsOnForShow(show) {
                         self.schedule?.removeShow(show)
                     }
                 }

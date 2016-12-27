@@ -13,18 +13,6 @@ class NotificationManager {
     
     static let sharedInstance = NotificationManager()
     
-    /*
-    var notificationsAuthorized:Bool {
-        get {
-            if #available(iOS 10.0, *) {
-                let center = UNUserNotificationCenter.current()
-                center.getNotificationSettings() {_ in 
-                    
-                }
-            }
-        }
-    }*/
-    
     func requestNotificationPermission(application: UIApplication) {
         // Configure Notifications
         // User UNUSerNotificationCenter if >= iOS 10, UIUserNotificationSettings otherwise
@@ -41,10 +29,16 @@ class NotificationManager {
         }
     }
     
-    func notificationsToggledForShow(_ show: Show, isOn: Bool) {
+    
+    
+    func areNotificationsOnForShow(_ show: Show) -> Bool {
+        return UserDefaults.standard.bool(forKey: String(show.id) + "-switchState")
+    }
+    
+    func toggleNotificationsForShow(_ show: Show, toggle: Bool) {
             if #available(iOS 10.0, *) {
                 let current = UNUserNotificationCenter.current()
-                if isOn {
+                if toggle {
                     
                     let calendar = Calendar(identifier: .gregorian)
                     
@@ -62,14 +56,9 @@ class NotificationManager {
                     
                     let content = UNMutableNotificationContent()
                     content.title = "UCLA Radio"
-                    //content.subtitle =
+                    //content.subtitle = // I think we're just gonna leave this blank
                     content.body = show.title + " is on in 15 minutes!"
                     content.sound = UNNotificationSound.default()
-                    
-                    // For testing
-                    
-                    print("Notification Time: \(notificationTime)")
-                
                     
                     let request = UNNotificationRequest(identifier: requestIdentifier,
                                                         content: content,
@@ -79,11 +68,9 @@ class NotificationManager {
                 } else {
                     current.removePendingNotificationRequests(withIdentifiers: [String(show.id)])
                 }
-                
-                
             } else {
                 let app = UIApplication.shared
-                if isOn {
+                if toggle {
                     let notification = UILocalNotification()
                     
                     notification.alertBody = show.title + " is on in 15 minutes!"
@@ -118,6 +105,7 @@ class NotificationManager {
                     }
                 }
             }
+            UserDefaults.standard.set(toggle, forKey: String(show.id) + "-switchState")
         }
     
 }

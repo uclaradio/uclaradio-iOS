@@ -32,8 +32,7 @@ class ShowViewController: BaseViewController {
     
     @IBAction func notificationsToggled(_ sender: UISwitch) {
         if let show = show {
-            NotificationManager.sharedInstance.notificationsToggledForShow(show, isOn: notificationsSwitch.isOn)
-            UserDefaults.standard.set(notificationsSwitch.isOn, forKey: show.title + "-switchState")
+            NotificationManager.sharedInstance.toggleNotificationsForShow(show, toggle: notificationsSwitch.isOn)
         }
     }
     
@@ -84,6 +83,6 @@ class ShowViewController: BaseViewController {
             blurbLabel.text = blurb
         }
         
-        notificationsSwitch.isOn =  UserDefaults.standard.bool(forKey: show.title + "-switchState")
+        notificationsSwitch.isOn = NotificationManager.sharedInstance.areNotificationsOnForShow(show)
     }
 }
