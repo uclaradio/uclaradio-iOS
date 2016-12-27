@@ -33,8 +33,8 @@ class ShowViewController: BaseViewController {
     @IBAction func notificationsToggled(_ sender: UISwitch) {
         if let show = show {
             NotificationManager.sharedInstance.notificationsToggledForShow(show, isOn: notificationsSwitch.isOn)
+            UserDefaults.standard.set(notificationsSwitch.isOn, forKey: show.title + "-switchState")
         }
-        UserDefaults.standard.set(notificationsSwitch.isOn, forKey: (show?.title)! + "-switchState")
     }
     
     override func viewDidLoad() {
