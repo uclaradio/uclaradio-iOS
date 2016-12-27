@@ -20,13 +20,13 @@ fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
 
 
 class Schedule {
-    let monday: [Show]
-    let tuesday: [Show]
-    let wednesday: [Show]
-    let thursday: [Show]
-    let friday: [Show]
-    let saturday: [Show]
-    let sunday: [Show]
+    var monday: [Show]
+    var tuesday: [Show]
+    var wednesday: [Show]
+    var thursday: [Show]
+    var friday: [Show]
+    var saturday: [Show]
+    var sunday: [Show]
     
     init(monday: [Show], tuesday: [Show], wednesday: [Show], thursday: [Show], friday: [Show], saturday: [Show], sunday: [Show]) {
         self.monday = Schedule.sortShows(monday)
@@ -76,5 +76,16 @@ class Schedule {
     
     static func sortShows(_ shows: [Show]) -> [Show] {
         return shows.sorted { $0.getClosestDateOfShow() < $1.getClosestDateOfShow() }
+    }
+    
+    func removeShow(_ show: Show) {
+        let notEqualToShow = {$0 != show}
+        monday = monday.filter(notEqualToShow)
+        tuesday = tuesday.filter(notEqualToShow)
+        wednesday = wednesday.filter(notEqualToShow)
+        thursday = thursday.filter(notEqualToShow)
+        friday = friday.filter(notEqualToShow)
+        saturday = saturday.filter(notEqualToShow)
+        sunday = sunday.filter(notEqualToShow)
     }
 }
