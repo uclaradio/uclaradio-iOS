@@ -118,3 +118,9 @@ class Show {
         return result
     }
 }
+
+extension Show: Equatable {
+    static func ==(lhs: Show, rhs: Show) -> Bool {
+        return lhs.id == rhs.id
+    }
+}

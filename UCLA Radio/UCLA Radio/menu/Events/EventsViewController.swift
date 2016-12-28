@@ -45,14 +45,7 @@ class EventsViewController: BaseViewController, APIFetchDelegate, UITableViewDat
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         RadioAPI.fetchGiveaways(self)
-        
-        // track view analytics
-        let tracker = GAI.sharedInstance().defaultTracker
-        tracker?.set(kGAIScreenName, value: "Events")
-        let builder = GAIDictionaryBuilder.createScreenView()
-        if let builder = builder {
-            tracker?.send(builder.build() as [NSObject : AnyObject])
-        }
+        AnalyticsManager.sharedInstance.trackPageWithValue("Events")
     }
     
     // MARK: - APIFetchDelegate

@@ -53,14 +53,7 @@ class ShowViewController: BaseViewController {
         super.viewWillAppear(animated)
         if let show = show {
             styleForShow(show)
-            
-            // track view analytics
-            let tracker = GAI.sharedInstance().defaultTracker
-            tracker?.set(kGAIScreenName, value: "Show: \(show.title)")
-            let builder = GAIDictionaryBuilder.createScreenView()
-            if let builder = builder {
-                tracker?.send(builder.build() as [NSObject : AnyObject])
-            }
+            AnalyticsManager.sharedInstance.trackPageWithValue("Show: \(show.title)")
         }
     }
     
@@ -90,17 +83,16 @@ class ShowViewController: BaseViewController {
         if let blurb = show.blurb {
             blurbLabel.text = blurb
         }
-
-        let notificationsEnabled = UserDefaults.standard.bool(forKey: show.title + "-switchState")
+        let notificationsEnabled = NotificationManager.sharedInstance.areNotificationsOnForShow(show)
         notificationsImageView.image = notificationsEnabled ? #imageLiteral(resourceName: "bell") : #imageLiteral(resourceName: "bell_hollow")
     }
-    
+
     // MARK: - Actions
-    
+
     @objc private func toggleNotifications(tap: UITapGestureRecognizer) {
         if let show = show {
             let notificationsEnabled = UserDefaults.standard.bool(forKey: show.title + "-switchState")
-            NotificationManager.sharedInstance.notificationsToggledForShow(show, isOn: !notificationsEnabled)
+            NotificationManager.sharedInstance.toggleNotificationsForShow(show, toggle: !notificationsEnabled)
             UserDefaults.standard.set(!notificationsEnabled, forKey: show.title + "-switchState")
             UserDefaults.standard.synchronize()
             

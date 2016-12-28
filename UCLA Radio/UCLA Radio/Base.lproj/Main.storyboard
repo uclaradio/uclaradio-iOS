@@ -345,6 +345,24 @@
             <point key="canvasLocation" x="543" y="494"/>
         </scene>
         <!--Details-->
+        <scene sceneID="Le9-Wc-Vg7">
+            <objects>
+                <viewController storyboardIdentifier="notificationDetailsViewController" title="Details" useStoryboardIdentifierAsRestorationIdentifier="YES" id="swL-T5-A2H" customClass="NotificationDetailsViewController" customModule="UCLA_Radio" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="MzO-p1-CBy"/>
+                        <viewControllerLayoutGuide type="bottom" id="QL8-XO-L4K"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="uJO-7s-zRF">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rKx-aW-dCr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1938" y="493"/>
+        </scene>
+        <!--Details-->
         <scene sceneID="lqw-hP-dFZ">
             <objects>
                 <viewController storyboardIdentifier="showViewController" title="Details" useStoryboardIdentifierAsRestorationIdentifier="YES" id="uJz-dA-P0s" customClass="ShowViewController" customModule="UCLA_Radio" customModuleProvider="target" sceneMemberID="viewController">
@@ -480,10 +498,10 @@
             </objects>
             <point key="canvasLocation" x="1295" y="-1008"/>
         </scene>
-        <!--View Controller-->
+        <!--Notification View Controller-->
         <scene sceneID="q19-m2-VJJ">
             <objects>
-                <viewController storyboardIdentifier="notificationViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="xqV-bt-J3n" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="notificationViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="xqV-bt-J3n" customClass="NotificationViewController" customModule="UCLA_Radio" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="F8R-1L-DXd"/>
                         <viewControllerLayoutGuide type="bottom" id="3YN-Kc-bUR"/>

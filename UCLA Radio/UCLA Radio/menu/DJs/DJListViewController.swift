@@ -51,14 +51,7 @@ class DJListViewController: BaseViewController, APIFetchDelegate, UICollectionVi
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         RadioAPI.fetchDJList(self)
-        
-        // track view analytics
-        let tracker = GAI.sharedInstance().defaultTracker
-        tracker?.set(kGAIScreenName, value: "DJs")
-        let builder = GAIDictionaryBuilder.createScreenView()
-        if let builder = builder {
-            tracker?.send(builder.build() as [NSObject : AnyObject])
-        }
+        AnalyticsManager.sharedInstance.trackPageWithValue("DJs")
     }
     
     func styleFromDJs(_ djs: [DJ]) {
