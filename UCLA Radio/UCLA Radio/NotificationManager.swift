@@ -3,7 +3,7 @@
 //  UCLA Radio
 //
 //  Created by Nathan Smith on 12/6/16.
-//  Copyright © 2016 ChrisLaganiere. All rights reserved.
+//  Copyright © 2016 UCLA Student Media. All rights reserved.
 //
 
 import Foundation
