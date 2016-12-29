@@ -27,12 +27,15 @@ class MenuItem {
 
 class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    fileprivate let items = [
+    fileprivate let defaultItems = [
         MenuItem(title: "Schedule", storyboardID: ScheduleViewController.storyboardID),
         MenuItem(title: "DJs", storyboardID: DJListViewController.storyboardID),
-        MenuItem(title: "Tickets", storyboardID: EventsViewController.storyboardID),
         MenuItem(title: "About", storyboardID: AboutViewController.storyboardID)
     ]
+
+    fileprivate let giveawayItem = MenuItem(title: "Tickets", storyboardID: EventsViewController.storyboardID)
+
+    private var items = [MenuItem]()
     
     var tableView = UITableView(frame: CGRect.zero, style: .grouped)
     var triangleView: TrianglifyView!
@@ -47,6 +50,9 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         triangleView = TrianglifyView()
         view.addSubview(triangleView)
         triangleView.translatesAutoresizingMaskIntoConstraints = false
+
+        items = defaultItems
+        NotificationCenter.default.addObserver(self, selector: #selector(didUpdateGiveawaysNotification), name: RadioAPI.updatedGiveawaysNotificationName, object: nil)
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -95,6 +101,23 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         if let navigationController = navigationController {
             navigationController.pushViewController(viewController, animated: true)
         }
+    }
+
+    // MARK: - Data
+
+    func didUpdateGiveawaysNotification(notification: Notification) {
+        // MenuItem(title: "Tickets", storyboardID: EventsViewController.storyboardID)
+        if let userInfo = notification.userInfo,
+            let hasGiveaways = userInfo["hasGiveaways"] as? Bool,
+            hasGiveaways {
+//        if true {
+            // should add tickets row if not already there
+            items = defaultItems
+            items.insert(giveawayItem, at: 2)
+        } else {
+            items = defaultItems
+        }
+        tableView.reloadData()
     }
     
     // MARK: - UITableViewDataSource

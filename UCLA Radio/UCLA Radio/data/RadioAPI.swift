@@ -87,7 +87,8 @@ class RadioAPI {
                 delegate?.failedToFetchData(error)
         }
     }
-    
+
+    static let updatedGiveawaysNotificationName = NSNotification.Name(rawValue: "DidFetchUpdatedTicketGiveaways")
     static func fetchGiveaways(_ delegate: APIFetchDelegate?) {
         fetchSomethingCached(giveawaysRoute, key: "events", success: { (result, cached) in
             if let eventsMonthsArray = result as? NSArray {
@@ -97,6 +98,9 @@ class RadioAPI {
                 }
                 else {
                     delegate?.didFetchData(giveaways)
+                    NotificationCenter.default.post(name: updatedGiveawaysNotificationName, object: nil, userInfo: [
+                        "hasGiveaways": (giveaways.count > 0)
+                    ])
                 }
             }
             else {

@@ -55,7 +55,7 @@ class NowPlayingViewController: UIViewController, HistoryFetchDelegate, SlidingV
         volumeView.setRouteButtonImage(UIImage(named: "airplayIcon")?.imageWithColor(UIColor.white), for: UIControlState())
         volumeView.tintColor = UIColor.white
         
-        let controlsViews = ["nowPlaying": nowPlayingView, "volume": volumeView]
+        let controlsViews: [String: UIView] = ["nowPlaying": nowPlayingView, "volume": volumeView]
         controlsParentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[nowPlaying]-[volume(30)]|", options: [], metrics: nil, views: controlsViews))
         controlsParentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-[nowPlaying]-|", options: [], metrics: nil, views: controlsViews))
         controlsParentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-(40)-[volume]-(40)-|", options: [], metrics: nil, views: controlsViews))
