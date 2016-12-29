@@ -16,6 +16,7 @@ class ShowViewController: BaseViewController {
 
     var show: Show?
 
+    @IBOutlet weak var timeView: UIView!
     @IBOutlet weak var notificationsImageView: UIImageView!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var genreLabel: UILabel!
@@ -39,14 +40,8 @@ class ShowViewController: BaseViewController {
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         
-        let notificationsImageGesture = UITapGestureRecognizer(target: self, action: #selector(toggleNotifications))
-        notificationsImageView.addGestureRecognizer(notificationsImageGesture)
-        notificationsImageView.isUserInteractionEnabled = true
-        
-        let timeLabelGesture = UITapGestureRecognizer(target: self, action: #selector(toggleNotifications))
-        timeLabel.addGestureRecognizer(timeLabelGesture)
-        timeLabel.isUserInteractionEnabled = true
-        
+        let timeTap = UITapGestureRecognizer(target: self, action: #selector(toggleNotifications))
+        timeView.addGestureRecognizer(timeTap)
     }
     
     override func viewWillAppear(_ animated: Bool) {
