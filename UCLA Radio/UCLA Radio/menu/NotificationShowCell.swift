@@ -6,8 +6,6 @@
 //  Copyright © 2016 ChrisLaganiere. All rights reserved.
 //
 
-import UIKit
-
 class NotificationShowCell: UITableViewCell {
     
     fileprivate static let height: CGFloat = 60
