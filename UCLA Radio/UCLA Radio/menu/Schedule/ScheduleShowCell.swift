@@ -3,14 +3,14 @@
 //  UCLA Radio
 //
 //  Created by Christopher Laganiere on 6/5/16.
-//  Copyright © 2016 UCLA Student Media. All rights reserved.
+//  Copyright © 2016 ChrisLaganiere. All rights reserved.
 //
 
 import Foundation
 import UIKit
 import SDWebImage
 
-class ScheduleShowCell: UITableViewCell, ScheduleShowCellDelegate {
+class ScheduleShowCell: UITableViewCell {
     
     fileprivate static let height: CGFloat = 100
     
@@ -26,7 +26,7 @@ class ScheduleShowCell: UITableViewCell, ScheduleShowCellDelegate {
     fileprivate var installedConstraints: [NSLayoutConstraint]?
     fileprivate var installedContainerConstraints: [NSLayoutConstraint]?
     
-    override required init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         backgroundColor = UIColor.clear
@@ -74,7 +74,7 @@ class ScheduleShowCell: UITableViewCell, ScheduleShowCellDelegate {
         
         let showDate = show.getClosestDateOfShow()
         
-        timeLabel.text = formatter.formatDateForShow(showDate, format: .Time)
+        timeLabel.text = formatter.formatDateForShow(showDate, format: .Hour)
         titleLabel.text = show.title
 //        djsLabel.text = show.djString
         blurbImageView.sd_cancelCurrentImageLoad()

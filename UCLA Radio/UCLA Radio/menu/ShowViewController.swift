@@ -63,7 +63,7 @@ class ShowViewController: BaseViewController {
         let formatter = DateFormatter()
         let showDate = show.getClosestDateOfShow()
 
-        timeLabel.text = formatter.formatDateForShow(showDate, format: .DayAndTime)
+        timeLabel.text = formatter.formatDateForShow(showDate, format: .DayAndHour)
         titleLabel.text = show.title
         djsLabel.text = show.djString
 

@@ -60,7 +60,6 @@ class Show {
         return calendar.nextDate(after: now, matching: self.time, matchingPolicy: .nextTime)!
     }
     
-    
     static func showFromJSON(_ dict: NSDictionary) -> Show? {
         if let id = dict["id"] as? Int,
             let title = dict["title"] as? String,

@@ -6,9 +6,11 @@
 //  Copyright © 2016 ChrisLaganiere. All rights reserved.
 //
 
-class NotificationShowCell: UITableViewCell, ScheduleShowCellDelegate {
+import UIKit
+
+class NotificationShowCell: UITableViewCell {
     
-    fileprivate static let height: CGFloat = 75
+    fileprivate static let height: CGFloat = 60
     
     var addBottomPadding = false
     
@@ -24,18 +26,19 @@ class NotificationShowCell: UITableViewCell, ScheduleShowCellDelegate {
         
         backgroundColor = UIColor.clear
         selectionStyle = .none
-        accessoryType = .disclosureIndicator
+        //accessoryType = .disclosureIndicator
         
         contentView.addSubview(containerView)
         containerView.translatesAutoresizingMaskIntoConstraints = false
         containerView.backgroundColor = Constants.Colors.lightBackground
         
-        titleLabel.textAlignment = .center
-        titleLabel.font = UIFont.systemFont(ofSize: 21)
+        titleLabel.textAlignment = .left
+        titleLabel.font = UIFont.systemFont(ofSize: 18)
         containerView.addSubview(titleLabel)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        timeLabel.font = UIFont.boldSystemFont(ofSize: 14)
+        titleLabel.textAlignment = .left
+        timeLabel.font = UIFont.boldSystemFont(ofSize: 12)
         timeLabel.textColor = UIColor.lightGray
         containerView.addSubview(timeLabel)
         timeLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -51,9 +54,10 @@ class NotificationShowCell: UITableViewCell, ScheduleShowCellDelegate {
         let formatter = DateFormatter()
         formatter.timeZone = TimeZone.current
         
-        let showDate = show.getClosestDateOfShow()
+        if let notificationDate = NotificationManager.sharedInstance.dateOfNextNotificationForShow(show) {
+            timeLabel.text = formatter.formatDateForShow(notificationDate, format: .HourAndMinute)
+        }
         
-        timeLabel.text = formatter.formatDateForShow(showDate, format: .Time)
         titleLabel.text = show.title
         
         // update constraints
@@ -99,13 +103,17 @@ class NotificationShowCell: UITableViewCell, ScheduleShowCellDelegate {
         var constraints: [NSLayoutConstraint] = []
         
         let views = ["time": timeLabel, "title": titleLabel]
-        let metrics = ["bump": 5, "indent": 23, "timeWidth": 40]
+        let metrics = ["bump": 7, "indent": 15, "timeWidth": 40]
         
-        constraints += NSLayoutConstraint.constraints(withVisualFormat: "|-[time(timeWidth)]-[title]-|", options: [], metrics: metrics, views: views)
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|-[title][time]-|", options: [], metrics: metrics, views: views)
         //constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|-(bump)-[genre]", options: [], metrics: metrics, views: views)
         //constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:[djs]-(bump)-|", options: [], metrics: metrics, views: views)
-        constraints.append(NSLayoutConstraint(item: titleLabel, attribute: .centerY, relatedBy: .equal, toItem: containerView, attribute: .centerY, multiplier: 1.0, constant: 0.0))
+        //constraints.append(NSLayoutConstraint(item: titleLabel, attribute: .leftMargin , relatedBy: .equal, toItem: containerView, attribute: .leftMargin, multiplier: 1.0, constant: 0.0))
+        
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-(bump)-[title]", options: [], metrics: metrics, views: views)
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-(bump)-[time]", options: [], metrics: metrics, views: views)
+        
+        
         return constraints
     }
-    
 }

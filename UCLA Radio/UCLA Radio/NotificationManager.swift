@@ -36,6 +36,23 @@ class NotificationManager {
         return UserDefaults.standard.bool(forKey: String(show.id) + "-switchState")
     }
     
+    func dateOfNextNotificationForShow(_ show: Show) -> Date? {
+        print("Show: \(show.title)")
+        print("Notifications? \(areNotificationsOnForShow(show))")
+        if areNotificationsOnForShow(show) {
+            
+            let calendar = Calendar(identifier: .gregorian)
+            
+            var offset = DateComponents()
+            offset.minute = -15
+            let nextShowDate = show.getNextDateOfShow()
+            let notificationDate = calendar.date(byAdding: offset, to: nextShowDate, wrappingComponents: false)!
+            
+            return notificationDate
+        }
+        return nil
+    }
+    
     func toggleNotificationsForShow(_ show: Show, toggle: Bool) {
         if !initialized {
             NotificationManager.sharedInstance.requestNotificationPermission(application: UIApplication.shared)
