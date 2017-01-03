@@ -88,4 +88,44 @@ class Schedule {
         saturday = saturday.filter(notEqualToShow)
         sunday = sunday.filter(notEqualToShow)
     }
+    
+    func containsShowWithID(_ id: Int) -> Show? {
+        for show in monday {
+            if show.id == id {
+                return show
+            }
+        }
+        for show in tuesday {
+            if show.id == id {
+                return show
+            }
+        }
+        for show in wednesday {
+            if show.id == id {
+                return show
+            }
+        }
+        for show in thursday {
+            if show.id == id {
+                return show
+            }
+        }
+        for show in friday {
+            if show.id == id {
+                return show
+            }
+        }
+        for show in saturday {
+            if show.id == id {
+                return show
+            }
+        }
+        for show in sunday {
+            if show.id == id {
+                return show
+            }
+        }
+        
+        return nil
+    }
 }

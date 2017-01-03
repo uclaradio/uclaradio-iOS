@@ -52,6 +52,7 @@ class RadioAPI {
         fetchSomethingCached(scheduleRoute, key: "shows", success: { (result, cached) in
             if let showsArray = result as? NSArray {
                 let schedule = Schedule(shows: Show.showsFromJSON(showsArray))
+                NotificationManager.sharedInstance.updateNotificationsForNewSchedule(schedule)
                 if (cached) {
                     delegate?.cachedDataAvailable(schedule)
                 }

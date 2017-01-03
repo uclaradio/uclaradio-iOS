@@ -33,7 +33,7 @@ class NotificationManager {
     }
 
     func areNotificationsOnForShow(_ show: Show) -> Bool {
-        return UserDefaults.standard.bool(forKey: String(show.id) + "-switchState")
+        return UserDefaults.standard.bool(forKey: String(show.id) + "-notificationToggle")
     }
     
     func dateOfNextNotificationForShow(_ show: Show) -> Date? {
@@ -45,6 +45,64 @@ class NotificationManager {
             return notificationDate
         }
         return nil
+    }
+    
+    func updateNotificationsForNewSchedule(_ schedule: Schedule) {
+        if #available(iOS 10.0, *) {
+            let current = UNUserNotificationCenter.current()
+            
+            // Check pending notifications and remove them if no longer in the schedule
+            // Also note these removed shows with notifications in "HiddenShows" for reenabling later
+            current.getPendingNotificationRequests() { (requests) in
+                for request in requests {
+                    if let id = Int(request.identifier) {
+                        if schedule.containsShowWithID(id) == nil {
+                            current.removePendingNotificationRequests(withIdentifiers: [request.identifier])
+                            if var hiddenShows = UserDefaults.standard.array(forKey: "HiddenShows") as? [String] {
+                                hiddenShows.append(request.identifier)
+                                UserDefaults.standard.set(hiddenShows, forKey: "HiddenShows")
+                            }
+                        }
+                    }
+                }
+            }
+        } else { // <= iOS 9
+            let app = UIApplication.shared
+            
+            // Check pending notifications and remove them if no longer in the schedule
+            // Also note these removed shows with notifications in "HiddenShows" for reenabling later
+            if let scheduledNotifications = app.scheduledLocalNotifications {
+                for notification in scheduledNotifications {
+                    if let userInfoCurrent = notification.userInfo as? [String:String] {
+                        if let identifier = userInfoCurrent["id"] {
+                            if let id = Int(identifier) {
+                                if schedule.containsShowWithID(id) == nil {
+                                    app.cancelLocalNotification(notification)
+                                    if var hiddenShows = UserDefaults.standard.array(forKey: "HiddenShows") as? [String] {
+                                        hiddenShows.append(identifier)
+                                        UserDefaults.standard.set(hiddenShows, forKey: "HiddenShows")
+                                    }
+                                }
+
+                            }
+                        }
+                    }
+                }
+            }
+            
+        }
+        
+        // Check hidden shows, and reenable notifications if it's been unhidden
+        if let hiddenShows = UserDefaults.standard.array(forKey: "HiddenShows") as? [String] {
+            for showID in hiddenShows {
+                if let id = Int(showID) {
+                    if let show = schedule.containsShowWithID(id) {
+                        toggleNotificationsForShow(show, toggle: true)
+                    }
+                }
+            }
+        }
+
     }
     
     func toggleNotificationsForShow(_ show: Show, toggle: Bool) {
@@ -91,9 +149,7 @@ class NotificationManager {
                 let notification = UILocalNotification()
                 
                 notification.alertBody = show.title + " is on in 15 minutes!"
-                notification.userInfo = ["id": show.id]
-                
-                //  show.title
+                notification.userInfo = ["id": String(show.id)] // Convert to string to stay consistant with identifier in iOS, which has to be string
                 
                 let calendar = Calendar(identifier: .gregorian)
                 
@@ -111,9 +167,9 @@ class NotificationManager {
             } else {
                 if let scheduledNotifications = app.scheduledLocalNotifications {
                     for notification in scheduledNotifications {
-                        if let userInfoCurrent = notification.userInfo as? [String:Int] {
+                        if let userInfoCurrent = notification.userInfo as? [String:String] {
                             let id = userInfoCurrent["id"]
-                            if id == show.id {
+                            if id == String(show.id) {
                                 app.cancelLocalNotification(notification)
                                 break
                             }
@@ -122,6 +178,6 @@ class NotificationManager {
                 }
             }
         }
-        UserDefaults.standard.set(toggle, forKey: String(show.id) + "-switchState")
+        UserDefaults.standard.set(toggle, forKey: String(show.id) + "-notificationToggle")
     }
 }
