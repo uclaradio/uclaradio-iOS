@@ -17,6 +17,7 @@ class NotificationViewController: ScheduleViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.separatorStyle = .singleLine
         self.navigationItem.rightBarButtonItem = nil
         // Redo this so that it's with NotificationShowCell, not ScheduleShowCell
         tableView.register(NotificationShowCell.self, forCellReuseIdentifier: reuseIdentifier)
@@ -91,11 +92,21 @@ class NotificationViewController: ScheduleViewController {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         //tableView.deselectRow(at: indexPath, animated: true)
-        let show = showsForDay((indexPath as NSIndexPath).section)[(indexPath as NSIndexPath).row]
-        if editingStyle == .delete {
+//        let show = showsForDay((indexPath as NSIndexPath).section)[(indexPath as NSIndexPath).row]
+//        if editingStyle == .delete {
+//            NotificationManager.sharedInstance.toggleNotificationsForShow(show, toggle: false)
+//            self.schedule?.removeShow(show)
+//            tableView.deleteRows(at: [indexPath], with: .fade)
+//        }
+    }
+
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let delete = UITableViewRowAction(style: .default, title: "Remove") { (action, indexPath) in
+            let show = self.showsForDay((indexPath as NSIndexPath).section)[(indexPath as NSIndexPath).row]
             NotificationManager.sharedInstance.toggleNotificationsForShow(show, toggle: false)
             self.schedule?.removeShow(show)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
+        return [delete]
     }
 }

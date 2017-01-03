@@ -89,11 +89,11 @@ class NotificationShowCell: UITableViewCell {
         }
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        styleDeleteButton()
-    }
-    
+//    override func layoutSubviews() {
+//        super.layoutSubviews()
+//        styleDeleteButton()
+//    }
+
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         if highlighted {
             containerView.backgroundColor = Constants.Colors.lightBackgroundAltHighlighted
@@ -110,9 +110,11 @@ class NotificationShowCell: UITableViewCell {
         var constraints: [NSLayoutConstraint] = []
         let metrics = ["offset": Constants.Floats.containerOffset, "bottomOffset": addBottomPadding ? Constants.Floats.containerOffset : 0]
         let views = ["container": containerView]
-        
-        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|-(offset)-[container]-(bottomOffset)-|", options: [], metrics: metrics, views: views)
-        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-(offset)-[container]-(offset)-|", options: [], metrics: metrics, views: views)
+
+//        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|-(offset)-[container]-(bottomOffset)-|", options: [], metrics: metrics, views: views)
+//        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-(offset)-[container]-(offset)-|", options: [], metrics: metrics, views: views)
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[container]|", options: [], metrics: metrics, views: views)
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|[container]|", options: [], metrics: metrics, views: views)
         
         return constraints
     }
