@@ -417,7 +417,7 @@
 				TargetAttributes = {
 					832C65DB1CD0800200B3479E = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = DGUKNK322A;
+						DevelopmentTeam = 7J53V2CVLJ;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -731,7 +731,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = DGUKNK322A;
+				DEVELOPMENT_TEAM = 7J53V2CVLJ;
 				INFOPLIST_FILE = "UCLA Radio/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.uclastudentmedia.UCLARadio;
@@ -752,7 +752,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = DGUKNK322A;
+				DEVELOPMENT_TEAM = 7J53V2CVLJ;
 				INFOPLIST_FILE = "UCLA Radio/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.uclastudentmedia.UCLARadio;

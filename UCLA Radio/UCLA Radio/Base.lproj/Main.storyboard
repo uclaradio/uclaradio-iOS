@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="DuL-GS-bCM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="DuL-GS-bCM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -511,10 +511,10 @@
             </objects>
             <point key="canvasLocation" x="1399" y="-958"/>
         </scene>
-        <!--Notification View Controller-->
+        <!--Notifications-->
         <scene sceneID="q19-m2-VJJ">
             <objects>
-                <viewController storyboardIdentifier="notificationViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="xqV-bt-J3n" customClass="NotificationViewController" customModule="UCLA_Radio" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="notificationViewController" title="Notifications" useStoryboardIdentifierAsRestorationIdentifier="YES" id="xqV-bt-J3n" customClass="NotificationViewController" customModule="UCLA_Radio" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="F8R-1L-DXd"/>
                         <viewControllerLayoutGuide type="bottom" id="3YN-Kc-bUR"/>

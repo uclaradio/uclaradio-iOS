@@ -74,6 +74,26 @@ class NotificationShowCell: UITableViewCell {
     
     // MARK: - Layout
     
+    func styleDeleteButton() {
+        for subview in subviews {
+            // UITableViewCellDeleteConfirmationView is in a private API, so we have to check it by converting the type to string
+            if String(describing: type(of: subview)) == "UITableViewCellDeleteConfirmationView" {
+                let deleteButton = subview
+                var frame = deleteButton.frame
+                //print(frame.origin.x)
+                frame.origin.x = frame.origin.x - Constants.Floats.containerOffset
+                frame.origin.y = Constants.Floats.containerOffset
+                frame.size.height = NotificationShowCell.height - Constants.Floats.containerOffset
+                deleteButton.frame = frame
+            }
+        }
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        styleDeleteButton()
+    }
+    
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         if highlighted {
             containerView.backgroundColor = Constants.Colors.lightBackgroundAltHighlighted
@@ -101,13 +121,9 @@ class NotificationShowCell: UITableViewCell {
         var constraints: [NSLayoutConstraint] = []
         
         let views = ["time": timeLabel, "title": titleLabel]
-        let metrics = ["bump": 7, "indent": 15, "timeWidth": 40]
+        let metrics = ["bump": 7]
         
         constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|-[title][time]-|", options: [], metrics: metrics, views: views)
-        //constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|-(bump)-[genre]", options: [], metrics: metrics, views: views)
-        //constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:[djs]-(bump)-|", options: [], metrics: metrics, views: views)
-        //constraints.append(NSLayoutConstraint(item: titleLabel, attribute: .leftMargin , relatedBy: .equal, toItem: containerView, attribute: .leftMargin, multiplier: 1.0, constant: 0.0))
-        
         constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-(bump)-[title]", options: [], metrics: metrics, views: views)
         constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-(bump)-[time]", options: [], metrics: metrics, views: views)
         

@@ -90,7 +90,7 @@ class NotificationViewController: ScheduleViewController {
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+        //tableView.deselectRow(at: indexPath, animated: true)
         let show = showsForDay((indexPath as NSIndexPath).section)[(indexPath as NSIndexPath).row]
         if editingStyle == .delete {
             NotificationManager.sharedInstance.toggleNotificationsForShow(show, toggle: false)
@@ -98,6 +98,4 @@ class NotificationViewController: ScheduleViewController {
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
-    
-    
 }

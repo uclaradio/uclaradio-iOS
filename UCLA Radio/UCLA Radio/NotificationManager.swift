@@ -31,23 +31,17 @@ class NotificationManager {
             application.registerUserNotificationSettings(settings)
         }
     }
-    
+
     func areNotificationsOnForShow(_ show: Show) -> Bool {
         return UserDefaults.standard.bool(forKey: String(show.id) + "-switchState")
     }
     
     func dateOfNextNotificationForShow(_ show: Show) -> Date? {
-        print("Show: \(show.title)")
-        print("Notifications? \(areNotificationsOnForShow(show))")
         if areNotificationsOnForShow(show) {
-            
-            let calendar = Calendar(identifier: .gregorian)
-            
             var offset = DateComponents()
             offset.minute = -15
             let nextShowDate = show.getNextDateOfShow()
-            let notificationDate = calendar.date(byAdding: offset, to: nextShowDate, wrappingComponents: false)!
-            
+            let notificationDate = Calendar(identifier: .gregorian).date(byAdding: offset, to: nextShowDate, wrappingComponents: false)!
             return notificationDate
         }
         return nil
