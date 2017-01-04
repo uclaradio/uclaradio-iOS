@@ -46,25 +46,34 @@ class NotificationManager {
         }
         return nil
     }
-    
+
     func updateNotificationsForNewSchedule(_ schedule: Schedule) {
+        // Check hidden shows, and reenable notifications if it's been unhidden
+        if let hiddenShows = UserDefaults.standard.array(forKey: "HiddenShows") as? [String] {
+            for showID in hiddenShows {
+                if let id = Int(showID),
+                    let show = schedule.showWithID(id) {
+                    toggleNotificationsForShow(show, toggle: true)
+                }
+            }
+        }
         if #available(iOS 10.0, *) {
             let current = UNUserNotificationCenter.current()
             
             // Check pending notifications and remove them if no longer in the schedule
             // Also note these removed shows with notifications in "HiddenShows" for reenabling later
             current.getPendingNotificationRequests() { (requests) in
+                var canceledShows: [String] = []
                 for request in requests {
                     if let id = Int(request.identifier) {
-                        if schedule.containsShowWithID(id) == nil {
-                            current.removePendingNotificationRequests(withIdentifiers: [request.identifier])
-                            if var hiddenShows = UserDefaults.standard.array(forKey: "HiddenShows") as? [String] {
-                                hiddenShows.append(request.identifier)
-                                UserDefaults.standard.set(hiddenShows, forKey: "HiddenShows")
-                            }
+                        if schedule.showWithID(id) == nil {
+                            canceledShows.append(request.identifier)
                         }
                     }
                 }
+                current.removePendingNotificationRequests(withIdentifiers: canceledShows)
+                let hiddenShows: [String] = UserDefaults.standard.array(forKey: "HiddenShows") as? [String] ?? []
+                UserDefaults.standard.set(hiddenShows + canceledShows, forKey: "HiddenShows")
             }
         } else { // <= iOS 9
             let app = UIApplication.shared
@@ -72,37 +81,22 @@ class NotificationManager {
             // Check pending notifications and remove them if no longer in the schedule
             // Also note these removed shows with notifications in "HiddenShows" for reenabling later
             if let scheduledNotifications = app.scheduledLocalNotifications {
+                var canceledShows: [String] = []
                 for notification in scheduledNotifications {
-                    if let userInfoCurrent = notification.userInfo as? [String:String] {
-                        if let identifier = userInfoCurrent["id"] {
-                            if let id = Int(identifier) {
-                                if schedule.containsShowWithID(id) == nil {
-                                    app.cancelLocalNotification(notification)
-                                    if var hiddenShows = UserDefaults.standard.array(forKey: "HiddenShows") as? [String] {
-                                        hiddenShows.append(identifier)
-                                        UserDefaults.standard.set(hiddenShows, forKey: "HiddenShows")
-                                    }
-                                }
-
-                            }
+                    if let userInfoCurrent = notification.userInfo as? [String:String],
+                        let identifier = userInfoCurrent["id"],
+                        let id = Int(identifier) {
+                        if schedule.showWithID(id) == nil {
+                            app.cancelLocalNotification(notification)
+                            canceledShows.append(identifier)
                         }
                     }
                 }
+                let hiddenShows: [String] = UserDefaults.standard.array(forKey: "HiddenShows") as? [String] ?? []
+                UserDefaults.standard.set(hiddenShows + canceledShows, forKey: "HiddenShows")
             }
             
         }
-        
-        // Check hidden shows, and reenable notifications if it's been unhidden
-        if let hiddenShows = UserDefaults.standard.array(forKey: "HiddenShows") as? [String] {
-            for showID in hiddenShows {
-                if let id = Int(showID) {
-                    if let show = schedule.containsShowWithID(id) {
-                        toggleNotificationsForShow(show, toggle: true)
-                    }
-                }
-            }
-        }
-
     }
     
     func toggleNotificationsForShow(_ show: Show, toggle: Bool) {

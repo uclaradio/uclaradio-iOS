@@ -9,8 +9,8 @@
 import Foundation
 import UIKit
 
-private let reuseIdentifier = "ScheduleCell"
-private let headerReuseIdentifier = "ScheduleHeader"
+fileprivate let reuseIdentifier = "ScheduleCell"
+fileprivate let headerReuseIdentifier = "ScheduleHeader"
 
 class ScheduleViewController: BaseViewController, APIFetchDelegate, UITableViewDataSource, UITableViewDelegate {
     
