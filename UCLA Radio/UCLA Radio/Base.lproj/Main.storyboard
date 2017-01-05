@@ -512,22 +512,50 @@
             <point key="canvasLocation" x="1399" y="-958"/>
         </scene>
         <!--Notifications-->
-        <scene sceneID="q19-m2-VJJ">
+        <scene sceneID="VDH-8h-DEv">
             <objects>
-                <viewController storyboardIdentifier="notificationViewController" title="Notifications" useStoryboardIdentifierAsRestorationIdentifier="YES" id="xqV-bt-J3n" customClass="NotificationViewController" customModule="UCLA_Radio" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="F8R-1L-DXd"/>
-                        <viewControllerLayoutGuide type="bottom" id="3YN-Kc-bUR"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="67F-cv-kv5">
+                <tableViewController storyboardIdentifier="notificationViewController" title="Notifications" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Fd9-bz-rww" customClass="NotificationViewController" customModule="UCLA_Radio" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="WrW-gu-JE0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="F4U-pI-1Tx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <color key="sectionIndexBackgroundColor" red="0.99367266889999994" green="0.87909644840000001" blue="0.86544525620000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="NotificationCell" textLabel="k5d-pJ-FgN" detailTextLabel="zRI-Lu-VWk" style="IBUITableViewCellStyleSubtitle" id="N0r-9t-cdi">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="N0r-9t-cdi" id="4us-dt-i40">
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="k5d-pJ-FgN">
+                                            <rect key="frame" x="15" y="4" width="34" height="21"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zRI-Lu-VWk">
+                                            <rect key="frame" x="15" y="25" width="44" height="15"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" red="1" green="0.98050063848495483" blue="0.98015016317367554" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Fd9-bz-rww" id="41R-TH-2wU"/>
+                            <outlet property="delegate" destination="Fd9-bz-rww" id="sce-UU-1Le"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="v3R-Qw-1h6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2097" y="-1009"/>
+            <point key="canvasLocation" x="1294" y="493"/>
         </scene>
     </scenes>
     <resources>

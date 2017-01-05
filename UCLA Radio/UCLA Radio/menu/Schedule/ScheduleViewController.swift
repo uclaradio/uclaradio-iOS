@@ -14,7 +14,7 @@ fileprivate let headerReuseIdentifier = "ScheduleHeader"
 
 class ScheduleViewController: BaseViewController, APIFetchDelegate, UITableViewDataSource, UITableViewDelegate {
     
-    class var storyboardID:String { return "scheduleViewController" }
+    static let storyboardID = "scheduleViewController"
     
     var tableView = UITableView()
     

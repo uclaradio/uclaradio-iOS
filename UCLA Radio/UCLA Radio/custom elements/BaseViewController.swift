@@ -20,3 +20,14 @@ class BaseViewController: UIViewController {
     }
 
 }
+
+class BaseTableViewController: UITableViewController {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        view.backgroundColor = Constants.Colors.lightPink
+        if let navigationController = navigationController {
+            navigationController.navigationBar.barTintColor = Constants.Colors.darkPink
+        }
+    }
+}

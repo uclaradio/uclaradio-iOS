@@ -20,6 +20,7 @@ fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
 
 
 class Schedule {
+
     var monday: [Show]
     var tuesday: [Show]
     var wednesday: [Show]
@@ -98,6 +99,22 @@ class Schedule {
             }
         }
 
+        return nil
+    }
+    
+    func showForIndexPath(_ indexPath: IndexPath) -> Show? {
+        var section = -1
+        for day in [sunday, monday, tuesday, wednesday, thursday, friday, saturday] {
+            if !day.isEmpty {
+                section += 1
+            }
+            if section == indexPath.section {
+                guard indexPath.row < day.count else {
+                    break
+                }
+                return day[indexPath.row]
+            }
+        }
         return nil
     }
 }
