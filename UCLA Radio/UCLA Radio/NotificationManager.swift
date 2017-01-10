@@ -36,6 +36,18 @@ class NotificationManager {
         return UserDefaults.standard.bool(forKey: String(show.id) + "-notificationToggle")
     }
     
+    func totalNotificationsOnForSchedule(_ schedule: Schedule) -> Int {
+        var notificationCount = 0
+        for day in [schedule.sunday, schedule.monday, schedule.tuesday, schedule.wednesday, schedule.thursday, schedule.friday, schedule.saturday] {
+            for show in day {
+                if areNotificationsOnForShow(show) {
+                    notificationCount += 1
+                }
+            }
+        }
+        return notificationCount
+    }
+    
     func dateOfNextNotificationForShow(_ show: Show) -> Date? {
         if areNotificationsOnForShow(show) {
             var offset = DateComponents()

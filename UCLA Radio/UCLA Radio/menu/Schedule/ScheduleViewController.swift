@@ -22,9 +22,7 @@ class ScheduleViewController: BaseViewController, APIFetchDelegate, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "bell"), style: .plain, target: self, action: #selector(goToNavigation))
-        
+    
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(ScheduleShowCell.self, forCellReuseIdentifier: reuseIdentifier)
@@ -37,6 +35,14 @@ class ScheduleViewController: BaseViewController, APIFetchDelegate, UITableViewD
         view.addConstraints(preferredConstraints())
         
         RadioAPI.fetchSchedule(self)
+        
+        //if schedule != nil {
+          //  if NotificationManager.sharedInstance.totalNotificationsOnForSchedule(schedule!) > 0 {
+                self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "bell"), style: .plain, target: self, action: #selector(goToNavigation))
+            //}
+        //}
+
+
     }
     
     func goToNavigation() {
@@ -109,23 +115,23 @@ class ScheduleViewController: BaseViewController, APIFetchDelegate, UITableViewD
     // MARK: - API Fetch Delegate
     
     func cachedDataAvailable(_ data: Any) {
-        if let schedule = data as? Schedule {
-            self.schedule = schedule
-            tableView.reloadData()
-            scrollToToday()
-        }
+        handleData(data)
     }
     
     func didFetchData(_ data: Any) {
-        if let schedule = data as? Schedule {
-            self.schedule = schedule
-            tableView.reloadData()
-            scrollToToday()
-        }
+        handleData(data)
     }
     
     func failedToFetchData(_ error: String) {
         
+    }
+    
+    private func handleData(_ data: Any) {
+        if let schedule = data as? Schedule {
+            self.schedule = schedule
+            tableView.reloadData()
+            scrollToToday()
+        }
     }
     
     // MARK: - UITableViewDataSource

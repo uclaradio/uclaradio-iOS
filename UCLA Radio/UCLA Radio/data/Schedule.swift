@@ -117,4 +117,13 @@ class Schedule {
         }
         return nil
     }
+    
+    func isEmpty() -> Bool {
+        for day in [sunday, monday, tuesday, wednesday, thursday, friday, saturday] {
+            if !day.isEmpty {
+                return false
+            }
+        }
+        return true
+    }
 }
