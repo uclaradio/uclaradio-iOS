@@ -52,7 +52,6 @@
 		83E4247A1CEECCF700662EDD /* NowPlayingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E424791CEECCF700662EDD /* NowPlayingView.swift */; };
 		D80C7AA51DF7D7B0003375F6 /* DateFormatter+ShowDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80C7AA41DF7D7B0003375F6 /* DateFormatter+ShowDate.swift */; };
 		D80C7AA71DF7D92B003375F6 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80C7AA61DF7D92B003375F6 /* NotificationManager.swift */; };
-		D85FCC621E231C950078A78A /* NotificationDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85FCC611E231C950078A78A /* NotificationDetailCell.swift */; };
 		D865CBB21E0F0C0E008C050E /* AnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D865CBB11E0F0C0E008C050E /* AnalyticsManager.swift */; };
 		D86773E81E0A2C180014EC0F /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86773E71E0A2C180014EC0F /* NotificationViewController.swift */; };
 		D8A9A9801E0DD19B002F8E24 /* NotificationDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A9A97F1E0DD19B002F8E24 /* NotificationDetailsViewController.swift */; };
@@ -130,7 +129,6 @@
 		83E424791CEECCF700662EDD /* NowPlayingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NowPlayingView.swift; sourceTree = "<group>"; };
 		D80C7AA41DF7D7B0003375F6 /* DateFormatter+ShowDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DateFormatter+ShowDate.swift"; sourceTree = "<group>"; };
 		D80C7AA61DF7D92B003375F6 /* NotificationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
-		D85FCC611E231C950078A78A /* NotificationDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationDetailCell.swift; sourceTree = "<group>"; };
 		D865CBB11E0F0C0E008C050E /* AnalyticsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsManager.swift; sourceTree = "<group>"; };
 		D86773E71E0A2C180014EC0F /* NotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		D8A9A97F1E0DD19B002F8E24 /* NotificationDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationDetailsViewController.swift; sourceTree = "<group>"; };
@@ -341,7 +339,6 @@
 			children = (
 				D86773E71E0A2C180014EC0F /* NotificationViewController.swift */,
 				D8A9A97F1E0DD19B002F8E24 /* NotificationDetailsViewController.swift */,
-				D85FCC611E231C950078A78A /* NotificationDetailCell.swift */,
 			);
 			name = Notification;
 			sourceTree = "<group>";
@@ -558,7 +555,6 @@
 				832C65E01CD0800200B3479E /* AppDelegate.swift in Sources */,
 				83B8C0761D067EDF00B80802 /* ScheduleSectionHeaderView.swift in Sources */,
 				83C28A7C1D050F3B0096D629 /* ScheduleViewController.swift in Sources */,
-				D85FCC621E231C950078A78A /* NotificationDetailCell.swift in Sources */,
 				835CDF961D08016A00C3213B /* ShowViewController.swift in Sources */,
 				832F7EC91DA19D87001462C6 /* BaseViewController.swift in Sources */,
 				833B169F1CE1BD2D00E711F5 /* UIImage+Color.swift in Sources */,

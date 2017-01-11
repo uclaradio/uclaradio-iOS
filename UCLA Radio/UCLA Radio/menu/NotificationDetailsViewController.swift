@@ -13,7 +13,6 @@ class NotificationDetailsViewController: BaseTableViewController {
     
     static let storyboardID = "notificationDetailsViewController"
     
-   
     var show: Show?
     
     override func viewDidLoad() {
@@ -45,22 +44,27 @@ class NotificationDetailsViewController: BaseTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
+        var offset = 0
+        
+        switch indexPath.row {
+        case 0:
+            offset = 0
+        case 1:
+            offset = -15
+        case 2:
+            offset = -30
+        default:
+            break
+        }
+        
         if let cell = tableView.cellForRow(at: indexPath) {
             if cell.accessoryType == .checkmark {
                 cell.accessoryType = .none
+                NotificationManager.sharedInstance.removeNotificationForShow(show!, withOffset: offset)
             } else {
                 cell.accessoryType = .checkmark
+                NotificationManager.sharedInstance.addNotificationForShow(show!, withOffset: offset)
             }
         }
     }
-    /*
-    // MARK: - Layout
-    
-    func preferredConstraints() -> [NSLayoutConstraint] {
-        var constraints: [NSLayoutConstraint] = []
-        let views = ["table": tableView]
-        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[table]|", options: [], metrics: nil, views: views)
-        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|[table]|", options: [], metrics: nil, views: views)
-        return constraints
-    }*/
 }

@@ -182,7 +182,7 @@ class NotificationViewController: BaseTableViewController, APIFetchDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         let show = showsForDay((indexPath as NSIndexPath).section)[(indexPath as NSIndexPath).row]
         if editingStyle == .delete {
-            NotificationManager.sharedInstance.toggleNotificationsForShow(show, toggle: false)
+            NotificationManager.sharedInstance.removeAllNotificationsForShow(show)
             self.schedule?.removeShow(show)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }

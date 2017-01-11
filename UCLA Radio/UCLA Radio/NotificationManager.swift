@@ -14,6 +14,7 @@ class NotificationManager {
     static let sharedInstance = NotificationManager()
     
     private var initialized = false
+    private let offsets = [-30, -15, 0]
 
     func requestNotificationPermission(application: UIApplication) {
         // Configure Notifications
@@ -32,8 +33,24 @@ class NotificationManager {
         }
     }
 
+    // MARK: Information
+    
     func areNotificationsOnForShow(_ show: Show) -> Bool {
-        return UserDefaults.standard.bool(forKey: String(show.id) + "-notificationToggle")
+        for offset in offsets {
+            let id = getNotificationIDFrom(showID: show.id, notificationOffset: offset)
+            if UserDefaults.standard.bool(forKey: "\(id)-notificationToggle") {
+                return true
+            }
+        }
+        return false
+    }
+    
+    func areNotificationsOnForShow(_ show: Show, withOffset offset: Int) -> Bool {
+        let id = getNotificationIDFrom(showID: show.id, notificationOffset: offset)
+        if UserDefaults.standard.bool(forKey: "\(id)-notificationToggle") {
+            return true
+        }
+        return false
     }
     
     func totalNotificationsOnForSchedule(_ schedule: Schedule) -> Int {
@@ -49,23 +66,105 @@ class NotificationManager {
     }
     
     func dateOfNextNotificationForShow(_ show: Show) -> Date? {
-        if areNotificationsOnForShow(show) {
-            var offset = DateComponents()
-            offset.minute = -15
-            let nextShowDate = show.getNextDateOfShow()
-            let notificationDate = Calendar(identifier: .gregorian).date(byAdding: offset, to: nextShowDate, wrappingComponents: false)!
-            return notificationDate
+        for offset in offsets {
+            if areNotificationsOnForShow(show, withOffset: offset) {
+                let nextShowDate = show.getNextDateOfShow()
+                let notificationDate = Calendar(identifier: .gregorian).date(byAdding: DateComponents(minute: offset), to: nextShowDate)!
+                return notificationDate
+            }
         }
+
         return nil
     }
 
+    // MARK: Add, Remove, Update Notifications
+    func addNotificationForShow(_ show: Show, withOffset offset: Int) {
+        if !initialized {
+            NotificationManager.sharedInstance.requestNotificationPermission(application: UIApplication.shared)
+            initialized = true
+        }
+
+        let body = offset == 0 ? "\(show.title) is on right now!" : "\(show.title) is on in \(abs(offset)) minutes!"
+        let id = getNotificationIDFrom(showID: show.id, notificationOffset: offset)
+        let calendar = Calendar(identifier: .gregorian)
+        let notificationDate = calendar.date(byAdding: DateComponents(minute: offset), to: show.getNextDateOfShow())!
+        
+        if #available(iOS 10.0, *) {
+            let current = UNUserNotificationCenter.current()
+            var notificationOffset = DateComponents()
+            notificationOffset.minute = offset
+           
+            let notificationTime = calendar.dateComponents([.hour, .minute, .timeZone, .day, .month], from: notificationDate)
+            let trigger = UNCalendarNotificationTrigger(dateMatching: notificationTime,
+                                                       repeats: true)
+           
+            let content = UNMutableNotificationContent()
+            content.title = "UCLA Radio"
+            content.body = body
+            content.sound = UNNotificationSound.default()
+           
+            let request = UNNotificationRequest(identifier: id,
+                                               content: content,
+                                               trigger: trigger)
+        
+            current.add(request)
+        } else {
+            let app = UIApplication.shared
+            
+            let notification = UILocalNotification()
+                
+            notification.alertBody = body
+            notification.userInfo = ["id": id] // Convert to string to stay consistant with identifier in iOS, which has to be string
+                
+            notification.fireDate = notificationDate
+            notification.repeatInterval = .weekOfYear
+            notification.repeatCalendar = calendar
+            notification.soundName = UILocalNotificationDefaultSoundName;
+                
+            app.scheduleLocalNotification(notification)
+        }
+        UserDefaults.standard.set(true, forKey: id + "-notificationToggle")
+
+    }
+    
+    func removeNotificationForShow(_ show: Show, withOffset offset: Int) {
+        let id = getNotificationIDFrom(showID: show.id, notificationOffset: offset)
+
+        if #available(iOS 10.0, *) {
+            let current = UNUserNotificationCenter.current()
+            current.removePendingNotificationRequests(withIdentifiers: [id])
+        } else {
+            let app = UIApplication.shared
+            if let scheduledNotifications = app.scheduledLocalNotifications {
+                for notification in scheduledNotifications {
+                    if let userInfoCurrent = notification.userInfo as? [String:String] {
+                        let identifier = userInfoCurrent["id"]
+                        if identifier == id {
+                            app.cancelLocalNotification(notification)
+                            break
+                        }
+                    }
+                }
+            }
+        }
+        UserDefaults.standard.set(false, forKey: id + "-notificationToggle")
+    }
+    
+    func removeAllNotificationsForShow(_ show: Show) {
+        for offset in offsets {
+            if areNotificationsOnForShow(show, withOffset: offset) {
+                removeNotificationForShow(show, withOffset: offset)
+            }
+        }
+    }
+    
     func updateNotificationsForNewSchedule(_ schedule: Schedule) {
         // Check hidden shows, and reenable notifications if it's been unhidden
         if let hiddenShows = UserDefaults.standard.array(forKey: "HiddenShows") as? [String] {
-            for showID in hiddenShows {
-                if let id = Int(showID),
-                    let show = schedule.showWithID(id) {
-                    toggleNotificationsForShow(show, toggle: true)
+            for id in hiddenShows {
+                if let idComponents = convertNotificationIDIntoComponents(id),
+                    let show = schedule.showWithID(idComponents.showID) {
+                    addNotificationForShow(show, withOffset: idComponents.notificationOffset)
                 }
             }
         }
@@ -77,12 +176,13 @@ class NotificationManager {
             current.getPendingNotificationRequests() { (requests) in
                 var canceledShows: [String] = []
                 for request in requests {
-                    if let id = Int(request.identifier) {
-                        if schedule.showWithID(id) == nil {
+                    if let idComponents = self.convertNotificationIDIntoComponents(request.identifier) {
+                        if schedule.showWithID(idComponents.showID) == nil {
                             canceledShows.append(request.identifier)
                         }
                     }
                 }
+                
                 current.removePendingNotificationRequests(withIdentifiers: canceledShows)
                 let hiddenShows: [String] = UserDefaults.standard.array(forKey: "HiddenShows") as? [String] ?? []
                 UserDefaults.standard.set(hiddenShows + canceledShows, forKey: "HiddenShows")
@@ -97,8 +197,8 @@ class NotificationManager {
                 for notification in scheduledNotifications {
                     if let userInfoCurrent = notification.userInfo as? [String:String],
                         let identifier = userInfoCurrent["id"],
-                        let id = Int(identifier) {
-                        if schedule.showWithID(id) == nil {
+                        let idComponents = convertNotificationIDIntoComponents(identifier) {
+                        if schedule.showWithID(idComponents.showID) == nil {
                             app.cancelLocalNotification(notification)
                             canceledShows.append(identifier)
                         }
@@ -110,80 +210,20 @@ class NotificationManager {
             
         }
     }
-    
-    func toggleNotificationsForShow(_ show: Show, toggle: Bool) {
-        if !initialized {
-            NotificationManager.sharedInstance.requestNotificationPermission(application: UIApplication.shared)
-            initialized = true
-        }
 
-        if #available(iOS 10.0, *) {
-            let current = UNUserNotificationCenter.current()
-            if toggle {
-                
-                let calendar = Calendar(identifier: .gregorian)
-                
-                var offset = DateComponents()
-                offset.minute = -15
-                let nextShowDate = show.getNextDateOfShow()
-                
-                let notificationDate = calendar.date(byAdding: offset, to: nextShowDate, wrappingComponents: false)!
-                let notificationTime = calendar.dateComponents([.hour, .minute, .timeZone, .day, .month], from: notificationDate)
-            
-                let requestIdentifier = String(show.id)
-                
-                let trigger = UNCalendarNotificationTrigger(dateMatching: notificationTime,
-                                                            repeats: true)
-                
-                let content = UNMutableNotificationContent()
-                content.title = "UCLA Radio"
-                //content.subtitle = // I think we're just gonna leave this blank
-                content.body = show.title + " is on in 15 minutes!"
-                content.sound = UNNotificationSound.default()
-                
-                let request = UNNotificationRequest(identifier: requestIdentifier,
-                                                    content: content,
-                                                    trigger: trigger)
-                
-                current.add(request)
-            } else {
-                current.removePendingNotificationRequests(withIdentifiers: [String(show.id)])
-            }
-        } else {
-            let app = UIApplication.shared
-            if toggle {
-                let notification = UILocalNotification()
-                
-                notification.alertBody = show.title + " is on in 15 minutes!"
-                notification.userInfo = ["id": String(show.id)] // Convert to string to stay consistant with identifier in iOS, which has to be string
-                
-                let calendar = Calendar(identifier: .gregorian)
-                
-                let notificationDate = calendar.date(byAdding: DateComponents(minute: -15), to: show.getNextDateOfShow())!
-                
-                
-                print("Notification Date: \(notificationDate)")
-                
-                notification.fireDate = notificationDate
-                notification.repeatInterval = .weekOfYear
-                notification.repeatCalendar = Calendar.current
-                notification.soundName = UILocalNotificationDefaultSoundName;
-                
-                app.scheduleLocalNotification(notification)
-            } else {
-                if let scheduledNotifications = app.scheduledLocalNotifications {
-                    for notification in scheduledNotifications {
-                        if let userInfoCurrent = notification.userInfo as? [String:String] {
-                            let id = userInfoCurrent["id"]
-                            if id == String(show.id) {
-                                app.cancelLocalNotification(notification)
-                                break
-                            }
-                        }
-                    }
-                }
-            }
+    
+    // MARK: Helper Functions
+    
+    private func convertNotificationIDIntoComponents(_ id: String) -> (showID: Int, notificationOffset: Int)? {
+        let token = id.components(separatedBy: "-")
+        if let showID = Int(token[0]),
+            let notificationOffset = Int(token[1]) {
+            return (showID, notificationOffset)
         }
-        UserDefaults.standard.set(toggle, forKey: String(show.id) + "-notificationToggle")
+        return nil
+    }
+    
+    private func getNotificationIDFrom(showID: Int, notificationOffset: Int) -> String {
+        return "\(showID)-\(abs(notificationOffset))"
     }
 }

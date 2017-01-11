@@ -345,27 +345,9 @@
             <point key="canvasLocation" x="543" y="494"/>
         </scene>
         <!--Details-->
-        <scene sceneID="Le9-Wc-Vg7">
-            <objects>
-                <viewController title="Details" useStoryboardIdentifierAsRestorationIdentifier="YES" id="swL-T5-A2H" customClass="NotificationDetailsViewController" customModule="UCLA_Radio" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="MzO-p1-CBy"/>
-                        <viewControllerLayoutGuide type="bottom" id="QL8-XO-L4K"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="uJO-7s-zRF">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="rKx-aW-dCr" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1938" y="493"/>
-        </scene>
-        <!--Notification Details View Controller-->
         <scene sceneID="m7Q-Nj-lco">
             <objects>
-                <tableViewController storyboardIdentifier="notificationDetailsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="lai-cr-h7B" customClass="NotificationDetailsViewController" customModule="UCLA_Radio" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="notificationDetailsViewController" title="Details" useStoryboardIdentifierAsRestorationIdentifier="YES" id="lai-cr-h7B" customClass="NotificationDetailsViewController" customModule="UCLA_Radio" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="AEa-Bc-c7k">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -438,7 +420,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sew-Ik-tqD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2642" y="493"/>
+            <point key="canvasLocation" x="1938" y="493"/>
         </scene>
         <!--Details-->
         <scene sceneID="lqw-hP-dFZ">
@@ -587,7 +569,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="laM-Ro-cfw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1399" y="-958"/>
+            <point key="canvasLocation" x="1295" y="-1048"/>
         </scene>
         <!--Notifications-->
         <scene sceneID="VDH-8h-DEv">

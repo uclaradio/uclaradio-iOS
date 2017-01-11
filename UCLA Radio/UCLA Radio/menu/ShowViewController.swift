@@ -86,10 +86,12 @@ class ShowViewController: BaseViewController {
 
     @objc private func toggleNotifications(tap: UITapGestureRecognizer) {
         if let show = show {
-            let notificationsEnabled = UserDefaults.standard.bool(forKey: show.title + "-switchState")
-            NotificationManager.sharedInstance.toggleNotificationsForShow(show, toggle: !notificationsEnabled)
-            UserDefaults.standard.set(!notificationsEnabled, forKey: show.title + "-switchState")
-            UserDefaults.standard.synchronize()
+            let notificationsEnabled = NotificationManager.sharedInstance.areNotificationsOnForShow(show)
+            if notificationsEnabled {
+                NotificationManager.sharedInstance.removeAllNotificationsForShow(show)
+            } else {
+                NotificationManager.sharedInstance.addNotificationForShow(show, withOffset: -15)
+            }
             
             styleForShow(show)
             if #available(iOS 10.0, *) {

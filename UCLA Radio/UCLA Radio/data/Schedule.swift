@@ -29,6 +29,15 @@ class Schedule {
     var saturday: [Show]
     var sunday: [Show]
     
+    var isEmpty: Bool {
+        for day in [sunday, monday, tuesday, wednesday, thursday, friday, saturday] {
+            if !day.isEmpty {
+                return false
+            }
+        }
+        return true
+    }
+    
     init(monday: [Show], tuesday: [Show], wednesday: [Show], thursday: [Show], friday: [Show], saturday: [Show], sunday: [Show]) {
         self.monday = Schedule.sortShows(monday)
         self.tuesday = Schedule.sortShows(tuesday)
@@ -103,27 +112,23 @@ class Schedule {
     }
     
     func showForIndexPath(_ indexPath: IndexPath) -> Show? {
-        var section = -1
-        for day in [sunday, monday, tuesday, wednesday, thursday, friday, saturday] {
-            if !day.isEmpty {
+        var section = 0
+        for day in [monday, tuesday, wednesday, thursday, friday, saturday, sunday] {
+            if !day.isEmpty && day != monday {
                 section += 1
             }
+            print("section: \(section)")
+            print("indexPath.section: \(indexPath.section)")
             if section == indexPath.section {
                 guard indexPath.row < day.count else {
                     break
                 }
+                print("hi")
                 return day[indexPath.row]
             }
         }
         return nil
     }
     
-    func isEmpty() -> Bool {
-        for day in [sunday, monday, tuesday, wednesday, thursday, friday, saturday] {
-            if !day.isEmpty {
-                return false
-            }
-        }
-        return true
-    }
+
 }
