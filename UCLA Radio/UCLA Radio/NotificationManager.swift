@@ -200,6 +200,8 @@ class NotificationManager {
                         if schedule.showWithID(idComponents.showID) == nil {
                             canceledShows.append(request.identifier)
                         }
+                    } else { // Remove any requests that aren't in our format because that's weird
+                        current.removePendingNotificationRequests(withIdentifiers: [request.identifier])
                     }
                 }
                 
@@ -235,10 +237,13 @@ class NotificationManager {
     // MARK: Helper Functions
     
     private func convertNotificationIDIntoComponents(_ id: String) -> (showID: Int, notificationOffset: Int)? {
+        print("id: \(id)")
         let token = id.components(separatedBy: "-")
-        if let showID = Int(token[0]),
-            let notificationOffset = Int(token[1]) {
-            return (showID, notificationOffset)
+        if token.count == 2 {
+            if let showID = Int(token[0]),
+                let notificationOffset = Int(token[1]) {
+                return (showID, notificationOffset)
+            }
         }
         return nil
     }
