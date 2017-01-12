@@ -85,7 +85,7 @@ class Schedule {
     }
     
     static func sortShows(_ shows: [Show]) -> [Show] {
-        return shows.sorted { $0.getClosestDateOfShow() < $1.getClosestDateOfShow() }
+        return shows.sorted { $0.getNextDateOfShow() < $1.getNextDateOfShow() }
     }
     
     func removeShow(_ show: Show) {
