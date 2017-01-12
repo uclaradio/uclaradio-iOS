@@ -114,18 +114,13 @@ class Schedule {
     func showForIndexPath(_ indexPath: IndexPath) -> Show? {
         var section = 0
         for day in [monday, tuesday, wednesday, thursday, friday, saturday, sunday] {
-            if !day.isEmpty && day != monday {
-                section += 1
-            }
-            print("section: \(section)")
-            print("indexPath.section: \(indexPath.section)")
             if section == indexPath.section {
                 guard indexPath.row < day.count else {
                     break
                 }
-                print("hi")
                 return day[indexPath.row]
             }
+            section += 1
         }
         return nil
     }

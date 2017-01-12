@@ -28,6 +28,8 @@ class NotificationViewController: BaseTableViewController, APIFetchDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         AnalyticsManager.sharedInstance.trackPageWithValue("Notifications")
+        checkIfSelfShouldBePopped()
+        handleData(self.schedule)
     }
     
     func showsForDay(_ day: Int) -> [Show] {
@@ -86,20 +88,6 @@ class NotificationViewController: BaseTableViewController, APIFetchDelegate {
     }
     
     func failedToFetchData(_ error: String) { }
- 
-    private func handleData(_ data: Any) {
-        if let schedule = data as? Schedule {
-            self.schedule = schedule
-            for day in 0...7 {
-                for show in showsForDay(day) {
-                    if !NotificationManager.sharedInstance.areNotificationsOnForShow(show) {
-                        self.schedule?.removeShow(show)
-                    }
-                }
-            }
-            tableView.reloadData()
-        }
-    }
     
     // MARK: - UITableViewDataSource
     
@@ -127,14 +115,19 @@ class NotificationViewController: BaseTableViewController, APIFetchDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
         if let show = schedule?.showForIndexPath(indexPath) {
             cell.textLabel?.text = show.title
-            
+            cell.detailTextLabel?.textColor = UIColor.lightGray
             let formatter = DateFormatter()
-            if let notificationDate = NotificationManager.sharedInstance.dateOfNextNotificationForShow(show) {
-                cell.detailTextLabel?.text = formatter.formatDateForShow(notificationDate, format: .HourAndMinute)
-                cell.detailTextLabel?.textColor = UIColor.lightGray
+            if let notificationDates = NotificationManager.sharedInstance.datesOfWeeklyNotificationsForShow(show) {
+                    var text = ""
+                    for date in notificationDates {
+                        text += formatter.formatDateForShow(date, format: .HourAndMinute)
+                        if date != notificationDates.last {
+                            text += ", "
+                        }
+                    }
+                    cell.detailTextLabel?.text = text
             }
         }
-        
         return cell
     }
     
@@ -185,6 +178,29 @@ class NotificationViewController: BaseTableViewController, APIFetchDelegate {
             NotificationManager.sharedInstance.removeAllNotificationsForShow(show)
             self.schedule?.removeShow(show)
             tableView.deleteRows(at: [indexPath], with: .fade)
+            checkIfSelfShouldBePopped()
+        }
+    }
+    
+    // MARK: Helper Functions
+    
+    private func checkIfSelfShouldBePopped() {
+        if NotificationManager.sharedInstance.totalNotificationsOnForSchedule(schedule!) <= 0 {
+            navigationController?.popViewController(animated: true)
+        }
+    }
+    
+    private func handleData(_ data: Any) {
+        if let schedule = data as? Schedule {
+            self.schedule = schedule
+            for day in 0...7 {
+                for show in showsForDay(day) {
+                    if !NotificationManager.sharedInstance.areNotificationsOnForShow(show) {
+                        self.schedule?.removeShow(show)
+                    }
+                }
+            }
+            tableView.reloadData()
         }
     }
 }

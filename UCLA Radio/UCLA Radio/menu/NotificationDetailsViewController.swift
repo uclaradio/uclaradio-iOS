@@ -20,6 +20,7 @@ class NotificationDetailsViewController: BaseTableViewController {
         self.tableView.tableFooterView = UIView() // Hide extra separators at end of UITableView
         tableView.register(ScheduleSectionHeaderView.self, forHeaderFooterViewReuseIdentifier: headerReuseIdentifier)
         tableView.allowsMultipleSelectionDuringEditing = false
+        styleCells()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -43,28 +44,60 @@ class NotificationDetailsViewController: BaseTableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
-        var offset = 0
-        
-        switch indexPath.row {
-        case 0:
-            offset = 0
-        case 1:
-            offset = -15
-        case 2:
-            offset = -30
-        default:
-            break
+        toggleNotificationForShow(at: indexPath)
+    }
+    
+    // MARK: Helper Functions
+    
+    private func styleCells() {
+        for offset in NotificationManager.sharedInstance.offsets {
+            if NotificationManager.sharedInstance.areNotificationsOnForShow(show!, withOffset: offset),
+                let row = convertOffsetToRow(offset) {
+                toggleNotificationForShow(at: IndexPath(item: row, section: 0))
+            }
         }
-        
-        if let cell = tableView.cellForRow(at: indexPath) {
+    }
+    
+    private func toggleNotificationForShow(at indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath),
+            let offset = convertRowToOffset(indexPath.row),
+            let show = self.show {
             if cell.accessoryType == .checkmark {
                 cell.accessoryType = .none
-                NotificationManager.sharedInstance.removeNotificationForShow(show!, withOffset: offset)
+                NotificationManager.sharedInstance.removeNotificationForShow(show, withOffset: offset)
+                if !NotificationManager.sharedInstance.areNotificationsOnForShow(show) {
+                    navigationController?.popViewController(animated: true)
+                }
             } else {
                 cell.accessoryType = .checkmark
-                NotificationManager.sharedInstance.addNotificationForShow(show!, withOffset: offset)
+                NotificationManager.sharedInstance.addNotificationForShow(show, withOffset: offset)
             }
+        }
+    }
+    
+    private func convertOffsetToRow(_ offset: Int) -> Int? {
+        switch offset {
+        case 0:
+            return 0
+        case -15:
+            return 1
+        case -30:
+            return 2
+        default:
+            return nil
+        }
+    }
+    
+    private func convertRowToOffset(_ row: Int) -> Int? {
+        switch row {
+        case 0:
+            return 0
+        case 1:
+            return -15
+        case 2:
+            return -30
+        default:
+            return nil
         }
     }
 }

@@ -35,14 +35,6 @@ class ScheduleViewController: BaseViewController, APIFetchDelegate, UITableViewD
         view.addConstraints(preferredConstraints())
         
         RadioAPI.fetchSchedule(self)
-        
-        //if schedule != nil {
-          //  if NotificationManager.sharedInstance.totalNotificationsOnForSchedule(schedule!) > 0 {
-                self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "bell"), style: .plain, target: self, action: #selector(goToNavigation))
-            //}
-        //}
-
-
     }
     
     func goToNavigation() {
@@ -55,6 +47,13 @@ class ScheduleViewController: BaseViewController, APIFetchDelegate, UITableViewD
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         AnalyticsManager.sharedInstance.trackPageWithValue("Schedule")
+        if schedule != nil {
+            if NotificationManager.sharedInstance.totalNotificationsOnForSchedule(schedule!) > 0 {
+                self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "bell"), style: .plain, target: self, action: #selector(goToNavigation))
+            } else {
+                self.navigationItem.rightBarButtonItem = nil
+            }
+        }
     }
     
     func today() -> Int {
