@@ -3,7 +3,7 @@
 //  UCLA Radio
 //
 //  Created by Nathan Smith on 12/20/16.
-//  Copyright © 2016 ChrisLaganiere. All rights reserved.
+//  Copyright © 2016 UCLA Student Media. All rights reserved.
 //
 
 import Foundation
@@ -28,8 +28,9 @@ class NotificationViewController: BaseTableViewController, APIFetchDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         AnalyticsManager.sharedInstance.trackPageWithValue("Notifications")
-        checkIfSelfShouldBePopped()
-        handleData(self.schedule)
+        if let schedule = schedule {
+            updateNotificationSchedule(schedule)
+        }
     }
     
     func showsForDay(_ day: Int) -> [Show] {
@@ -80,11 +81,11 @@ class NotificationViewController: BaseTableViewController, APIFetchDelegate {
     // MARK: - API Fetch Delegate
     
     func cachedDataAvailable(_ data: Any) {
-        handleData(data)
+        updateNotificationSchedule(data)
     }
     
     func didFetchData(_ data: Any) {
-        handleData(data)
+        updateNotificationSchedule(data)
     }
     
     func failedToFetchData(_ error: String) { }
@@ -178,19 +179,12 @@ class NotificationViewController: BaseTableViewController, APIFetchDelegate {
             NotificationManager.sharedInstance.removeAllNotificationsForShow(show)
             self.schedule?.removeShow(show)
             tableView.deleteRows(at: [indexPath], with: .fade)
-            checkIfSelfShouldBePopped()
         }
     }
     
     // MARK: Helper Functions
     
-    private func checkIfSelfShouldBePopped() {
-        if NotificationManager.sharedInstance.totalNotificationsOnForSchedule(schedule!) <= 0 {
-            navigationController?.popViewController(animated: true)
-        }
-    }
-    
-    private func handleData(_ data: Any) {
+    private func updateNotificationSchedule(_ data: Any) {
         if let schedule = data as? Schedule {
             self.schedule = schedule
             for day in 0...7 {

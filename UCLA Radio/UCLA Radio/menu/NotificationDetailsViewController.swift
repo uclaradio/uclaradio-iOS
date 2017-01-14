@@ -3,7 +3,7 @@
 //  UCLA Radio
 //
 //  Created by Nathan Smith on 12/23/16.
-//  Copyright © 2016 ChrisLaganiere. All rights reserved.
+//  Copyright © 2016 UCLA Student Media. All rights reserved.
 //
 
 private let reuseIdentifier = "NotificationDetailCell"
@@ -65,9 +65,6 @@ class NotificationDetailsViewController: BaseTableViewController {
             if cell.accessoryType == .checkmark {
                 cell.accessoryType = .none
                 NotificationManager.sharedInstance.removeNotificationForShow(show, withOffset: offset)
-                if !NotificationManager.sharedInstance.areNotificationsOnForShow(show) {
-                    navigationController?.popViewController(animated: true)
-                }
             } else {
                 cell.accessoryType = .checkmark
                 NotificationManager.sharedInstance.addNotificationForShow(show, withOffset: offset)

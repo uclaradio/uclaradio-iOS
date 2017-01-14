@@ -3,7 +3,7 @@
 //  UCLA Radio
 //
 //  Created by Christopher Laganiere on 6/3/16.
-//  Copyright © 2016 ChrisLaganiere. All rights reserved.
+//  Copyright © 2016 UCLA Student Media. All rights reserved.
 //
 
 import Foundation
@@ -58,11 +58,8 @@ class ScheduleViewController: BaseViewController, APIFetchDelegate, UITableViewD
     
     func today() -> Int {
         var day =  (Calendar.current as Calendar).component(.weekday, from: Date())
-        // convert from Apple format (Sunday starting) to our format (Monday starting)
-        day -= 2
-        if (day < 0) {
-            day += 7
-        }
+        // 1 = sunday => 0 = sunday, 6 = saturday
+        day -= 1
         return day
     }
     
@@ -70,19 +67,19 @@ class ScheduleViewController: BaseViewController, APIFetchDelegate, UITableViewD
         if let schedule = schedule {
             switch(day) {
             case 0:
-                return schedule.monday
-            case 1:
-                return schedule.tuesday
-            case 2:
-                return schedule.wednesday
-            case 3:
-                return schedule.thursday
-            case 4:
-                return schedule.friday
-            case 5:
-                return schedule.saturday
-            case 6:
                 return schedule.sunday
+            case 1:
+                return schedule.monday
+            case 2:
+                return schedule.tuesday
+            case 3:
+                return schedule.wednesday
+            case 4:
+                return schedule.thursday
+            case 5:
+                return schedule.friday
+            case 6:
+                return schedule.saturday
             default:
                 break
             }
@@ -93,19 +90,19 @@ class ScheduleViewController: BaseViewController, APIFetchDelegate, UITableViewD
     func stringForDay(_ day:Int) -> String {
         switch(day) {
         case 0:
-            return "Monday"
-        case 1:
-            return "Tuesday"
-        case 2:
-            return "Wednesday"
-        case 3:
-            return "Thursday"
-        case 4:
-            return "Friday"
-        case 5:
-            return "Saturday"
-        case 6:
             return "Sunday"
+        case 1:
+            return "Monday"
+        case 2:
+            return "Tuesday"
+        case 3:
+            return "Wednesday"
+        case 4:
+            return "Thursday"
+        case 5:
+            return "Friday"
+        case 6:
+            return "Saturday"
         default:
             return ""
         }
@@ -114,18 +111,18 @@ class ScheduleViewController: BaseViewController, APIFetchDelegate, UITableViewD
     // MARK: - API Fetch Delegate
     
     func cachedDataAvailable(_ data: Any) {
-        handleData(data)
+        updateSchedule(data)
     }
     
     func didFetchData(_ data: Any) {
-        handleData(data)
+        updateSchedule(data)
     }
     
     func failedToFetchData(_ error: String) {
         
     }
     
-    private func handleData(_ data: Any) {
+    private func updateSchedule(_ data: Any) {
         if let schedule = data as? Schedule {
             self.schedule = schedule
             tableView.reloadData()
