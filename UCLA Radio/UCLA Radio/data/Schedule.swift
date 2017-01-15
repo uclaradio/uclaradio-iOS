@@ -3,7 +3,7 @@
 //  UCLA Radio
 //
 //  Created by Christopher Laganiere on 6/4/16.
-//  Copyright © 2016 ChrisLaganiere. All rights reserved.
+//  Copyright © 2016 UCLA Student Media. All rights reserved.
 //
 
 import Foundation
@@ -20,96 +20,146 @@ fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
 
 
 class Schedule {
-    let monday: [Show]
-    let tuesday: [Show]
-    let wednesday: [Show]
-    let thursday: [Show]
-    let friday: [Show]
-    let saturday: [Show]
-    let sunday: [Show]
+
+    var sunday: [Show]
+    var monday: [Show]
+    var tuesday: [Show]
+    var wednesday: [Show]
+    var thursday: [Show]
+    var friday: [Show]
+    var saturday: [Show]
+
+    func week() -> [[Show]] {
+        return [sunday, monday, tuesday, wednesday, thursday, friday, saturday]
+    }
     
-    init(monday: [Show], tuesday: [Show], wednesday: [Show], thursday: [Show], friday: [Show], saturday: [Show], sunday: [Show]) {
+    var isEmpty: Bool {
+        for day in week() {
+            if !day.isEmpty {
+                return false
+            }
+        }
+        return true
+    }
+    
+    init(sunday: [Show], monday: [Show], tuesday: [Show], wednesday: [Show], thursday: [Show], friday: [Show], saturday: [Show]) {
+        self.sunday = Schedule.sortShows(sunday)
         self.monday = Schedule.sortShows(monday)
         self.tuesday = Schedule.sortShows(tuesday)
         self.wednesday = Schedule.sortShows(wednesday)
         self.thursday = Schedule.sortShows(thursday)
         self.friday = Schedule.sortShows(friday)
         self.saturday = Schedule.sortShows(saturday)
-        self.sunday = Schedule.sortShows(sunday)
     }
     
     convenience init(shows: [Show]) {
+        var sunday: [Show] = []
         var monday: [Show] = []
         var tuesday: [Show] = []
         var wednesday: [Show] = []
         var thursday: [Show] = []
         var friday: [Show] = []
         var saturday: [Show] = []
-        var sunday: [Show] = []
         for show in shows {
-            switch show.day {
-            case "Mon":
-                monday.append(show)
-            case "Tue":
-                tuesday.append(show)
-            case "Wed":
-                wednesday.append(show)
-            case "Thu":
-                thursday.append(show)
-            case "Fri":
-                friday.append(show)
-            case "Sat":
-                saturday.append(show)
-            case "Sun":
+            let date = show.getClosestDateOfShow()
+            let weekday = Calendar.current.component(.weekday, from: date)
+        
+            switch weekday {
+            case 1:
                 sunday.append(show)
+            case 2:
+                monday.append(show)
+            case 3:
+                tuesday.append(show)
+            case 4:
+                wednesday.append(show)
+            case 5:
+                thursday.append(show)
+            case 6:
+                friday.append(show)
+            case 7:
+                saturday.append(show)
             default:
                 break
             }
         }
-        self.init(monday: monday, tuesday: tuesday,
+        self.init(sunday: sunday, monday: monday, tuesday: tuesday,
                   wednesday: wednesday, thursday: thursday,
-                  friday: friday, saturday: saturday, sunday: sunday)
+                  friday: friday, saturday: saturday)
     }
     
     static func sortShows(_ shows: [Show]) -> [Show] {
-        var shows = shows
-        shows.sort { (a, b) -> Bool in
-            var aMatch = matches(for: "[0-9]*", in: a.time)
-            var bMatch = matches(for: "[0-9]*", in: b.time)
-            let aTime = (Int(aMatch[0]) ?? 0) % 12
-            let bTime = (Int(bMatch[0]) ?? 0) % 12
-            
-            if let _ = a.time.range(of: "am", options: .regularExpression) {
-                if let _ = b.time.range(of: "am", options: .regularExpression) {
-                    return aTime < bTime
-                }
-                else {
-                    return true
-                }
-            }
-            else {
-                if let _ = b.time.range(of: "am", options: .regularExpression) {
-                    return false
-                }
-                else {
-                    return aTime < bTime
-                }
-            }
-        }
-        return shows
-    }
-    
-    static func matches(for regex: String!, in text: String!) -> [String] {
-        
-        do {
-            let regex = try NSRegularExpression(pattern: regex, options: [])
-            let nsString = text as NSString
-            let results = regex.matches(in: text, options:[], range: NSMakeRange(0, nsString.length))
-            return results.map { nsString.substring(with: $0.range)}
-        } catch let error as NSError {
-            print("invalid regex: \(error.localizedDescription)")
-            return []
+        return shows.sorted {
+            ($0.time.hour < $1.time.hour) || ($0.time.hour == $1.time.hour && $0.time.minute < $1.time.minute)
         }
     }
     
+    func removeShow(_ show: Show) {
+        let notEqualToShow = {$0 != show}
+        sunday = sunday.filter(notEqualToShow)
+        monday = monday.filter(notEqualToShow)
+        tuesday = tuesday.filter(notEqualToShow)
+        wednesday = wednesday.filter(notEqualToShow)
+        thursday = thursday.filter(notEqualToShow)
+        friday = friday.filter(notEqualToShow)
+        saturday = saturday.filter(notEqualToShow)
+    }
+
+    func removeShows(_ shows: [Show]) {
+        for show in shows {
+            removeShow(show)
+        }
+    }
+    
+    func showWithID(_ id: Int) -> Show? {
+        for day in week() {
+            for show in day {
+                if show.id == id {
+                    return show
+                }
+            }
+        }
+
+        return nil
+    }
+    
+    func showForIndexPath(_ indexPath: IndexPath) -> Show? {
+        var section = 0
+        for day in week() {
+            if section == indexPath.section {
+                guard indexPath.row < day.count else {
+                    break
+                }
+                return day[indexPath.row]
+            }
+            section += 1
+        }
+        return nil
+    }
+
+    func showsForDay(_ day: Int) -> [Show] {
+        return week()[day]
+    }
+
+    class func stringForDay(_ day:Int) -> String {
+        switch(day) {
+        case 0:
+            return "Sunday"
+        case 1:
+            return "Monday"
+        case 2:
+            return "Tuesday"
+        case 3:
+            return "Wednesday"
+        case 4:
+            return "Thursday"
+        case 5:
+            return "Friday"
+        case 6:
+            return "Saturday"
+        default:
+            return ""
+        }
+    }
+
 }

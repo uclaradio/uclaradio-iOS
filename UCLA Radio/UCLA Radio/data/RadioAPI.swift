@@ -3,7 +3,7 @@
 //  UCLA Radio
 //
 //  Created by Christopher Laganiere on 6/3/16.
-//  Copyright © 2016 ChrisLaganiere. All rights reserved.
+//  Copyright © 2016 UCLA Student Media. All rights reserved.
 //
 
 import Foundation
@@ -39,11 +39,11 @@ class RadioAPI {
                 } else {
                     nowPlaying = nil
                 }
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: NowPlayingUpdatedNotification), object: nil)
+                NotificationCenter.default.post(name: Notification.Name(rawValue: NowPlayingUpdatedNotification), object: nil)
             case .failure:
                 // no show playing right now
                 nowPlaying = nil
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: NowPlayingUpdatedNotification), object: nil)
+                NotificationCenter.default.post(name: Notification.Name(rawValue: NowPlayingUpdatedNotification), object: nil)
             }
         }
     }
@@ -52,6 +52,7 @@ class RadioAPI {
         fetchSomethingCached(scheduleRoute, key: "shows", success: { (result, cached) in
             if let showsArray = result as? NSArray {
                 let schedule = Schedule(shows: Show.showsFromJSON(showsArray))
+                NotificationManager.sharedInstance.updateNotificationsForNewSchedule(schedule)
                 if (cached) {
                     delegate?.cachedDataAvailable(schedule)
                 }
@@ -88,7 +89,7 @@ class RadioAPI {
         }
     }
 
-    static let updatedGiveawaysNotificationName = NSNotification.Name(rawValue: "DidFetchUpdatedTicketGiveaways")
+    static let updatedGiveawaysNotificationName = Notification.Name(rawValue: "DidFetchUpdatedTicketGiveaways")
     static func fetchGiveaways(_ delegate: APIFetchDelegate?) {
         fetchSomethingCached(giveawaysRoute, key: "events", success: { (result, cached) in
             if let eventsMonthsArray = result as? NSArray {

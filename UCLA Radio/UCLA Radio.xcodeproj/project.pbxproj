@@ -50,6 +50,11 @@
 		83C4CC1D1CE25BB900FBA1EC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C4CC1C1CE25BB900FBA1EC /* Constants.swift */; };
 		83C4CC1F1CE25C1500FBA1EC /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C4CC1E1CE25C1500FBA1EC /* UIColor+Hex.swift */; };
 		83E4247A1CEECCF700662EDD /* NowPlayingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E424791CEECCF700662EDD /* NowPlayingView.swift */; };
+		D80C7AA51DF7D7B0003375F6 /* DateFormatter+ShowDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80C7AA41DF7D7B0003375F6 /* DateFormatter+ShowDate.swift */; };
+		D80C7AA71DF7D92B003375F6 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80C7AA61DF7D92B003375F6 /* NotificationManager.swift */; };
+		D865CBB21E0F0C0E008C050E /* AnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D865CBB11E0F0C0E008C050E /* AnalyticsManager.swift */; };
+		D86773E81E0A2C180014EC0F /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86773E71E0A2C180014EC0F /* NotificationViewController.swift */; };
+		D8A9A9801E0DD19B002F8E24 /* NotificationDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A9A97F1E0DD19B002F8E24 /* NotificationDetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -122,6 +127,11 @@
 		83C4CC1C1CE25BB900FBA1EC /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		83C4CC1E1CE25C1500FBA1EC /* UIColor+Hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
 		83E424791CEECCF700662EDD /* NowPlayingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NowPlayingView.swift; sourceTree = "<group>"; };
+		D80C7AA41DF7D7B0003375F6 /* DateFormatter+ShowDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DateFormatter+ShowDate.swift"; sourceTree = "<group>"; };
+		D80C7AA61DF7D92B003375F6 /* NotificationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		D865CBB11E0F0C0E008C050E /* AnalyticsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsManager.swift; sourceTree = "<group>"; };
+		D86773E71E0A2C180014EC0F /* NotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
+		D8A9A97F1E0DD19B002F8E24 /* NotificationDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationDetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,6 +201,8 @@
 				833EA2E51CE1BC4F00952BA0 /* extensions */,
 				832C65DF1CD0800200B3479E /* AppDelegate.swift */,
 				832C65E11CD0800200B3479E /* NowPlayingViewController.swift */,
+				D80C7AA61DF7D92B003375F6 /* NotificationManager.swift */,
+				D865CBB11E0F0C0E008C050E /* AnalyticsManager.swift */,
 				8365ECF61CE9945C001B96BF /* ContainerViewController.swift */,
 				83C4CC1C1CE25BB900FBA1EC /* Constants.swift */,
 				835CDF971D0818AD00C3213B /* Global.swift */,
@@ -229,6 +241,7 @@
 			children = (
 				833B169E1CE1BD2D00E711F5 /* UIImage+Color.swift */,
 				83C4CC1E1CE25C1500FBA1EC /* UIColor+Hex.swift */,
+				D80C7AA41DF7D7B0003375F6 /* DateFormatter+ShowDate.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -279,6 +292,7 @@
 		83C28A611D025DED0096D629 /* menu */ = {
 			isa = PBXGroup;
 			children = (
+				D8F2580E1E0BC1C7000F6507 /* Notification */,
 				836279241DA88501008C2B1D /* DJs */,
 				83C28A781D050F3B0096D629 /* Schedule */,
 				835EC1C31DA09C2100599860 /* Events */,
@@ -318,6 +332,15 @@
 				65514855D8EABCF7CD92BD49 /* Pods_UCLA_Radio.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D8F2580E1E0BC1C7000F6507 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				D86773E71E0A2C180014EC0F /* NotificationViewController.swift */,
+				D8A9A97F1E0DD19B002F8E24 /* NotificationDetailsViewController.swift */,
+			);
+			name = Notification;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -386,14 +409,19 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
-				ORGANIZATIONNAME = ChrisLaganiere;
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = "UCLA Student Media";
 				TargetAttributes = {
 					832C65DB1CD0800200B3479E = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = DGUKNK322A;
 						LastSwiftMigration = 0800;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 0;
+							};
+						};
 					};
 					832C65EF1CD0800200B3479E = {
 						CreatedOnToolsVersion = 7.3;
@@ -517,9 +545,12 @@
 				832F7ECB1DA1D155001462C6 /* EventsHeaderView.swift in Sources */,
 				83C28A6D1D025FB10096D629 /* RadioAPI.swift in Sources */,
 				8365ECF71CE9945C001B96BF /* ContainerViewController.swift in Sources */,
+				D80C7AA51DF7D7B0003375F6 /* DateFormatter+ShowDate.swift in Sources */,
+				D80C7AA71DF7D92B003375F6 /* NotificationManager.swift in Sources */,
 				83A8ED6E1CE30248003D4286 /* RecentTrackView.swift in Sources */,
 				832C65E21CD0800200B3479E /* NowPlayingViewController.swift in Sources */,
 				836279271DA88501008C2B1D /* DJCollectionViewCell.swift in Sources */,
+				D865CBB21E0F0C0E008C050E /* AnalyticsManager.swift in Sources */,
 				83C28A6F1D02627A0096D629 /* Show.swift in Sources */,
 				832C65E01CD0800200B3479E /* AppDelegate.swift in Sources */,
 				83B8C0761D067EDF00B80802 /* ScheduleSectionHeaderView.swift in Sources */,
@@ -532,6 +563,7 @@
 				83C28A651D025DED0096D629 /* MenuViewController.swift in Sources */,
 				8356DDFF1DA043E900B2B63B /* MenuSectionHeaderView.swift in Sources */,
 				83B381021CE1ABD000BA22FE /* AudioStream.swift in Sources */,
+				D86773E81E0A2C180014EC0F /* NotificationViewController.swift in Sources */,
 				83B381031CE1ABD000BA22FE /* HistoryFetcher.swift in Sources */,
 				835CDF981D0818AD00C3213B /* Global.swift in Sources */,
 				83C4CC1D1CE25BB900FBA1EC /* Constants.swift in Sources */,
@@ -540,6 +572,7 @@
 				83C28A6B1D025E500096D629 /* AboutViewController.swift in Sources */,
 				83C28A7E1D050FD40096D629 /* ScheduleShowCell.swift in Sources */,
 				83C28A711D0263350096D629 /* DJ.swift in Sources */,
+				D8A9A9801E0DD19B002F8E24 /* NotificationDetailsViewController.swift in Sources */,
 				83C28A641D025DED0096D629 /* MenuTableViewCell.swift in Sources */,
 				835EC1C71DA0A02D00599860 /* GiveawayTableViewCell.swift in Sources */,
 				836279281DA88501008C2B1D /* DJListViewController.swift in Sources */,
@@ -612,8 +645,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -657,8 +692,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -677,6 +714,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -685,6 +723,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6DA6C14DE284BA7CD5A4FD5A /* Pods-UCLA Radio.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -693,10 +732,11 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.uclastudentmedia.UCLARadio;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "667594c1-e046-49a8-a707-241cde90d214";
-				PROVISIONING_PROFILE_SPECIFIER = "Chris dev";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "./UCLA Radio/UCLA_Radio-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -704,18 +744,20 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3FFD9ADD0DCADD1878E89FDE /* Pods-UCLA Radio.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				DEVELOPMENT_TEAM = V4Z45C29H6;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = DGUKNK322A;
 				INFOPLIST_FILE = "UCLA Radio/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.uclastudentmedia.UCLARadio;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "132a7d0c-7bee-4f23-bade-7d06044eff39";
-				PROVISIONING_PROFILE_SPECIFIER = "UCLA Radio Dist";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "./UCLA Radio/UCLA_Radio-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -725,7 +767,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = "UCLA RadioTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "ChrisLaganiere.UCLA-RadioTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "UCLARadio.UCLA-RadioTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UCLA Radio.app/UCLA Radio";
@@ -738,7 +780,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = "UCLA RadioTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "ChrisLaganiere.UCLA-RadioTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "UCLARadio.UCLA-RadioTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UCLA Radio.app/UCLA Radio";
@@ -750,7 +792,7 @@
 			buildSettings = {
 				INFOPLIST_FILE = "UCLA RadioUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "ChrisLaganiere.UCLA-RadioUITests";
+				PRODUCT_BUNDLE_IDENTIFIER = "UCLARadio.UCLA-RadioUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = "UCLA Radio";
@@ -762,7 +804,7 @@
 			buildSettings = {
 				INFOPLIST_FILE = "UCLA RadioUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "ChrisLaganiere.UCLA-RadioUITests";
+				PRODUCT_BUNDLE_IDENTIFIER = "UCLARadio.UCLA-RadioUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = "UCLA Radio";

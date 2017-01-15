@@ -3,7 +3,7 @@
 //  UCLA Radio
 //
 //  Created by Christopher Laganiere on 6/5/16.
-//  Copyright © 2016 ChrisLaganiere. All rights reserved.
+//  Copyright © 2016 UCLA Student Media. All rights reserved.
 //
 
 import Foundation
@@ -68,7 +68,13 @@ class ScheduleShowCell: UITableViewCell {
     }
     
     func styleFromShow(_ show: Show) {
-        timeLabel.text = show.time
+        
+        let formatter = DateFormatter()
+        formatter.timeZone = TimeZone.current
+        
+        let showDate = show.getClosestDateOfShow()
+        
+        timeLabel.text = formatter.formatDateForShow(showDate, format: .Hour)
         titleLabel.text = show.title
 //        djsLabel.text = show.djString
         blurbImageView.sd_cancelCurrentImageLoad()
