@@ -39,11 +39,11 @@ class RadioAPI {
                 } else {
                     nowPlaying = nil
                 }
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: NowPlayingUpdatedNotification), object: nil)
+                NotificationCenter.default.post(name: Notification.Name(rawValue: NowPlayingUpdatedNotification), object: nil)
             case .failure:
                 // no show playing right now
                 nowPlaying = nil
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: NowPlayingUpdatedNotification), object: nil)
+                NotificationCenter.default.post(name: Notification.Name(rawValue: NowPlayingUpdatedNotification), object: nil)
             }
         }
     }
@@ -88,7 +88,8 @@ class RadioAPI {
                 delegate?.failedToFetchData(error)
         }
     }
-    
+
+    static let updatedGiveawaysNotificationName = Notification.Name(rawValue: "DidFetchUpdatedTicketGiveaways")
     static func fetchGiveaways(_ delegate: APIFetchDelegate?) {
         fetchSomethingCached(giveawaysRoute, key: "events", success: { (result, cached) in
             if let eventsMonthsArray = result as? NSArray {
@@ -98,6 +99,9 @@ class RadioAPI {
                 }
                 else {
                     delegate?.didFetchData(giveaways)
+                    NotificationCenter.default.post(name: updatedGiveawaysNotificationName, object: nil, userInfo: [
+                        "hasGiveaways": (giveaways.count > 0)
+                    ])
                 }
             }
             else {
