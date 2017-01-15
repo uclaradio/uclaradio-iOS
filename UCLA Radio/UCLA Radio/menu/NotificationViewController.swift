@@ -14,67 +14,33 @@ private let headerReuseIdentifier = "ScheduleHeader"
 class NotificationViewController: BaseTableViewController, APIFetchDelegate {
     
     static let storyboardID = "notificationViewController"
+
+    private var editBarButtonItem: UIBarButtonItem?
+    private var cancelBarButtonItem: UIBarButtonItem?
+    private var deleteBarButtonItem: UIBarButtonItem?
     
-    var schedule: Schedule?
+    var notificationSchedule: Schedule?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.tableFooterView = UIView() // Hide extra separators at end of UITableView
+        tableView.tableFooterView = UIView() // Hide extra separators at end of UITableView
         tableView.register(ScheduleSectionHeaderView.self, forHeaderFooterViewReuseIdentifier: headerReuseIdentifier)
-        tableView.allowsMultipleSelectionDuringEditing = false
+        tableView.allowsMultipleSelectionDuringEditing = true
         RadioAPI.fetchSchedule(self)
+
+        editBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(toggleEdit))
+        cancelBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(toggleEdit))
+        deleteBarButtonItem = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(commitEdit))
+
+        deleteBarButtonItem?.tintColor = UIColor.red
+        navigationItem.rightBarButtonItem = editBarButtonItem
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         AnalyticsManager.sharedInstance.trackPageWithValue("Notifications")
-        if let schedule = schedule {
-            updateNotificationSchedule(schedule)
-        }
-    }
-    
-    func showsForDay(_ day: Int) -> [Show] {
-        if let schedule = schedule {
-            switch(day) {
-            case 0:
-                return schedule.monday
-            case 1:
-                return schedule.tuesday
-            case 2:
-                return schedule.wednesday
-            case 3:
-                return schedule.thursday
-            case 4:
-                return schedule.friday
-            case 5:
-                return schedule.saturday
-            case 6:
-                return schedule.sunday
-            default:
-                break
-            }
-        }
-        return []
-    }
-    
-    func stringForDay(_ day:Int) -> String {
-        switch(day) {
-        case 0:
-            return "Monday"
-        case 1:
-            return "Tuesday"
-        case 2:
-            return "Wednesday"
-        case 3:
-            return "Thursday"
-        case 4:
-            return "Friday"
-        case 5:
-            return "Saturday"
-        case 6:
-            return "Sunday"
-        default:
-            return ""
+        if let notificationSchedule = notificationSchedule {
+            updateNotificationSchedule(notificationSchedule)
         }
     }
     
@@ -97,11 +63,12 @@ class NotificationViewController: BaseTableViewController, APIFetchDelegate {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return showsForDay(section).count
+        return notificationSchedule?.showsForDay(section).count ?? 0
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if showsForDay(section).isEmpty {
+        if let dayEmpty = notificationSchedule?.showsForDay(section).isEmpty,
+            dayEmpty {
             return 0
         }
         return ScheduleSectionHeaderView.height
@@ -110,26 +77,9 @@ class NotificationViewController: BaseTableViewController, APIFetchDelegate {
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0
     }
-    
-    
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
-        if let show = schedule?.showForIndexPath(indexPath) {
-            cell.textLabel?.text = show.title
-            cell.detailTextLabel?.textColor = UIColor.lightGray
-            let formatter = DateFormatter()
-            if let notificationDates = NotificationManager.sharedInstance.datesOfWeeklyNotificationsForShow(show) {
-                    var text = ""
-                    for date in notificationDates {
-                        text += formatter.formatDateForShow(date, format: .HourAndMinute)
-                        if date != notificationDates.last {
-                            text += ", "
-                        }
-                    }
-                    cell.detailTextLabel?.text = text
-            }
-        }
-        return cell
+        return tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -146,25 +96,43 @@ class NotificationViewController: BaseTableViewController, APIFetchDelegate {
     // MARK: - UITableViewDelegate
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let shows = showsForDay((indexPath as NSIndexPath).section)
-        if let showCell = cell as? ScheduleShowCell {
-            showCell.styleFromShow(shows[(indexPath as NSIndexPath).row])
+        if let show = notificationSchedule?.showForIndexPath(indexPath) {
+            cell.textLabel?.text = show.title
+            let formatter = DateFormatter()
+            if let notificationDates = NotificationManager.sharedInstance.datesOfWeeklyNotificationsForShow(show) {
+                var text = ""
+                for date in notificationDates {
+                    text += formatter.formatDateForShow(date, format: .HourAndMinute)
+                    if date != notificationDates.last {
+                        text += ", "
+                    }
+                }
+                cell.detailTextLabel?.text = text
+            }
         }
     }
-    
+
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         if let scheduleHeader = view as? ScheduleSectionHeaderView {
-            scheduleHeader.styleForString(stringForDay(section))
+            let dayString = Schedule.stringForDay(section)
+            scheduleHeader.styleForString(dayString)
         }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if (tableView.isEditing) {
+            return
+        }
+
         tableView.deselectRow(at: indexPath, animated: true)
-        let show = showsForDay((indexPath as NSIndexPath).section)[(indexPath as NSIndexPath).row]
-        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: NotificationDetailsViewController.storyboardID)
-        if let notificationDetailViewController = vc as? NotificationDetailsViewController {
-            notificationDetailViewController.show = show
-            navigationController?.pushViewController(notificationDetailViewController, animated: true)
+
+        if let show = notificationSchedule?.showForIndexPath(indexPath) {
+            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: NotificationDetailsViewController.storyboardID)
+            if let notificationDetailViewController = vc as? NotificationDetailsViewController {
+                notificationDetailViewController.show = show
+                notificationDetailViewController.title = show.title
+                navigationController?.pushViewController(notificationDetailViewController, animated: true)
+            }
         }
     }
     
@@ -174,23 +142,45 @@ class NotificationViewController: BaseTableViewController, APIFetchDelegate {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let show = showsForDay((indexPath as NSIndexPath).section)[(indexPath as NSIndexPath).row]
-        if editingStyle == .delete {
+        if let show = notificationSchedule?.showForIndexPath(indexPath),
+            editingStyle == .delete {
             NotificationManager.sharedInstance.removeAllNotificationsForShow(show)
-            self.schedule?.removeShow(show)
+            notificationSchedule?.removeShow(show)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
+
+    // MARK: - Editing
+
+    func toggleEdit() {
+        tableView.setEditing(!tableView.isEditing, animated: true)
+        navigationItem.rightBarButtonItem = tableView.isEditing ? deleteBarButtonItem : editBarButtonItem
+        navigationItem.leftBarButtonItem = tableView.isEditing ? cancelBarButtonItem : navigationItem.backBarButtonItem
+    }
+
+    func commitEdit() {
+        if tableView.isEditing {
+            // delete notifications for selected shows
+            let selectedRows = tableView.indexPathsForSelectedRows ?? []
+            let selectedShows: [Show] = selectedRows.map { indexPath in
+                notificationSchedule?.showForIndexPath(indexPath)
+            }.flatMap({$0})
+            NotificationManager.sharedInstance.removeAllNotificationsForShows(selectedShows)
+            notificationSchedule?.removeShows(selectedShows)
+            tableView.deleteRows(at: selectedRows, with: .fade)
+        }
+        toggleEdit()
+    }
     
-    // MARK: Helper Functions
+    // MARK: - Helper Functions
     
     private func updateNotificationSchedule(_ data: Any) {
-        if let schedule = data as? Schedule {
-            self.schedule = schedule
-            for day in 0...7 {
-                for show in showsForDay(day) {
+        if let updatedSchedule = data as? Schedule {
+            notificationSchedule = updatedSchedule
+            for day in notificationSchedule?.week() ?? [] {
+                for show in day {
                     if !NotificationManager.sharedInstance.areNotificationsOnForShow(show) {
-                        self.schedule?.removeShow(show)
+                        notificationSchedule?.removeShow(show)
                     }
                 }
             }

@@ -177,6 +177,12 @@ class NotificationManager {
             }
         }
     }
+
+    func removeAllNotificationsForShows(_ shows: [Show]) {
+        for show in shows {
+            removeAllNotificationsForShow(show)
+        }
+    }
     
     func updateNotificationsForNewSchedule(_ schedule: Schedule) {
         // Check hidden shows, and reenable notifications if it's been unhidden
@@ -237,7 +243,6 @@ class NotificationManager {
     // MARK: Helper Functions
     
     private func convertNotificationIDIntoComponents(_ id: String) -> (showID: Int, notificationOffset: Int)? {
-        print("id: \(id)")
         let token = id.components(separatedBy: "-")
         if token.count == 2 {
             if let showID = Int(token[0]),

@@ -63,51 +63,6 @@ class ScheduleViewController: BaseViewController, APIFetchDelegate, UITableViewD
         return day
     }
     
-    func showsForDay(_ day: Int) -> [Show] {
-        if let schedule = schedule {
-            switch(day) {
-            case 0:
-                return schedule.sunday
-            case 1:
-                return schedule.monday
-            case 2:
-                return schedule.tuesday
-            case 3:
-                return schedule.wednesday
-            case 4:
-                return schedule.thursday
-            case 5:
-                return schedule.friday
-            case 6:
-                return schedule.saturday
-            default:
-                break
-            }
-        }
-        return []
-    }
-    
-    func stringForDay(_ day:Int) -> String {
-        switch(day) {
-        case 0:
-            return "Sunday"
-        case 1:
-            return "Monday"
-        case 2:
-            return "Tuesday"
-        case 3:
-            return "Wednesday"
-        case 4:
-            return "Thursday"
-        case 5:
-            return "Friday"
-        case 6:
-            return "Saturday"
-        default:
-            return ""
-        }
-    }
-    
     // MARK: - API Fetch Delegate
     
     func cachedDataAvailable(_ data: Any) {
@@ -137,7 +92,7 @@ class ScheduleViewController: BaseViewController, APIFetchDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return showsForDay(section).count
+        return schedule?.showsForDay(section).count ?? 0
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -145,7 +100,7 @@ class ScheduleViewController: BaseViewController, APIFetchDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if showsForDay(section).isEmpty {
+        if schedule?.showsForDay(section).isEmpty ?? false {
             return 0
         }
         return ScheduleSectionHeaderView.height
@@ -177,32 +132,37 @@ class ScheduleViewController: BaseViewController, APIFetchDelegate, UITableViewD
     // MARK: - UITableViewDelegate
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let shows = showsForDay((indexPath as NSIndexPath).section)
-        if let showCell = cell as? ScheduleShowCell {
-            showCell.styleFromShow(shows[(indexPath as NSIndexPath).row])
+        if let show = schedule?.showForIndexPath(indexPath),
+            let showCell = cell as? ScheduleShowCell {
+            showCell.styleFromShow(show)
         }
     }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         if let scheduleHeader = view as? ScheduleSectionHeaderView {
-            scheduleHeader.styleForString(stringForDay(section))
+            let dayString = Schedule.stringForDay(section)
+            scheduleHeader.styleForString(dayString)
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let show = showsForDay((indexPath as NSIndexPath).section)[(indexPath as NSIndexPath).row]
+        guard let show = schedule?.showForIndexPath(indexPath) else {
+            return
+        }
+
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: ShowViewController.storyboardID)
         if let showViewController = vc as? ShowViewController {
             showViewController.show = show
             navigationController?.pushViewController(showViewController, animated: true)
         }
     }
-    
+
     // MARK: - Layout
     
     func scrollToToday() {
-        if (showsForDay(today()).count > 0) {
+        if let showCount = schedule?.showsForDay(today()).count,
+            showCount > 0 {
             tableView.scrollToRow(at: IndexPath(row: 0, section: today()), at: .top, animated: false)
         }
     }
