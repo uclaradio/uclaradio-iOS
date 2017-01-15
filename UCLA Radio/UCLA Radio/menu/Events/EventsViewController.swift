@@ -85,7 +85,7 @@ class EventsViewController: BaseViewController, APIFetchDelegate, UITableViewDat
             return 0
         default:
             if let events = events {
-                let months = [String](events.keys)
+                let months = Giveaway.sortedMonths(months: [String](events.keys))
                 return events[months[section-1]]?.count ?? 0
             }
             return 0
@@ -130,7 +130,7 @@ class EventsViewController: BaseViewController, APIFetchDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if let events = events {
-            let months = [String](events.keys)
+            let months = Giveaway.sortedMonths(months: [String](events.keys))
             if let event = events[months[(indexPath as NSIndexPath).section-1]]?[(indexPath as NSIndexPath).row],
                 let giveawayCell = cell as? GiveawayTableViewCell {
                 
@@ -146,26 +146,11 @@ class EventsViewController: BaseViewController, APIFetchDelegate, UITableViewDat
         default:
             if let events = events,
                 let view = view as? EventsHeaderView {
-                let months = [String](events.keys)
+                let months = Giveaway.sortedMonths(months: [String](events.keys))
                 view.style(month: months[section-1])
             }
         }
     }
-    
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        tableView.deselectRow(at: indexPath, animated: true)
-//        
-//        var reloadIndexPaths = [indexPath] as [IndexPath]
-//        if indexPath != expandedCellIndex {
-//            if let expandedCellIndex = expandedCellIndex {
-//                reloadIndexPaths.append(expandedCellIndex)
-//            }
-//            expandedCellIndex = indexPath
-//        } else {
-//            expandedCellIndex = nil
-//        }
-//        tableView.reloadRows(at: reloadIndexPaths, with: .none)
-//    }
     
     // MARK: - Layout
     
