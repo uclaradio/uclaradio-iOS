@@ -3,7 +3,7 @@
 //  UCLA Radio
 //
 //  Created by Christopher Laganiere on 6/3/16.
-//  Copyright © 2016 ChrisLaganiere. All rights reserved.
+//  Copyright © 2016 UCLA Student Media. All rights reserved.
 //
 
 import Foundation
@@ -52,6 +52,7 @@ class RadioAPI {
         fetchSomethingCached(scheduleRoute, key: "shows", success: { (result, cached) in
             if let showsArray = result as? NSArray {
                 let schedule = Schedule(shows: Show.showsFromJSON(showsArray))
+                NotificationManager.sharedInstance.updateNotificationsForNewSchedule(schedule)
                 if (cached) {
                     delegate?.cachedDataAvailable(schedule)
                 }

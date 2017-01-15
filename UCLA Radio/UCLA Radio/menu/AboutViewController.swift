@@ -3,7 +3,7 @@
 //  UCLA Radio
 //
 //  Created by Christopher Laganiere on 6/3/16.
-//  Copyright © 2016 ChrisLaganiere. All rights reserved.
+//  Copyright © 2016 UCLA Student Media. All rights reserved.
 //
 
 import Foundation
@@ -20,14 +20,7 @@ class AboutViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        // track view analytics
-        let tracker = GAI.sharedInstance().defaultTracker
-        tracker?.set(kGAIScreenName, value: "About")
-        let builder = GAIDictionaryBuilder.createScreenView()
-        if let builder = builder {
-            tracker?.send(builder.build() as [NSObject : AnyObject])
-        }
+        AnalyticsManager.sharedInstance.trackPageWithValue("About")
     }
     
     // MARK: - Actions

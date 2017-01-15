@@ -3,7 +3,7 @@
 //  UCLA Radio
 //
 //  Created by Christopher Laganiere on 10/1/16.
-//  Copyright © 2016 ChrisLaganiere. All rights reserved.
+//  Copyright © 2016 UCLA Student Media. All rights reserved.
 //
 
 import Foundation
@@ -45,14 +45,7 @@ class EventsViewController: BaseViewController, APIFetchDelegate, UITableViewDat
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         RadioAPI.fetchGiveaways(self)
-        
-        // track view analytics
-        let tracker = GAI.sharedInstance().defaultTracker
-        tracker?.set(kGAIScreenName, value: "Events")
-        let builder = GAIDictionaryBuilder.createScreenView()
-        if let builder = builder {
-            tracker?.send(builder.build() as [NSObject : AnyObject])
-        }
+        AnalyticsManager.sharedInstance.trackPageWithValue("Events")
     }
     
     // MARK: - APIFetchDelegate

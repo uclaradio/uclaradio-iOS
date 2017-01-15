@@ -3,14 +3,14 @@
 //  UCLA Radio
 //
 //  Created by Christopher Laganiere on 6/3/16.
-//  Copyright © 2016 ChrisLaganiere. All rights reserved.
+//  Copyright © 2016 UCLA Student Media. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-private let reuseIdentifier = "ScheduleCell"
-private let headerReuseIdentifier = "ScheduleHeader"
+fileprivate let reuseIdentifier = "ScheduleCell"
+fileprivate let headerReuseIdentifier = "ScheduleHeader"
 
 class ScheduleViewController: BaseViewController, APIFetchDelegate, UITableViewDataSource, UITableViewDelegate {
     
@@ -22,7 +22,7 @@ class ScheduleViewController: BaseViewController, APIFetchDelegate, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(ScheduleShowCell.self, forCellReuseIdentifier: reuseIdentifier)
@@ -37,94 +37,52 @@ class ScheduleViewController: BaseViewController, APIFetchDelegate, UITableViewD
         RadioAPI.fetchSchedule(self)
     }
     
+    func goToNavigation() {
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: NotificationViewController.storyboardID)
+        if let notificationViewController = vc as? NotificationViewController {
+            navigationController?.pushViewController(notificationViewController, animated: true)
+        }
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        // track view analytics
-        let tracker = GAI.sharedInstance().defaultTracker
-        tracker?.set(kGAIScreenName, value: "Schedule")
-        let builder = GAIDictionaryBuilder.createScreenView()
-        if let builder = builder {
-            tracker?.send(builder.build() as [NSObject : AnyObject])
+        AnalyticsManager.sharedInstance.trackPageWithValue("Schedule")
+        if schedule != nil {
+            if NotificationManager.sharedInstance.totalNotificationsOnForSchedule(schedule!) > 0 {
+                self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "bell"), style: .plain, target: self, action: #selector(goToNavigation))
+            } else {
+                self.navigationItem.rightBarButtonItem = nil
+            }
         }
     }
     
     func today() -> Int {
-        var day =  (Calendar.current as NSCalendar).component(.weekday, from: Date())
-//        var hour =  NSCalendar.currentCalendar().component(.Hour, fromDate: NSDate())
-        // convert from Apple format (Sunday starting) to our format (Monday starting)
-        day -= 2
-        if (day < 0) {
-            day += 7
-        }
+        var day =  (Calendar.current as Calendar).component(.weekday, from: Date())
+        // 1 = sunday => 0 = sunday, 6 = saturday
+        day -= 1
         return day
-    }
-    
-    func showsForDay(_ day: Int) -> [Show] {
-        if let schedule = schedule {
-            switch(day) {
-            case 0:
-                return schedule.monday
-            case 1:
-                return schedule.tuesday
-            case 2:
-                return schedule.wednesday
-            case 3:
-                return schedule.thursday
-            case 4:
-                return schedule.friday
-            case 5:
-                return schedule.saturday
-            case 6:
-                return schedule.sunday
-            default:
-                break
-            }
-        }
-        return []
-    }
-    
-    func stringForDay(_ day:Int) -> String {
-        switch(day) {
-        case 0:
-            return "Monday"
-        case 1:
-            return "Tuesday"
-        case 2:
-            return "Wednesday"
-        case 3:
-            return "Thursday"
-        case 4:
-            return "Friday"
-        case 5:
-            return "Saturday"
-        case 6:
-            return "Sunday"
-        default:
-            return ""
-        }
     }
     
     // MARK: - API Fetch Delegate
     
     func cachedDataAvailable(_ data: Any) {
-        if let schedule = data as? Schedule {
-            self.schedule = schedule
-            tableView.reloadData()
-            scrollToToday()
-        }
+        updateSchedule(data)
     }
     
     func didFetchData(_ data: Any) {
-        if let schedule = data as? Schedule {
-            self.schedule = schedule
-            tableView.reloadData()
-            scrollToToday()
-        }
+        updateSchedule(data)
     }
     
     func failedToFetchData(_ error: String) {
         
+    }
+    
+    private func updateSchedule(_ data: Any) {
+        if let schedule = data as? Schedule {
+            self.schedule = schedule
+            tableView.reloadData()
+            scrollToToday()
+        }
     }
     
     // MARK: - UITableViewDataSource
@@ -134,7 +92,7 @@ class ScheduleViewController: BaseViewController, APIFetchDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return showsForDay(section).count
+        return schedule?.showsForDay(section).count ?? 0
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -142,6 +100,9 @@ class ScheduleViewController: BaseViewController, APIFetchDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if schedule?.showsForDay(section).isEmpty ?? false {
+            return 0
+        }
         return ScheduleSectionHeaderView.height
     }
     
@@ -171,32 +132,37 @@ class ScheduleViewController: BaseViewController, APIFetchDelegate, UITableViewD
     // MARK: - UITableViewDelegate
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let shows = showsForDay((indexPath as NSIndexPath).section)
-        if let showCell = cell as? ScheduleShowCell {
-            showCell.styleFromShow(shows[(indexPath as NSIndexPath).row])
+        if let show = schedule?.showForIndexPath(indexPath),
+            let showCell = cell as? ScheduleShowCell {
+            showCell.styleFromShow(show)
         }
     }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         if let scheduleHeader = view as? ScheduleSectionHeaderView {
-            scheduleHeader.styleForString(stringForDay(section))
+            let dayString = Schedule.stringForDay(section)
+            scheduleHeader.styleForString(dayString)
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let show = showsForDay((indexPath as NSIndexPath).section)[(indexPath as NSIndexPath).row]
+        guard let show = schedule?.showForIndexPath(indexPath) else {
+            return
+        }
+
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: ShowViewController.storyboardID)
         if let showViewController = vc as? ShowViewController {
             showViewController.show = show
             navigationController?.pushViewController(showViewController, animated: true)
         }
     }
-    
+
     // MARK: - Layout
     
     func scrollToToday() {
-        if (showsForDay(today()).count > 0) {
+        if let showCount = schedule?.showsForDay(today()).count,
+            showCount > 0 {
             tableView.scrollToRow(at: IndexPath(row: 0, section: today()), at: .top, animated: false)
         }
     }
@@ -208,5 +174,4 @@ class ScheduleViewController: BaseViewController, APIFetchDelegate, UITableViewD
         constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|[table]|", options: [], metrics: nil, views: views)
         return constraints
     }
-    
 }
