@@ -22,7 +22,6 @@ class ContainerViewController: UIViewController, NowPlayingActionDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         view.backgroundColor = UIColor.black
         
         let menu = MenuViewController()
@@ -36,7 +35,9 @@ class ContainerViewController: UIViewController, NowPlayingActionDelegate {
         // back button color
         rootNavController.navigationBar.tintColor = UIColor.white
         // title color
-        rootNavController.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: Constants.Fonts.title, size: 21)]
+        if let titleFont = UIFont(name: Constants.Fonts.title, size: 21) {
+            rootNavController.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: titleFont]
+        }
         
         installNowPlayingSlider()
         
@@ -104,5 +105,5 @@ class ContainerViewController: UIViewController, NowPlayingActionDelegate {
         
         return constraints
     }
-    
+
 }

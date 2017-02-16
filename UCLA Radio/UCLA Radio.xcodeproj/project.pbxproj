@@ -36,6 +36,7 @@
 		83B381021CE1ABD000BA22FE /* AudioStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B381001CE1ABD000BA22FE /* AudioStream.swift */; };
 		83B381031CE1ABD000BA22FE /* HistoryFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B381011CE1ABD000BA22FE /* HistoryFetcher.swift */; };
 		83B8C0761D067EDF00B80802 /* ScheduleSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B8C0751D067EDF00B80802 /* ScheduleSectionHeaderView.swift */; };
+		83C221131E556F1E00DB28AB /* DesignableLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C221121E556F1E00DB28AB /* DesignableLabel.swift */; };
 		83C28A641D025DED0096D629 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C28A621D025DED0096D629 /* MenuTableViewCell.swift */; };
 		83C28A651D025DED0096D629 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C28A631D025DED0096D629 /* MenuViewController.swift */; };
 		83C28A6B1D025E500096D629 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C28A6A1D025E500096D629 /* AboutViewController.swift */; };
@@ -115,6 +116,7 @@
 		83B381001CE1ABD000BA22FE /* AudioStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioStream.swift; sourceTree = "<group>"; };
 		83B381011CE1ABD000BA22FE /* HistoryFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryFetcher.swift; sourceTree = "<group>"; };
 		83B8C0751D067EDF00B80802 /* ScheduleSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleSectionHeaderView.swift; sourceTree = "<group>"; };
+		83C221121E556F1E00DB28AB /* DesignableLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignableLabel.swift; sourceTree = "<group>"; };
 		83C28A621D025DED0096D629 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
 		83C28A631D025DED0096D629 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		83C28A6A1D025E500096D629 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
@@ -344,6 +346,7 @@
 				D808590F1E552819007BD3FF /* apercu_light-webfont.ttf */,
 				D80859101E552819007BD3FF /* apercu_medium-webfont.ttf */,
 				D80859111E552819007BD3FF /* apercu_regular-webfont.ttf */,
+				83C221121E556F1E00DB28AB /* DesignableLabel.swift */,
 			);
 			path = fonts;
 			sourceTree = "<group>";
@@ -584,6 +587,7 @@
 				835CDF981D0818AD00C3213B /* Global.swift in Sources */,
 				83C4CC1D1CE25BB900FBA1EC /* Constants.swift in Sources */,
 				837C71541D9F4CD800E5C472 /* Colorbrewer.swift in Sources */,
+				83C221131E556F1E00DB28AB /* DesignableLabel.swift in Sources */,
 				83E4247A1CEECCF700662EDD /* NowPlayingView.swift in Sources */,
 				83C28A6B1D025E500096D629 /* AboutViewController.swift in Sources */,
 				83C28A7E1D050FD40096D629 /* ScheduleShowCell.swift in Sources */,
