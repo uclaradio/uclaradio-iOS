@@ -93,6 +93,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: storyboardID)
         if let navigationController = navigationController {
             navigationController.pushViewController(viewController, animated: true)
+            print("hey")
         }
     }
 
@@ -143,6 +144,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         let item = items[(indexPath as NSIndexPath).row]
         if let storyboardID = item.storyboardID {
+            print("hi")
             pushViewController(storyboardID)
         }
     }

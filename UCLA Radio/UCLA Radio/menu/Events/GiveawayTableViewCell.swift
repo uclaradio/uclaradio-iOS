@@ -34,7 +34,7 @@ class GiveawayTableViewCell: UITableViewCell {
         containerView.addSubview(dateLabel)
         dateLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        summaryLabel.font = UIFont.systemFont(ofSize: 18)
+        summaryLabel.font = UIFont(name: Constants.Fonts.title, size: 18)
         summaryLabel.numberOfLines = 2
         summaryLabel.textAlignment = .center
         containerView.addSubview(summaryLabel)

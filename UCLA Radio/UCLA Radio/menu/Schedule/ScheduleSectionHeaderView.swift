@@ -22,7 +22,7 @@ class ScheduleSectionHeaderView: UITableViewHeaderFooterView {
         
         addSubview(label)
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.font = UIFont(name: Constants.Fonts.titleBold, size: 16)
         label.textColor = UIColor.white
         
         addConstraints(preferredConstraints())

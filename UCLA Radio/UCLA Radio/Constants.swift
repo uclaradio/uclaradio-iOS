@@ -25,8 +25,10 @@ struct Constants {
     }
     
     struct Fonts {
-        static let title = "Typo Round Regular Demo"
-        static let titleBold = "Typo Round Bold Demo"
+        static let title = "apercu-regular"
+        static let titleBold = "apercu-bold"
+        static let titleMedium = "apercu-medium"
+        static let titleLight = "apercu-light"
     }
     
     struct Floats {

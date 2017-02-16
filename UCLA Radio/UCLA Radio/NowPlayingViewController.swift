@@ -63,7 +63,7 @@ class NowPlayingViewController: UIViewController, HistoryFetchDelegate, SlidingV
         recentlyPlayedLabel = UILabel()
         recentlyPlayedLabel.text = "Recently Played"
         recentlyPlayedLabel.textColor = UIColor.lightText
-        recentlyPlayedLabel.font = UIFont.boldSystemFont(ofSize: 14)
+        recentlyPlayedLabel.font = UIFont(name: Constants.Fonts.titleBold, size: 14)
         containerView.addSubview(recentlyPlayedLabel)
         recentlyPlayedLabel.translatesAutoresizingMaskIntoConstraints = false
         containerView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-(15)-[recentLabel(150)]", options: [], metrics: nil, views: ["recentLabel": recentlyPlayedLabel]))
@@ -100,6 +100,16 @@ class NowPlayingViewController: UIViewController, HistoryFetchDelegate, SlidingV
         pullTabImageView.tintColor = UIColor.white
         let pullTabTap = UITapGestureRecognizer(target: self, action: #selector(didTapPullTab))
         pullTabImageView.addGestureRecognizer(pullTabTap)
+        
+        for family in UIFont.familyNames
+        {
+            print("\(family)")
+            for names: String in UIFont.fontNames(forFamilyName: family)
+            {
+                print("== \(names)")
+            }
+        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {

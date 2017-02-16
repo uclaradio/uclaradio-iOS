@@ -37,22 +37,22 @@ class ScheduleShowCell: UITableViewCell {
         containerView.backgroundColor = Constants.Colors.lightBackground
         
         titleLabel.textAlignment = .center
-        titleLabel.font = UIFont.systemFont(ofSize: 21)
+        titleLabel.font = UIFont(name: Constants.Fonts.title, size: 21)
         containerView.addSubview(titleLabel)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        timeLabel.font = UIFont.boldSystemFont(ofSize: 14)
+        timeLabel.font = UIFont(name: Constants.Fonts.titleBold, size: 14)
         timeLabel.textColor = UIColor.lightGray
         containerView.addSubview(timeLabel)
         timeLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        genreLabel.font = UIFont.systemFont(ofSize: 14)
+        genreLabel.font = UIFont(name: Constants.Fonts.title, size: 14)
         genreLabel.textColor = UIColor.darkGray
         genreLabel.textAlignment = .right
         containerView.addSubview(genreLabel)
         genreLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        djsLabel.font = UIFont.systemFont(ofSize: 16)
+        djsLabel.font = UIFont(name: Constants.Fonts.title, size: 16)
         djsLabel.textColor = UIColor.darkGray
         containerView.addSubview(djsLabel)
         djsLabel.translatesAutoresizingMaskIntoConstraints = false

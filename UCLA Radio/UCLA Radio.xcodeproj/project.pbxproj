@@ -21,8 +21,6 @@
 		834A33A31DA4B2A3008155E6 /* EventsInfoHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834A33A21DA4B2A3008155E6 /* EventsInfoHeaderView.swift */; };
 		8356DDFD1DA03A3A00B2B63B /* Giveaway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8356DDFC1DA03A3A00B2B63B /* Giveaway.swift */; };
 		8356DDFF1DA043E900B2B63B /* MenuSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8356DDFE1DA043E900B2B63B /* MenuSectionHeaderView.swift */; };
-		835CDF931D068B0300C3213B /* Typo_Round_Bold_Demo.otf in Resources */ = {isa = PBXBuildFile; fileRef = 835CDF911D068B0300C3213B /* Typo_Round_Bold_Demo.otf */; };
-		835CDF941D068B0300C3213B /* Typo_Round_Regular_Demo.otf in Resources */ = {isa = PBXBuildFile; fileRef = 835CDF921D068B0300C3213B /* Typo_Round_Regular_Demo.otf */; };
 		835CDF961D08016A00C3213B /* ShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835CDF951D08016A00C3213B /* ShowViewController.swift */; };
 		835CDF981D0818AD00C3213B /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835CDF971D0818AD00C3213B /* Global.swift */; };
 		835EC1C51DA09C3700599860 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835EC1C41DA09C3700599860 /* EventsViewController.swift */; };
@@ -50,6 +48,10 @@
 		83C4CC1D1CE25BB900FBA1EC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C4CC1C1CE25BB900FBA1EC /* Constants.swift */; };
 		83C4CC1F1CE25C1500FBA1EC /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C4CC1E1CE25C1500FBA1EC /* UIColor+Hex.swift */; };
 		83E4247A1CEECCF700662EDD /* NowPlayingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E424791CEECCF700662EDD /* NowPlayingView.swift */; };
+		D80859121E552819007BD3FF /* apercu_bold-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D808590E1E552819007BD3FF /* apercu_bold-webfont.ttf */; };
+		D80859131E552819007BD3FF /* apercu_light-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D808590F1E552819007BD3FF /* apercu_light-webfont.ttf */; };
+		D80859141E552819007BD3FF /* apercu_medium-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D80859101E552819007BD3FF /* apercu_medium-webfont.ttf */; };
+		D80859151E552819007BD3FF /* apercu_regular-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D80859111E552819007BD3FF /* apercu_regular-webfont.ttf */; };
 		D80C7AA51DF7D7B0003375F6 /* DateFormatter+ShowDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80C7AA41DF7D7B0003375F6 /* DateFormatter+ShowDate.swift */; };
 		D80C7AA71DF7D92B003375F6 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80C7AA61DF7D92B003375F6 /* NotificationManager.swift */; };
 		D865CBB21E0F0C0E008C050E /* AnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D865CBB11E0F0C0E008C050E /* AnalyticsManager.swift */; };
@@ -97,8 +99,6 @@
 		834A33A21DA4B2A3008155E6 /* EventsInfoHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsInfoHeaderView.swift; sourceTree = "<group>"; };
 		8356DDFC1DA03A3A00B2B63B /* Giveaway.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Giveaway.swift; sourceTree = "<group>"; };
 		8356DDFE1DA043E900B2B63B /* MenuSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuSectionHeaderView.swift; sourceTree = "<group>"; };
-		835CDF911D068B0300C3213B /* Typo_Round_Bold_Demo.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Typo_Round_Bold_Demo.otf; sourceTree = SOURCE_ROOT; };
-		835CDF921D068B0300C3213B /* Typo_Round_Regular_Demo.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Typo_Round_Regular_Demo.otf; sourceTree = SOURCE_ROOT; };
 		835CDF951D08016A00C3213B /* ShowViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowViewController.swift; sourceTree = "<group>"; };
 		835CDF971D0818AD00C3213B /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		835EC1C41DA09C3700599860 /* EventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
@@ -127,6 +127,10 @@
 		83C4CC1C1CE25BB900FBA1EC /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		83C4CC1E1CE25C1500FBA1EC /* UIColor+Hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
 		83E424791CEECCF700662EDD /* NowPlayingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NowPlayingView.swift; sourceTree = "<group>"; };
+		D808590E1E552819007BD3FF /* apercu_bold-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "apercu_bold-webfont.ttf"; sourceTree = "<group>"; };
+		D808590F1E552819007BD3FF /* apercu_light-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "apercu_light-webfont.ttf"; sourceTree = "<group>"; };
+		D80859101E552819007BD3FF /* apercu_medium-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "apercu_medium-webfont.ttf"; sourceTree = "<group>"; };
+		D80859111E552819007BD3FF /* apercu_regular-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "apercu_regular-webfont.ttf"; sourceTree = "<group>"; };
 		D80C7AA41DF7D7B0003375F6 /* DateFormatter+ShowDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DateFormatter+ShowDate.swift"; sourceTree = "<group>"; };
 		D80C7AA61DF7D92B003375F6 /* NotificationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		D865CBB11E0F0C0E008C050E /* AnalyticsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsManager.swift; sourceTree = "<group>"; };
@@ -194,6 +198,7 @@
 		832C65DE1CD0800200B3479E /* UCLA Radio */ = {
 			isa = PBXGroup;
 			children = (
+				D808590D1E552819007BD3FF /* fonts */,
 				837C714F1D9F4CD800E5C472 /* Trianglify */,
 				83C28A611D025DED0096D629 /* menu */,
 				83C4CC201CE26B5800FBA1EC /* custom elements */,
@@ -209,8 +214,6 @@
 				832C65E31CD0800200B3479E /* Main.storyboard */,
 				832C65E61CD0800200B3479E /* Assets.xcassets */,
 				832C65E81CD0800200B3479E /* LaunchScreen.storyboard */,
-				835CDF911D068B0300C3213B /* Typo_Round_Bold_Demo.otf */,
-				835CDF921D068B0300C3213B /* Typo_Round_Regular_Demo.otf */,
 				832C65EB1CD0800200B3479E /* Info.plist */,
 				836279291DA885C7008C2B1D /* GoogleService-Info.plist */,
 				8362792C1DA886BE008C2B1D /* UCLA_Radio-Bridging-Header.h */,
@@ -332,6 +335,17 @@
 				65514855D8EABCF7CD92BD49 /* Pods_UCLA_Radio.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D808590D1E552819007BD3FF /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				D808590E1E552819007BD3FF /* apercu_bold-webfont.ttf */,
+				D808590F1E552819007BD3FF /* apercu_light-webfont.ttf */,
+				D80859101E552819007BD3FF /* apercu_medium-webfont.ttf */,
+				D80859111E552819007BD3FF /* apercu_regular-webfont.ttf */,
+			);
+			path = fonts;
 			sourceTree = "<group>";
 		};
 		D8F2580E1E0BC1C7000F6507 /* Notification */ = {
@@ -460,10 +474,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D80859141E552819007BD3FF /* apercu_medium-webfont.ttf in Resources */,
 				832C65EA1CD0800200B3479E /* LaunchScreen.storyboard in Resources */,
 				832C65E71CD0800200B3479E /* Assets.xcassets in Resources */,
-				835CDF941D068B0300C3213B /* Typo_Round_Regular_Demo.otf in Resources */,
-				835CDF931D068B0300C3213B /* Typo_Round_Bold_Demo.otf in Resources */,
+				D80859121E552819007BD3FF /* apercu_bold-webfont.ttf in Resources */,
+				D80859131E552819007BD3FF /* apercu_light-webfont.ttf in Resources */,
+				D80859151E552819007BD3FF /* apercu_regular-webfont.ttf in Resources */,
 				832C65E51CD0800200B3479E /* Main.storyboard in Resources */,
 				8362792A1DA885C7008C2B1D /* GoogleService-Info.plist in Resources */,
 			);

@@ -23,11 +23,11 @@ class RecentTrackView: UIView {
         imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         title = UILabel()
-        title.font = UIFont.systemFont(ofSize: 14)
+        title.font = UIFont(name: Constants.Fonts.title, size: 14)
         title.textColor = UIColor.white
         title.textAlignment = .center
         subtitle = UILabel()
-        subtitle.font = UIFont.systemFont(ofSize: 12)
+        subtitle.font = UIFont(name: Constants.Fonts.title, size: 12)
         subtitle.textColor = UIColor.lightText
         subtitle.textAlignment = .center
         imageView.translatesAutoresizingMaskIntoConstraints = false

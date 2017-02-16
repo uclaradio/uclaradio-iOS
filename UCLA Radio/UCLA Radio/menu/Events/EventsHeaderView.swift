@@ -18,7 +18,7 @@ class EventsHeaderView: UITableViewHeaderFooterView {
         contentView.backgroundColor = UIColor.clear
         
         label.textAlignment = .center
-        label.font = UIFont.boldSystemFont(ofSize: 30)
+        label.font = UIFont(name: Constants.Fonts.titleBold, size: 30)
         addSubview(label)
         label.translatesAutoresizingMaskIntoConstraints = false
         
