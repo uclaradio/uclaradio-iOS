@@ -64,6 +64,10 @@
 	<string>Copyright © UCLA Radio. All rights reserved.</string>
 	<key>UIAppFonts</key>
 	<array>
+		<string>apercu_bold-webfont.ttf</string>
+		<string>apercu_light-webfont.ttf</string>
+		<string>apercu_medium-webfont.ttf</string>
+		<string>apercu_regular-webfont.ttf</string>
 		<string>Typo_Round_Bold_Demo.otf</string>
 		<string>Typo_Round_Regular_Demo.otf</string>
 	</array>

@@ -24,7 +24,7 @@ class MenuTableViewCell: UITableViewCell {
         containerView.translatesAutoresizingMaskIntoConstraints = false
         
         label.textAlignment = .center
-        label.font = UIFont.boldSystemFont(ofSize: 21)
+        label.font = UIFont(name: Constants.Fonts.titleBold, size: 21)
         containerView.addSubview(label)
         label.translatesAutoresizingMaskIntoConstraints = false
         

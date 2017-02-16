@@ -45,7 +45,7 @@ class NowPlayingView: SliderTabView {
         titleLabel = UILabel()
         titleLabel.textColor = UIColor.white
         titleLabel.textAlignment = .center
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
+        titleLabel.font = UIFont(name: Constants.Fonts.title, size: 20)
         titleLabel.numberOfLines = 2
         titleLabel.isUserInteractionEnabled = false
         titleLabel.translatesAutoresizingMaskIntoConstraints = false

@@ -32,7 +32,7 @@ class DJCollectionViewCell: UICollectionViewCell {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(imageView)
         
-        nameLabel.font = UIFont.boldSystemFont(ofSize: textFontSize)
+        nameLabel.font = UIFont(name: Constants.Fonts.titleBold, size: textFontSize)
         nameLabel.textAlignment = .center
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(nameLabel)

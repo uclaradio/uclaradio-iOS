@@ -63,7 +63,7 @@ class NowPlayingViewController: UIViewController, HistoryFetchDelegate, SlidingV
         recentlyPlayedLabel = UILabel()
         recentlyPlayedLabel.text = "Recently Played"
         recentlyPlayedLabel.textColor = UIColor.lightText
-        recentlyPlayedLabel.font = UIFont.boldSystemFont(ofSize: 14)
+        recentlyPlayedLabel.font = UIFont(name: Constants.Fonts.titleBold, size: 14)
         containerView.addSubview(recentlyPlayedLabel)
         recentlyPlayedLabel.translatesAutoresizingMaskIntoConstraints = false
         containerView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-(15)-[recentLabel(150)]", options: [], metrics: nil, views: ["recentLabel": recentlyPlayedLabel]))
