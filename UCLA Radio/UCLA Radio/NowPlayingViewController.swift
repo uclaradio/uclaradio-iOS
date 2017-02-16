@@ -100,16 +100,6 @@ class NowPlayingViewController: UIViewController, HistoryFetchDelegate, SlidingV
         pullTabImageView.tintColor = UIColor.white
         let pullTabTap = UITapGestureRecognizer(target: self, action: #selector(didTapPullTab))
         pullTabImageView.addGestureRecognizer(pullTabTap)
-        
-        for family in UIFont.familyNames
-        {
-            print("\(family)")
-            for names: String in UIFont.fontNames(forFamilyName: family)
-            {
-                print("== \(names)")
-            }
-        }
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
