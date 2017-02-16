@@ -246,8 +246,8 @@ class NotificationManager {
         let token = id.components(separatedBy: "-")
         if token.count == 2 {
             if let showID = Int(token[0]),
-                let notificationOffset = Int(token[1]) {
-                return (showID, notificationOffset)
+                let absNotificationOffset = Int(token[1]) {
+                return (showID, -1 * absNotificationOffset)
             }
         }
         return nil
