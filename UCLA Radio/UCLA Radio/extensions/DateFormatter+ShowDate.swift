@@ -16,10 +16,11 @@ extension DateFormatter {
         case Hour = "ha"
         case HourAndMinute = "h:mma"
     }
-    
+
     // Expect string of DayAndTime DateFormat ("EEE ha")
     func formatShowTimeStringToDateComponents(_ s: String) -> DateComponents? {
         dateFormat = DateFormat.DayAndHour.rawValue
+        locale = Locale(identifier: "en_US")
         if let date = self.date(from: s) {
             var components = Calendar(identifier: .gregorian).dateComponents([.hour, .weekday], from: date)
             components.timeZone = TimeZone(identifier: "America/Los_Angeles")
