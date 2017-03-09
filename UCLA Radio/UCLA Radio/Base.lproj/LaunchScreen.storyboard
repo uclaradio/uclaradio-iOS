@@ -1,9 +1,12 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -19,14 +22,39 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bear-gold" translatesAutoresizingMaskIntoConstraints="NO" id="JjQ-jf-21g"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="66f-XM-jlV" userLabel="Container View">
+                                <rect key="frame" x="-0.5" y="-0.5" width="375" height="667"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pinkburst" translatesAutoresizingMaskIntoConstraints="NO" id="2fq-Ke-nMy">
+                                        <rect key="frame" x="-0.5" y="-0.5" width="375" height="667"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="radio_banner_noborder" translatesAutoresizingMaskIntoConstraints="NO" id="JjQ-jf-21g">
+                                        <rect key="frame" x="19.5" y="47" width="335" height="335"/>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="JjQ-jf-21g" secondAttribute="height" multiplier="1:1" id="Xnq-ee-nwy"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="2fq-Ke-nMy" firstAttribute="centerX" secondItem="66f-XM-jlV" secondAttribute="centerX" id="0tj-Om-lh1"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="400" id="840-wS-Fcs"/>
+                                    <constraint firstItem="2fq-Ke-nMy" firstAttribute="height" secondItem="66f-XM-jlV" secondAttribute="height" id="Mqb-MN-0uX"/>
+                                    <constraint firstItem="2fq-Ke-nMy" firstAttribute="width" secondItem="66f-XM-jlV" secondAttribute="width" id="Tzt-Ac-Wdz"/>
+                                    <constraint firstItem="2fq-Ke-nMy" firstAttribute="centerY" secondItem="66f-XM-jlV" secondAttribute="centerY" id="W3g-UH-kAX"/>
+                                    <constraint firstItem="JjQ-jf-21g" firstAttribute="width" secondItem="66f-XM-jlV" secondAttribute="width" constant="-40" id="dI8-tc-obp"/>
+                                    <constraint firstItem="JjQ-jf-21g" firstAttribute="centerX" secondItem="66f-XM-jlV" secondAttribute="centerX" id="s36-47-OGd"/>
+                                    <constraint firstItem="JjQ-jf-21g" firstAttribute="top" secondItem="66f-XM-jlV" secondAttribute="top" constant="47" id="yEy-ci-vMM"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.16862745098039217" green="0.5490196078431373" blue="0.74509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="JjQ-jf-21g" firstAttribute="height" secondItem="Ze5-6b-2t3" secondAttribute="height" multiplier="3:5" id="3ZU-hG-MPr"/>
-                            <constraint firstItem="JjQ-jf-21g" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="9IT-6X-T7x"/>
-                            <constraint firstItem="JjQ-jf-21g" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="HSa-Qr-kFy"/>
-                            <constraint firstItem="JjQ-jf-21g" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" multiplier="4:5" id="YWt-vN-crX"/>
+                            <constraint firstItem="66f-XM-jlV" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="4Ii-3E-0XE"/>
+                            <constraint firstItem="66f-XM-jlV" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="RQM-lm-4G2"/>
+                            <constraint firstItem="66f-XM-jlV" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" priority="999" id="lMH-oL-mFf"/>
+                            <constraint firstItem="66f-XM-jlV" firstAttribute="height" secondItem="Ze5-6b-2t3" secondAttribute="height" id="nSz-UY-u1L"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -36,6 +64,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="bear-gold" width="721" height="721"/>
+        <image name="pinkburst" width="16" height="16"/>
+        <image name="radio_banner_noborder" width="16" height="16"/>
     </resources>
 </document>
