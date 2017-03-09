@@ -111,7 +111,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cim-tj-Ljo" customClass="DesignableLabel" customModule="UCLA_Radio" customModuleProvider="target">
-                                                <rect key="frame" x="20" y="80" width="335" height="139"/>
+                                                <rect key="frame" x="20" y="80" width="335" height="143.5"/>
                                                 <string key="text">UCLA Radio is a completely student-run organization offering cultural content created by 100+ DJs. Please direct any feedback to the web department at radio.web@media.ucla.edu
 
 Follow @uclaradio on social media!</string>
@@ -123,7 +123,7 @@ Follow @uclaradio on social media!</string>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleAspectFit" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="cc9-sz-B5m">
-                                                <rect key="frame" x="45" y="239" width="285" height="60"/>
+                                                <rect key="frame" x="45" y="243.5" width="285" height="60"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9h7-JI-paf">
                                                         <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
@@ -259,6 +259,7 @@ Follow @uclaradio on social media!</string>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AEg-ei-x8z">
                                         <rect key="frame" x="20" y="47" width="335" height="335"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="AEg-ei-x8z" secondAttribute="height" multiplier="1:1" id="ncc-B7-WDO"/>
                                         </constraints>
@@ -415,7 +416,7 @@ Follow @uclaradio on social media!</string>
                                                                 </constraints>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Day Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wug-EO-bPi">
-                                                                <rect key="frame" x="37" y="8" width="85" height="20"/>
+                                                                <rect key="frame" x="37" y="7" width="85" height="20"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="85" id="8vW-y1-fqr"/>
                                                                 </constraints>
@@ -435,7 +436,7 @@ Follow @uclaradio on social media!</string>
                                                         </constraints>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genre" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cue-Gc-Mmx">
-                                                        <rect key="frame" x="289" y="23" width="46" height="20"/>
+                                                        <rect key="frame" x="289" y="22" width="46" height="20"/>
                                                         <fontDescription key="fontDescription" name="Apercu-Regular" family="Apercu" pointSize="16"/>
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
