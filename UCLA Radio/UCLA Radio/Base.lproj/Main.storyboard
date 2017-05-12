@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="DuL-GS-bCM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="DuL-GS-bCM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -321,11 +321,11 @@ Follow @uclaradio on social media!</string>
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Qd7-K7-VRh" id="0vD-lH-8lU">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="49.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="When Show Starts" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="JlR-cS-xkx">
-                                                    <rect key="frame" x="15" y="0.0" width="345" height="49"/>
+                                                    <rect key="frame" x="15" y="0.0" width="345" height="49.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="Apercu-Regular" family="Apercu" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -339,11 +339,11 @@ Follow @uclaradio on social media!</string>
                                         <rect key="frame" x="0.0" y="50" width="375" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oSK-Ye-awA" id="ARd-Pi-JGD">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="49.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="15 Minutes Before" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rsK-OG-1o4">
-                                                    <rect key="frame" x="15" y="0.0" width="345" height="49"/>
+                                                    <rect key="frame" x="15" y="0.0" width="345" height="49.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="Apercu-Regular" family="Apercu" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -357,11 +357,11 @@ Follow @uclaradio on social media!</string>
                                         <rect key="frame" x="0.0" y="100" width="375" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Vir-Xu-9CS" id="Vfi-fY-86O">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="49.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="30 Minutes Before" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QOl-u8-epX">
-                                                    <rect key="frame" x="15" y="0.0" width="345" height="49"/>
+                                                    <rect key="frame" x="15" y="0.0" width="345" height="49.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="Apercu-Regular" family="Apercu" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -400,10 +400,10 @@ Follow @uclaradio on social media!</string>
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7bt-nd-bKf" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="542"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="541.5"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Def-ft-YzS" userLabel="Column View">
-                                                <rect key="frame" x="13" y="0.0" width="350" height="542"/>
+                                                <rect key="frame" x="13" y="0.0" width="350" height="541.5"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wCz-He-7M3" userLabel="Time View">
                                                         <rect key="frame" x="8" y="15" width="127" height="34"/>
@@ -436,7 +436,7 @@ Follow @uclaradio on social media!</string>
                                                         </constraints>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genre" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cue-Gc-Mmx">
-                                                        <rect key="frame" x="289" y="22" width="46" height="20"/>
+                                                        <rect key="frame" x="289.5" y="22.5" width="45.5" height="19.5"/>
                                                         <fontDescription key="fontDescription" name="Apercu-Regular" family="Apercu" pointSize="16"/>
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -448,19 +448,19 @@ Follow @uclaradio on social media!</string>
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v9q-ek-3Nv">
-                                                        <rect key="frame" x="0.0" y="422" width="350" height="26"/>
+                                                        <rect key="frame" x="0.0" y="422" width="350" height="25.5"/>
                                                         <fontDescription key="fontDescription" name="Apercu-Regular" family="Apercu" pointSize="21"/>
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Djs" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vKc-nU-KpX">
-                                                        <rect key="frame" x="0.0" y="456" width="350" height="22"/>
+                                                        <rect key="frame" x="0.0" y="455.5" width="350" height="22"/>
                                                         <fontDescription key="fontDescription" name="Apercu-Regular" family="Apercu" pointSize="18"/>
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cnT-mJ-wpD">
-                                                        <rect key="frame" x="15" y="486" width="320" height="41"/>
+                                                        <rect key="frame" x="15" y="485.5" width="320" height="41"/>
                                                         <fontDescription key="fontDescription" name="Apercu-Regular" family="Apercu" pointSize="17"/>
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -497,10 +497,65 @@ Follow @uclaradio on social media!</string>
                                             <constraint firstItem="Def-ft-YzS" firstAttribute="top" secondItem="7bt-nd-bKf" secondAttribute="top" id="gf1-38-snS"/>
                                         </constraints>
                                     </view>
+                                    <stackView opaque="NO" contentMode="scaleAspectFit" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Bny-mG-3gD">
+                                        <rect key="frame" x="65" y="561.5" width="245" height="50"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bMs-ZX-EVN" userLabel="Facebook Button">
+                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" priority="999" constant="50" id="T5G-OH-cbO"/>
+                                                    <constraint firstAttribute="height" priority="999" constant="50" id="fVu-bj-8V9"/>
+                                                </constraints>
+                                                <state key="normal" image="facebook"/>
+                                                <connections>
+                                                    <action selector="facebookButtonHit:" destination="uJz-dA-P0s" eventType="touchUpInside" id="COb-e6-pAO"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="luE-gO-6MY" userLabel="Tumblr Button">
+                                                <rect key="frame" x="65" y="0.0" width="50" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" priority="999" constant="50" id="45c-5s-OtV"/>
+                                                    <constraint firstAttribute="width" priority="999" constant="50" id="ld0-7H-Hdq"/>
+                                                </constraints>
+                                                <state key="normal" image="tumblr"/>
+                                                <connections>
+                                                    <action selector="tumblrButtonHit:" destination="uJz-dA-P0s" eventType="touchUpInside" id="ZIi-lv-l2D"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B4W-Oj-Ht0" userLabel="Soundcloud Button">
+                                                <rect key="frame" x="130" y="0.0" width="50" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" priority="999" constant="50" id="Azl-b1-DgD"/>
+                                                    <constraint firstAttribute="height" priority="999" constant="50" id="rJw-Wy-BsP"/>
+                                                </constraints>
+                                                <state key="normal" image="soundcloud"/>
+                                                <connections>
+                                                    <action selector="soundcloudButtonHit:" destination="uJz-dA-P0s" eventType="touchUpInside" id="vP2-zf-FZI"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zr6-eT-aRg" userLabel="Mixcloud Button">
+                                                <rect key="frame" x="195" y="0.0" width="50" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" priority="999" constant="50" id="EOT-k5-4GZ"/>
+                                                    <constraint firstAttribute="width" priority="999" constant="50" id="IGr-yn-ncJ"/>
+                                                </constraints>
+                                                <state key="normal" image="mixcloud"/>
+                                                <connections>
+                                                    <action selector="mixcloudButtonHit:" destination="uJz-dA-P0s" eventType="touchUpInside" id="QW3-DA-U9O"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" priority="999" constant="50" id="rQh-3h-zN6"/>
+                                        </constraints>
+                                    </stackView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstItem="Bny-mG-3gD" firstAttribute="centerX" secondItem="7bt-nd-bKf" secondAttribute="centerX" id="4Z4-lM-Jo1"/>
                                     <constraint firstItem="7bt-nd-bKf" firstAttribute="top" secondItem="G0O-1z-NzP" secondAttribute="top" id="TZM-aH-V6g"/>
+                                    <constraint firstItem="Bny-mG-3gD" firstAttribute="width" relation="lessThanOrEqual" secondItem="7bt-nd-bKf" secondAttribute="width" constant="-40" id="WkP-vN-Kwv"/>
+                                    <constraint firstItem="Bny-mG-3gD" firstAttribute="top" secondItem="7bt-nd-bKf" secondAttribute="bottom" constant="20" id="iTe-og-sRT"/>
                                     <constraint firstAttribute="trailing" secondItem="7bt-nd-bKf" secondAttribute="trailing" id="khl-cM-8Zo"/>
                                     <constraint firstAttribute="bottom" secondItem="7bt-nd-bKf" secondAttribute="bottom" id="kk5-Bb-MPL"/>
                                     <constraint firstItem="7bt-nd-bKf" firstAttribute="leading" secondItem="G0O-1z-NzP" secondAttribute="leading" id="tTb-hh-bRV"/>
@@ -520,18 +575,22 @@ Follow @uclaradio on social media!</string>
                         <outlet property="blurbLabel" destination="cnT-mJ-wpD" id="igX-oK-mln"/>
                         <outlet property="columnContainerView" destination="Def-ft-YzS" id="AF4-OO-Yeb"/>
                         <outlet property="djsLabel" destination="vKc-nU-KpX" id="jXM-k2-7lW"/>
+                        <outlet property="facebookButton" destination="bMs-ZX-EVN" id="P8W-tY-NzS"/>
                         <outlet property="genreLabel" destination="cue-Gc-Mmx" id="XLa-Mb-hlG"/>
                         <outlet property="imageView" destination="O5I-mc-huj" id="agU-KW-sC3"/>
+                        <outlet property="mixcloudButton" destination="zr6-eT-aRg" id="veK-T4-GgW"/>
                         <outlet property="notificationsImageView" destination="SST-Rs-zZp" id="fCg-Ej-Roh"/>
                         <outlet property="scrollView" destination="G0O-1z-NzP" id="TWD-Zd-vMT"/>
+                        <outlet property="soundcloudButton" destination="B4W-Oj-Ht0" id="ZnR-tE-hyG"/>
                         <outlet property="timeLabel" destination="Wug-EO-bPi" id="SfE-ff-Vv0"/>
                         <outlet property="timeView" destination="wCz-He-7M3" id="byd-cT-eDa"/>
                         <outlet property="titleLabel" destination="v9q-ek-3Nv" id="Wgy-AC-9Q7"/>
+                        <outlet property="tumblrButton" destination="luE-gO-6MY" id="n8w-7r-Eoo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="laM-Ro-cfw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1295" y="-1048"/>
+            <point key="canvasLocation" x="1293.5999999999999" y="-1048.4257871064469"/>
         </scene>
         <!--Alarms-->
         <scene sceneID="VDH-8h-DEv">
@@ -547,18 +606,18 @@ Follow @uclaradio on social media!</string>
                                 <rect key="frame" x="0.0" y="28" width="375" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="N0r-9t-cdi" id="4us-dt-i40">
-                                    <rect key="frame" x="0.0" y="0.0" width="342" height="59"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="59.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="k5d-pJ-FgN">
-                                            <rect key="frame" x="15" y="11" width="34" height="21"/>
+                                            <rect key="frame" x="15" y="11" width="34" height="20.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" name="Apercu-Regular" family="Apercu" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zRI-Lu-VWk">
-                                            <rect key="frame" x="15" y="32" width="50" height="17"/>
+                                            <rect key="frame" x="15" y="31.5" width="50" height="17"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" name="Apercu-Regular" family="Apercu" pointSize="14"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -583,9 +642,11 @@ Follow @uclaradio on social media!</string>
     <resources>
         <image name="bell" width="22" height="22"/>
         <image name="facebook" width="57" height="57"/>
-        <image name="instagram" width="120" height="120"/>
+        <image name="instagram" width="256" height="256"/>
+        <image name="mixcloud" width="16" height="16"/>
         <image name="pull_tab" width="36" height="11"/>
-        <image name="tumblr" width="167" height="167"/>
-        <image name="twitter" width="57" height="57"/>
+        <image name="soundcloud" width="16" height="16"/>
+        <image name="tumblr" width="256" height="256"/>
+        <image name="twitter" width="256" height="256"/>
     </resources>
 </document>

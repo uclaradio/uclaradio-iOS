@@ -18,8 +18,12 @@ class Show {
     var genre: String?
     var blurb: String?
     var picture: String? // url to picture on server
+    var facebook: String?
+    var tumblr: String?
+    var soundcloud: String?
+    var mixcloud: String?
     
-    init(id: Int, title: String, time: DateComponents, djs: [String], genre: String?, blurb: String?, picture: String?) {
+    init(id: Int, title: String, time: DateComponents, djs: [String], genre: String?, blurb: String?, picture: String?, facebook: String?, tumblr: String?, soundcloud: String?, mixcloud: String?) {
         self.id = id
         self.title = title
         self.time = time
@@ -28,10 +32,14 @@ class Show {
         self.picture = picture
         self.djs = djs
         self.djString = Show.makeDjsString(djs)
+        self.facebook = facebook
+        self.tumblr = tumblr
+        self.soundcloud = soundcloud
+        self.mixcloud = mixcloud
     }
     
     convenience init(id: Int, title: String, time: DateComponents, djs: [String]) {
-        self.init(id: id, title: title, time: time, djs: djs, genre: nil, blurb: nil, picture: nil)
+        self.init(id: id, title: title, time: time, djs: djs, genre: nil, blurb: nil, picture: nil, facebook: nil, tumblr: nil, soundcloud: nil, mixcloud: nil)
     }
     
     func getClosestDateOfShow() -> Date {
@@ -87,6 +95,18 @@ class Show {
             }
             if let picture = dict["picture"] as? String , picture.characters.count > 0 {
                 newShow.picture = picture
+            }
+            if let facebook = dict["facebook"] as? String , facebook.characters.count > 0 {
+                newShow.facebook = facebook
+            }
+            if let tumblr = dict["tumblr"] as? String , tumblr.characters.count > 0 {
+                newShow.tumblr = tumblr
+            }
+            if let soundcloud = dict["soundcloud"] as? String , soundcloud.characters.count > 0 {
+                newShow.soundcloud = soundcloud
+            }
+            if let mixcloud = dict["mixcloud"] as? String , mixcloud.characters.count > 0 {
+                newShow.mixcloud = mixcloud
             }
             
             return newShow
