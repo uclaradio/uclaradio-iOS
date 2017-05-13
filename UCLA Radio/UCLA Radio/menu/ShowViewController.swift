@@ -33,8 +33,8 @@ class ShowViewController: BaseViewController {
     @IBOutlet weak var soundcloudButton: UIButton!
     @IBOutlet weak var mixcloudButton: UIButton!
 
-    
-    @IBAction func facebookButtonHit(_ sender: AnyObject) {
+    // Open the url when the button is pressed
+    /*@IBAction func facebookButtonHit(_ sender: AnyObject) {
         UIApplication.shared.openURL(URL(string: facebook)!)
     }
     
@@ -48,7 +48,7 @@ class ShowViewController: BaseViewController {
     
     @IBAction func mixcloudButtonHit(_ sender: AnyObject) {
         UIApplication.shared.openURL(URL(string: mixcloud)!)
-    }
+    }*/
     
     
     override func viewDidLoad() {
@@ -103,22 +103,26 @@ class ShowViewController: BaseViewController {
         }
         
         facebookButton.isHidden = true
-        if let facebook = show.facebook {
+        //if let facebook = show.facebook{
+        if show.facebook != nil {
             facebookButton.isHidden = false
         }
         
         tumblrButton.isHidden = true
-        if let tumblr = show.tumblr {
+        //if let tumblr = show.tumblr {
+        if show.tumblr != nil {
             tumblrButton.isHidden = false
         }
         
         soundcloudButton.isHidden = true
-        if let soundcloud = show.soundcloud {
+        //if let soundcloud = show.soundcloud {
+        if show.soundcloud != nil {
             soundcloudButton.isHidden = false
         }
         
         mixcloudButton.isHidden = true
-        if let mixcloud = show.mixcloud {
+        //if let mixcloud = show.mixcloud {
+        if show.mixcloud != nil {
             mixcloudButton.isHidden = false
         }
         

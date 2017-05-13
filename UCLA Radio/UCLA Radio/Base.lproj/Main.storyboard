@@ -436,7 +436,7 @@ Follow @uclaradio on social media!</string>
                                                         </constraints>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genre" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cue-Gc-Mmx">
-                                                        <rect key="frame" x="289.5" y="22.5" width="45.5" height="19.5"/>
+                                                        <rect key="frame" x="289.5" y="23" width="45.5" height="19.5"/>
                                                         <fontDescription key="fontDescription" name="Apercu-Regular" family="Apercu" pointSize="16"/>
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
