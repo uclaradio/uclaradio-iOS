@@ -2,7 +2,6 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "font-awesome_4-7-0_twitter_256_0_444444_none.png",
       "scale" : "1x"
     },
     {
@@ -11,6 +10,7 @@
     },
     {
       "idiom" : "universal",
+      "filename" : "font-awesome_4-7-0_mixcloud_256_0_444444_none.png",
       "scale" : "3x"
     }
   ],

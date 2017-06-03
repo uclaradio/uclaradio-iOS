@@ -28,6 +28,29 @@ class ShowViewController: BaseViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var columnContainerView: UIView!
 
+    @IBOutlet weak var facebookButton: UIButton!
+    @IBOutlet weak var tumblrButton: UIButton!
+    @IBOutlet weak var soundcloudButton: UIButton!
+    @IBOutlet weak var mixcloudButton: UIButton!
+
+    // Open the url when the button is pressed
+    /*@IBAction func facebookButtonHit(_ sender: AnyObject) {
+        UIApplication.shared.openURL(URL(string: facebook)!)
+    }
+    
+    @IBAction func tumblrButtonHit(_ sender: AnyObject) {
+        UIApplication.shared.openURL(URL(string: tumblr)!)
+    }
+    
+    @IBAction func soundcloudButtonHit(_ sender: AnyObject) {
+        UIApplication.shared.openURL(URL(string: soundcloud)!)
+    }
+    
+    @IBAction func mixcloudButtonHit(_ sender: AnyObject) {
+        UIApplication.shared.openURL(URL(string: mixcloud)!)
+    }*/
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -78,6 +101,31 @@ class ShowViewController: BaseViewController {
         if let blurb = show.blurb {
             blurbLabel.text = blurb
         }
+        
+        facebookButton.isHidden = true
+        //if let facebook = show.facebook{
+        if show.facebook != nil {
+            facebookButton.isHidden = false
+        }
+        
+        tumblrButton.isHidden = true
+        //if let tumblr = show.tumblr {
+        if show.tumblr != nil {
+            tumblrButton.isHidden = false
+        }
+        
+        soundcloudButton.isHidden = true
+        //if let soundcloud = show.soundcloud {
+        if show.soundcloud != nil {
+            soundcloudButton.isHidden = false
+        }
+        
+        mixcloudButton.isHidden = true
+        //if let mixcloud = show.mixcloud {
+        if show.mixcloud != nil {
+            mixcloudButton.isHidden = false
+        }
+        
         let notificationsEnabled = NotificationManager.sharedInstance.areNotificationsOnForShow(show)
         notificationsImageView.image = notificationsEnabled ? #imageLiteral(resourceName: "bell") : #imageLiteral(resourceName: "bell_hollow")
     }
