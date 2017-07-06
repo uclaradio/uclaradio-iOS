@@ -77,7 +77,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         // randomly set color scheme
         triangleView.colorScheme = atractiveColorSchemes[Int(arc4random_uniform(UInt32(atractiveColorSchemes.count)))]
         
-        AnalyticsManager.sharedInstance.trackPageWithValue("Menu / Now Playing")
+        //AnalyticsManager.sharedInstance.trackPageWithValue("Menu / Now Playing")
     }
     
     override func viewWillDisappear(_ animated: Bool) {

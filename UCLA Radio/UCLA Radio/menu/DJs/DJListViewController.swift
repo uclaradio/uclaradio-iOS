@@ -51,7 +51,7 @@ class DJListViewController: BaseViewController, APIFetchDelegate, UICollectionVi
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         RadioAPI.fetchDJList(self)
-        AnalyticsManager.sharedInstance.trackPageWithValue("DJs")
+        //AnalyticsManager.sharedInstance.trackPageWithValue("DJs")
     }
     
     func styleFromDJs(_ djs: [DJ]) {

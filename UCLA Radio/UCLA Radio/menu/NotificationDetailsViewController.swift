@@ -6,6 +6,8 @@
 //  Copyright © 2016 UCLA Student Media. All rights reserved.
 //
 
+import UIKit
+
 private let reuseIdentifier = "NotificationDetailCell"
 private let headerReuseIdentifier = "ScheduleHeader"
 
@@ -25,7 +27,7 @@ class NotificationDetailsViewController: BaseTableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        AnalyticsManager.sharedInstance.trackPageWithValue("Notifications Details")
+        //AnalyticsManager.sharedInstance.trackPageWithValue("Notifications Details")
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

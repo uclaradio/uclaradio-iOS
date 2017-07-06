@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         RadioAPI.fetchNowPlaying()
         RadioAPI.fetchGiveaways(nil)
 
+        /*
         // Configure tracker from GoogleService-Info.plist.
         var configureError:NSError?
         GGLContext.sharedInstance().configureWithError(&configureError)
@@ -32,7 +33,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         gai?.logger.logLevel = GAILogLevel.error  // remove before app release
 
         AnalyticsManager.sharedInstance.configureAtLaunch()
-
+        */
+        
         return true
     }
 

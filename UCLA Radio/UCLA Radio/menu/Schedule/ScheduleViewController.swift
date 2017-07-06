@@ -46,7 +46,7 @@ class ScheduleViewController: BaseViewController, APIFetchDelegate, UITableViewD
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        AnalyticsManager.sharedInstance.trackPageWithValue("Schedule")
+        //AnalyticsManager.sharedInstance.trackPageWithValue("Schedule")
         if schedule != nil {
             if NotificationManager.sharedInstance.totalNotificationsOnForSchedule(schedule!) > 0 {
                 self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "bell"), style: .plain, target: self, action: #selector(goToNavigation))

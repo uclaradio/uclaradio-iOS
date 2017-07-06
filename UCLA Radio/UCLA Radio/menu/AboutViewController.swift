@@ -20,7 +20,7 @@ class AboutViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        AnalyticsManager.sharedInstance.trackPageWithValue("About")
+        //AnalyticsManager.sharedInstance.trackPageWithValue("About")
     }
     
     // MARK: - Actions

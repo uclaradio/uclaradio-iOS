@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 private let reuseIdentifier = "NotificationCell"
 private let headerReuseIdentifier = "ScheduleHeader"
@@ -38,7 +39,7 @@ class NotificationViewController: BaseTableViewController, APIFetchDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        AnalyticsManager.sharedInstance.trackPageWithValue("Notifications")
+        //AnalyticsManager.sharedInstance.trackPageWithValue("Notifications")
         if let notificationSchedule = notificationSchedule {
             updateNotificationSchedule(notificationSchedule)
         }

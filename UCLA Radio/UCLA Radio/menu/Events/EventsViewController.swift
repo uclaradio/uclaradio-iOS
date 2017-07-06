@@ -45,7 +45,7 @@ class EventsViewController: BaseViewController, APIFetchDelegate, UITableViewDat
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         RadioAPI.fetchGiveaways(self)
-        AnalyticsManager.sharedInstance.trackPageWithValue("Events")
+        //AnalyticsManager.sharedInstance.trackPageWithValue("Events")
     }
     
     // MARK: - APIFetchDelegate

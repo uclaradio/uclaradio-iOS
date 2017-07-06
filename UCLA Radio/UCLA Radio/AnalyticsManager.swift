@@ -6,6 +6,7 @@
 //  Copyright © 2016 UCLA Student Media. All rights reserved.
 //
 
+/*
 class AnalyticsManager {
     
     static let sharedInstance = AnalyticsManager()
@@ -31,6 +32,5 @@ class AnalyticsManager {
             tracker?.send(builder.build() as [NSObject : AnyObject])
         }
     }
-    
-    
 }
+*/

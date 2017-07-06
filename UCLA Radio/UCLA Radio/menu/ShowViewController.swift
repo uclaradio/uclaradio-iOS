@@ -48,7 +48,7 @@ class ShowViewController: BaseViewController {
         super.viewWillAppear(animated)
         if let show = show {
             styleForShow(show)
-            AnalyticsManager.sharedInstance.trackPageWithValue("Show: \(show.title)")
+            //AnalyticsManager.sharedInstance.trackPageWithValue("Show: \(show.title)")
         }
     }
     
