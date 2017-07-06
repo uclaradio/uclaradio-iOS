@@ -72,11 +72,9 @@ class NowPlayingViewController: UIViewController, HistoryFetchDelegate, SlidingV
         
         // ASHorizontalScrollView is not optimized for auto layout, has to be initialized with frame, use auto layout for positioning
         recentlyPlayed = ASHorizontalScrollView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: recentTrackSize.height))
-        
-        recentlyPlayed.leftMarginPx = 10
+
+        recentlyPlayed.defaultMarginSettings = MarginSettings(leftMargin: 10, miniMarginBetweenItems: 10, miniAppearWidthOfLastItem: 5)
         recentlyPlayed.itemsMargin = 5
-        recentlyPlayed.miniMarginPxBetweenItems = 0
-        recentlyPlayed.miniAppearPxOfLastItem = 5
         recentlyPlayed.uniformItemSize = recentTrackSize
         //This must be called after changing any size or margin property of this class to get acurrate margin
         recentlyPlayed.setItemsMarginOnce()
