@@ -94,7 +94,7 @@ open class TrianglifyView: UIView {
                 
                 // calculate triangle point position
                 let startPoint = CGPoint(x: CGFloat(r) * xSpacing, y: CGFloat(c) * ySpacing)
-                let angle = CGFloat(arc4random_uniform(UInt32(variation * 2 * CGFloat(M_PI)))).truncatingRemainder(dividingBy: CGFloat(2 * M_PI))
+                let angle = CGFloat(arc4random_uniform(UInt32(variation * 2 * .pi))).truncatingRemainder(dividingBy: 2 * .pi)
                 var newPoint = CGPoint(
                     x: startPoint.x + cos(angle) * variation * CGFloat(arc4random_uniform(UInt32(offset))),
                     y: startPoint.y + sin(angle) * variation * CGFloat(arc4random_uniform(UInt32(offset))))

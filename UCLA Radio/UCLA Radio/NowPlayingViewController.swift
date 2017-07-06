@@ -168,7 +168,7 @@ class NowPlayingViewController: UIViewController, HistoryFetchDelegate, SlidingV
     func positionUpdated(_ position: SlidingViewControllerPosition) {
         if let slider = slider {
             if (slider.position == .closed) {
-                pullTabImageView.transform = CGAffineTransform(rotationAngle: (180.0 * CGFloat(M_PI)) / 180.0)
+                pullTabImageView.transform = CGAffineTransform(rotationAngle: (180.0 * .pi) / 180.0)
             } else {
                 pullTabImageView.transform = CGAffineTransform.identity
             }
@@ -181,7 +181,7 @@ class NowPlayingViewController: UIViewController, HistoryFetchDelegate, SlidingV
             if (openPercentage < lastOpenPercentage) {
                 pullTabImageView.transform = CGAffineTransform.identity
             } else {
-                pullTabImageView.transform = CGAffineTransform(rotationAngle: (180.0 * CGFloat(M_PI)) / 180.0)
+                pullTabImageView.transform = CGAffineTransform(rotationAngle: (180.0 * .pi) / 180.0)
             }
         }
         lastOpenPercentage = openPercentage
