@@ -107,7 +107,11 @@ class DJPopupViewController: UIViewController, UITextViewDelegate {
 
     }
     
-
+    // start at top of scroll
+    override func viewDidLayoutSubviews() {
+        self.djBioTextView.setContentOffset(.zero, animated: false)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
