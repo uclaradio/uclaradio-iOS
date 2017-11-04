@@ -1,28 +1,29 @@
 PODS:
-  - Alamofire (4.0.1)
-  - ASHorizontalScrollView (1.3)
+  - Alamofire (4.5.1)
+  - ASHorizontalScrollView (1.5.1)
   - DynamicColor (3.1.0)
-  - FirebaseAnalytics (3.4.2):
+  - FirebaseAnalytics (3.9.0):
+    - FirebaseCore (~> 3.6)
     - FirebaseInstanceID (~> 1.0)
-    - GoogleInterchangeUtilities (~> 1.2)
-    - GoogleSymbolUtilities (~> 1.1)
-    - GoogleUtilities (~> 1.2)
-  - FirebaseInstanceID (1.0.8)
-  - Google/Analytics (3.0.3):
+    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+  - FirebaseCore (3.6.0):
+    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+  - FirebaseInstanceID (1.0.10):
+    - FirebaseCore (~> 3.6)
+  - Google/Analytics (3.1.0):
     - Google/Core
     - GoogleAnalytics (~> 3.12)
-  - Google/Core (3.0.3):
+  - Google/Core (3.1.0):
     - FirebaseAnalytics (~> 3.2)
   - GoogleAnalytics (3.17.0)
-  - GoogleInterchangeUtilities (1.2.1):
-    - GoogleSymbolUtilities (~> 1.0)
-  - GoogleSymbolUtilities (1.1.1)
-  - GoogleUtilities (1.3.1):
-    - GoogleSymbolUtilities (~> 1.0)
+  - GoogleToolboxForMac/Defines (2.1.3)
+  - GoogleToolboxForMac/NSData+zlib (2.1.3):
+    - GoogleToolboxForMac/Defines (= 2.1.3)
   - KRLCollectionViewGridLayout (0.4.1)
-  - SDWebImage (3.8.1):
-    - SDWebImage/Core (= 3.8.1)
-  - SDWebImage/Core (3.8.1)
+  - Presentr (1.3)
+  - SDWebImage (3.8.2):
+    - SDWebImage/Core (= 3.8.2)
+  - SDWebImage/Core (3.8.2)
 
 DEPENDENCIES:
   - Alamofire (~> 4.0)
@@ -30,22 +31,23 @@ DEPENDENCIES:
   - DynamicColor (~> 3.1.0)
   - Google/Analytics
   - KRLCollectionViewGridLayout (~> 0.4.1)
+  - Presentr
   - SDWebImage (~> 3.8)
 
 SPEC CHECKSUMS:
-  Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
-  ASHorizontalScrollView: b2648d6b3f13de7e5328fcac2a20c2a68ce829ab
+  Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
+  ASHorizontalScrollView: 9c98b9226509540075b6398c92f68fb474bea7e9
   DynamicColor: 4dec283a881f7f9d9f3bc88fb5f306724242575f
-  FirebaseAnalytics: 3f5358d9104adf159cc8d99b7b501e50099a39ad
-  FirebaseInstanceID: ba1e640935235e5fac39dfa816fe7660e72e1a8a
-  Google: 813c467362eabc11385f5a5cc9ad0cb651a58f4e
+  FirebaseAnalytics: e5fe8486efc01bec33f6bf82e2fa9fce4b124052
+  FirebaseCore: 9691ee2ade70c098d7cf92440f4303f16d83ca75
+  FirebaseInstanceID: b9eedd6846fb5e1f0f7279e1deaa7a7e4cf8392e
+  Google: 98da4b1a60ed0beb80a290387a28333406a1eb90
   GoogleAnalytics: f42cc53a87a51fe94334821868d9c8481ff47a7b
-  GoogleInterchangeUtilities: def8415a862effc67d549d5b5b0b9c7a2f97d4de
-  GoogleSymbolUtilities: 33117db1b5f290c6fbf259585e4885b4c84b98d7
-  GoogleUtilities: 56c5ac05b7aa5dc417a1bb85221a9516e04d7032
+  GoogleToolboxForMac: 2501e2ad72a52eb3dfe7bd9aee7dad11b858bd20
   KRLCollectionViewGridLayout: 6363dc7e3d91cf1f97e19ed20846764566659596
-  SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
+  Presentr: 3f0825a42cb32ecd8fc6b6d0b0de87d7d0b42482
+  SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
 
-PODFILE CHECKSUM: ad5128740de8fa73fef49f8e0d5a04c42e52e86b
+PODFILE CHECKSUM: c3a1560e1d1d8e7be1ecca05b3a076d4cc9c3a7a
 
-COCOAPODS: 1.0.0.rc.2
+COCOAPODS: 1.2.1

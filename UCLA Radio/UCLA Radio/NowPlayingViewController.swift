@@ -73,10 +73,20 @@ class NowPlayingViewController: UIViewController, HistoryFetchDelegate, SlidingV
         // ASHorizontalScrollView is not optimized for auto layout, has to be initialized with frame, use auto layout for positioning
         recentlyPlayed = ASHorizontalScrollView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: recentTrackSize.height))
         
-        recentlyPlayed.leftMarginPx = 10
+        // Set the margin settings for the recentlyPlayed ASHorizontalScrollView
+        //for iPhone 5s and lower versions in portrait
+        recentlyPlayed.marginSettings_320 = MarginSettings(leftMargin: 10, miniMarginBetweenItems: 0, miniAppearWidthOfLastItem: 5)
+        //for iPhone 4s and lower versions in landscape
+        recentlyPlayed.marginSettings_480 = MarginSettings(leftMargin: 10, miniMarginBetweenItems: 0, miniAppearWidthOfLastItem: 5)
+        // for iPhone 6 plus and 6s plus in portrait
+        recentlyPlayed.marginSettings_414 = MarginSettings(leftMargin: 10, miniMarginBetweenItems: 0, miniAppearWidthOfLastItem: 5)
+        // for iPhone 6 plus and 6s plus in landscape
+        recentlyPlayed.marginSettings_736 = MarginSettings(leftMargin: 10, miniMarginBetweenItems: 0, miniAppearWidthOfLastItem: 5)
+        //for all other screen sizes that doesn't set here, it would use defaultMarginSettings instead
+        recentlyPlayed.defaultMarginSettings = MarginSettings(leftMargin: 10, miniMarginBetweenItems: 0, miniAppearWidthOfLastItem: 5)
+        
         recentlyPlayed.itemsMargin = 5
-        recentlyPlayed.miniMarginPxBetweenItems = 0
-        recentlyPlayed.miniAppearPxOfLastItem = 5
+        
         recentlyPlayed.uniformItemSize = recentTrackSize
         //This must be called after changing any size or margin property of this class to get acurrate margin
         recentlyPlayed.setItemsMarginOnce()
