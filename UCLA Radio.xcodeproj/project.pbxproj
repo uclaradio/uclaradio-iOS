@@ -1,0 +1,914 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		064FC6E11FABD11E0073F03A /* DJPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064FC6E01FABD11E0073F03A /* DJPopupViewController.swift */; };
+		80C4FF0BDD1724D747148CEA /* Pods_UCLA_Radio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65514855D8EABCF7CD92BD49 /* Pods_UCLA_Radio.framework */; };
+		832C65E01CD0800200B3479E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832C65DF1CD0800200B3479E /* AppDelegate.swift */; };
+		832C65E21CD0800200B3479E /* NowPlayingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832C65E11CD0800200B3479E /* NowPlayingViewController.swift */; };
+		832C65E51CD0800200B3479E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 832C65E31CD0800200B3479E /* Main.storyboard */; };
+		832C65E71CD0800200B3479E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 832C65E61CD0800200B3479E /* Assets.xcassets */; };
+		832C65EA1CD0800200B3479E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 832C65E81CD0800200B3479E /* LaunchScreen.storyboard */; };
+		832C65F51CD0800200B3479E /* UCLA_RadioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832C65F41CD0800200B3479E /* UCLA_RadioTests.swift */; };
+		832C66001CD0800200B3479E /* UCLA_RadioUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832C65FF1CD0800200B3479E /* UCLA_RadioUITests.swift */; };
+		832F7EC91DA19D87001462C6 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832F7EC81DA19D87001462C6 /* BaseViewController.swift */; };
+		832F7ECB1DA1D155001462C6 /* EventsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832F7ECA1DA1D155001462C6 /* EventsHeaderView.swift */; };
+		833B169F1CE1BD2D00E711F5 /* UIImage+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833B169E1CE1BD2D00E711F5 /* UIImage+Color.swift */; };
+		834A33A31DA4B2A3008155E6 /* EventsInfoHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834A33A21DA4B2A3008155E6 /* EventsInfoHeaderView.swift */; };
+		8356DDFD1DA03A3A00B2B63B /* Giveaway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8356DDFC1DA03A3A00B2B63B /* Giveaway.swift */; };
+		8356DDFF1DA043E900B2B63B /* MenuSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8356DDFE1DA043E900B2B63B /* MenuSectionHeaderView.swift */; };
+		835CDF961D08016A00C3213B /* ShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835CDF951D08016A00C3213B /* ShowViewController.swift */; };
+		835CDF981D0818AD00C3213B /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835CDF971D0818AD00C3213B /* Global.swift */; };
+		835EC1C51DA09C3700599860 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835EC1C41DA09C3700599860 /* EventsViewController.swift */; };
+		835EC1C71DA0A02D00599860 /* GiveawayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835EC1C61DA0A02D00599860 /* GiveawayTableViewCell.swift */; };
+		836279271DA88501008C2B1D /* DJCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836279251DA88501008C2B1D /* DJCollectionViewCell.swift */; };
+		836279281DA88501008C2B1D /* DJListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836279261DA88501008C2B1D /* DJListViewController.swift */; };
+		8362792A1DA885C7008C2B1D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 836279291DA885C7008C2B1D /* GoogleService-Info.plist */; };
+		8365ECF51CE99265001B96BF /* SlidingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8365ECF41CE99265001B96BF /* SlidingViewController.swift */; };
+		8365ECF71CE9945C001B96BF /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8365ECF61CE9945C001B96BF /* ContainerViewController.swift */; };
+		837C71541D9F4CD800E5C472 /* Colorbrewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837C71501D9F4CD800E5C472 /* Colorbrewer.swift */; };
+		837C71561D9F4CD800E5C472 /* TrianglifyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837C71521D9F4CD800E5C472 /* TrianglifyView.swift */; };
+		83A8ED6E1CE30248003D4286 /* RecentTrackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A8ED6D1CE30248003D4286 /* RecentTrackView.swift */; };
+		83B381021CE1ABD000BA22FE /* AudioStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B381001CE1ABD000BA22FE /* AudioStream.swift */; };
+		83B381031CE1ABD000BA22FE /* HistoryFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B381011CE1ABD000BA22FE /* HistoryFetcher.swift */; };
+		83B8C0761D067EDF00B80802 /* ScheduleSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B8C0751D067EDF00B80802 /* ScheduleSectionHeaderView.swift */; };
+		83C221131E556F1E00DB28AB /* DesignableLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C221121E556F1E00DB28AB /* DesignableLabel.swift */; };
+		83C28A641D025DED0096D629 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C28A621D025DED0096D629 /* MenuTableViewCell.swift */; };
+		83C28A651D025DED0096D629 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C28A631D025DED0096D629 /* MenuViewController.swift */; };
+		83C28A6B1D025E500096D629 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C28A6A1D025E500096D629 /* AboutViewController.swift */; };
+		83C28A6D1D025FB10096D629 /* RadioAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C28A6C1D025FB10096D629 /* RadioAPI.swift */; };
+		83C28A6F1D02627A0096D629 /* Show.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C28A6E1D02627A0096D629 /* Show.swift */; };
+		83C28A711D0263350096D629 /* DJ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C28A701D0263350096D629 /* DJ.swift */; };
+		83C28A771D02CB980096D629 /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C28A761D02CB980096D629 /* Schedule.swift */; };
+		83C28A7C1D050F3B0096D629 /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C28A7A1D050F3B0096D629 /* ScheduleViewController.swift */; };
+		83C28A7E1D050FD40096D629 /* ScheduleShowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C28A7D1D050FD40096D629 /* ScheduleShowCell.swift */; };
+		83C4CC1D1CE25BB900FBA1EC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C4CC1C1CE25BB900FBA1EC /* Constants.swift */; };
+		83C4CC1F1CE25C1500FBA1EC /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C4CC1E1CE25C1500FBA1EC /* UIColor+Hex.swift */; };
+		83E4247A1CEECCF700662EDD /* NowPlayingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E424791CEECCF700662EDD /* NowPlayingView.swift */; };
+		D80859121E552819007BD3FF /* apercu_bold-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D808590E1E552819007BD3FF /* apercu_bold-webfont.ttf */; };
+		D80859131E552819007BD3FF /* apercu_light-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D808590F1E552819007BD3FF /* apercu_light-webfont.ttf */; };
+		D80859141E552819007BD3FF /* apercu_medium-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D80859101E552819007BD3FF /* apercu_medium-webfont.ttf */; };
+		D80859151E552819007BD3FF /* apercu_regular-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D80859111E552819007BD3FF /* apercu_regular-webfont.ttf */; };
+		D80C7AA51DF7D7B0003375F6 /* DateFormatter+ShowDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80C7AA41DF7D7B0003375F6 /* DateFormatter+ShowDate.swift */; };
+		D80C7AA71DF7D92B003375F6 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80C7AA61DF7D92B003375F6 /* NotificationManager.swift */; };
+		D865CBB21E0F0C0E008C050E /* AnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D865CBB11E0F0C0E008C050E /* AnalyticsManager.swift */; };
+		D86773E81E0A2C180014EC0F /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86773E71E0A2C180014EC0F /* NotificationViewController.swift */; };
+		D8A9A9801E0DD19B002F8E24 /* NotificationDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A9A97F1E0DD19B002F8E24 /* NotificationDetailsViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		832C65F11CD0800200B3479E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 832C65D41CD0800200B3479E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 832C65DB1CD0800200B3479E;
+			remoteInfo = "UCLA Radio";
+		};
+		832C65FC1CD0800200B3479E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 832C65D41CD0800200B3479E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 832C65DB1CD0800200B3479E;
+			remoteInfo = "UCLA Radio";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		064FC6E01FABD11E0073F03A /* DJPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DJPopupViewController.swift; sourceTree = "<group>"; };
+		3FFD9ADD0DCADD1878E89FDE /* Pods-UCLA Radio.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UCLA Radio.release.xcconfig"; path = "Pods/Target Support Files/Pods-UCLA Radio/Pods-UCLA Radio.release.xcconfig"; sourceTree = "<group>"; };
+		65514855D8EABCF7CD92BD49 /* Pods_UCLA_Radio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UCLA_Radio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6DA6C14DE284BA7CD5A4FD5A /* Pods-UCLA Radio.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UCLA Radio.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UCLA Radio/Pods-UCLA Radio.debug.xcconfig"; sourceTree = "<group>"; };
+		832C65DC1CD0800200B3479E /* UCLA Radio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UCLA Radio.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		832C65DF1CD0800200B3479E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		832C65E11CD0800200B3479E /* NowPlayingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingViewController.swift; sourceTree = "<group>"; };
+		832C65E41CD0800200B3479E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		832C65E61CD0800200B3479E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		832C65E91CD0800200B3479E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		832C65EB1CD0800200B3479E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		832C65F01CD0800200B3479E /* UCLA RadioTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "UCLA RadioTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		832C65F41CD0800200B3479E /* UCLA_RadioTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UCLA_RadioTests.swift; sourceTree = "<group>"; };
+		832C65F61CD0800200B3479E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		832C65FB1CD0800200B3479E /* UCLA RadioUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "UCLA RadioUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		832C65FF1CD0800200B3479E /* UCLA_RadioUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UCLA_RadioUITests.swift; sourceTree = "<group>"; };
+		832C66011CD0800200B3479E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		832F7EC81DA19D87001462C6 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		832F7ECA1DA1D155001462C6 /* EventsHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsHeaderView.swift; sourceTree = "<group>"; };
+		833B169E1CE1BD2D00E711F5 /* UIImage+Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Color.swift"; sourceTree = "<group>"; };
+		834A33A21DA4B2A3008155E6 /* EventsInfoHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsInfoHeaderView.swift; sourceTree = "<group>"; };
+		8356DDFC1DA03A3A00B2B63B /* Giveaway.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Giveaway.swift; sourceTree = "<group>"; };
+		8356DDFE1DA043E900B2B63B /* MenuSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuSectionHeaderView.swift; sourceTree = "<group>"; };
+		835CDF951D08016A00C3213B /* ShowViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowViewController.swift; sourceTree = "<group>"; };
+		835CDF971D0818AD00C3213B /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
+		835EC1C41DA09C3700599860 /* EventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
+		835EC1C61DA0A02D00599860 /* GiveawayTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiveawayTableViewCell.swift; sourceTree = "<group>"; };
+		836279251DA88501008C2B1D /* DJCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DJCollectionViewCell.swift; sourceTree = "<group>"; };
+		836279261DA88501008C2B1D /* DJListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DJListViewController.swift; sourceTree = "<group>"; };
+		836279291DA885C7008C2B1D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
+		8362792C1DA886BE008C2B1D /* UCLA_Radio-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UCLA_Radio-Bridging-Header.h"; sourceTree = "<group>"; };
+		8365ECF41CE99265001B96BF /* SlidingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlidingViewController.swift; sourceTree = "<group>"; };
+		8365ECF61CE9945C001B96BF /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
+		837C71501D9F4CD800E5C472 /* Colorbrewer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colorbrewer.swift; sourceTree = "<group>"; };
+		837C71521D9F4CD800E5C472 /* TrianglifyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrianglifyView.swift; sourceTree = "<group>"; };
+		83A8ED6D1CE30248003D4286 /* RecentTrackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecentTrackView.swift; path = ../RecentTrackView.swift; sourceTree = "<group>"; };
+		83B381001CE1ABD000BA22FE /* AudioStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioStream.swift; sourceTree = "<group>"; };
+		83B381011CE1ABD000BA22FE /* HistoryFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryFetcher.swift; sourceTree = "<group>"; };
+		83B8C0751D067EDF00B80802 /* ScheduleSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleSectionHeaderView.swift; sourceTree = "<group>"; };
+		83C221121E556F1E00DB28AB /* DesignableLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignableLabel.swift; sourceTree = "<group>"; };
+		83C28A621D025DED0096D629 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
+		83C28A631D025DED0096D629 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		83C28A6A1D025E500096D629 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		83C28A6C1D025FB10096D629 /* RadioAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioAPI.swift; sourceTree = "<group>"; };
+		83C28A6E1D02627A0096D629 /* Show.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Show.swift; sourceTree = "<group>"; };
+		83C28A701D0263350096D629 /* DJ.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DJ.swift; sourceTree = "<group>"; };
+		83C28A761D02CB980096D629 /* Schedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
+		83C28A7A1D050F3B0096D629 /* ScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
+		83C28A7D1D050FD40096D629 /* ScheduleShowCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleShowCell.swift; sourceTree = "<group>"; };
+		83C4CC1C1CE25BB900FBA1EC /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		83C4CC1E1CE25C1500FBA1EC /* UIColor+Hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
+		83E424791CEECCF700662EDD /* NowPlayingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NowPlayingView.swift; sourceTree = "<group>"; };
+		D808590E1E552819007BD3FF /* apercu_bold-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "apercu_bold-webfont.ttf"; sourceTree = "<group>"; };
+		D808590F1E552819007BD3FF /* apercu_light-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "apercu_light-webfont.ttf"; sourceTree = "<group>"; };
+		D80859101E552819007BD3FF /* apercu_medium-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "apercu_medium-webfont.ttf"; sourceTree = "<group>"; };
+		D80859111E552819007BD3FF /* apercu_regular-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "apercu_regular-webfont.ttf"; sourceTree = "<group>"; };
+		D80C7AA41DF7D7B0003375F6 /* DateFormatter+ShowDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DateFormatter+ShowDate.swift"; sourceTree = "<group>"; };
+		D80C7AA61DF7D92B003375F6 /* NotificationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		D865CBB11E0F0C0E008C050E /* AnalyticsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsManager.swift; sourceTree = "<group>"; };
+		D86773E71E0A2C180014EC0F /* NotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
+		D8A9A97F1E0DD19B002F8E24 /* NotificationDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationDetailsViewController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		832C65D91CD0800200B3479E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				80C4FF0BDD1724D747148CEA /* Pods_UCLA_Radio.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		832C65ED1CD0800200B3479E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		832C65F81CD0800200B3479E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		61DD12C715DFFC887DDBEFF3 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6DA6C14DE284BA7CD5A4FD5A /* Pods-UCLA Radio.debug.xcconfig */,
+				3FFD9ADD0DCADD1878E89FDE /* Pods-UCLA Radio.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		832C65D31CD0800200B3479E = {
+			isa = PBXGroup;
+			children = (
+				832C65DE1CD0800200B3479E /* UCLA Radio */,
+				832C65F31CD0800200B3479E /* UCLA RadioTests */,
+				832C65FE1CD0800200B3479E /* UCLA RadioUITests */,
+				832C65DD1CD0800200B3479E /* Products */,
+				61DD12C715DFFC887DDBEFF3 /* Pods */,
+				B4A7438CAD3002B88C0F22BD /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		832C65DD1CD0800200B3479E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				832C65DC1CD0800200B3479E /* UCLA Radio.app */,
+				832C65F01CD0800200B3479E /* UCLA RadioTests.xctest */,
+				832C65FB1CD0800200B3479E /* UCLA RadioUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		832C65DE1CD0800200B3479E /* UCLA Radio */ = {
+			isa = PBXGroup;
+			children = (
+				D808590D1E552819007BD3FF /* fonts */,
+				837C714F1D9F4CD800E5C472 /* Trianglify */,
+				83C28A611D025DED0096D629 /* menu */,
+				83C4CC201CE26B5800FBA1EC /* custom elements */,
+				83B380FF1CE1ABD000BA22FE /* data */,
+				833EA2E51CE1BC4F00952BA0 /* extensions */,
+				832C65DF1CD0800200B3479E /* AppDelegate.swift */,
+				832C65E11CD0800200B3479E /* NowPlayingViewController.swift */,
+				D80C7AA61DF7D92B003375F6 /* NotificationManager.swift */,
+				D865CBB11E0F0C0E008C050E /* AnalyticsManager.swift */,
+				8365ECF61CE9945C001B96BF /* ContainerViewController.swift */,
+				83C4CC1C1CE25BB900FBA1EC /* Constants.swift */,
+				835CDF971D0818AD00C3213B /* Global.swift */,
+				832C65E31CD0800200B3479E /* Main.storyboard */,
+				832C65E61CD0800200B3479E /* Assets.xcassets */,
+				832C65E81CD0800200B3479E /* LaunchScreen.storyboard */,
+				832C65EB1CD0800200B3479E /* Info.plist */,
+				836279291DA885C7008C2B1D /* GoogleService-Info.plist */,
+				8362792C1DA886BE008C2B1D /* UCLA_Radio-Bridging-Header.h */,
+			);
+			path = "UCLA Radio";
+			sourceTree = "<group>";
+		};
+		832C65F31CD0800200B3479E /* UCLA RadioTests */ = {
+			isa = PBXGroup;
+			children = (
+				832C65F41CD0800200B3479E /* UCLA_RadioTests.swift */,
+				832C65F61CD0800200B3479E /* Info.plist */,
+			);
+			path = "UCLA RadioTests";
+			sourceTree = "<group>";
+		};
+		832C65FE1CD0800200B3479E /* UCLA RadioUITests */ = {
+			isa = PBXGroup;
+			children = (
+				832C65FF1CD0800200B3479E /* UCLA_RadioUITests.swift */,
+				832C66011CD0800200B3479E /* Info.plist */,
+			);
+			path = "UCLA RadioUITests";
+			sourceTree = "<group>";
+		};
+		833EA2E51CE1BC4F00952BA0 /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				833B169E1CE1BD2D00E711F5 /* UIImage+Color.swift */,
+				83C4CC1E1CE25C1500FBA1EC /* UIColor+Hex.swift */,
+				D80C7AA41DF7D7B0003375F6 /* DateFormatter+ShowDate.swift */,
+			);
+			path = extensions;
+			sourceTree = "<group>";
+		};
+		835EC1C31DA09C2100599860 /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				835EC1C41DA09C3700599860 /* EventsViewController.swift */,
+				835EC1C61DA0A02D00599860 /* GiveawayTableViewCell.swift */,
+				832F7ECA1DA1D155001462C6 /* EventsHeaderView.swift */,
+				834A33A21DA4B2A3008155E6 /* EventsInfoHeaderView.swift */,
+			);
+			path = Events;
+			sourceTree = "<group>";
+		};
+		836279241DA88501008C2B1D /* DJs */ = {
+			isa = PBXGroup;
+			children = (
+				836279251DA88501008C2B1D /* DJCollectionViewCell.swift */,
+				836279261DA88501008C2B1D /* DJListViewController.swift */,
+				064FC6E01FABD11E0073F03A /* DJPopupViewController.swift */,
+			);
+			path = DJs;
+			sourceTree = "<group>";
+		};
+		837C714F1D9F4CD800E5C472 /* Trianglify */ = {
+			isa = PBXGroup;
+			children = (
+				837C71501D9F4CD800E5C472 /* Colorbrewer.swift */,
+				837C71521D9F4CD800E5C472 /* TrianglifyView.swift */,
+			);
+			path = Trianglify;
+			sourceTree = "<group>";
+		};
+		83B380FF1CE1ABD000BA22FE /* data */ = {
+			isa = PBXGroup;
+			children = (
+				83C28A6E1D02627A0096D629 /* Show.swift */,
+				83C28A701D0263350096D629 /* DJ.swift */,
+				8356DDFC1DA03A3A00B2B63B /* Giveaway.swift */,
+				83B381001CE1ABD000BA22FE /* AudioStream.swift */,
+				83B381011CE1ABD000BA22FE /* HistoryFetcher.swift */,
+				83C28A6C1D025FB10096D629 /* RadioAPI.swift */,
+				83C28A761D02CB980096D629 /* Schedule.swift */,
+			);
+			path = data;
+			sourceTree = "<group>";
+		};
+		83C28A611D025DED0096D629 /* menu */ = {
+			isa = PBXGroup;
+			children = (
+				D8F2580E1E0BC1C7000F6507 /* Notification */,
+				836279241DA88501008C2B1D /* DJs */,
+				83C28A781D050F3B0096D629 /* Schedule */,
+				835EC1C31DA09C2100599860 /* Events */,
+				83C28A621D025DED0096D629 /* MenuTableViewCell.swift */,
+				8356DDFE1DA043E900B2B63B /* MenuSectionHeaderView.swift */,
+				83C28A631D025DED0096D629 /* MenuViewController.swift */,
+				83C28A6A1D025E500096D629 /* AboutViewController.swift */,
+				835CDF951D08016A00C3213B /* ShowViewController.swift */,
+			);
+			path = menu;
+			sourceTree = "<group>";
+		};
+		83C28A781D050F3B0096D629 /* Schedule */ = {
+			isa = PBXGroup;
+			children = (
+				83C28A7A1D050F3B0096D629 /* ScheduleViewController.swift */,
+				83C28A7D1D050FD40096D629 /* ScheduleShowCell.swift */,
+				83B8C0751D067EDF00B80802 /* ScheduleSectionHeaderView.swift */,
+			);
+			path = Schedule;
+			sourceTree = "<group>";
+		};
+		83C4CC201CE26B5800FBA1EC /* custom elements */ = {
+			isa = PBXGroup;
+			children = (
+				8365ECF41CE99265001B96BF /* SlidingViewController.swift */,
+				83A8ED6D1CE30248003D4286 /* RecentTrackView.swift */,
+				83E424791CEECCF700662EDD /* NowPlayingView.swift */,
+				832F7EC81DA19D87001462C6 /* BaseViewController.swift */,
+			);
+			path = "custom elements";
+			sourceTree = "<group>";
+		};
+		B4A7438CAD3002B88C0F22BD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				65514855D8EABCF7CD92BD49 /* Pods_UCLA_Radio.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D808590D1E552819007BD3FF /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				D808590E1E552819007BD3FF /* apercu_bold-webfont.ttf */,
+				D808590F1E552819007BD3FF /* apercu_light-webfont.ttf */,
+				D80859101E552819007BD3FF /* apercu_medium-webfont.ttf */,
+				D80859111E552819007BD3FF /* apercu_regular-webfont.ttf */,
+				83C221121E556F1E00DB28AB /* DesignableLabel.swift */,
+			);
+			path = fonts;
+			sourceTree = "<group>";
+		};
+		D8F2580E1E0BC1C7000F6507 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				D86773E71E0A2C180014EC0F /* NotificationViewController.swift */,
+				D8A9A97F1E0DD19B002F8E24 /* NotificationDetailsViewController.swift */,
+			);
+			name = Notification;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		832C65DB1CD0800200B3479E /* UCLA Radio */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 832C66041CD0800200B3479E /* Build configuration list for PBXNativeTarget "UCLA Radio" */;
+			buildPhases = (
+				EF00B5B0562A19365C2F71C7 /* [CP] Check Pods Manifest.lock */,
+				832C65D81CD0800200B3479E /* Sources */,
+				832C65D91CD0800200B3479E /* Frameworks */,
+				832C65DA1CD0800200B3479E /* Resources */,
+				99EB4CE62D2F234E48363279 /* [CP] Embed Pods Frameworks */,
+				296E7CC0708044067E2A801A /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "UCLA Radio";
+			productName = "UCLA Radio";
+			productReference = 832C65DC1CD0800200B3479E /* UCLA Radio.app */;
+			productType = "com.apple.product-type.application";
+		};
+		832C65EF1CD0800200B3479E /* UCLA RadioTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 832C66071CD0800200B3479E /* Build configuration list for PBXNativeTarget "UCLA RadioTests" */;
+			buildPhases = (
+				832C65EC1CD0800200B3479E /* Sources */,
+				832C65ED1CD0800200B3479E /* Frameworks */,
+				832C65EE1CD0800200B3479E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				832C65F21CD0800200B3479E /* PBXTargetDependency */,
+			);
+			name = "UCLA RadioTests";
+			productName = "UCLA RadioTests";
+			productReference = 832C65F01CD0800200B3479E /* UCLA RadioTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		832C65FA1CD0800200B3479E /* UCLA RadioUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 832C660A1CD0800200B3479E /* Build configuration list for PBXNativeTarget "UCLA RadioUITests" */;
+			buildPhases = (
+				832C65F71CD0800200B3479E /* Sources */,
+				832C65F81CD0800200B3479E /* Frameworks */,
+				832C65F91CD0800200B3479E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				832C65FD1CD0800200B3479E /* PBXTargetDependency */,
+			);
+			name = "UCLA RadioUITests";
+			productName = "UCLA RadioUITests";
+			productReference = 832C65FB1CD0800200B3479E /* UCLA RadioUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		832C65D41CD0800200B3479E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0900;
+				ORGANIZATIONNAME = "UCLA Student Media";
+				TargetAttributes = {
+					832C65DB1CD0800200B3479E = {
+						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = DUCAN2M87U;
+						LastSwiftMigration = 0800;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 0;
+							};
+						};
+					};
+					832C65EF1CD0800200B3479E = {
+						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = DUCAN2M87U;
+						LastSwiftMigration = 0800;
+						TestTargetID = 832C65DB1CD0800200B3479E;
+					};
+					832C65FA1CD0800200B3479E = {
+						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = DUCAN2M87U;
+						LastSwiftMigration = 0800;
+						TestTargetID = 832C65DB1CD0800200B3479E;
+					};
+				};
+			};
+			buildConfigurationList = 832C65D71CD0800200B3479E /* Build configuration list for PBXProject "UCLA Radio" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 832C65D31CD0800200B3479E;
+			productRefGroup = 832C65DD1CD0800200B3479E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				832C65DB1CD0800200B3479E /* UCLA Radio */,
+				832C65EF1CD0800200B3479E /* UCLA RadioTests */,
+				832C65FA1CD0800200B3479E /* UCLA RadioUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		832C65DA1CD0800200B3479E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D80859141E552819007BD3FF /* apercu_medium-webfont.ttf in Resources */,
+				832C65EA1CD0800200B3479E /* LaunchScreen.storyboard in Resources */,
+				832C65E71CD0800200B3479E /* Assets.xcassets in Resources */,
+				D80859121E552819007BD3FF /* apercu_bold-webfont.ttf in Resources */,
+				D80859131E552819007BD3FF /* apercu_light-webfont.ttf in Resources */,
+				D80859151E552819007BD3FF /* apercu_regular-webfont.ttf in Resources */,
+				832C65E51CD0800200B3479E /* Main.storyboard in Resources */,
+				8362792A1DA885C7008C2B1D /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		832C65EE1CD0800200B3479E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		832C65F91CD0800200B3479E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		296E7CC0708044067E2A801A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-UCLA Radio/Pods-UCLA Radio-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		99EB4CE62D2F234E48363279 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-UCLA Radio/Pods-UCLA Radio-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/ASHorizontalScrollView/ASHorizontalScrollView.framework",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/DynamicColor/DynamicColor.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/KRLCollectionViewGridLayout/KRLCollectionViewGridLayout.framework",
+				"${BUILT_PRODUCTS_DIR}/Presentr/Presentr.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ASHorizontalScrollView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DynamicColor.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KRLCollectionViewGridLayout.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Presentr.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-UCLA Radio/Pods-UCLA Radio-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EF00B5B0562A19365C2F71C7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-UCLA Radio-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		832C65D81CD0800200B3479E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				83C4CC1F1CE25C1500FBA1EC /* UIColor+Hex.swift in Sources */,
+				8356DDFD1DA03A3A00B2B63B /* Giveaway.swift in Sources */,
+				83C28A771D02CB980096D629 /* Schedule.swift in Sources */,
+				834A33A31DA4B2A3008155E6 /* EventsInfoHeaderView.swift in Sources */,
+				832F7ECB1DA1D155001462C6 /* EventsHeaderView.swift in Sources */,
+				83C28A6D1D025FB10096D629 /* RadioAPI.swift in Sources */,
+				8365ECF71CE9945C001B96BF /* ContainerViewController.swift in Sources */,
+				D80C7AA51DF7D7B0003375F6 /* DateFormatter+ShowDate.swift in Sources */,
+				D80C7AA71DF7D92B003375F6 /* NotificationManager.swift in Sources */,
+				83A8ED6E1CE30248003D4286 /* RecentTrackView.swift in Sources */,
+				832C65E21CD0800200B3479E /* NowPlayingViewController.swift in Sources */,
+				836279271DA88501008C2B1D /* DJCollectionViewCell.swift in Sources */,
+				D865CBB21E0F0C0E008C050E /* AnalyticsManager.swift in Sources */,
+				83C28A6F1D02627A0096D629 /* Show.swift in Sources */,
+				832C65E01CD0800200B3479E /* AppDelegate.swift in Sources */,
+				83B8C0761D067EDF00B80802 /* ScheduleSectionHeaderView.swift in Sources */,
+				064FC6E11FABD11E0073F03A /* DJPopupViewController.swift in Sources */,
+				83C28A7C1D050F3B0096D629 /* ScheduleViewController.swift in Sources */,
+				835CDF961D08016A00C3213B /* ShowViewController.swift in Sources */,
+				832F7EC91DA19D87001462C6 /* BaseViewController.swift in Sources */,
+				833B169F1CE1BD2D00E711F5 /* UIImage+Color.swift in Sources */,
+				837C71561D9F4CD800E5C472 /* TrianglifyView.swift in Sources */,
+				8365ECF51CE99265001B96BF /* SlidingViewController.swift in Sources */,
+				83C28A651D025DED0096D629 /* MenuViewController.swift in Sources */,
+				8356DDFF1DA043E900B2B63B /* MenuSectionHeaderView.swift in Sources */,
+				83B381021CE1ABD000BA22FE /* AudioStream.swift in Sources */,
+				D86773E81E0A2C180014EC0F /* NotificationViewController.swift in Sources */,
+				83B381031CE1ABD000BA22FE /* HistoryFetcher.swift in Sources */,
+				835CDF981D0818AD00C3213B /* Global.swift in Sources */,
+				83C4CC1D1CE25BB900FBA1EC /* Constants.swift in Sources */,
+				837C71541D9F4CD800E5C472 /* Colorbrewer.swift in Sources */,
+				83C221131E556F1E00DB28AB /* DesignableLabel.swift in Sources */,
+				83E4247A1CEECCF700662EDD /* NowPlayingView.swift in Sources */,
+				83C28A6B1D025E500096D629 /* AboutViewController.swift in Sources */,
+				83C28A7E1D050FD40096D629 /* ScheduleShowCell.swift in Sources */,
+				83C28A711D0263350096D629 /* DJ.swift in Sources */,
+				D8A9A9801E0DD19B002F8E24 /* NotificationDetailsViewController.swift in Sources */,
+				83C28A641D025DED0096D629 /* MenuTableViewCell.swift in Sources */,
+				835EC1C71DA0A02D00599860 /* GiveawayTableViewCell.swift in Sources */,
+				836279281DA88501008C2B1D /* DJListViewController.swift in Sources */,
+				835EC1C51DA09C3700599860 /* EventsViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		832C65EC1CD0800200B3479E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				832C65F51CD0800200B3479E /* UCLA_RadioTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		832C65F71CD0800200B3479E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				832C66001CD0800200B3479E /* UCLA_RadioUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		832C65F21CD0800200B3479E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 832C65DB1CD0800200B3479E /* UCLA Radio */;
+			targetProxy = 832C65F11CD0800200B3479E /* PBXContainerItemProxy */;
+		};
+		832C65FD1CD0800200B3479E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 832C65DB1CD0800200B3479E /* UCLA Radio */;
+			targetProxy = 832C65FC1CD0800200B3479E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		832C65E31CD0800200B3479E /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				832C65E41CD0800200B3479E /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		832C65E81CD0800200B3479E /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				832C65E91CD0800200B3479E /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		832C66021CD0800200B3479E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = DUCAN2M87U;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		832C66031CD0800200B3479E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = DUCAN2M87U;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		832C66051CD0800200B3479E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6DA6C14DE284BA7CD5A4FD5A /* Pods-UCLA Radio.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = DUCAN2M87U;
+				INFOPLIST_FILE = "UCLA Radio/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.uclastudentmedia.UCLARadio;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "./UCLA Radio/UCLA_Radio-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		832C66061CD0800200B3479E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3FFD9ADD0DCADD1878E89FDE /* Pods-UCLA Radio.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = DUCAN2M87U;
+				INFOPLIST_FILE = "UCLA Radio/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.uclastudentmedia.UCLARadio;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "./UCLA Radio/UCLA_Radio-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		832C66081CD0800200B3479E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "UCLA RadioTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "UCLARadio.UCLA-RadioTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UCLA Radio.app/UCLA Radio";
+			};
+			name = Debug;
+		};
+		832C66091CD0800200B3479E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "UCLA RadioTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "UCLARadio.UCLA-RadioTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UCLA Radio.app/UCLA Radio";
+			};
+			name = Release;
+		};
+		832C660B1CD0800200B3479E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "UCLA RadioUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "UCLARadio.UCLA-RadioUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = "UCLA Radio";
+			};
+			name = Debug;
+		};
+		832C660C1CD0800200B3479E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "UCLA RadioUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "UCLARadio.UCLA-RadioUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = "UCLA Radio";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		832C65D71CD0800200B3479E /* Build configuration list for PBXProject "UCLA Radio" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				832C66021CD0800200B3479E /* Debug */,
+				832C66031CD0800200B3479E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		832C66041CD0800200B3479E /* Build configuration list for PBXNativeTarget "UCLA Radio" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				832C66051CD0800200B3479E /* Debug */,
+				832C66061CD0800200B3479E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		832C66071CD0800200B3479E /* Build configuration list for PBXNativeTarget "UCLA RadioTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				832C66081CD0800200B3479E /* Debug */,
+				832C66091CD0800200B3479E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		832C660A1CD0800200B3479E /* Build configuration list for PBXNativeTarget "UCLA RadioUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				832C660B1CD0800200B3479E /* Debug */,
+				832C660C1CD0800200B3479E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 832C65D41CD0800200B3479E /* Project object */;
+}
