@@ -118,8 +118,8 @@ class DJListViewController: BaseViewController, APIFetchDelegate, UICollectionVi
         let selectedDJ = djList[(indexPath as NSIndexPath).row]
         let controller = DJPopupViewController()
         controller.djNameString = selectedDJ.djName!
-        controller.djRealNameString = "Primary DJ is also known as " + selectedDJ.fullName!
-        controller.djBioString = selectedDJ.biography ?? "No bio found. How sad!"
+        controller.djRealNameString = "Also known as " + selectedDJ.fullName!
+        controller.djBioString = selectedDJ.biography ?? "No bio found."
         
         // display popup
         customPresentViewController(presenter, viewController: controller, animated: true, completion: nil)
