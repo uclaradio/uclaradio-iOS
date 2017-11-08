@@ -14,7 +14,7 @@ Written in Swift, fetching from [an API](https://github.com/uclaradio/uclaradio)
 * [ASHorizontalScrollView](https://github.com/terenceLuffy/AppStoreStyleHorizontalScrollView)
 * [KRLCollectionViewGridLayout](https://github.com/klundberg/KRLCollectionViewGridLayout)
 * [DynamicColor](https://github.com/yannickl/DynamicColor)
-* [Presentr] (https://github.com/IcaliaLabs/Presentr)
+* [Presentr](https://github.com/IcaliaLabs/Presentr)
 * TO DO: I created an iOS clone of the Javascript package [Trianglify](http://qrohlf.com/trianglify/) for this app and plan to release it on CocoaPods!
 
 ### Copyright
