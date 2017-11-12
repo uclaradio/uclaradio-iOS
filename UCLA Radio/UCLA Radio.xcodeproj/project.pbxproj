@@ -32,9 +32,7 @@
 		8365ECF71CE9945C001B96BF /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8365ECF61CE9945C001B96BF /* ContainerViewController.swift */; };
 		837C71541D9F4CD800E5C472 /* Colorbrewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837C71501D9F4CD800E5C472 /* Colorbrewer.swift */; };
 		837C71561D9F4CD800E5C472 /* TrianglifyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837C71521D9F4CD800E5C472 /* TrianglifyView.swift */; };
-		83A8ED6E1CE30248003D4286 /* RecentTrackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A8ED6D1CE30248003D4286 /* RecentTrackView.swift */; };
 		83B381021CE1ABD000BA22FE /* AudioStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B381001CE1ABD000BA22FE /* AudioStream.swift */; };
-		83B381031CE1ABD000BA22FE /* HistoryFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B381011CE1ABD000BA22FE /* HistoryFetcher.swift */; };
 		83B8C0761D067EDF00B80802 /* ScheduleSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B8C0751D067EDF00B80802 /* ScheduleSectionHeaderView.swift */; };
 		83C221131E556F1E00DB28AB /* DesignableLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C221121E556F1E00DB28AB /* DesignableLabel.swift */; };
 		83C28A641D025DED0096D629 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C28A621D025DED0096D629 /* MenuTableViewCell.swift */; };
@@ -112,9 +110,7 @@
 		8365ECF61CE9945C001B96BF /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		837C71501D9F4CD800E5C472 /* Colorbrewer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colorbrewer.swift; sourceTree = "<group>"; };
 		837C71521D9F4CD800E5C472 /* TrianglifyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrianglifyView.swift; sourceTree = "<group>"; };
-		83A8ED6D1CE30248003D4286 /* RecentTrackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecentTrackView.swift; path = ../RecentTrackView.swift; sourceTree = "<group>"; };
 		83B381001CE1ABD000BA22FE /* AudioStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioStream.swift; sourceTree = "<group>"; };
-		83B381011CE1ABD000BA22FE /* HistoryFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryFetcher.swift; sourceTree = "<group>"; };
 		83B8C0751D067EDF00B80802 /* ScheduleSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleSectionHeaderView.swift; sourceTree = "<group>"; };
 		83C221121E556F1E00DB28AB /* DesignableLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignableLabel.swift; sourceTree = "<group>"; };
 		83C28A621D025DED0096D629 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
@@ -287,7 +283,6 @@
 				83C28A701D0263350096D629 /* DJ.swift */,
 				8356DDFC1DA03A3A00B2B63B /* Giveaway.swift */,
 				83B381001CE1ABD000BA22FE /* AudioStream.swift */,
-				83B381011CE1ABD000BA22FE /* HistoryFetcher.swift */,
 				83C28A6C1D025FB10096D629 /* RadioAPI.swift */,
 				83C28A761D02CB980096D629 /* Schedule.swift */,
 			);
@@ -324,7 +319,6 @@
 			isa = PBXGroup;
 			children = (
 				8365ECF41CE99265001B96BF /* SlidingViewController.swift */,
-				83A8ED6D1CE30248003D4286 /* RecentTrackView.swift */,
 				83E424791CEECCF700662EDD /* NowPlayingView.swift */,
 				832F7EC81DA19D87001462C6 /* BaseViewController.swift */,
 			);
@@ -367,12 +361,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 832C66041CD0800200B3479E /* Build configuration list for PBXNativeTarget "UCLA Radio" */;
 			buildPhases = (
-				EF00B5B0562A19365C2F71C7 /* 📦 Check Pods Manifest.lock */,
+				EF00B5B0562A19365C2F71C7 /* [CP] Check Pods Manifest.lock */,
 				832C65D81CD0800200B3479E /* Sources */,
 				832C65D91CD0800200B3479E /* Frameworks */,
 				832C65DA1CD0800200B3479E /* Resources */,
-				99EB4CE62D2F234E48363279 /* 📦 Embed Pods Frameworks */,
-				296E7CC0708044067E2A801A /* 📦 Copy Pods Resources */,
+				99EB4CE62D2F234E48363279 /* [CP] Embed Pods Frameworks */,
+				296E7CC0708044067E2A801A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -431,7 +425,7 @@
 				TargetAttributes = {
 					832C65DB1CD0800200B3479E = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = V4Z45C29H6;
+						DevelopmentTeam = 928WARTLH8;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -505,14 +499,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		296E7CC0708044067E2A801A /* 📦 Copy Pods Resources */ = {
+		296E7CC0708044067E2A801A /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -520,14 +514,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-UCLA Radio/Pods-UCLA Radio-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		99EB4CE62D2F234E48363279 /* 📦 Embed Pods Frameworks */ = {
+		99EB4CE62D2F234E48363279 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -535,19 +529,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-UCLA Radio/Pods-UCLA Radio-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		EF00B5B0562A19365C2F71C7 /* 📦 Check Pods Manifest.lock */ = {
+		EF00B5B0562A19365C2F71C7 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -566,7 +560,6 @@
 				8365ECF71CE9945C001B96BF /* ContainerViewController.swift in Sources */,
 				D80C7AA51DF7D7B0003375F6 /* DateFormatter+ShowDate.swift in Sources */,
 				D80C7AA71DF7D92B003375F6 /* NotificationManager.swift in Sources */,
-				83A8ED6E1CE30248003D4286 /* RecentTrackView.swift in Sources */,
 				832C65E21CD0800200B3479E /* NowPlayingViewController.swift in Sources */,
 				836279271DA88501008C2B1D /* DJCollectionViewCell.swift in Sources */,
 				D865CBB21E0F0C0E008C050E /* AnalyticsManager.swift in Sources */,
@@ -583,7 +576,6 @@
 				8356DDFF1DA043E900B2B63B /* MenuSectionHeaderView.swift in Sources */,
 				83B381021CE1ABD000BA22FE /* AudioStream.swift in Sources */,
 				D86773E81E0A2C180014EC0F /* NotificationViewController.swift in Sources */,
-				83B381031CE1ABD000BA22FE /* HistoryFetcher.swift in Sources */,
 				835CDF981D0818AD00C3213B /* Global.swift in Sources */,
 				83C4CC1D1CE25BB900FBA1EC /* Constants.swift in Sources */,
 				837C71541D9F4CD800E5C472 /* Colorbrewer.swift in Sources */,
@@ -747,7 +739,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = V4Z45C29H6;
+				DEVELOPMENT_TEAM = 928WARTLH8;
 				INFOPLIST_FILE = "UCLA Radio/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.uclastudentmedia.UCLARadio;
@@ -768,7 +760,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = V4Z45C29H6;
+				DEVELOPMENT_TEAM = 928WARTLH8;
 				INFOPLIST_FILE = "UCLA Radio/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.uclastudentmedia.UCLARadio;
