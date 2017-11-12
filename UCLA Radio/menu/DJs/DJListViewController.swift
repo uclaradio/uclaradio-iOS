@@ -117,11 +117,20 @@ class DJListViewController: BaseViewController, APIFetchDelegate, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedDJ = djList[(indexPath as NSIndexPath).row]
         let controller = DJPopupViewController()
+        
+        // Set the picture
+        controller.djImageView.image = #imageLiteral(resourceName: "bear")
+        controller.djImageView.sd_cancelCurrentImageLoad()
+        if let picture = selectedDJ.picture {
+            controller.djImageView.sd_setImage(with: RadioAPI.absoluteURL(picture), placeholderImage: #imageLiteral(resourceName: "bear"))
+        }
+        
+        // Set the names and bio
         controller.djNameString = selectedDJ.djName!
         controller.djRealNameString = "Also known as " + selectedDJ.fullName!
         controller.djBioString = selectedDJ.biography ?? "No bio found."
         
-        // display popup
+        // Display popup
         customPresentViewController(presenter, viewController: controller, animated: true, completion: nil)
     }
     
