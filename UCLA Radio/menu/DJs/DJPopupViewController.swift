@@ -27,7 +27,12 @@ class DJPopupViewController: UIViewController, UITextViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let image = djImageView.image
-        djImageView.image = resizeImage(image: (image?.circleMasked!)!, newWidth: imageWidth)
+        
+        // Only resize image if the DJ uploaded one.  Resizing bear leads to complications
+        if image != #imageLiteral(resourceName: "bearpink"){
+            djImageView.image = resizeImage(image: (image?.circleMasked!)!, newWidth: imageWidth)
+        }
+        
     }
     override func viewDidLoad() {
         super.viewDidLoad()

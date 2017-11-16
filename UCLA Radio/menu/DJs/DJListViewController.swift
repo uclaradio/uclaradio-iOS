@@ -35,7 +35,7 @@ class DJListViewController: BaseViewController, APIFetchDelegate, UICollectionVi
         let height = ModalSize.fluid(percentage: 1.0)
         let center = ModalCenterPosition.customOrigin(origin: CGPoint(x: 0, y: 0))
         let customType = PresentationType.custom(width: width, height: height, center: center)
-
+        
         let customPresenter = Presentr(presentationType: .popup)
         customPresenter.transitionType = .coverVerticalFromTop
         customPresenter.dismissTransitionType = .crossDissolve
@@ -119,10 +119,10 @@ class DJListViewController: BaseViewController, APIFetchDelegate, UICollectionVi
         let controller = DJPopupViewController()
         
         // Set the picture
-        controller.djImageView.image = #imageLiteral(resourceName: "bear")
+        controller.djImageView.image = #imageLiteral(resourceName: "bearpink")
         controller.djImageView.sd_cancelCurrentImageLoad()
         if let picture = selectedDJ.picture {
-            controller.djImageView.sd_setImage(with: RadioAPI.absoluteURL(picture), placeholderImage: #imageLiteral(resourceName: "bear"))
+            controller.djImageView.sd_setImage(with: RadioAPI.absoluteURL(picture), placeholderImage: #imageLiteral(resourceName: "bearpink"))
         }
         
         // Set the names and bio
