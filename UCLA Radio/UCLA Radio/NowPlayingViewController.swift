@@ -68,6 +68,8 @@ class NowPlayingViewController: UIViewController, SlidingVCDelegate {
         let pullTabTap = UITapGestureRecognizer(target: self, action: #selector(didTapPullTab))
         pullTabImageView.addGestureRecognizer(pullTabTap)
         
+        // call buttons (programmed, not storyboard)
+
         let onAirButton = UIButton(frame: CGRect(x: self.containerView.frame.size.width-350.0, y: self.containerView.frame.size.height-50.0, width: 150.0, height: 50.0))
         onAirButton.setTitle("On Air", for: .normal)
         onAirButton.setTitleColor(UIColor.black, for: .normal)
@@ -120,12 +122,22 @@ class NowPlayingViewController: UIViewController, SlidingVCDelegate {
     }
     
     // Call Button
+    let onAirNumber = "3107949348"
+    let requestNumber = "3108259999"
+    
+    func makeCall(phone: String) {
+        let phoneUrl = "tel://\(phone)"
+        let url:NSURL = NSURL(string: phoneUrl)!
+        UIApplication.shared.openURL(url as URL)
+    }
     
     func didTapOnAirCallButton(_ gesture: UITapGestureRecognizer) {
+        makeCall(phone: onAirNumber)
         print("tapped on air")
     }
     
     func didTapRequestCallButton(_ gesture: UITapGestureRecognizer) {
+        makeCall(phone: requestNumber)
         print("tapped request")
     }
     
