@@ -67,6 +67,26 @@ class NowPlayingViewController: UIViewController, SlidingVCDelegate {
         pullTabImageView.tintColor = UIColor.white
         let pullTabTap = UITapGestureRecognizer(target: self, action: #selector(didTapPullTab))
         pullTabImageView.addGestureRecognizer(pullTabTap)
+        
+        let onAirButton = UIButton(frame: CGRect(x: self.containerView.frame.size.width-350.0, y: self.containerView.frame.size.height-50.0, width: 150.0, height: 50.0))
+        onAirButton.setTitle("On Air", for: .normal)
+        onAirButton.setTitleColor(UIColor.black, for: .normal)
+        onAirButton.backgroundColor = UIColor.white
+        onAirButton.titleLabel?.font = UIFont(name: Constants.Fonts.titleBold, size: 21)
+        onAirButton.titleLabel?.textAlignment = .center
+        onAirButton.addTarget(self, action: #selector(didTapOnAirCallButton(_:)), for: .touchUpInside)
+       
+        let requestButton = UIButton(frame: CGRect(x: 50.0, y: self.containerView.frame.size.height-100.0, width: 150.0 , height: 50.0))
+        requestButton.setTitle("Request", for: .normal)
+        requestButton.titleLabel?.font = UIFont(name: Constants.Fonts.titleBold, size: 21)
+        requestButton.titleLabel?.textAlignment = .center
+        requestButton.backgroundColor = UIColor.white
+        requestButton.setTitleColor(UIColor.black, for: .normal)
+        requestButton.addTarget(self, action: #selector(didTapRequestCallButton(_:)), for: .touchUpInside)
+
+        self.containerView.addSubview(onAirButton)
+        self.containerView.addSubview(requestButton)
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -97,6 +117,16 @@ class NowPlayingViewController: UIViewController, SlidingVCDelegate {
             imageView.image = UIImage(named: "radio_banner")
         }
         self.nowPlaying = nowPlaying
+    }
+    
+    // Call Button
+    
+    func didTapOnAirCallButton(_ gesture: UITapGestureRecognizer) {
+        print("tapped on air")
+    }
+    
+    func didTapRequestCallButton(_ gesture: UITapGestureRecognizer) {
+        print("tapped request")
     }
     
     // Slider
