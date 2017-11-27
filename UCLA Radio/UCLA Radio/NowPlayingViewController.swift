@@ -68,26 +68,46 @@ class NowPlayingViewController: UIViewController, SlidingVCDelegate {
         let pullTabTap = UITapGestureRecognizer(target: self, action: #selector(didTapPullTab))
         pullTabImageView.addGestureRecognizer(pullTabTap)
         
+        
+        
         // call buttons (programmed, not storyboard)
+        // in order to user autolayout instead of annoying math calcs, just need to set some anchors on button objects
+        
 
-        let onAirButton = UIButton(frame: CGRect(x: self.containerView.frame.size.width-350.0, y: self.containerView.frame.size.height-50.0, width: 150.0, height: 50.0))
+        let onAirButton = UIButton(frame: CGRect(x: self.containerView.frame.size.width-350.0, y: self.containerView.frame.size.height-50.0, width: 150.0, height: 75.0))
         onAirButton.setTitle("On Air", for: .normal)
         onAirButton.setTitleColor(UIColor.black, for: .normal)
         onAirButton.backgroundColor = UIColor.white
-        onAirButton.titleLabel?.font = UIFont(name: Constants.Fonts.titleBold, size: 21)
+        onAirButton.titleLabel?.font = UIFont(name: Constants.Fonts.titleBold, size: 31)
         onAirButton.titleLabel?.textAlignment = .center
         onAirButton.addTarget(self, action: #selector(didTapOnAirCallButton(_:)), for: .touchUpInside)
        
-        let requestButton = UIButton(frame: CGRect(x: 50.0, y: self.containerView.frame.size.height-100.0, width: 150.0 , height: 50.0))
+        let requestButton = UIButton(frame: CGRect(x: 50.0, y: self.containerView.frame.size.height-100.0, width: 150.0 , height: 75.0))
         requestButton.setTitle("Request", for: .normal)
-        requestButton.titleLabel?.font = UIFont(name: Constants.Fonts.titleBold, size: 21)
+        requestButton.titleLabel?.font = UIFont(name: Constants.Fonts.titleBold, size: 31)
         requestButton.titleLabel?.textAlignment = .center
         requestButton.backgroundColor = UIColor.white
         requestButton.setTitleColor(UIColor.black, for: .normal)
         requestButton.addTarget(self, action: #selector(didTapRequestCallButton(_:)), for: .touchUpInside)
-
-        self.containerView.addSubview(onAirButton)
-        self.containerView.addSubview(requestButton)
+        
+        var callButtonArray: [UIView] = []
+        callButtonArray.append(onAirButton)
+        callButtonArray.append(requestButton)
+        
+        
+        let stackView = UIStackView(arrangedSubviews: callButtonArray)
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        stackView.spacing = 20
+        stackView.distribution = .fillEqually
+        
+        containerView.addSubview(stackView)
+        
+        // constraints
+        stackView.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 20).isActive = true
+        stackView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -30).isActive = true
+        stackView.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: -20).isActive = true
+        stackView.heightAnchor.constraint(equalToConstant: containerView.frame.height/8).isActive = true
 
     }
     
@@ -133,12 +153,10 @@ class NowPlayingViewController: UIViewController, SlidingVCDelegate {
     
     func didTapOnAirCallButton(_ gesture: UITapGestureRecognizer) {
         makeCall(phone: onAirNumber)
-        print("tapped on air")
     }
     
     func didTapRequestCallButton(_ gesture: UITapGestureRecognizer) {
         makeCall(phone: requestNumber)
-        print("tapped request")
     }
     
     // Slider
