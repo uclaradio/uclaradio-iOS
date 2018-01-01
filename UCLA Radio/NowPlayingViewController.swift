@@ -8,13 +8,12 @@
 
 import UIKit
 import MediaPlayer
-import ASHorizontalScrollView
 
 protocol NowPlayingActionDelegate {
     func didTapShow(_ show: Show?)
 }
 
-class NowPlayingViewController: UIViewController, HistoryFetchDelegate, SlidingVCDelegate {
+class NowPlayingViewController: UIViewController, SlidingVCDelegate {
 
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var imageView: UIImageView!
@@ -22,18 +21,14 @@ class NowPlayingViewController: UIViewController, HistoryFetchDelegate, SlidingV
     @IBOutlet weak var pullTabImageView: UIImageView!
     
     var nowPlayingView: NowPlayingView!
-    var recentlyPlayedLabel: UILabel!
-    var recentlyPlayed: ASHorizontalScrollView!
     weak var sliderDelegate: SlidingVCDelegate?
     
     var actionDelegate: NowPlayingActionDelegate?
     fileprivate var nowPlaying: Show?
     
-    fileprivate var recentUpdateTimer: Timer?
     fileprivate var tapGesture: UITapGestureRecognizer?
     private var lastOpenPercentage: CGFloat?
     
-    // SlidingVCDelegate
     var slider: SlidingViewController?
     
     override func viewDidLoad() {
@@ -60,34 +55,6 @@ class NowPlayingViewController: UIViewController, HistoryFetchDelegate, SlidingV
         controlsParentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-[nowPlaying]-|", options: [], metrics: nil, views: controlsViews))
         controlsParentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-(40)-[volume]-(40)-|", options: [], metrics: nil, views: controlsViews))
         
-        recentlyPlayedLabel = UILabel()
-        recentlyPlayedLabel.text = "Recently Played"
-        recentlyPlayedLabel.textColor = UIColor.lightText
-        recentlyPlayedLabel.font = UIFont(name: Constants.Fonts.titleBold, size: 14)
-        containerView.addSubview(recentlyPlayedLabel)
-        recentlyPlayedLabel.translatesAutoresizingMaskIntoConstraints = false
-        containerView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-(15)-[recentLabel(150)]", options: [], metrics: nil, views: ["recentLabel": recentlyPlayedLabel]))
-        
-        let recentTrackSize = CGSize(width: (view.frame.size.width-20)/4, height: 90)
-        
-        // ASHorizontalScrollView is not optimized for auto layout, has to be initialized with frame, use auto layout for positioning
-        recentlyPlayed = ASHorizontalScrollView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: recentTrackSize.height))
-        
-        recentlyPlayed.leftMarginPx = 10
-        recentlyPlayed.itemsMargin = 5
-        recentlyPlayed.miniMarginPxBetweenItems = 0
-        recentlyPlayed.miniAppearPxOfLastItem = 5
-        recentlyPlayed.uniformItemSize = recentTrackSize
-        //This must be called after changing any size or margin property of this class to get acurrate margin
-        recentlyPlayed.setItemsMarginOnce()
-        
-        containerView.addSubview(recentlyPlayed)
-        recentlyPlayed.translatesAutoresizingMaskIntoConstraints = false
-        containerView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[controls]-(>=15)-[recentLabel(15)]-(5)-[recent(trackHeight)]-(30@998,>=8)-|", options: [], metrics: ["trackHeight": recentTrackSize.height], views: ["controls": controlsParentView, "recent": recentlyPlayed, "recentLabel": recentlyPlayedLabel]))
-        containerView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[recent]|", options: [], metrics: nil, views: ["recent": recentlyPlayed]))
-        // for smaller screens (iPhone 5)
-        containerView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[controls]-(>=8)-[recent]", options: [], metrics: nil, views: ["controls": controlsParentView, "recent": recentlyPlayed]))
-        
         imageView.isUserInteractionEnabled = true
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
@@ -100,16 +67,53 @@ class NowPlayingViewController: UIViewController, HistoryFetchDelegate, SlidingV
         pullTabImageView.tintColor = UIColor.white
         let pullTabTap = UITapGestureRecognizer(target: self, action: #selector(didTapPullTab))
         pullTabImageView.addGestureRecognizer(pullTabTap)
+        
+        
+        
+        // call buttons (programmed, not storyboard)
+        // in order to user autolayout instead of annoying math calcs, just need to set some anchors on button objects
+        
+
+        let onAirButton = UIButton(frame: CGRect(x: self.containerView.frame.size.width-350.0, y: self.containerView.frame.size.height-50.0, width: 150.0, height: 75.0))
+        onAirButton.setTitle("On Air", for: .normal)
+        onAirButton.setTitleColor(UIColor.black, for: .normal)
+        onAirButton.backgroundColor = UIColor.white
+        onAirButton.titleLabel?.font = UIFont(name: Constants.Fonts.titleBold, size: 31)
+        onAirButton.titleLabel?.textAlignment = .center
+        onAirButton.addTarget(self, action: #selector(didTapOnAirCallButton(_:)), for: .touchUpInside)
+       
+        let requestButton = UIButton(frame: CGRect(x: 50.0, y: self.containerView.frame.size.height-100.0, width: 150.0 , height: 75.0))
+        requestButton.setTitle("Request", for: .normal)
+        requestButton.titleLabel?.font = UIFont(name: Constants.Fonts.titleBold, size: 31)
+        requestButton.titleLabel?.textAlignment = .center
+        requestButton.backgroundColor = UIColor.white
+        requestButton.setTitleColor(UIColor.black, for: .normal)
+        requestButton.addTarget(self, action: #selector(didTapRequestCallButton(_:)), for: .touchUpInside)
+        
+        var callButtonArray: [UIView] = []
+        callButtonArray.append(onAirButton)
+        callButtonArray.append(requestButton)
+        
+        
+        let stackView = UIStackView(arrangedSubviews: callButtonArray)
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        stackView.spacing = 20
+        stackView.distribution = .fillEqually
+        
+        containerView.addSubview(stackView)
+        
+        // constraints
+        stackView.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 20).isActive = true
+        stackView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -30).isActive = true
+        stackView.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: -20).isActive = true
+        stackView.heightAnchor.constraint(equalToConstant: containerView.frame.height/8).isActive = true
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         nowPlayingView.willAppear()
-        
-        // fetch recently played
-        HistoryFetcher.delegate = self
-        HistoryFetcher.fetchRecentTracks()
-        recentUpdateTimer = Timer.scheduledTimer(timeInterval: 30, target: self, selector: #selector(updateTick), userInfo: nil, repeats: true)
         styleFromNowPlaying(RadioAPI.nowPlaying)
         
         NotificationCenter.default.addObserver(self, selector: #selector(nowPlayingUpdated), name: NSNotification.Name(rawValue: RadioAPI.NowPlayingUpdatedNotification), object: nil)
@@ -118,12 +122,7 @@ class NowPlayingViewController: UIViewController, HistoryFetchDelegate, SlidingV
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         nowPlayingView.willDisappear()
-        
-        // stop fetching recently played
-        HistoryFetcher.delegate = nil
-        recentUpdateTimer?.invalidate()
-        recentUpdateTimer = nil
-        
+
         NotificationCenter.default.removeObserver(self)
     }
 
@@ -142,17 +141,22 @@ class NowPlayingViewController: UIViewController, HistoryFetchDelegate, SlidingV
         self.nowPlaying = nowPlaying
     }
     
-    func updateRecentlyPlayed() {
-        if recentlyPlayed.items.count > 0 {
-            if !recentlyPlayed.removeAllItems() {
-                print("failed to remove recently played items")
-            }
-        }
-        for track in HistoryFetcher.recentTracks {
-            let trackView = RecentTrackView(frame: CGRect.zero)
-            trackView.styleFromTrack(track)
-            recentlyPlayed.addItem(trackView)
-        }
+    // Call Button
+    let onAirNumber = "3107949348"
+    let requestNumber = "3108259999"
+    
+    func makeCall(phone: String) {
+        let phoneUrl = "tel://\(phone)"
+        let url:NSURL = NSURL(string: phoneUrl)!
+        UIApplication.shared.openURL(url as URL)
+    }
+    
+    func didTapOnAirCallButton(_ gesture: UITapGestureRecognizer) {
+        makeCall(phone: onAirNumber)
+    }
+    
+    func didTapRequestCallButton(_ gesture: UITapGestureRecognizer) {
+        makeCall(phone: requestNumber)
     }
     
     // Slider
@@ -170,7 +174,7 @@ class NowPlayingViewController: UIViewController, HistoryFetchDelegate, SlidingV
     func positionUpdated(_ position: SlidingViewControllerPosition) {
         if let slider = slider {
             if (slider.position == .closed) {
-                pullTabImageView.transform = CGAffineTransform(rotationAngle: (180.0 * CGFloat(M_PI)) / 180.0)
+                pullTabImageView.transform = CGAffineTransform(rotationAngle: (180.0 * CGFloat(Double.pi)) / 180.0)
             } else {
                 pullTabImageView.transform = CGAffineTransform.identity
             }
@@ -183,7 +187,7 @@ class NowPlayingViewController: UIViewController, HistoryFetchDelegate, SlidingV
             if (openPercentage < lastOpenPercentage) {
                 pullTabImageView.transform = CGAffineTransform.identity
             } else {
-                pullTabImageView.transform = CGAffineTransform(rotationAngle: (180.0 * CGFloat(M_PI)) / 180.0)
+                pullTabImageView.transform = CGAffineTransform(rotationAngle: (180.0 * CGFloat(Double.pi)) / 180.0)
             }
         }
         lastOpenPercentage = openPercentage
@@ -195,16 +199,9 @@ class NowPlayingViewController: UIViewController, HistoryFetchDelegate, SlidingV
         styleFromNowPlaying(RadioAPI.nowPlaying)
     }
     
-    // HistoryFetchDelegate
-    
-    func updatedHistory() {
-        updateRecentlyPlayed()
-    }
-    
     // Timers
     
     func updateTick() {
-        HistoryFetcher.fetchRecentTracks()
         RadioAPI.fetchNowPlaying()
     }
     
