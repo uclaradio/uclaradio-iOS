@@ -8,7 +8,9 @@ target 'UCLA Radio' do
   pod "KRLCollectionViewGridLayout", "~> 0.4.1"
   pod 'DynamicColor', '~> 3.1.0'
   pod 'Google/Analytics'
-  
+  pod 'Presentr'  
+
   # potentially useful for schedule
   # pod 'HTHorizontalSelectionList', '~> 0.7.0'
+
 end
