@@ -1,0 +1,6 @@
+framework module Pods_UCLA_RadioUITests {
+  umbrella header "Pods-UCLA RadioUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

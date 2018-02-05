@@ -48,6 +48,7 @@
 		83C4CC1D1CE25BB900FBA1EC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C4CC1C1CE25BB900FBA1EC /* Constants.swift */; };
 		83C4CC1F1CE25C1500FBA1EC /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C4CC1E1CE25C1500FBA1EC /* UIColor+Hex.swift */; };
 		83E4247A1CEECCF700662EDD /* NowPlayingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E424791CEECCF700662EDD /* NowPlayingView.swift */; };
+		A0B978A4559347E3173FC317 /* Pods_UCLA_RadioTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30CFB763946769009837003D /* Pods_UCLA_RadioTests.framework */; };
 		D80859121E552819007BD3FF /* apercu_bold-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D808590E1E552819007BD3FF /* apercu_bold-webfont.ttf */; };
 		D80859131E552819007BD3FF /* apercu_light-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D808590F1E552819007BD3FF /* apercu_light-webfont.ttf */; };
 		D80859141E552819007BD3FF /* apercu_medium-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D80859101E552819007BD3FF /* apercu_medium-webfont.ttf */; };
@@ -57,6 +58,7 @@
 		D865CBB21E0F0C0E008C050E /* AnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D865CBB11E0F0C0E008C050E /* AnalyticsManager.swift */; };
 		D86773E81E0A2C180014EC0F /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86773E71E0A2C180014EC0F /* NotificationViewController.swift */; };
 		D8A9A9801E0DD19B002F8E24 /* NotificationDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A9A97F1E0DD19B002F8E24 /* NotificationDetailsViewController.swift */; };
+		F513E11D3101B44A3043621D /* Pods_UCLA_RadioUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2CDD687A10D17AD5A8038CE /* Pods_UCLA_RadioUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,9 +80,12 @@
 
 /* Begin PBXFileReference section */
 		061295931FB2812700C848CE /* DJPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DJPopupViewController.swift; sourceTree = "<group>"; };
+		066D42DA202580B100F16F45 /* UCLA_Radio-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UCLA_Radio-Bridging-Header.h"; sourceTree = "<group>"; };
+		30CFB763946769009837003D /* Pods_UCLA_RadioTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UCLA_RadioTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FFD9ADD0DCADD1878E89FDE /* Pods-UCLA Radio.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UCLA Radio.release.xcconfig"; path = "Pods/Target Support Files/Pods-UCLA Radio/Pods-UCLA Radio.release.xcconfig"; sourceTree = "<group>"; };
 		65514855D8EABCF7CD92BD49 /* Pods_UCLA_Radio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UCLA_Radio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DA6C14DE284BA7CD5A4FD5A /* Pods-UCLA Radio.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UCLA Radio.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UCLA Radio/Pods-UCLA Radio.debug.xcconfig"; sourceTree = "<group>"; };
+		7EDC7C36369CBB202115B29B /* Pods-UCLA RadioTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UCLA RadioTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UCLA RadioTests/Pods-UCLA RadioTests.debug.xcconfig"; sourceTree = "<group>"; };
 		832C65DC1CD0800200B3479E /* UCLA Radio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UCLA Radio.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		832C65DF1CD0800200B3479E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		832C65E11CD0800200B3479E /* NowPlayingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingViewController.swift; sourceTree = "<group>"; };
@@ -107,7 +112,6 @@
 		836279251DA88501008C2B1D /* DJCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DJCollectionViewCell.swift; sourceTree = "<group>"; };
 		836279261DA88501008C2B1D /* DJListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DJListViewController.swift; sourceTree = "<group>"; };
 		836279291DA885C7008C2B1D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
-		8362792C1DA886BE008C2B1D /* UCLA_Radio-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UCLA_Radio-Bridging-Header.h"; sourceTree = "<group>"; };
 		8365ECF41CE99265001B96BF /* SlidingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlidingViewController.swift; sourceTree = "<group>"; };
 		8365ECF61CE9945C001B96BF /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		837C71501D9F4CD800E5C472 /* Colorbrewer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colorbrewer.swift; sourceTree = "<group>"; };
@@ -127,6 +131,8 @@
 		83C4CC1C1CE25BB900FBA1EC /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		83C4CC1E1CE25C1500FBA1EC /* UIColor+Hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
 		83E424791CEECCF700662EDD /* NowPlayingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NowPlayingView.swift; sourceTree = "<group>"; };
+		9499A0A300738321534504C1 /* Pods-UCLA RadioUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UCLA RadioUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UCLA RadioUITests/Pods-UCLA RadioUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		A16D1681F2B525604222C9D6 /* Pods-UCLA RadioTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UCLA RadioTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-UCLA RadioTests/Pods-UCLA RadioTests.release.xcconfig"; sourceTree = "<group>"; };
 		D808590E1E552819007BD3FF /* apercu_bold-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "apercu_bold-webfont.ttf"; sourceTree = "<group>"; };
 		D808590F1E552819007BD3FF /* apercu_light-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "apercu_light-webfont.ttf"; sourceTree = "<group>"; };
 		D80859101E552819007BD3FF /* apercu_medium-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "apercu_medium-webfont.ttf"; sourceTree = "<group>"; };
@@ -136,6 +142,8 @@
 		D865CBB11E0F0C0E008C050E /* AnalyticsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsManager.swift; sourceTree = "<group>"; };
 		D86773E71E0A2C180014EC0F /* NotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		D8A9A97F1E0DD19B002F8E24 /* NotificationDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationDetailsViewController.swift; sourceTree = "<group>"; };
+		E582B7B02FF39127B91D4347 /* Pods-UCLA RadioUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UCLA RadioUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-UCLA RadioUITests/Pods-UCLA RadioUITests.release.xcconfig"; sourceTree = "<group>"; };
+		F2CDD687A10D17AD5A8038CE /* Pods_UCLA_RadioUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UCLA_RadioUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +159,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A0B978A4559347E3173FC317 /* Pods_UCLA_RadioTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -158,6 +167,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F513E11D3101B44A3043621D /* Pods_UCLA_RadioUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -169,6 +179,10 @@
 			children = (
 				6DA6C14DE284BA7CD5A4FD5A /* Pods-UCLA Radio.debug.xcconfig */,
 				3FFD9ADD0DCADD1878E89FDE /* Pods-UCLA Radio.release.xcconfig */,
+				7EDC7C36369CBB202115B29B /* Pods-UCLA RadioTests.debug.xcconfig */,
+				A16D1681F2B525604222C9D6 /* Pods-UCLA RadioTests.release.xcconfig */,
+				9499A0A300738321534504C1 /* Pods-UCLA RadioUITests.debug.xcconfig */,
+				E582B7B02FF39127B91D4347 /* Pods-UCLA RadioUITests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -216,7 +230,7 @@
 				832C65E81CD0800200B3479E /* LaunchScreen.storyboard */,
 				832C65EB1CD0800200B3479E /* Info.plist */,
 				836279291DA885C7008C2B1D /* GoogleService-Info.plist */,
-				8362792C1DA886BE008C2B1D /* UCLA_Radio-Bridging-Header.h */,
+				066D42DA202580B100F16F45 /* UCLA_Radio-Bridging-Header.h */,
 			);
 			path = "UCLA Radio";
 			sourceTree = "<group>";
@@ -332,6 +346,8 @@
 			isa = PBXGroup;
 			children = (
 				65514855D8EABCF7CD92BD49 /* Pods_UCLA_Radio.framework */,
+				30CFB763946769009837003D /* Pods_UCLA_RadioTests.framework */,
+				F2CDD687A10D17AD5A8038CE /* Pods_UCLA_RadioUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -384,9 +400,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 832C66071CD0800200B3479E /* Build configuration list for PBXNativeTarget "UCLA RadioTests" */;
 			buildPhases = (
+				BA3A3D465B8DB4338FC8EC38 /* [CP] Check Pods Manifest.lock */,
 				832C65EC1CD0800200B3479E /* Sources */,
 				832C65ED1CD0800200B3479E /* Frameworks */,
 				832C65EE1CD0800200B3479E /* Resources */,
+				B3A911B5A3E4090E0CB11FB3 /* [CP] Embed Pods Frameworks */,
+				67D3A942959D06C22B39A6E3 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -402,9 +421,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 832C660A1CD0800200B3479E /* Build configuration list for PBXNativeTarget "UCLA RadioUITests" */;
 			buildPhases = (
+				96950FE662F8F4BEDCEFA6AA /* [CP] Check Pods Manifest.lock */,
 				832C65F71CD0800200B3479E /* Sources */,
 				832C65F81CD0800200B3479E /* Frameworks */,
 				832C65F91CD0800200B3479E /* Resources */,
+				EF27F2560B5591FB2827EEFD /* [CP] Embed Pods Frameworks */,
+				ABC2945B784EF4B8D8D957DE /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -423,12 +445,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "UCLA Student Media";
 				TargetAttributes = {
 					832C65DB1CD0800200B3479E = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = 7J53V2CVLJ;
+						DevelopmentTeam = DUCAN2M87U;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -440,13 +462,13 @@
 					832C65EF1CD0800200B3479E = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = DUCAN2M87U;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0920;
 						TestTargetID = 832C65DB1CD0800200B3479E;
 					};
 					832C65FA1CD0800200B3479E = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = DUCAN2M87U;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0920;
 						TestTargetID = 832C65DB1CD0800200B3479E;
 					};
 				};
@@ -519,6 +541,39 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-UCLA Radio/Pods-UCLA Radio-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		67D3A942959D06C22B39A6E3 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-UCLA RadioTests/Pods-UCLA RadioTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		96950FE662F8F4BEDCEFA6AA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-UCLA RadioUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		99EB4CE62D2F234E48363279 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -549,6 +604,57 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-UCLA Radio/Pods-UCLA Radio-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		ABC2945B784EF4B8D8D957DE /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-UCLA RadioUITests/Pods-UCLA RadioUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B3A911B5A3E4090E0CB11FB3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-UCLA RadioTests/Pods-UCLA RadioTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-UCLA RadioTests/Pods-UCLA RadioTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BA3A3D465B8DB4338FC8EC38 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-UCLA RadioTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		EF00B5B0562A19365C2F71C7 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -565,6 +671,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EF27F2560B5591FB2827EEFD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-UCLA RadioUITests/Pods-UCLA RadioUITests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-UCLA RadioUITests/Pods-UCLA RadioUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -680,12 +804,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -718,6 +844,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -734,12 +861,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -765,6 +894,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -774,9 +904,10 @@
 			baseConfigurationReference = 6DA6C14DE284BA7CD5A4FD5A /* Pods-UCLA Radio.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 7J53V2CVLJ;
+				DEVELOPMENT_TEAM = DUCAN2M87U;
 				INFOPLIST_FILE = "UCLA Radio/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.blah.UCLARadio;
@@ -784,7 +915,7 @@
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "./UCLA Radio/UCLA_Radio-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -794,9 +925,10 @@
 			baseConfigurationReference = 3FFD9ADD0DCADD1878E89FDE /* Pods-UCLA Radio.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 7J53V2CVLJ;
+				DEVELOPMENT_TEAM = DUCAN2M87U;
 				INFOPLIST_FILE = "UCLA Radio/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.blah.UCLARadio;
@@ -804,57 +936,69 @@
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "./UCLA Radio/UCLA_Radio-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
 		832C66081CD0800200B3479E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7EDC7C36369CBB202115B29B /* Pods-UCLA RadioTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				INFOPLIST_FILE = "UCLA RadioTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "UCLARadio.UCLA-RadioTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UCLA Radio.app/UCLA Radio";
 			};
 			name = Debug;
 		};
 		832C66091CD0800200B3479E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A16D1681F2B525604222C9D6 /* Pods-UCLA RadioTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				INFOPLIST_FILE = "UCLA RadioTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "UCLARadio.UCLA-RadioTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UCLA Radio.app/UCLA Radio";
 			};
 			name = Release;
 		};
 		832C660B1CD0800200B3479E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9499A0A300738321534504C1 /* Pods-UCLA RadioUITests.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				INFOPLIST_FILE = "UCLA RadioUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "UCLARadio.UCLA-RadioUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = "UCLA Radio";
 			};
 			name = Debug;
 		};
 		832C660C1CD0800200B3479E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E582B7B02FF39127B91D4347 /* Pods-UCLA RadioUITests.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				INFOPLIST_FILE = "UCLA RadioUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "UCLARadio.UCLA-RadioUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = "UCLA Radio";
 			};
 			name = Release;

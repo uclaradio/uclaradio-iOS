@@ -29,10 +29,10 @@ import UIKit
     override func awakeFromNib() {
         if let attributedText = self.attributedText {
             let attrString = NSMutableAttributedString(attributedString: attributedText)
-            attrString.addAttribute(NSFontAttributeName, value: UIFont(name: self.fontFamily, size: self.fontSize)!, range: NSMakeRange(0, attrString.length))
+            attrString.addAttribute(NSAttributedStringKey.font, value: UIFont(name: self.fontFamily, size: self.fontSize)!, range: NSMakeRange(0, attrString.length))
             for substring in boldSubstrings.components(separatedBy: ",") {
                 let boldRange = NSString(string: attrString.string).range(of: substring)
-                attrString.addAttribute(NSFontAttributeName, value: UIFont(name: self.boldFontFamily, size: self.fontSize)!, range: boldRange)
+                attrString.addAttribute(NSAttributedStringKey.font, value: UIFont(name: self.boldFontFamily, size: self.fontSize)!, range: boldRange)
             }
             self.attributedText = attrString
         }

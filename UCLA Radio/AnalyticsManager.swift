@@ -5,6 +5,7 @@
 //  Created by Nathan Smith on 12/24/16.
 //  Copyright © 2016 UCLA Student Media. All rights reserved.
 //
+import Google
 
 class AnalyticsManager {
     
@@ -13,8 +14,9 @@ class AnalyticsManager {
     func configureAtLaunch() {
         // Configure tracker from GoogleService-Info.plist.
         var configureError:NSError?
+        
         GGLContext.sharedInstance().configureWithError(&configureError)
-        assert(configureError == nil, "Error configuring Google services: \(configureError)")
+        assert(configureError == nil, "Error configuring Google services: \(String(describing: configureError))")
         
         // Optional: configure GAI options.
         let gai = GAI.sharedInstance()

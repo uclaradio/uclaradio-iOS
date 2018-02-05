@@ -57,7 +57,7 @@ class Giveaway {
                             let rawDate = monthGiveaway["start"] as? String {
                             
                             let day = NSMutableString(string: rawDate)
-                            regex.replaceMatches(in: day, options: [], range: NSRange(location: 0, length: rawDate.characters.count), withTemplate: replacementPattern)
+                            regex.replaceMatches(in: day, options: [], range: NSRange(location: 0, length: rawDate.count), withTemplate: replacementPattern)
                             let date = formattedDateFromRawString(day.substring(from: 0)) ?? ""
                             month.append(Giveaway(summary: summary, date: date))
                         }

@@ -152,19 +152,19 @@ class NotificationViewController: BaseTableViewController, APIFetchDelegate {
 
     // MARK: - Editing
 
-    func toggleEdit() {
+    @objc func toggleEdit() {
         tableView.setEditing(!tableView.isEditing, animated: true)
         navigationItem.rightBarButtonItem = tableView.isEditing ? deleteBarButtonItem : editBarButtonItem
         navigationItem.leftBarButtonItem = tableView.isEditing ? cancelBarButtonItem : navigationItem.backBarButtonItem
     }
 
-    func commitEdit() {
+    @objc func commitEdit() {
         if tableView.isEditing {
             // delete notifications for selected shows
             let selectedRows = tableView.indexPathsForSelectedRows ?? []
             let selectedShows: [Show] = selectedRows.map { indexPath in
                 notificationSchedule?.showForIndexPath(indexPath)
-            }.flatMap({$0})
+                }.compactMap({$0})
             NotificationManager.sharedInstance.removeAllNotificationsForShows(selectedShows)
             notificationSchedule?.removeShows(selectedShows)
             tableView.deleteRows(at: selectedRows, with: .fade)

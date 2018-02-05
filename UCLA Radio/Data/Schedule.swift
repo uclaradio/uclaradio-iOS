@@ -90,8 +90,18 @@ class Schedule {
     
     static func sortShows(_ shows: [Show]) -> [Show] {
         return shows.sorted {
-            ($0.time.hour < $1.time.hour) || ($0.time.hour == $1.time.hour && $0.time.minute < $1.time.minute)
+            if ($0.time.hour < $1.time.hour)
+            {
+                return ($0.time.hour < $1.time.hour)
+            }
+            else
+            {
+                return ($0.time.hour == $1.time.hour && $0.time.minute < $1.time.minute)
+            }
+            
+//            ($0.time.hour < $1.time.hour) || ($0.time.hour == $1.time.hour && $0.time.minute < $1.time.minute)
         }
+
     }
     
     func removeShow(_ show: Show) {
