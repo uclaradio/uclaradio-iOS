@@ -164,7 +164,7 @@ class NotificationViewController: BaseTableViewController, APIFetchDelegate {
             let selectedRows = tableView.indexPathsForSelectedRows ?? []
             let selectedShows: [Show] = selectedRows.map { indexPath in
                 notificationSchedule?.showForIndexPath(indexPath)
-                }.compactMap({$0})
+                }.flatMap({$0}) // TODO: - replace with .compactMap({$0}) for Xcode 9.3
             NotificationManager.sharedInstance.removeAllNotificationsForShows(selectedShows)
             notificationSchedule?.removeShows(selectedShows)
             tableView.deleteRows(at: selectedRows, with: .fade)
