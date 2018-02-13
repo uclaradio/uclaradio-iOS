@@ -37,7 +37,7 @@ class ScheduleViewController: BaseViewController, APIFetchDelegate, UITableViewD
         RadioAPI.fetchSchedule(self)
     }
     
-    func goToNavigation() {
+    @objc func goToNavigation() {
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: NotificationViewController.storyboardID)
         if let notificationViewController = vc as? NotificationViewController {
             navigationController?.pushViewController(notificationViewController, animated: true)

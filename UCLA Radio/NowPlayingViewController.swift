@@ -103,7 +103,7 @@ class NowPlayingViewController: UIViewController, SlidingVCDelegate {
         
         containerView.addSubview(stackView)
         
-        // constraints
+        // constraints for call button array
         stackView.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 20).isActive = true
         stackView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -30).isActive = true
         stackView.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: -20).isActive = true
@@ -151,21 +151,21 @@ class NowPlayingViewController: UIViewController, SlidingVCDelegate {
         UIApplication.shared.openURL(url as URL)
     }
     
-    func didTapOnAirCallButton(_ gesture: UITapGestureRecognizer) {
+    @objc func didTapOnAirCallButton(_ gesture: UITapGestureRecognizer) {
         makeCall(phone: onAirNumber)
     }
     
-    func didTapRequestCallButton(_ gesture: UITapGestureRecognizer) {
+    @objc func didTapRequestCallButton(_ gesture: UITapGestureRecognizer) {
         makeCall(phone: requestNumber)
     }
     
     // Slider
     
-    func didTap(_ gesture: UITapGestureRecognizer) {
+    @objc func didTap(_ gesture: UITapGestureRecognizer) {
         actionDelegate?.didTapShow(nowPlaying)
     }
     
-    func didTapPullTab(_ gesture: UITapGestureRecognizer) {
+    @objc func didTapPullTab(_ gesture: UITapGestureRecognizer) {
         actionDelegate?.didTapShow(nil)
     }
     
@@ -195,7 +195,7 @@ class NowPlayingViewController: UIViewController, SlidingVCDelegate {
     
     // MARK: - Radio APIFetchDelegate
     
-    func nowPlayingUpdated(_ notification: Notification) {
+    @objc func nowPlayingUpdated(_ notification: Notification) {
         styleFromNowPlaying(RadioAPI.nowPlaying)
     }
     

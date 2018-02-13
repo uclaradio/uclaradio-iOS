@@ -98,7 +98,7 @@ class AudioStream: NSObject, APIFetchDelegate {
     /**
      Update now playing information which is used by iOS in the control center, lock screen
      */
-    func updateNowPlaying() {
+    @objc func updateNowPlaying() {
         var nowPlayingDict: [String: AnyObject] = [:]
         nowPlayingDict[MPMediaItemPropertyArtist] = "UCLA Radio" as AnyObject?
         let title =  RadioAPI.nowPlaying?.title ?? "Live Stream"
@@ -156,7 +156,7 @@ class AudioStream: NSObject, APIFetchDelegate {
     
     // Notifications
     
-    func sessionInterrupted(_ notification: Notification) {
+    @objc func sessionInterrupted(_ notification: Notification) {
         playing = false
         readyToPlay = false
         NotificationCenter.default.post(name: Notification.Name(rawValue: AudioStream.StreamUpdateNotificationKey), object: nil)

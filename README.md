@@ -19,4 +19,4 @@ Written in Swift, fetching from [an API](https://github.com/uclaradio/uclaradio)
 
 ### Copyright
 
-Copyright © UCLA Student Media 2017
+Copyright © UCLA Student Media 2018

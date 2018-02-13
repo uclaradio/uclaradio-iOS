@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import UCLA_Radio
+//@testable import UCLA_Radio
 
 class UCLA_RadioTests: XCTestCase {
     

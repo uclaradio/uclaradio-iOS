@@ -93,17 +93,17 @@ class NowPlayingView: SliderTabView {
     
     // MARK: - Actions
     
-    func hitPlay(_ button: UIButton) {
+    @objc func hitPlay(_ button: UIButton) {
         AudioStream.sharedInstance.togglePlay()
     }
     
-    func hitSkip(_ button: UIButton) {
+    @objc func hitSkip(_ button: UIButton) {
         AudioStream.sharedInstance.skipToLive()
     }
     
     // MARK: - Notifications
     
-    func streamUpdated(_ notification: Notification) {
+    @objc func streamUpdated(_ notification: Notification) {
         styleFromStream()
     }
     
@@ -116,7 +116,7 @@ class NowPlayingView: SliderTabView {
         }
     }
     
-    func nowPlayingUpdated(_ notification: Notification) {
+    @objc func nowPlayingUpdated(_ notification: Notification) {
         styleFromNowPlaying()
     }
     

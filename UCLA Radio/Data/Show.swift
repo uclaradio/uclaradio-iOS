@@ -79,13 +79,13 @@ class Show {
             let newShow = Show(id: id, title: title, time: components, djs: djs)
 
             // optional properties
-            if let genre = dict["genre"] as? String , genre.characters.count > 0 {
+            if let genre = dict["genre"] as? String , genre.count > 0 {
                 newShow.genre = genre
             }
-            if let blurb = dict["blurb"] as? String , blurb.characters.count > 0 {
+            if let blurb = dict["blurb"] as? String , blurb.count > 0 {
                 newShow.blurb = blurb
             }
-            if let picture = dict["picture"] as? String , picture.characters.count > 0 {
+            if let picture = dict["picture"] as? String , picture.count > 0 {
                 newShow.picture = picture
             }
             

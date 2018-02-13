@@ -98,7 +98,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     // MARK: - Data
 
-    func didUpdateGiveawaysNotification(notification: Notification) {
+    @objc func didUpdateGiveawaysNotification(notification: Notification) {
         if let userInfo = notification.userInfo,
             let hasGiveaways = userInfo["hasGiveaways"] as? Bool,
             hasGiveaways {

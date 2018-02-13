@@ -36,7 +36,7 @@ class ContainerViewController: UIViewController, NowPlayingActionDelegate {
         rootNavController.navigationBar.tintColor = UIColor.white
         // title color
         if let titleFont = UIFont(name: Constants.Fonts.title, size: 21) {
-            rootNavController.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: titleFont]
+            rootNavController.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white, NSAttributedStringKey.font: titleFont]
         }
         
         installNowPlayingSlider()

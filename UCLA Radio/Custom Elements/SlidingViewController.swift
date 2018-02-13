@@ -16,7 +16,7 @@ import DynamicColor
 }
 
 @objc protocol SlidingVCDelegate {
-    weak var slider: SlidingViewController? { get set }
+    var slider: SlidingViewController? { get set }
     func positionUpdated(_ position: SlidingViewControllerPosition)
     func openPercentageChanged(_ openPercentage: CGFloat)
 }
@@ -61,7 +61,7 @@ class SlidingViewController: UIViewController {
         view.addSubview(content.view)
         content.view.translatesAutoresizingMaskIntoConstraints = false
         
-        contentHeightPositionContraint = NSLayoutConstraint(item: content.view, attribute: .height, relatedBy: .equal, toItem: view, attribute: .height, multiplier: 1.0, constant: 0.0)
+        contentHeightPositionContraint = NSLayoutConstraint(item: content.view, attribute: .height, relatedBy: .equal, toItem: view, attribute: .height, multiplier: 1.0, constant: 20.0)
         view.addConstraint(contentHeightPositionContraint!)
         contentYPositionContraint = NSLayoutConstraint(item: content.view, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1.0, constant: 0.0)
         view.addConstraint(contentYPositionContraint!)
@@ -151,7 +151,7 @@ class SlidingViewController: UIViewController {
             UIView.animate(withDuration: AnimationDuration, animations: {
                 self.view.superview?.layoutIfNeeded()
                 self.tabView?.alpha = alpha
-//                self.tabView?.backgroundColor = newColor
+                self.tabView?.backgroundColor = newColor
                 self.contentViewController?.view.backgroundColor = newColor
             }, completion: { (completed) in
                 if completed {
@@ -161,7 +161,7 @@ class SlidingViewController: UIViewController {
         }
     }
     
-    func didPan(_ gesture: UIPanGestureRecognizer) {
+    @objc func didPan(_ gesture: UIPanGestureRecognizer) {
         let touchLocation = gesture.location(in: view.superview)
         if initialRelativeYPosition == nil {
             initialRelativeYPosition = gesture.location(in: view).y
@@ -175,7 +175,7 @@ class SlidingViewController: UIViewController {
             break;
         case .changed:
             if let relativeYPosition = initialRelativeYPosition {
-                let MinimumYPosition = -tabView!.frame.size.height
+                let MinimumYPosition = -tabView!.frame.size.height 
                 let MaximumYPosition = -tabView!.frame.size.height + contentViewController!.view.frame.size.height
                 let touchYPosition = touchLocation.y - relativeYPosition
                 let newYPosition: CGFloat = max(MinimumYPosition, min(MaximumYPosition, touchYPosition))
@@ -204,7 +204,7 @@ class SlidingViewController: UIViewController {
         }
     }
     
-    func didTap(_ gesture: UITapGestureRecognizer) {
+    @objc func didTap(_ gesture: UITapGestureRecognizer) {
         initialRelativeYPosition = nil
         initialAbsoluteYPosition = nil
         updatePosition((position == .closed) ? .open : .closed, animated: true)
