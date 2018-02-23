@@ -7,9 +7,10 @@
 //
 
 enum Socials: String {
-    case fb = "https://www.facebook.com/UCLARadio"
-    case ig =
-
+    case facebook   = "https://www.facebook.com/UCLARadio"
+    case twitter    = "https://twitter.com/UCLAradio"
+    case instagram  = "https://www.instagram.com/uclaradio/"
+    case snapchat   = "https://www.snapchat.com/add/uclaradio"
 }
 
 class SocialButton: UIButton {
@@ -19,9 +20,13 @@ class SocialButton: UIButton {
 
     func setURL(s: Socials) {
         switch String {
-        case .fb:
-            <#code#>
-        case .ig:
+        case .facebook:
+        
+        case .twitter:
+            
+        case .instagram:
+            
+        case .snapchat:
             
         default:
             <#code#>

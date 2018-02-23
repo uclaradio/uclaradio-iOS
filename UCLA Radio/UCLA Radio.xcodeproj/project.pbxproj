@@ -49,6 +49,7 @@
 		83C4CC1D1CE25BB900FBA1EC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C4CC1C1CE25BB900FBA1EC /* Constants.swift */; };
 		83C4CC1F1CE25C1500FBA1EC /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C4CC1E1CE25C1500FBA1EC /* UIColor+Hex.swift */; };
 		83E4247A1CEECCF700662EDD /* NowPlayingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E424791CEECCF700662EDD /* NowPlayingView.swift */; };
+		CD3925C71EEA8A6A009C51D2 /* SocialButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3925C61EEA8A6A009C51D2 /* SocialButton.swift */; };
 		D80859121E552819007BD3FF /* apercu_bold-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D808590E1E552819007BD3FF /* apercu_bold-webfont.ttf */; };
 		D80859131E552819007BD3FF /* apercu_light-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D808590F1E552819007BD3FF /* apercu_light-webfont.ttf */; };
 		D80859141E552819007BD3FF /* apercu_medium-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D80859101E552819007BD3FF /* apercu_medium-webfont.ttf */; };
@@ -129,6 +130,7 @@
 		83C4CC1C1CE25BB900FBA1EC /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		83C4CC1E1CE25C1500FBA1EC /* UIColor+Hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
 		83E424791CEECCF700662EDD /* NowPlayingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NowPlayingView.swift; sourceTree = "<group>"; };
+		CD3925C61EEA8A6A009C51D2 /* SocialButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialButton.swift; sourceTree = "<group>"; };
 		D808590E1E552819007BD3FF /* apercu_bold-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "apercu_bold-webfont.ttf"; sourceTree = "<group>"; };
 		D808590F1E552819007BD3FF /* apercu_light-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "apercu_light-webfont.ttf"; sourceTree = "<group>"; };
 		D80859101E552819007BD3FF /* apercu_medium-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "apercu_medium-webfont.ttf"; sourceTree = "<group>"; };
@@ -323,6 +325,7 @@
 		83C4CC201CE26B5800FBA1EC /* custom elements */ = {
 			isa = PBXGroup;
 			children = (
+				CD3925C61EEA8A6A009C51D2 /* SocialButton.swift */,
 				8365ECF41CE99265001B96BF /* SlidingViewController.swift */,
 				83A8ED6D1CE30248003D4286 /* RecentTrackView.swift */,
 				83E424791CEECCF700662EDD /* NowPlayingView.swift */,
@@ -564,6 +567,7 @@
 				832F7ECB1DA1D155001462C6 /* EventsHeaderView.swift in Sources */,
 				83C28A6D1D025FB10096D629 /* RadioAPI.swift in Sources */,
 				8365ECF71CE9945C001B96BF /* ContainerViewController.swift in Sources */,
+				CD3925C71EEA8A6A009C51D2 /* SocialButton.swift in Sources */,
 				D80C7AA51DF7D7B0003375F6 /* DateFormatter+ShowDate.swift in Sources */,
 				D80C7AA71DF7D92B003375F6 /* NotificationManager.swift in Sources */,
 				83A8ED6E1CE30248003D4286 /* RecentTrackView.swift in Sources */,
