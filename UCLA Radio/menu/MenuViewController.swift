@@ -13,7 +13,6 @@ private let reuseIdentifier = "MenuCell"
 private let headerReuseIdentifier = "MenuHeaderView"
 private let sectionInset: CGFloat = 25
 private let itemSpacing: CGFloat = 15
-private let atractiveColorSchemes = ["BuGn", "BuPu", "RdPu", "Reds", "Oranges","Greens", "Blues", "Purples", "PuRd"]
 
 class MenuItem {
     let title: String
@@ -74,8 +73,8 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
             navigationController.setNavigationBarHidden(true, animated: true)
         }
         
-        // randomly set color scheme
-        triangleView.colorScheme = atractiveColorSchemes[Int(arc4random_uniform(UInt32(atractiveColorSchemes.count)))]
+        // set the color scheme
+        triangleView.colorScheme = "Spectral"
         
         AnalyticsManager.sharedInstance.trackPageWithValue("Menu / Now Playing")
     }
