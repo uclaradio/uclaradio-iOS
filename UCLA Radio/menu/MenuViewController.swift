@@ -36,7 +36,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     private var items = [MenuItem]()
     
     var tableView = UITableView(frame: CGRect.zero, style: .grouped)
-    var triangleView: TrianglifyView!
+    var triangleView: UIView!
     
     // MARK: - ViewController Life Cycle
     
@@ -45,7 +45,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         view.backgroundColor = UIColor.clear
         
-        triangleView = TrianglifyView()
+        triangleView = UIView()
         view.addSubview(triangleView)
         triangleView.translatesAutoresizingMaskIntoConstraints = false
 
@@ -73,8 +73,15 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
             navigationController.setNavigationBarHidden(true, animated: true)
         }
         
-        // set the color scheme
-        triangleView.colorScheme = "Spectral"
+        // set the background image
+        
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        UIImage(named: "background")?.draw(in: self.view.bounds)
+        
+        if let image = UIGraphicsGetImageFromCurrentImageContext(){
+            UIGraphicsEndImageContext()
+            self.view.backgroundColor = UIColor(patternImage: image)
+        }
         
         AnalyticsManager.sharedInstance.trackPageWithValue("Menu / Now Playing")
     }
