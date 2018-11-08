@@ -10,13 +10,13 @@ import Foundation
 import UIKit
 import KRLCollectionViewGridLayout
 
-class ContainerViewController: UIViewController, NowPlayingActionDelegate {
+class ContainerViewController: UIViewController{
     
     // Menu
     var rootNavController: UINavigationController!
     
     // Now Playing slider
-    var slider: SlidingViewController!
+    //var slider: SlidingViewController!
     var nowPlaying: NowPlayingViewController!
     
     override func viewDidLoad() {
@@ -24,7 +24,7 @@ class ContainerViewController: UIViewController, NowPlayingActionDelegate {
         
         view.backgroundColor = UIColor.black
         
-        let menu = MenuViewController()
+        let menu = MenuPageViewController()
         rootNavController = UINavigationController(rootViewController: menu)
         view.addSubview(rootNavController.view)
         addChildViewController(rootNavController)
@@ -39,34 +39,34 @@ class ContainerViewController: UIViewController, NowPlayingActionDelegate {
             rootNavController.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white, NSAttributedStringKey.font: titleFont]
         }
         
-        installNowPlayingSlider()
+//        installNowPlayingSlider()
         
         view.addConstraints(preferredConstraints())
     }
     
-    func installNowPlayingSlider() {
-        if slider != nil {
-            return
-        }
-        // set up slider view controller (container)
-        slider = SlidingViewController()
-        view.addSubview(slider.view)
-        addChildViewController(slider)
-        slider.didMove(toParentViewController: self)
-        view.addConstraints(slider.preferredConstraints())
-        
-        // set up content (NowPlayingViewController)
-        if let nowPlaying = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "nowPlaying") as? NowPlayingViewController {
-            self.nowPlaying = nowPlaying
-            nowPlaying.actionDelegate = self
-            slider.addContent(nowPlaying)
-            
-            // set up slider tab (NowPlayingView)
-            let tabView = NowPlayingView(canSkipStream: false)
-            slider.addTabView(tabView)
-            tabView.backgroundColor = UIColor.black
-        }
-    }
+//    func installNowPlayingSlider() {
+//        if slider != nil {
+//            return
+//        }
+//        // set up slider view controller (container)
+//        slider = SlidingViewController()
+//        view.addSubview(slider.view)
+//        addChildViewController(slider)
+//        slider.didMove(toParentViewController: self)
+//        view.addConstraints(slider.preferredConstraints())
+//
+//        // set up content (NowPlayingViewController)
+//        if let nowPlaying = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "nowPlaying") as? NowPlayingViewController {
+//            self.nowPlaying = nowPlaying
+//            nowPlaying.actionDelegate = self
+//            slider.addContent(nowPlaying)
+//
+//            // set up slider tab (NowPlayingView)
+//            let tabView = NowPlayingView(canSkipStream: false)
+//            slider.addTabView(tabView)
+//            tabView.backgroundColor = UIColor.black
+//        }
+//    }
     
     override var preferredStatusBarStyle : UIStatusBarStyle {
         return .lightContent
@@ -75,7 +75,7 @@ class ContainerViewController: UIViewController, NowPlayingActionDelegate {
     // MARK: - NowPlayingActionDelegate
     
     func didTapShow(_ show: Show?) {
-        slider.updatePosition(.closed, animated: true)
+        //slider.updatePosition(.closed, animated: true)
         if let show = show, show.picture != nil {
             if let showVC = rootNavController.visibleViewController as? ShowViewController, let presentedShow = showVC.show {
                 if (show.id == presentedShow.id) {

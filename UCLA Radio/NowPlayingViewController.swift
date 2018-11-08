@@ -13,15 +13,17 @@ protocol NowPlayingActionDelegate {
     func didTapShow(_ show: Show?)
 }
 
-class NowPlayingViewController: UIViewController, SlidingVCDelegate {
+class NowPlayingViewController: UIViewController{
 
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var controlsParentView: UIView!
-    @IBOutlet weak var pullTabImageView: UIImageView!
+    //@IBOutlet weak var pullTabImageView: UIImageView!
+    
+    //weak var pullTabImageView: UIImageView!
     
     var nowPlayingView: NowPlayingView!
-    weak var sliderDelegate: SlidingVCDelegate?
+    //weak var sliderDelegate: SlidingVCDelegate?
     
     var actionDelegate: NowPlayingActionDelegate?
     fileprivate var nowPlaying: Show?
@@ -29,7 +31,7 @@ class NowPlayingViewController: UIViewController, SlidingVCDelegate {
     fileprivate var tapGesture: UITapGestureRecognizer?
     private var lastOpenPercentage: CGFloat?
     
-    var slider: SlidingViewController?
+    //var slider: SlidingViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,11 +64,11 @@ class NowPlayingViewController: UIViewController, SlidingVCDelegate {
         imageView.addGestureRecognizer(tapGesture!)
         
         // pull tab
-        pullTabImageView.image = UIImage(named: "pull_tab")
-        pullTabImageView.isUserInteractionEnabled = true
-        pullTabImageView.tintColor = UIColor.white
-        let pullTabTap = UITapGestureRecognizer(target: self, action: #selector(didTapPullTab))
-        pullTabImageView.addGestureRecognizer(pullTabTap)
+//        pullTabImageView.image = UIImage(named: "pull_tab")
+//        pullTabImageView.isUserInteractionEnabled = true
+//        pullTabImageView.tintColor = UIColor.white
+//        let pullTabTap = UITapGestureRecognizer(target: self, action: #selector(didTapPullTab))
+//        pullTabImageView.addGestureRecognizer(pullTabTap)
         
         
         
@@ -105,7 +107,7 @@ class NowPlayingViewController: UIViewController, SlidingVCDelegate {
         
         // constraints for call button array
         stackView.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 20).isActive = true
-        stackView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -30).isActive = true
+        stackView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -100).isActive = true
         stackView.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: -20).isActive = true
         stackView.heightAnchor.constraint(equalToConstant: containerView.frame.height/8).isActive = true
 
@@ -165,33 +167,33 @@ class NowPlayingViewController: UIViewController, SlidingVCDelegate {
         actionDelegate?.didTapShow(nowPlaying)
     }
     
-    @objc func didTapPullTab(_ gesture: UITapGestureRecognizer) {
-        actionDelegate?.didTapShow(nil)
-    }
+//    @objc func didTapPullTab(_ gesture: UITapGestureRecognizer) {
+//        actionDelegate?.didTapShow(nil)
+//    }
     
     // MARK: - SlidingVCDelegate
     
-    func positionUpdated(_ position: SlidingViewControllerPosition) {
-        if let slider = slider {
-            if (slider.position == .closed) {
-                pullTabImageView.transform = CGAffineTransform(rotationAngle: (180.0 * CGFloat(Double.pi)) / 180.0)
-            } else {
-                pullTabImageView.transform = CGAffineTransform.identity
-            }
-        }
-        lastOpenPercentage = nil
-    }
-    
-    func openPercentageChanged(_ openPercentage: CGFloat) {
-        if let lastOpenPercentage = lastOpenPercentage {
-            if (openPercentage < lastOpenPercentage) {
-                pullTabImageView.transform = CGAffineTransform.identity
-            } else {
-                pullTabImageView.transform = CGAffineTransform(rotationAngle: (180.0 * CGFloat(Double.pi)) / 180.0)
-            }
-        }
-        lastOpenPercentage = openPercentage
-    }
+//    func positionUpdated(_ position: SlidingViewControllerPosition) {
+//        if let slider = slider {
+//            if (slider.position == .closed) {
+//                pullTabImageView.transform = CGAffineTransform(rotationAngle: (180.0 * CGFloat(Double.pi)) / 180.0)
+//            } else {
+//                pullTabImageView.transform = CGAffineTransform.identity
+//            }
+//        }
+//        lastOpenPercentage = nil
+//    }
+//
+//    func openPercentageChanged(_ openPercentage: CGFloat) {
+//        if let lastOpenPercentage = lastOpenPercentage {
+//            if (openPercentage < lastOpenPercentage) {
+//                pullTabImageView.transform = CGAffineTransform.identity
+//            } else {
+//                pullTabImageView.transform = CGAffineTransform(rotationAngle: (180.0 * CGFloat(Double.pi)) / 180.0)
+//            }
+//        }
+//        lastOpenPercentage = openPercentage
+//    }
     
     // MARK: - Radio APIFetchDelegate
     

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		061295941FB2812700C848CE /* DJPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061295931FB2812700C848CE /* DJPopupViewController.swift */; };
+		787968812193E4CB0090574B /* MenuPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787968802193E4CB0090574B /* MenuPageViewController.swift */; };
 		80C4FF0BDD1724D747148CEA /* Pods_UCLA_Radio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65514855D8EABCF7CD92BD49 /* Pods_UCLA_Radio.framework */; };
 		832C65E01CD0800200B3479E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832C65DF1CD0800200B3479E /* AppDelegate.swift */; };
 		832C65E21CD0800200B3479E /* NowPlayingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832C65E11CD0800200B3479E /* NowPlayingViewController.swift */; };
@@ -85,6 +86,7 @@
 		3FFD9ADD0DCADD1878E89FDE /* Pods-UCLA Radio.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UCLA Radio.release.xcconfig"; path = "Pods/Target Support Files/Pods-UCLA Radio/Pods-UCLA Radio.release.xcconfig"; sourceTree = "<group>"; };
 		65514855D8EABCF7CD92BD49 /* Pods_UCLA_Radio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UCLA_Radio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DA6C14DE284BA7CD5A4FD5A /* Pods-UCLA Radio.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UCLA Radio.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UCLA Radio/Pods-UCLA Radio.debug.xcconfig"; sourceTree = "<group>"; };
+		787968802193E4CB0090574B /* MenuPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuPageViewController.swift; sourceTree = "<group>"; };
 		7EDC7C36369CBB202115B29B /* Pods-UCLA RadioTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UCLA RadioTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UCLA RadioTests/Pods-UCLA RadioTests.debug.xcconfig"; sourceTree = "<group>"; };
 		832C65DC1CD0800200B3479E /* UCLA Radio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UCLA Radio.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		832C65DF1CD0800200B3479E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -314,6 +316,7 @@
 				83C28A781D050F3B0096D629 /* Schedule */,
 				835EC1C31DA09C2100599860 /* Events */,
 				83C28A621D025DED0096D629 /* MenuTableViewCell.swift */,
+				787968802193E4CB0090574B /* MenuPageViewController.swift */,
 				8356DDFE1DA043E900B2B63B /* MenuSectionHeaderView.swift */,
 				83C28A631D025DED0096D629 /* MenuViewController.swift */,
 				83C28A6A1D025E500096D629 /* AboutViewController.swift */,
@@ -730,6 +733,7 @@
 				83C221131E556F1E00DB28AB /* DesignableLabel.swift in Sources */,
 				83E4247A1CEECCF700662EDD /* NowPlayingView.swift in Sources */,
 				83C28A6B1D025E500096D629 /* AboutViewController.swift in Sources */,
+				787968812193E4CB0090574B /* MenuPageViewController.swift in Sources */,
 				83C28A7E1D050FD40096D629 /* ScheduleShowCell.swift in Sources */,
 				83C28A711D0263350096D629 /* DJ.swift in Sources */,
 				D8A9A9801E0DD19B002F8E24 /* NotificationDetailsViewController.swift in Sources */,
