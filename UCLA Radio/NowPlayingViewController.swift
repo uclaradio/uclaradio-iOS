@@ -36,7 +36,14 @@ class NowPlayingViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = Constants.Colors.reallyDarkBlue
+        //set the background image
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        UIImage(named: "background")?.draw(in: self.view.bounds)
+        
+        if let image = UIGraphicsGetImageFromCurrentImageContext(){
+            UIGraphicsEndImageContext()
+            self.view.backgroundColor = UIColor(patternImage: image)
+        }
         
         imageView.image = UIImage(named: "radio_banner")
         

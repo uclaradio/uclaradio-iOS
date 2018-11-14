@@ -25,9 +25,13 @@ class EventsViewController: BaseViewController, APIFetchDelegate, UITableViewDat
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = Constants.Colors.lightBlue
-        if let navigationController = navigationController {
-            navigationController.navigationBar.barTintColor = Constants.Colors.reallyDarkBlue
+        //set background image of tableView
+        UIGraphicsBeginImageContext(tableView.frame.size)
+        UIImage(named: "background")?.draw(in: tableView.bounds)
+        
+        if let image = UIGraphicsGetImageFromCurrentImageContext(){
+            UIGraphicsEndImageContext()
+            tableView.backgroundColor = UIColor(patternImage: image)
         }
         
         tableView.dataSource = self
@@ -38,6 +42,7 @@ class EventsViewController: BaseViewController, APIFetchDelegate, UITableViewDat
         tableView.register(EventsInfoHeaderView.self, forHeaderFooterViewReuseIdentifier: infoHeaderReuseIdentifier)
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        
         
         view.addConstraints(preferredConstraints())
     }
