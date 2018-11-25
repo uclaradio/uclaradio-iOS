@@ -37,6 +37,14 @@ class MenuPageViewController: UIPageViewController {
         
         dataSource = self
         
+        //set background image
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        UIImage(named: "background")?.draw(in: self.view.bounds)
+        
+        if let image = UIGraphicsGetImageFromCurrentImageContext(){
+            UIGraphicsEndImageContext()
+            self.view.backgroundColor = UIColor(patternImage: image)
+        }
         
         if let firstViewController = orderedViewControllers.first {
             setViewControllers([firstViewController as! UIViewController],

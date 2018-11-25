@@ -30,8 +30,8 @@ class ContainerViewController: UIViewController{
         addChildViewController(rootNavController)
         rootNavController.didMove(toParentViewController: self)
         rootNavController.view.translatesAutoresizingMaskIntoConstraints = false
-        rootNavController.view.backgroundColor = Constants.Colors.lightPink
-        rootNavController.navigationBar.barTintColor = Constants.Colors.darkPink
+        rootNavController.view.backgroundColor = Constants.Colors.darkBackground
+        rootNavController.navigationBar.barTintColor = Constants.Colors.darkBackground
         // back button color
         rootNavController.navigationBar.tintColor = UIColor.white
         // title color
@@ -43,30 +43,6 @@ class ContainerViewController: UIViewController{
         
         view.addConstraints(preferredConstraints())
     }
-    
-//    func installNowPlayingSlider() {
-//        if slider != nil {
-//            return
-//        }
-//        // set up slider view controller (container)
-//        slider = SlidingViewController()
-//        view.addSubview(slider.view)
-//        addChildViewController(slider)
-//        slider.didMove(toParentViewController: self)
-//        view.addConstraints(slider.preferredConstraints())
-//
-//        // set up content (NowPlayingViewController)
-//        if let nowPlaying = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "nowPlaying") as? NowPlayingViewController {
-//            self.nowPlaying = nowPlaying
-//            nowPlaying.actionDelegate = self
-//            slider.addContent(nowPlaying)
-//
-//            // set up slider tab (NowPlayingView)
-//            let tabView = NowPlayingView(canSkipStream: false)
-//            slider.addTabView(tabView)
-//            tabView.backgroundColor = UIColor.black
-//        }
-//    }
     
     override var preferredStatusBarStyle : UIStatusBarStyle {
         return .lightContent

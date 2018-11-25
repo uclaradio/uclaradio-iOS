@@ -25,15 +25,6 @@ class EventsViewController: BaseViewController, APIFetchDelegate, UITableViewDat
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //set background image of tableView
-        UIGraphicsBeginImageContext(tableView.frame.size)
-        UIImage(named: "background")?.draw(in: tableView.bounds)
-        
-        if let image = UIGraphicsGetImageFromCurrentImageContext(){
-            UIGraphicsEndImageContext()
-            tableView.backgroundColor = UIColor(patternImage: image)
-        }
-        
         tableView.dataSource = self
         tableView.delegate = self
         tableView.separatorStyle = .none
@@ -43,6 +34,8 @@ class EventsViewController: BaseViewController, APIFetchDelegate, UITableViewDat
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
+        //set background image of tableView
+        tableView.backgroundColor = UIColor(white: 1, alpha: 0.0)
         
         view.addConstraints(preferredConstraints())
     }
