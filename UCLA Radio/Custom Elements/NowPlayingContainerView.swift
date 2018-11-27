@@ -37,7 +37,7 @@ class NowPlayingContainerView: SliderTabView {
         //NowPlayingContainerView.ButtonSize = self.frame.width/12
         
         imageView = UIImageView()
-        imageView.frame = CGRect(x: 30, y: 10, width: self.frame.width-60, height: self.frame.width-60)
+        imageView.frame = CGRect(x: 30, y: 40, width: self.frame.width-60, height: self.frame.width-60)
         imageView.tintColor = UIColor.white
         imageView.image = UIImage(named: "radio_banner")
         imageView.layer.masksToBounds = true
@@ -120,6 +120,9 @@ class NowPlayingContainerView: SliderTabView {
     //what happens when you hit the play button
     @objc func hitPlay(_ button: UIButton) {
         AudioStream.sharedInstance.togglePlay()
+        if(AudioStream.sharedInstance.playing){
+            AudioStream.sharedInstance.skipToLive()
+        }
     }
     
     //phone numbers to call for the request button and onAir button
@@ -198,7 +201,7 @@ class NowPlayingContainerView: SliderTabView {
         
         
         //Use visual format language magic to make autolayout do its thing
-        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|-[play(button)]-(200)-|", options: [], metrics: metrics, views: ["play": playButton])
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|-[play(button)]-(150)-|", options: [], metrics: metrics, views: ["play": playButton, "image": imageView])
         constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-[image]-|", options: [], metrics: metrics, views: ["image": imageContainer])
         constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-[title]-|", options: [], metrics: metrics, views: ["title": titleLabel])
         constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-(30)-[callButton]-[play(button)]-[onAirButton]-(30)-|", options: [], metrics: metrics, views: ["callButton": callButton, "play": playButton, "onAirButton": onAirButton])

@@ -13,9 +13,9 @@ class BaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if let navigationController = navigationController {
-            navigationController.navigationBar.barTintColor = UIColor(hex: 0x80333333)
-        }
+//        if let navigationController = navigationController {
+//            navigationController.navigationBar.barTintColor = UIColor(hex: 0x80333333)
+//        }
         
         //make the background of any BaseViewController transparent
         self.view.backgroundColor = UIColor(white: 1, alpha: 0.0)
@@ -29,9 +29,9 @@ class BaseTableViewController: UITableViewController {
         super.viewDidLoad()
         
         //view.backgroundColor = Constants.Colors.lightPink
-        if let navigationController = navigationController {
-            navigationController.navigationBar.barTintColor = Constants.Colors.darkBackground
-        }
+//        if let navigationController = navigationController {
+//            navigationController.navigationBar.barTintColor = Constants.Colors.darkBackground
+//        }
         
         UIGraphicsBeginImageContext(self.view.frame.size)
         UIImage(named: "background")?.draw(in: self.view.bounds)

@@ -13,7 +13,7 @@ import KRLCollectionViewGridLayout
 class ContainerViewController: UIViewController{
     
     // Menu
-    var rootNavController: UINavigationController!
+    var rootNavController: MenuNavController!
     
     // Now Playing slider
     //var slider: SlidingViewController!
@@ -25,19 +25,10 @@ class ContainerViewController: UIViewController{
         view.backgroundColor = UIColor.black
         
         let menu = MenuPageViewController()
-        rootNavController = UINavigationController(rootViewController: menu)
+        rootNavController = MenuNavController(rootViewController: menu)
+        //rootNavController = MenuNavController(rootViewController: menu)
         view.addSubview(rootNavController.view)
         addChildViewController(rootNavController)
-        rootNavController.didMove(toParentViewController: self)
-        rootNavController.view.translatesAutoresizingMaskIntoConstraints = false
-        rootNavController.view.backgroundColor = Constants.Colors.darkBackground
-        rootNavController.navigationBar.barTintColor = UIColor(hex: 0x80333333)
-        // back button color
-        rootNavController.navigationBar.tintColor = UIColor.white
-        // title color
-        if let titleFont = UIFont(name: Constants.Fonts.title, size: 21) {
-            rootNavController.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white, NSAttributedStringKey.font: titleFont]
-        }
         //self.navigationItem.title = "U C L A R A D I O"
 //        installNowPlayingSlider()
         
@@ -47,7 +38,6 @@ class ContainerViewController: UIViewController{
     override var preferredStatusBarStyle : UIStatusBarStyle {
         return .lightContent
     }
-    
     
     // MARK: - NowPlayingActionDelegate
     
