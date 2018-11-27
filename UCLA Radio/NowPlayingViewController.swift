@@ -16,10 +16,10 @@ protocol NowPlayingActionDelegate {
 class NowPlayingViewController: UIViewController{
 
     @IBOutlet weak var containerView: UIView!
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var controlsParentView: UIView!
+    var imageView: UIImageView!
+    //@IBOutlet weak var controlsParentView: UIView!
     
-    var nowPlayingView: NowPlayingView!
+    var nowPlayingView: NowPlayingContainerView!
     
     var actionDelegate: NowPlayingActionDelegate?
     fileprivate var nowPlaying: Show?
@@ -30,28 +30,28 @@ class NowPlayingViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         //set the background image
         self.view.backgroundColor = UIColor.clear
         
+        nowPlayingView = NowPlayingContainerView(frame: CGRect(x: 0, y: 0, width: containerView.frame.width, height: containerView.frame.height))
+        
+        containerView.addSubview(nowPlayingView)
+        containerView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-[nowPlaying]-|", options: [], metrics: nil, views: ["nowPlaying": nowPlayingView]))
+        
+        containerView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-[nowPlaying]-|", options: [], metrics: nil, views: ["nowPlaying": nowPlayingView]))
+        
+        containerView.addConstraint(NSLayoutConstraint(item: nowPlayingView, attribute: .width, relatedBy: .equal, toItem: containerView, attribute: .width, multiplier: 1.0, constant: 0.0))
+
+        containerView.addConstraint(NSLayoutConstraint(item: nowPlayingView, attribute: .height, relatedBy: .equal, toItem: containerView, attribute: .height, multiplier: 1.0, constant: 0.0))
+        
+            containerView.addConstraint(NSLayoutConstraint(item: nowPlayingView, attribute: .bottom, relatedBy: .equal, toItem: containerView, attribute: .bottom, multiplier: 1.0, constant: 1.0))
+        
+        
+        imageView = nowPlayingView.imageView
         imageView.image = UIImage(named: "radio_banner")
         
-        nowPlayingView = NowPlayingView(canSkipStream: true)
-        nowPlayingView.translatesAutoresizingMaskIntoConstraints = false
-        controlsParentView.addSubview(nowPlayingView)
         
-        controlsParentView.backgroundColor = UIColor.clear
-        
-        let controlsViews: [String: UIView] = ["nowPlaying": nowPlayingView]
-        controlsParentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[nowPlaying]-|", options: [], metrics: nil, views: controlsViews))
-        controlsParentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-[nowPlaying]-|", options: [], metrics: nil, views: controlsViews))
-        
-        imageView.isUserInteractionEnabled = true
-        imageView.contentMode = .scaleAspectFill
-        imageView.clipsToBounds = true
-        tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTap))
-        imageView.addGestureRecognizer(tapGesture!)
-
     }
     
     //while a little bizarre, we must make the playButton circular in the viewDidLayoutSubviews() function of the viewcontroller which ultimately controls it
@@ -70,9 +70,9 @@ class NowPlayingViewController: UIViewController{
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        nowPlayingView.willDisappear()
+        //nowPlayingView.willDisappear()
 
-        NotificationCenter.default.removeObserver(self)
+        //NotificationCenter.default.removeObserver(self)
     }
 
     override func didReceiveMemoryWarning() {
@@ -93,7 +93,7 @@ class NowPlayingViewController: UIViewController{
     // Slider
     
     @objc func didTap(_ gesture: UITapGestureRecognizer) {
-        actionDelegate?.didTapShow(nowPlaying)
+        //actionDelegate?.didTapShow(nowPlaying)
     }
     
     // MARK: - Radio APIFetchDelegate

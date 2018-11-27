@@ -31,14 +31,14 @@ class ContainerViewController: UIViewController{
         rootNavController.didMove(toParentViewController: self)
         rootNavController.view.translatesAutoresizingMaskIntoConstraints = false
         rootNavController.view.backgroundColor = Constants.Colors.darkBackground
-        rootNavController.navigationBar.barTintColor = Constants.Colors.darkBackground
+        rootNavController.navigationBar.barTintColor = UIColor(hex: 0x80333333)
         // back button color
         rootNavController.navigationBar.tintColor = UIColor.white
         // title color
         if let titleFont = UIFont(name: Constants.Fonts.title, size: 21) {
             rootNavController.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white, NSAttributedStringKey.font: titleFont]
         }
-        
+        //self.navigationItem.title = "U C L A R A D I O"
 //        installNowPlayingSlider()
         
         view.addConstraints(preferredConstraints())
@@ -47,6 +47,7 @@ class ContainerViewController: UIViewController{
     override var preferredStatusBarStyle : UIStatusBarStyle {
         return .lightContent
     }
+    
     
     // MARK: - NowPlayingActionDelegate
     

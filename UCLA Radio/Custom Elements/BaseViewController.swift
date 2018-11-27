@@ -14,16 +14,12 @@ class BaseViewController: UIViewController {
         super.viewDidLoad()
 
         if let navigationController = navigationController {
-            navigationController.navigationBar.barTintColor = Constants.Colors.darkPink
+            navigationController.navigationBar.barTintColor = UIColor(hex: 0x80333333)
         }
         
-        UIGraphicsBeginImageContext(self.view.frame.size)
-        UIImage(named: "background")?.draw(in: self.view.bounds)
+        //make the background of any BaseViewController transparent
+        self.view.backgroundColor = UIColor(white: 1, alpha: 0.0)
         
-        if let image = UIGraphicsGetImageFromCurrentImageContext(){
-            UIGraphicsEndImageContext()
-            self.view.backgroundColor = UIColor(patternImage: image)
-        }
     }
 
 }
@@ -34,7 +30,7 @@ class BaseTableViewController: UITableViewController {
         
         //view.backgroundColor = Constants.Colors.lightPink
         if let navigationController = navigationController {
-            navigationController.navigationBar.barTintColor = Constants.Colors.darkPink
+            navigationController.navigationBar.barTintColor = Constants.Colors.darkBackground
         }
         
         UIGraphicsBeginImageContext(self.view.frame.size)

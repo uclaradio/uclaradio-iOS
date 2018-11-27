@@ -14,7 +14,7 @@ class BaseViewController: UIViewController {
         super.viewDidLoad()
 
         if let navigationController = navigationController {
-            navigationController.navigationBar.barTintColor = Constants.Colors.darkPink
+            navigationController.navigationBar.barTintColor = UIColor(hex: 0x80333333)
         }
         
         //make the background of any BaseViewController transparent

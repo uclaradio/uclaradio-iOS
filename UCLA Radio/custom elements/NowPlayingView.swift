@@ -39,7 +39,7 @@ class NowPlayingView: SliderTabView {
         playButton = UIButton(type: .custom)
         playButton.tintColor = UIColor.white
         playButton.contentMode = .scaleAspectFit
-        playButton.imageEdgeInsets = UIEdgeInsets(top: 35, left: 35, bottom: 35, right: 30)
+        playButton.imageEdgeInsets = UIEdgeInsets(top: 35, left: 35, bottom: 35, right: 35)
         playButton.translatesAutoresizingMaskIntoConstraints = false
         playButton.addTarget(self, action: #selector(hitPlay), for: .touchUpInside)
         playButton.backgroundColor = Constants.Colors.gold
