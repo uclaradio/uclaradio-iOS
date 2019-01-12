@@ -13,7 +13,6 @@ private let reuseIdentifier = "MenuCell"
 private let headerReuseIdentifier = "MenuHeaderView"
 private let sectionInset: CGFloat = 25
 private let itemSpacing: CGFloat = 15
-private let atractiveColorSchemes = ["BuGn", "BuPu", "RdPu", "Reds", "Oranges","Greens", "Blues", "Purples", "PuRd"]
 
 class MenuItem {
     let title: String
@@ -37,7 +36,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     private var items = [MenuItem]()
     
     var tableView = UITableView(frame: CGRect.zero, style: .grouped)
-    var triangleView: TrianglifyView!
+    var triangleView: UIView!
     
     // MARK: - ViewController Life Cycle
     
@@ -46,7 +45,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         view.backgroundColor = UIColor.clear
         
-        triangleView = TrianglifyView()
+        triangleView = UIView()
         view.addSubview(triangleView)
         triangleView.translatesAutoresizingMaskIntoConstraints = false
 
@@ -74,8 +73,15 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
             navigationController.setNavigationBarHidden(true, animated: true)
         }
         
-        // randomly set color scheme
-        triangleView.colorScheme = atractiveColorSchemes[Int(arc4random_uniform(UInt32(atractiveColorSchemes.count)))]
+        // set the background image
+        
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        UIImage(named: "background")?.draw(in: self.view.bounds)
+        
+        if let image = UIGraphicsGetImageFromCurrentImageContext(){
+            UIGraphicsEndImageContext()
+            self.view.backgroundColor = UIColor(patternImage: image)
+        }
         
         AnalyticsManager.sharedInstance.trackPageWithValue("Menu / Now Playing")
     }
