@@ -16,6 +16,7 @@ class ContainerViewController: UIViewController{
     //var rootNavController: MenuNavController!
     var rootNavController: UINavigationController!
     
+    var navImage: UIImageView!
     
     // Now Playing slider
     //var slider: SlidingViewController!
@@ -29,6 +30,12 @@ class ContainerViewController: UIViewController{
         
 
         let menu = MenuPageViewController()
+        
+        let imageName = "uclaradio_banner"
+        let image = UIImage(named: imageName)
+        navImage = UIImageView(image: image!)
+        navImage.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height/6)
+        
         //rootNavController = MenuNavController(rootViewController: menu)
         rootNavController = UINavigationController(rootViewController: menu)
         //rootNavController = MenuNavController(rootViewController: menu)
@@ -37,7 +44,7 @@ class ContainerViewController: UIViewController{
         addChildViewController(rootNavController)
         //self.navigationItem.title = "U C L A R A D I O"
 //        installNowPlayingSlider()
-    
+        view.addSubview(navImage)
         
         if let navController = rootNavController {
             System.clearNavigationBar(forBar: navController.navigationBar)
@@ -80,10 +87,10 @@ class ContainerViewController: UIViewController{
         var constraints = [NSLayoutConstraint]()
         
         let metrics = ["tabSpace": NowPlayingContainerView.PreferredHeight]
-        let view = rootNavController.view!
-        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|-(tabSpace)-[nav]-(tabSpace)-|", options: [], metrics: metrics, views: ["nav": view])
-        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|[nav]|", options: [], metrics: nil, views: ["nav": rootNavController.view])
-        
+        //constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|-[header]-|", options: [], metrics: metrics, views: ["header": navImage])
+//        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|[nav]|", options: [], metrics: nil, views: ["nav": rootNavController.view])
+        constraints.append(NSLayoutConstraint(item: navImage, attribute: .top, relatedBy: .equal, toItem: self.view, attribute: .top, multiplier: 1.0, constant: 1.0))
+        constraints.append(NSLayoutConstraint(item: rootNavController.view, attribute: .top, relatedBy: .equal, toItem: navImage, attribute: .bottom, multiplier: 1.0, constant: 1.0))
         return constraints
     }
     
