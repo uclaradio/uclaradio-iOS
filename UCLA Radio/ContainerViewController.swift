@@ -19,7 +19,7 @@ class ContainerViewController: UIViewController{
     var navImage: UIImageView!
     
     // Now Playing slider
-    //var slider: SlidingViewController!
+    var slider: SlidingViewController!
     var nowPlaying: NowPlayingViewController!
     
     override func viewDidLoad() {
@@ -43,7 +43,7 @@ class ContainerViewController: UIViewController{
         view.addSubview(rootNavController.view)
         addChildViewController(rootNavController)
         //self.navigationItem.title = "U C L A R A D I O"
-//        installNowPlayingSlider()
+        installNowPlayingSlider()
         view.addSubview(navImage)
         
         if let navController = rootNavController {
