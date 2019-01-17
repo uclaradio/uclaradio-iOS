@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		061295941FB2812700C848CE /* DJPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061295931FB2812700C848CE /* DJPopupViewController.swift */; };
+		780D723B21F030B1001F2178 /* OriginalContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780D723A21F030B1001F2178 /* OriginalContainer.swift */; };
+		780D723D21F035DC001F2178 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780D723C21F035DC001F2178 /* ChatView.swift */; };
 		7842059B21AD12E700BC3C08 /* NowPlayingContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7842059A21AD12E700BC3C08 /* NowPlayingContainerView.swift */; };
 		7842059F21ADFDB200BC3C08 /* MenuNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7842059E21ADFDB200BC3C08 /* MenuNavController.swift */; };
 		787968812193E4CB0090574B /* MenuPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787968802193E4CB0090574B /* MenuPageViewController.swift */; };
@@ -88,6 +90,8 @@
 		3FFD9ADD0DCADD1878E89FDE /* Pods-UCLA Radio.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UCLA Radio.release.xcconfig"; path = "Pods/Target Support Files/Pods-UCLA Radio/Pods-UCLA Radio.release.xcconfig"; sourceTree = "<group>"; };
 		65514855D8EABCF7CD92BD49 /* Pods_UCLA_Radio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UCLA_Radio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DA6C14DE284BA7CD5A4FD5A /* Pods-UCLA Radio.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UCLA Radio.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UCLA Radio/Pods-UCLA Radio.debug.xcconfig"; sourceTree = "<group>"; };
+		780D723A21F030B1001F2178 /* OriginalContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OriginalContainer.swift; sourceTree = "<group>"; };
+		780D723C21F035DC001F2178 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		7842059A21AD12E700BC3C08 /* NowPlayingContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NowPlayingContainerView.swift; path = "UCLA Radio/Custom Elements/NowPlayingContainerView.swift"; sourceTree = SOURCE_ROOT; };
 		7842059E21ADFDB200BC3C08 /* MenuNavController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MenuNavController.swift; path = "UCLA Radio/Custom Elements/MenuNavController.swift"; sourceTree = SOURCE_ROOT; };
 		787968802193E4CB0090574B /* MenuPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuPageViewController.swift; sourceTree = "<group>"; };
@@ -229,6 +233,7 @@
 				D80C7AA61DF7D92B003375F6 /* NotificationManager.swift */,
 				D865CBB11E0F0C0E008C050E /* AnalyticsManager.swift */,
 				8365ECF61CE9945C001B96BF /* ContainerViewController.swift */,
+				780D723A21F030B1001F2178 /* OriginalContainer.swift */,
 				83C4CC1C1CE25BB900FBA1EC /* Constants.swift */,
 				835CDF971D0818AD00C3213B /* Global.swift */,
 				832C65E31CD0800200B3479E /* Main.storyboard */,
@@ -342,6 +347,7 @@
 		83C4CC201CE26B5800FBA1EC /* custom elements */ = {
 			isa = PBXGroup;
 			children = (
+				780D723C21F035DC001F2178 /* ChatView.swift */,
 				8365ECF41CE99265001B96BF /* SlidingViewController.swift */,
 				83E424791CEECCF700662EDD /* NowPlayingView.swift */,
 				832F7EC81DA19D87001462C6 /* BaseViewController.swift */,
@@ -711,6 +717,7 @@
 				8356DDFD1DA03A3A00B2B63B /* Giveaway.swift in Sources */,
 				7842059F21ADFDB200BC3C08 /* MenuNavController.swift in Sources */,
 				83C28A771D02CB980096D629 /* Schedule.swift in Sources */,
+				780D723D21F035DC001F2178 /* ChatView.swift in Sources */,
 				834A33A31DA4B2A3008155E6 /* EventsInfoHeaderView.swift in Sources */,
 				832F7ECB1DA1D155001462C6 /* EventsHeaderView.swift in Sources */,
 				83C28A6D1D025FB10096D629 /* RadioAPI.swift in Sources */,
@@ -729,6 +736,7 @@
 				832F7EC91DA19D87001462C6 /* BaseViewController.swift in Sources */,
 				833B169F1CE1BD2D00E711F5 /* UIImage+Color.swift in Sources */,
 				837C71561D9F4CD800E5C472 /* TrianglifyView.swift in Sources */,
+				780D723B21F030B1001F2178 /* OriginalContainer.swift in Sources */,
 				8365ECF51CE99265001B96BF /* SlidingViewController.swift in Sources */,
 				83C28A651D025DED0096D629 /* MenuViewController.swift in Sources */,
 				8356DDFF1DA043E900B2B63B /* MenuSectionHeaderView.swift in Sources */,
