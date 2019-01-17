@@ -59,6 +59,30 @@ class ContainerViewController: UIViewController{
         return .lightContent
     }
     
+    func installNowPlayingSlider() {
+        if slider != nil {
+            return
+        }
+        // set up slider view controller (container)
+        slider = SlidingViewController()
+        view.addSubview(slider.view)
+        addChildViewController(slider)
+        slider.didMove(toParentViewController: self)
+        view.addConstraints(slider.preferredConstraints())
+        
+        // set up content (NowPlayingViewController)
+        if let nowPlaying = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "nowPlaying") as? NowPlayingViewController {
+            self.nowPlaying = nowPlaying
+            nowPlaying.actionDelegate = self
+            slider.addContent(nowPlaying)
+            
+            // set up slider tab (NowPlayingView)
+            let tabView = NowPlayingView(canSkipStream: false)
+            slider.addTabView(tabView)
+            tabView.backgroundColor = UIColor.black
+        }
+    }
+    
     // MARK: - NowPlayingActionDelegate
     
     func didTapShow(_ show: Show?) {
