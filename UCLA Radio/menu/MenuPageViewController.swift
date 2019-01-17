@@ -10,6 +10,8 @@ import UIKit
 
 class MenuPageViewController: UIPageViewController {
     
+    var navImage: UIImageView!
+    
     private lazy var orderedViewControllers: [UIViewController] = {
         var viewControllers = [UIViewController]()
         viewControllers.append(getViewControllerFromID(ID: "nowPlaying"))
@@ -35,6 +37,7 @@ class MenuPageViewController: UIPageViewController {
         
         super.viewDidLoad()
         
+        
         dataSource = self
         
         //set background image
@@ -52,6 +55,12 @@ class MenuPageViewController: UIPageViewController {
                                animated: true,
                                completion: nil)
         }
+        
+        let imageName = "uclaradio_banner"
+        let image = UIImage(named: imageName)
+        navImage = UIImageView(image: image!)
+        navImage.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height/6)
+        self.view.addSubview(navImage)
         
     }
     

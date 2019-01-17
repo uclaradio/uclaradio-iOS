@@ -13,15 +13,20 @@ class MenuNavController: UINavigationController {
     
     var headers: [String] = ["STREAM", "SHOWS", "DJs", "TICKETS", "ABOUT"]
     
+    var segmentedControl: UISegmentedControl!
+    
     override init(rootViewController: UIViewController) {
         super.init(rootViewController: rootViewController)
         
-        let segmentedControl = UISegmentedControl(items: headers)
+        segmentedControl = UISegmentedControl(items: headers)
         segmentedControl.selectedSegmentIndex = 0
-        segmentedControl.frame = CGRect(x: 0, y: 20, width: rootViewController.view.frame.width, height: 50)
+        segmentedControl.frame = CGRect(x: 0, y: 50, width: rootViewController.view.frame.width, height: 50)
         segmentedControl.layer.cornerRadius = 5.0
-        segmentedControl.backgroundColor = UIColor(hex: 0x80333333)
+        segmentedControl.backgroundColor = UIColor.clear
+        segmentedControl.layer.borderWidth = 0
         segmentedControl.tintColor = UIColor.white
+        
+        self.view.addSubview(segmentedControl)
         
         self.didMove(toParentViewController: self)
         self.view.translatesAutoresizingMaskIntoConstraints = false
@@ -40,7 +45,14 @@ class MenuNavController: UINavigationController {
         super.viewDidLayoutSubviews()
         let height: CGFloat = 10 //whatever height you want to add to the existing height
         let bounds = self.navigationBar.bounds
-        self.navigationBar.frame = CGRect(x: 0, y: 140, width: bounds.width, height: 500)
+        self.navigationBar.frame = CGRect(x: 0, y: 50, width: bounds.width, height: bounds.height+100)
+        //self.view.frame = CGRect(x: 0, y: 0, width: bounds.width, height: 150)
+        //self.view.backgroundColor = Constants.Colors.darkPink
+        //self.navigationBar.barTintColor = UIColor.clear
+        //self.navigationBar.backgroundColor = UIColor.clear
+        self.navigationBar.barTintColor = UIColor(hex: 0x80333333)
+        self.navigationBar.backgroundColor = UIColor(hex: 0x80333333)
+        //print(self.navigationBar.frame.height)
 
     }
     

@@ -13,7 +13,9 @@ import KRLCollectionViewGridLayout
 class ContainerViewController: UIViewController{
     
     // Menu
-    var rootNavController: MenuNavController!
+    //var rootNavController: MenuNavController!
+    var rootNavController: UINavigationController!
+    
     
     // Now Playing slider
     //var slider: SlidingViewController!
@@ -24,15 +26,26 @@ class ContainerViewController: UIViewController{
         
         view.backgroundColor = UIColor.black
         
+        
+
         let menu = MenuPageViewController()
-        rootNavController = MenuNavController(rootViewController: menu)
         //rootNavController = MenuNavController(rootViewController: menu)
+        rootNavController = UINavigationController(rootViewController: menu)
+        //rootNavController = MenuNavController(rootViewController: menu)
+        //rootNavController.view.bounds = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 400)
         view.addSubview(rootNavController.view)
         addChildViewController(rootNavController)
         //self.navigationItem.title = "U C L A R A D I O"
 //        installNowPlayingSlider()
+    
+        
+        if let navController = rootNavController {
+            System.clearNavigationBar(forBar: navController.navigationBar)
+            navController.view.backgroundColor = .clear
+        }
         
         view.addConstraints(preferredConstraints())
+        
     }
     
     override var preferredStatusBarStyle : UIStatusBarStyle {
@@ -66,11 +79,20 @@ class ContainerViewController: UIViewController{
     func preferredConstraints() -> [NSLayoutConstraint] {
         var constraints = [NSLayoutConstraint]()
         
-        let metrics = ["tabSpace": NowPlayingView.PreferredHeight]
-        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[nav]-(tabSpace)-|", options: [], metrics: metrics, views: ["nav": rootNavController.view])
+        let metrics = ["tabSpace": NowPlayingContainerView.PreferredHeight]
+        let view = rootNavController.view!
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|-(tabSpace)-[nav]-(tabSpace)-|", options: [], metrics: metrics, views: ["nav": view])
         constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|[nav]|", options: [], metrics: nil, views: ["nav": rootNavController.view])
         
         return constraints
+    }
+    
+    struct System {
+        static func clearNavigationBar(forBar navBar: UINavigationBar) {
+            navBar.setBackgroundImage(UIImage(), for: .default)
+            navBar.shadowImage = UIImage()
+            navBar.isTranslucent = true
+        }
     }
 
 }

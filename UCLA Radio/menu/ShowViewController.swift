@@ -30,7 +30,7 @@ class ShowViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        view.backgroundColor = Constants.Colors.lightPink
         notificationsImageView.tintColor = UIColor.lightGray
         timeLabel.textColor = UIColor.lightGray
         genreLabel.textColor = UIColor.darkGray
