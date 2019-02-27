@@ -56,7 +56,9 @@ class ContainerViewController: UIViewController{
         view.addConstraints(preferredConstraints())
         
         let button = UIButton(frame: CGRect(x: 0, y: self.view.frame.size.height-50, width: self.view.frame.width, height: 50))
-        button.backgroundColor = Constants.Colors.darkPink
+        button.backgroundColor = Constants.Colors.darkBackground
+        //button.backgroundColor = UIColor(white: 1, alpha: 0.5)
+        button.backgroundColor?.withAlphaComponent(0.5)
         button.setTitle("Chat", for: .normal)
         button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         
