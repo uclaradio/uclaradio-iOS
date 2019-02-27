@@ -47,9 +47,12 @@ class NowPlayingViewController: UIViewController{
         
             containerView.addConstraint(NSLayoutConstraint(item: nowPlayingView, attribute: .bottom, relatedBy: .equal, toItem: containerView, attribute: .bottom, multiplier: 1.0, constant: 1.0))
         
-        
+//        containerView.safeAreaInsets = UIEdgeInsetsMake(50, 0, 0, 0)
         imageView = nowPlayingView.imageView
         imageView.image = UIImage(named: "radio_banner")
+        
+        // spicy
+        containerView.topAnchor.constraint(lessThanOrEqualTo: topLayoutGuide.bottomAnchor).isActive = true
         
         
     }

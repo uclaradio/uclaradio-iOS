@@ -45,7 +45,6 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         super.viewDidLoad()
         
         view.backgroundColor = UIColor.clear
-        
         triangleView = TrianglifyView()
         view.addSubview(triangleView)
         triangleView.translatesAutoresizingMaskIntoConstraints = false
@@ -64,6 +63,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tableView.separatorStyle = .none
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        
         
         view.addConstraints(preferredConstraints())
     }
