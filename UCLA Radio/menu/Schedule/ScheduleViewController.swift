@@ -31,8 +31,14 @@ class ScheduleViewController: BaseViewController, APIFetchDelegate, UITableViewD
         tableView.delegate = self
         tableView.separatorStyle = .none
         tableView.backgroundColor = UIColor.clear
-        
-        view.addConstraints(preferredConstraints())
+        // spicy
+        // try just adding anchor contraints like brian in this viewdidload...not doing both this and preferred constraints
+        tableView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 141.0).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        tableView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 0).isActive = true
+        tableView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor, constant: 0).isActive = true
+        tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0).isActive = true
+        tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 0).isActive = true
         
         RadioAPI.fetchSchedule(self)
     }
@@ -170,7 +176,8 @@ class ScheduleViewController: BaseViewController, APIFetchDelegate, UITableViewD
     func preferredConstraints() -> [NSLayoutConstraint] {
         var constraints: [NSLayoutConstraint] = []
         let views = ["table": tableView]
-        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[table]|", options: [], metrics: nil, views: views)
+        print("hi\nhi\nhi\nhi\nhi\nhi\nhi\nhi\nhi\nhi\nhi\nhi\nhi\nhi\nhi\nhi\nhi\nhi\n")
+//        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[table]|", options: [], metrics: nil, views: views)
         constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|[table]|", options: [], metrics: nil, views: views)
         return constraints
     }

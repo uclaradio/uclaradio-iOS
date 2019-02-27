@@ -13,11 +13,12 @@ class MenuNavController: UINavigationController {
     
     var headers: [String] = ["STREAM", "SHOWS", "DJs", "TICKETS", "ABOUT"]
     
+
     var segmentedControl: UISegmentedControl!
-    
+
     override init(rootViewController: UIViewController) {
         super.init(rootViewController: rootViewController)
-        
+
         segmentedControl = UISegmentedControl(items: headers)
         segmentedControl.selectedSegmentIndex = 0
         segmentedControl.frame = CGRect(x: 0, y: 50, width: rootViewController.view.frame.width, height: 50)
@@ -25,9 +26,9 @@ class MenuNavController: UINavigationController {
         segmentedControl.backgroundColor = UIColor.clear
         segmentedControl.layer.borderWidth = 0
         segmentedControl.tintColor = UIColor.white
-        
+
         self.view.addSubview(segmentedControl)
-        
+
         self.didMove(toParentViewController: self)
         self.view.translatesAutoresizingMaskIntoConstraints = false
         self.view.backgroundColor = Constants.Colors.darkBackground
@@ -38,9 +39,9 @@ class MenuNavController: UINavigationController {
         if let titleFont = UIFont(name: Constants.Fonts.title, size: 21) {
             self.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white, NSAttributedStringKey.font: titleFont]
         }
-        
+
     }
-    
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         let height: CGFloat = 10 //whatever height you want to add to the existing height
@@ -65,3 +66,5 @@ class MenuNavController: UINavigationController {
     }
     
 }
+
+
