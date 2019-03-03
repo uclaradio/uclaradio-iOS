@@ -12,8 +12,6 @@ import KRLCollectionViewGridLayout
 
 class ContainerViewController: UIViewController{
     
-    // Menu
-    //var rootNavController: MenuNavController!
     var rootNavController: UINavigationController!
     
     var navImage: UIImageView!
@@ -22,8 +20,6 @@ class ContainerViewController: UIViewController{
     
     var chatButton: UIButton!
     
-    // Now Playing slider
-    //var slider: SlidingViewController!
     var nowPlaying: NowPlayingViewController!
     
     override func viewDidLoad() {
@@ -36,15 +32,9 @@ class ContainerViewController: UIViewController{
         let menu = MenuPageViewController()
         
         
-        //rootNavController = MenuNavController(rootViewController: menu)
         rootNavController = UINavigationController(rootViewController: menu)
-        //rootNavController = MenuNavController(rootViewController: menu)
-        //rootNavController.view.bounds = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 400)
         view.addSubview(rootNavController.view)
         addChildViewController(rootNavController)
-        //self.navigationItem.title = "U C L A R A D I O"
-        //installNowPlayingSlider()
-        //view.addSubview(navImage)
         chatViewController = ChatViewController()
         
         
@@ -57,8 +47,7 @@ class ContainerViewController: UIViewController{
         
         let button = UIButton(frame: CGRect(x: 0, y: self.view.frame.size.height-50, width: self.view.frame.width, height: 50))
         button.backgroundColor = Constants.Colors.darkBackground
-        //button.backgroundColor = UIColor(white: 1, alpha: 0.5)
-        button.backgroundColor?.withAlphaComponent(0.5)
+        button.backgroundColor?.withAlphaComponent(0.1)
         button.setTitle("Chat", for: .normal)
         button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         
@@ -68,11 +57,8 @@ class ContainerViewController: UIViewController{
     
     @objc func buttonAction(sender: UIButton!) {
         print("Button tapped")
-        //self.navigationController?.pushViewController(chatViewController, animated: false)
-        //chatViewController.transitioningDelegate = chatViewController
         if chatViewController.viewIfLoaded?.window != nil {
-            // viewController is visible
-            
+            //view controller is visible
         } else {
             self.rootNavController.pushViewController(chatViewController, animated: true)
         }

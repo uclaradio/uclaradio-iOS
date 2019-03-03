@@ -68,12 +68,12 @@ class ChatView: UIView, UITextViewDelegate, UITableViewDelegate, UITableViewData
         
         chatBox.translatesAutoresizingMaskIntoConstraints = false;
         sendButton.translatesAutoresizingMaskIntoConstraints = false;
-        //tableView.translatesAutoresizingMaskIntoConstraints = false;
 
         
         //socketIO stuff.  First we create a manager object for our connection
         //then we add event handlers to handle events such as assign username
-        //and new messages, then we connect to the server
+        //and new messages, then we connect to the server.  The manager is just
+        //an object which handles the socket which communicates with the server.
         self.manager = SocketManager(socketURL: URL(string: "https://uclaradio.com")!, config: [.log(true),.compress])
         self.socket = manager.defaultSocket
         self.addHandlers()
@@ -141,14 +141,23 @@ class ChatView: UIView, UITextViewDelegate, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath as IndexPath) as! ChatBubbleCell
         
+        //This could be confusing.  Not that a cell and a chat bubble are distinct.  The cell refers
+        //to a row in the UITableView.  The bubble is a graphic draw in the cell.  So we need to make
+        //the cell invisible else the entire row which the bubble occupies will be colored.
         cell.backgroundColor = UIColor.clear
         
-        
+        //These two lines make the text in the cell's textlabel arrange itself to fit within the width
+        //of the textlabel.  Otherwise, the lines would continue past the end of the label and, should
+        //they be cut off by the edge of it, a ... will be inserted, and of course we don't want that.
         cell.textLabel?.numberOfLines = 0;
         cell.textLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping;
-        
+        //set the actual text of the message
         cell.textLabel?.text = messagesArray[indexPath.row].message
         
+        //This block determines whether or not the current chat bubble we're pushing to the view is
+        //a user-generated message or not.  If it is, we need the bubble to be blue, the text white,
+        //and the bubble on the right side.  If not, the bubble should be white, text black, and it
+        //should stay on the left side.
         if(messagesArray[indexPath.row].user){
             cell.textLabel?.textColor = UIColor.white
             cell.bubbleColor = Constants.Colors.reallyDarkBlue
@@ -158,20 +167,13 @@ class ChatView: UIView, UITextViewDelegate, UITableViewDelegate, UITableViewData
             cell.bubbleColor = UIColor.white
         }
         
-        //let width = self.frame.width
-        
-        
+        //set the text of the little textlabel under the main one which has the username and message time
         cell.detailTextLabel?.text = messagesArray[indexPath.row].userName + " " + getCurrentTime()
         cell.detailTextLabel?.textColor = UIColor.yellow
-//        cell.addSubview(messagesArray[indexPath.row])
-//        cell.backgroundColor = UIColor.clear
-//        cell.sizeToFit()
-//        cell.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: 100)
         
         //important!  This line forces the chat bubble to redraw itself.  Important when we're recycling view like we are here, because otherwise we might try to use the bubble from a previous message
-        
-        
         cell.setNeedsDisplay();
+        
         return cell
     }
     
@@ -195,17 +197,10 @@ class ChatView: UIView, UITextViewDelegate, UITableViewDelegate, UITableViewData
     }
     
     func pushBubble(bubble: ChatBubbleData){
-        //messagesArray.append(bubble)
-        //print("mark mark mark two")
         tableView.beginUpdates()
-        
-        //tableView.beginUpdates()
         messagesArray.insert(bubble, at: 0)
         let indexPath = IndexPath(row: 0, section: 0)
         tableView.insertRows(at: [indexPath], with: .top)
-        //shouldAnimateFirstRow = true
-        //tableView.endUpdates()
-        
         tableView.endUpdates()
     }
     
