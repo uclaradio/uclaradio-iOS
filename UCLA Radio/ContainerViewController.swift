@@ -13,7 +13,6 @@ import KRLCollectionViewGridLayout
 class ContainerViewController: UIViewController{
     
     // Menu
-    //var rootNavController: MenuNavController!
     var rootNavController: UINavigationController!
     
     
@@ -27,49 +26,15 @@ class ContainerViewController: UIViewController{
         view.backgroundColor = UIColor.black
 
         let menu = MenuPageViewController()
-        //rootNavController = MenuNavController(rootViewController: menu)
         rootNavController = UINavigationController(rootViewController: menu)
-        //rootNavController = MenuNavController(rootViewController: menu)
-        //rootNavController.view.bounds = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 400)
+        rootNavController.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        rootNavController.navigationBar.shadowImage = UIImage()
+        rootNavController.navigationBar.isTranslucent = true
         view.addSubview(rootNavController.view)
         addChildViewController(rootNavController)
-        //self.navigationItem.title = "U C L A R A D I O"
-//        installChatSlider()
-    
-//        to get rid of hairline
-//        if let navController = rootNavController {
-//            System.clearNavigationBar(forBar: navController.navigationBar)
-//            navController.view.backgroundColor = .clear
-//            navController.navigationBar.setValue(true, forKey: "hidesShadow")
-//        }
-//
         view.addConstraints(preferredConstraints())
         
     }
-    
-//    func installChatSlider() {
-//        if slider != nil {
-//            return
-//        }
-//        // set up slider view controller (container)
-//        slider = SlidingViewController()
-//        view.addSubview(slider.view)
-//        addChildViewController(slider)
-//        slider.didMove(toParentViewController: self)
-//        view.addConstraints(slider.preferredConstraints())
-//
-//        // set up content (NowPlayingViewController)
-//        if let nowPlaying = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "nowPlaying") as? NowPlayingViewController {
-//            self.nowPlaying = nowPlaying
-//            nowPlaying.actionDelegate = self
-//            slider.addContent(nowPlaying)
-//
-//            // set up slider tab (NowPlayingView)
-//            let tabView = NowPlayingView(canSkipStream: false)
-//            slider.addTabView(tabView)
-//            tabView.backgroundColor = UIColor.black
-//        }
-//    }
     
     override var preferredStatusBarStyle : UIStatusBarStyle {
         return .lightContent
@@ -109,13 +74,4 @@ class ContainerViewController: UIViewController{
         
         return constraints
     }
-    
-    struct System {
-        static func clearNavigationBar(forBar navBar: UINavigationBar) {
-            navBar.setBackgroundImage(UIImage(), for: .default)
-            navBar.shadowImage = UIImage()
-            navBar.isTranslucent = true
-        }
-    }
-
 }

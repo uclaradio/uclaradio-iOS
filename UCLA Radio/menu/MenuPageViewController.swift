@@ -42,12 +42,19 @@ class MenuPageViewController: /* UICollectionViewController, UICollectionViewDel
         
         dataSource = self
         
-        for v in self.view.subviews{
-            if v is UIScrollView {
-                print("joseph clegg")
-                (v as! UIScrollView).delegate = self
-            }
-        }
+// setting MenuPageViewController as delegate of the collectionview in MenuBar makes it unresponsive
+//        for v in self.view.subviews {
+//            if (v.restorationIdentifier == "menubar") {
+//                for v2 in v.subviews {
+//                    print("v2 is", v2)
+//                    if (v2 is UICollectionView) {
+//                        print("joseph clegg")
+//                        print(self)
+//                        (v2 as! UIScrollView).delegate = self
+//                    }
+//                }
+//            }
+//        }
 
         if let image = UIGraphicsGetImageFromCurrentImageContext(){
             UIGraphicsEndImageContext()
@@ -66,7 +73,8 @@ class MenuPageViewController: /* UICollectionViewController, UICollectionViewDel
     // SCROLL VIEW DELEGATE METHOD
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         print(scrollView.contentOffset.x)
-        menuBar.horizontalBarLeftAnchorConstraint?.constant = scrollView.contentOffset.x / 8
+        // CHANGED
+        menuBar.horizontalBarLeftAnchorConstraint?.constant = scrollView.contentOffset.x / 4
     }
     
     private func setupBackground() {
@@ -85,7 +93,7 @@ class MenuPageViewController: /* UICollectionViewController, UICollectionViewDel
     }
     
     func scrollToMenuIndex(index: Int) {
-        print("hi")
+        print("scrolled to vcs array index ", index)
         setViewControllers([orderedViewControllers[index]], direction: .forward, animated: true, completion: nil)
     }
     
@@ -161,7 +169,6 @@ extension MenuPageViewController: UIPageViewControllerDataSource{
 
         return orderedViewControllers[nextIndex]
     }
-
 }
 
 //extension MenuPageViewController:  UIScrollViewDelegate {
