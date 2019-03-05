@@ -26,8 +26,6 @@ class ContainerViewController: UIViewController{
         super.viewDidLoad()
         
         view.backgroundColor = UIColor.black
-        
-        
 
         let menu = MenuPageViewController()
         
@@ -35,6 +33,7 @@ class ContainerViewController: UIViewController{
         rootNavController = UINavigationController(rootViewController: menu)
         view.addSubview(rootNavController.view)
         addChildViewController(rootNavController)
+
         chatViewController = ChatViewController()
         
         
@@ -43,6 +42,17 @@ class ContainerViewController: UIViewController{
             navController.view.backgroundColor = .clear
         }
         
+
+//        installChatSlider()
+    
+//        to get rid of hairline
+//        if let navController = rootNavController {
+//            System.clearNavigationBar(forBar: navController.navigationBar)
+//            navController.view.backgroundColor = .clear
+//            navController.navigationBar.setValue(true, forKey: "hidesShadow")
+//        }
+//
+
         view.addConstraints(preferredConstraints())
         
         let button = UIButton(frame: CGRect(x: 0, y: self.view.frame.size.height-50, width: self.view.frame.width, height: 50))
@@ -63,6 +73,30 @@ class ContainerViewController: UIViewController{
             self.rootNavController.pushViewController(chatViewController, animated: true)
         }
     }
+    
+//    func installChatSlider() {
+//        if slider != nil {
+//            return
+//        }
+//        // set up slider view controller (container)
+//        slider = SlidingViewController()
+//        view.addSubview(slider.view)
+//        addChildViewController(slider)
+//        slider.didMove(toParentViewController: self)
+//        view.addConstraints(slider.preferredConstraints())
+//
+//        // set up content (NowPlayingViewController)
+//        if let nowPlaying = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "nowPlaying") as? NowPlayingViewController {
+//            self.nowPlaying = nowPlaying
+//            nowPlaying.actionDelegate = self
+//            slider.addContent(nowPlaying)
+//
+//            // set up slider tab (NowPlayingView)
+//            let tabView = NowPlayingView(canSkipStream: false)
+//            slider.addTabView(tabView)
+//            tabView.backgroundColor = UIColor.black
+//        }
+//    }
     
     override var preferredStatusBarStyle : UIStatusBarStyle {
         return .lightContent

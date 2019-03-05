@@ -52,8 +52,18 @@ class DJListViewController: BaseViewController, APIFetchDelegate, UICollectionVi
         collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: KRLCollectionViewGridLayout())
         view.addSubview(collectionView)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
+     
+        // spicy
+        collectionView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 141.0).isActive = true
+        collectionView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        collectionView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 0).isActive = true
+        collectionView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor, constant: 0).isActive = true
+        collectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0).isActive = true
+        collectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 0).isActive = true
+        
         collectionView.backgroundColor = UIColor.clear
         collectionView.register(DJCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.alwaysBounceVertical = true
@@ -65,7 +75,7 @@ class DJListViewController: BaseViewController, APIFetchDelegate, UICollectionVi
         
         collectionView?.backgroundColor = UIColor.clear
         
-        view.addConstraints(preferredConstraints())
+//        view.addConstraints(preferredConstraints())
     }
     
     override func viewWillAppear(_ animated: Bool) {
