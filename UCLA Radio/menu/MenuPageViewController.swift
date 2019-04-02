@@ -8,17 +8,27 @@
 import Foundation
 import UIKit
 
-class MenuPageViewController: /* UICollectionViewController, UICollectionViewDelegateFlowLayout */ UIPageViewController, UIScrollViewDelegate {
+var menuBar: MenuBar = {
+    let mb: MenuBar = MenuBar()
+    mb.translatesAutoresizingMaskIntoConstraints = false
+    return mb;
+}()
+
+class MenuPageViewController: UIPageViewController {
     
-    var navImage: UIImageView!
+    var lastContentOffset: CGPoint?
     let cellId = "cellId"
+    var bannerBackgroundView: UIImageView!
+    
+    private func getViewControllerFromID(ID: String) -> UIViewController{
+        return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: ID)
+    }
     
     private lazy var orderedViewControllers: [UIViewController] = {
         var viewControllers = [UIViewController]()
         viewControllers.append(getViewControllerFromID(ID: "nowPlaying"))
         viewControllers.append(getViewControllerFromID(ID: "scheduleViewController"))
         viewControllers.append(getViewControllerFromID(ID: "djListViewController"))
-        viewControllers.append(getViewControllerFromID(ID: "eventsViewController"))
         viewControllers.append(getViewControllerFromID(ID: "aboutViewController"))
 
         return viewControllers
@@ -28,34 +38,22 @@ class MenuPageViewController: /* UICollectionViewController, UICollectionViewDel
         super.init(transitionStyle: .scroll, navigationOrientation: .horizontal, options: options)
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupMenuBar()
         setupBackground()
-        setupCustomNavImage()
-
-        
+        setupCustomNav()
+        menuBar.delegate = self
         dataSource = self
-        
-// setting MenuPageViewController as delegate of the collectionview in MenuBar makes it unresponsive
-//        for v in self.view.subviews {
-//            if (v.restorationIdentifier == "menubar") {
-//                for v2 in v.subviews {
-//                    print("v2 is", v2)
-//                    if (v2 is UICollectionView) {
-//                        print("joseph clegg")
-//                        print(self)
-//                        (v2 as! UIScrollView).delegate = self
-//                    }
-//                }
-//            }
-//        }
 
+        for v in self.view.subviews {
+            if v.isKind(of: UIScrollView.self) {
+                print("found scrollview in ", v)
+                (v as! UIScrollView).delegate = self
+            }
+        }
+  
         if let image = UIGraphicsGetImageFromCurrentImageContext(){
             UIGraphicsEndImageContext()
             self.view.backgroundColor = UIColor(patternImage: image)
@@ -67,15 +65,26 @@ class MenuPageViewController: /* UICollectionViewController, UICollectionViewDel
                                animated: true,
                                completion: nil)
         }
-        
     }
     
-    // SCROLL VIEW DELEGATE METHOD
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        print(scrollView.contentOffset.x)
-        // CHANGED
-        menuBar.horizontalBarLeftAnchorConstraint?.constant = scrollView.contentOffset.x / 4
+    private func setupCustomNav() {
+        bannerBackgroundView = UIImageView()
+        view.addSubview(bannerBackgroundView)
+        bannerBackgroundView?.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.65)
+        bannerBackgroundView.frame =  CGRect(x: 0, y: 0, width: view.frame.width, height: 89)
+
+        setupMenuBar()
     }
+    
+    private func setupMenuBar() {
+        view.addSubview(menuBar)
+        let horizontalConstraint = NSLayoutConstraint.constraints(withVisualFormat: "H:|[menuBar]|", options: [], metrics: nil, views: ["menuBar": menuBar])
+        let verticalConstraint = NSLayoutConstraint.constraints(withVisualFormat: "V:|-(89)-[menuBar(30)]", options: [], metrics: nil, views: ["menuBar": menuBar])
+        view.addConstraints(horizontalConstraint)
+        view.addConstraints(verticalConstraint)
+    }
+    
+
     
     private func setupBackground() {
         //set background image
@@ -83,54 +92,18 @@ class MenuPageViewController: /* UICollectionViewController, UICollectionViewDel
         UIImage(named: "background")?.draw(in: self.view.bounds)
     }
     
-    private func setupCustomNavImage() {
-        
-        let imageName = "uclaradio_banner"
-        let image = UIImage(named: imageName)
-        navImage = UIImageView(image: image!)
-        navImage.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height/10)
-        self.view.addSubview(navImage)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
-    
-    func scrollToMenuIndex(index: Int) {
-        print("scrolled to vcs array index ", index)
-        setViewControllers([orderedViewControllers[index]], direction: .forward, animated: true, completion: nil)
-    }
-    
-    let menuBar: MenuBar = {
-        let mb = MenuBar()
-        mb.translatesAutoresizingMaskIntoConstraints = false
-        return mb;
-    }()
-    
-    
-    private func setupMenuBar() {
-        view.addSubview(menuBar)
-        
-        // TODO: Add constraints. This is for any awkward gaps
-//        let grayView = UIView()
-//        grayView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.7) // transparent black header color
-//        view.addSubview(grayView)
-        
-        let horizontalConstraint = NSLayoutConstraint.constraints(withVisualFormat: "H:|[menuBar]|", options: [], metrics: nil, views: ["menuBar": menuBar])
-        let verticalConstraint = NSLayoutConstraint.constraints(withVisualFormat: "V:|-89-[menuBar(50)]|", options: [], metrics: nil, views: ["menuBar": menuBar])
-        view.addConstraints(horizontalConstraint)
-        view.addConstraints(verticalConstraint)
-        
-        menuBar.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor, constant: 0)
-    }
-    
-    private func getViewControllerFromID(ID: String) -> UIViewController{
-        return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: ID)
-    }
-    
 }
 
-
-
-extension MenuPageViewController: UIPageViewControllerDataSource{
+extension MenuPageViewController: UIPageViewControllerDataSource {
+    
+    // SPITS BACK VC BEFORE THE CURRENT VC
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+        
         guard let viewControllerIndex = orderedViewControllers.index(of: viewController) else {
+            print("Invalid index for view controllers array")
             return nil
         }
 
@@ -149,6 +122,7 @@ extension MenuPageViewController: UIPageViewControllerDataSource{
         return orderedViewControllers[previousIndex]
     }
 
+    // SPITS BACK VC AFTER THE CURRENT VC
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         guard let viewControllerIndex = orderedViewControllers.index(of: viewController) else {
             return nil
@@ -171,15 +145,33 @@ extension MenuPageViewController: UIPageViewControllerDataSource{
     }
 }
 
-//extension MenuPageViewController:  UIScrollViewDelegate {
-//
-//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        let offset = scrollView.contentOffset.x
-//        let bounds = scrollView.bounds.width
-//        let page = CGFloat(self.currentPage)
-//        let count = CGFloat(orderedViewControllers.count)
-//        let percentage = (offset - bounds + page * bounds) / (count * bounds - bounds)
-//
-//        print(abs(percentage))
-//    }
-//}
+extension UIPageViewController: UIScrollViewDelegate {
+    open override func viewDidLoad() {
+        super.viewDidLoad()
+        print(view.subviews)
+        for subview in view.subviews {
+            print("subview found ", subview)
+            if let scrollView = subview as? UIScrollView {
+                scrollView.delegate = self
+                print("scrollview found")
+            }
+        }
+    }
+    
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let point = scrollView.contentOffset.x
+        print(point)
+        menuBar.horizontalBarLeftAnchorConstraint?.constant = point / 4
+    }
+}
+
+extension MenuPageViewController: MenuBarDelegate {
+    
+    func scrollToMenuIndex(index: Int) {
+        setViewControllers([orderedViewControllers[index]],
+                           direction: .forward,
+                           animated: true,
+                           completion: nil)
+    }
+}
+
