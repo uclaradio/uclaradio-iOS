@@ -16,10 +16,13 @@ var menuBar: MenuBar = {
 
 class MenuPageViewController: UIPageViewController {
     
+/* SCROLLVIEWDELEGARTE IMPLEMENTATION
     var lastContentOffset: CGPoint?
+*/
     let cellId = "cellId"
     var bannerBackgroundView: UIImageView!
-    
+    var currentIndex = 0
+
     private func getViewControllerFromID(ID: String) -> UIViewController{
         return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: ID)
     }
@@ -34,26 +37,32 @@ class MenuPageViewController: UIPageViewController {
         return viewControllers
     }()
     
+    
     override init(transitionStyle style: UIPageViewControllerTransitionStyle, navigationOrientation: UIPageViewControllerNavigationOrientation, options: [String : Any]? = nil) {
         super.init(transitionStyle: .scroll, navigationOrientation: .horizontal, options: options)
     }
     
-
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupBackground()
         setupCustomNav()
         menuBar.delegate = self
+        delegate = self
         dataSource = self
 
-        for v in self.view.subviews {
-            if v.isKind(of: UIScrollView.self) {
-                print("found scrollview in ", v)
-                (v as! UIScrollView).delegate = self
-            }
-        }
-  
+/* WHEN I WAS CONFORMING TO UISCROLLVIEWDELEGATE
+//        for v in self.view.subviews.reversed() {
+//            if v.isKind(of: UIScrollView.self) {
+//                print("found scrollview in ", v)
+//                (v as! UIScrollView).delegate = self
+//            }
+//        }
+*/
         if let image = UIGraphicsGetImageFromCurrentImageContext(){
             UIGraphicsEndImageContext()
             self.view.backgroundColor = UIColor(patternImage: image)
@@ -92,9 +101,6 @@ class MenuPageViewController: UIPageViewController {
         UIImage(named: "background")?.draw(in: self.view.bounds)
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
 }
 
 extension MenuPageViewController: UIPageViewControllerDataSource {
@@ -145,26 +151,43 @@ extension MenuPageViewController: UIPageViewControllerDataSource {
     }
 }
 
-extension UIPageViewController: UIScrollViewDelegate {
-    open override func viewDidLoad() {
-        super.viewDidLoad()
-        print(view.subviews)
-        for subview in view.subviews {
-            print("subview found ", subview)
-            if let scrollView = subview as? UIScrollView {
-                scrollView.delegate = self
-                print("scrollview found")
-            }
-        }
+/*
+ will look ok where you swipe, but bar only moves after release of the swipe
+ instead of conforming to any scroll view delegate stuff, just remove that
+ Instead just conform to UIPageViewControllerDelegate
+ 
+ might need to create a new var to manually keep track of current index,
+ or check on google if there's a way to get current index of a VC in a PageViewController
+ */
+
+extension MenuPageViewController: UIPageViewControllerDelegate {
+    
+    // CALLED *BEFORE* A GESTURE-DRIVEN TRANSITION BEGINS
+    // If the user aborts the navigation gesture, the transition doesn’t complete and the view controllers stay the same.
+    func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
+        guard let nextViewController = pendingViewControllers[0] as? UIViewController else { return }
+        
+        self.currentIndex = orderedViewControllers.index(of: nextViewController)!
+        // get a reference to the index that we will transition to
     }
     
-    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let point = scrollView.contentOffset.x
-        print(point)
-        menuBar.horizontalBarLeftAnchorConstraint?.constant = point / 4
+    // CALLED *BEFORE* A GESTURE-DRIVEN TRANSITION BEGINS
+    // will tell you when to update current_page variable
+    // last arg, transitionCompleted, can tell you wehther a usser completed a page turn transition
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        
+        if completed {
+            if let currentViewController = pageViewController.viewControllers?.first,
+                let index = orderedViewControllers.index(of: currentViewController) {
+                currentIndex = index
+                menuBar.horizontalBarLeftAnchorConstraint?.constant = (menuBar.frame.width / 4) * CGFloat(currentIndex)
+            }
+        }
+        //  set correct index
     }
 }
 
+// Allows direct clicking on Menu items to slide the horizontal bar accordingly
 extension MenuPageViewController: MenuBarDelegate {
     
     func scrollToMenuIndex(index: Int) {
@@ -174,4 +197,27 @@ extension MenuPageViewController: MenuBarDelegate {
                            completion: nil)
     }
 }
+
+
+// PUT THIS AWAY FOR NOW
+//extension UIPageViewController: UIScrollViewDelegate {
+////    open override func viewDidLoad() {
+////        super.viewDidLoad()
+////        print(view.subviews)
+////        for subview in view.subviews {
+////            print("subview found ", subview)
+////            if let scrollView = subview as? UIScrollView {
+////                scrollView.delegate = self
+////                print("scrollview found")
+////            }
+////        }
+////    }
+//
+//    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        let point = scrollView.contentOffset.x
+////        print(point)
+//        menuBar.horizontalBarLeftAnchorConstraint?.constant = point / 4
+//    }
+//}
+
 
