@@ -1,3 +1,4 @@
+
 platform :ios, '9.0'
 use_frameworks!
 
@@ -12,6 +13,10 @@ target 'UCLA Radio' do
 
   # potentially useful for schedule
   # pod 'HTHorizontalSelectionList', '~> 0.7.0'
+
+  #socket library necessary for socketio
+  pod 'Starscream', '~> 3.0.2'
+  pod 'Socket.IO-Client-Swift', '~> 14.0.0'
 
 end
 

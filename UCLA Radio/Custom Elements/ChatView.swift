@@ -1,232 +1,261 @@
-////
-////  ChatView.swift
-////  UCLA Radio
-////
-////  Created by Haejin Jo on 1/16/19.
-////  Copyright © 2019 UCLA Student Media. All rights reserved.
-////
 //
-//import Foundation
-//import UIKit
+//  ChatView.swift
+//  UCLA Radio
 //
-//class ChatView: UICollectionViewController, UICollectionViewDelegateFlowLayout, SliderTabView {
-//    static let PreferredHeight: CGFloat = 60
-//    static let ButtonSize: CGFloat = 110
-//    static let ItemSpacing: CGFloat = 15
-//    
-//}
+//  Created by Joseph Clegg on 1/27/19.
+//  Copyright © 2019 UCLA Student Media. All rights reserved.
 //
-//
-//    
-//    var containerView: UIView!
-//    var playButton: UIButton!
-//    var callButton: UIButton!
-//    var onAirButton: UIButton!
-//    var titleLabel: UILabel!
-//    var callLabel: UILabel!
-//    var airLabel: UILabel!
-//    
-//    fileprivate var containerConstraintsInstalled: [NSLayoutConstraint]?
-//    
-//    override init(frame: CGRect) {
-//        super.init(frame: frame)
-//        
-//        backgroundColor = UIColor.clear
-//        
-//        containerView = UIView()
-//        containerView.backgroundColor = UIColor.clear
-//        containerView.translatesAutoresizingMaskIntoConstraints = false
-//        addSubview(containerView)
-//        
-//        playButton = UIButton(type: .custom)
-//        playButton.tintColor = UIColor.white
-//        playButton.contentMode = .scaleAspectFit
-//        playButton.imageEdgeInsets = UIEdgeInsets(top: 35, left: 35, bottom: 35, right: 35)
-//        playButton.translatesAutoresizingMaskIntoConstraints = false
-//        playButton.addTarget(self, action: #selector(hitPlay), for: .touchUpInside)
-//        playButton.backgroundColor = Constants.Colors.gold
-//        containerView.addSubview(playButton)
-//        
-//        callButton = UIButton(type: .system)
-//        callButton.tintColor = UIColor.white
-//        callButton.contentMode = .scaleAspectFit
-//        callButton.translatesAutoresizingMaskIntoConstraints = false
-//        callButton.addTarget(self, action: #selector(didTapOnAirCallButton), for: .touchUpInside)
-//        callButton.setImage(UIImage(named: "phone"), for: UIControlState())
-//        containerView.addSubview(callButton)
-//        
-//        onAirButton = UIButton(type: .system)
-//        onAirButton.tintColor = UIColor.white
-//        onAirButton.contentMode = .scaleAspectFit
-//        onAirButton.translatesAutoresizingMaskIntoConstraints = false
-//        onAirButton.addTarget(self, action: #selector(didTapRequestCallButton), for: .touchUpInside)
-//        onAirButton.setImage(UIImage(named: "phone"), for: UIControlState())
-//        containerView.addSubview(onAirButton)
-//        
-//        callLabel = UILabel()
-//        callLabel.textColor = UIColor.white
-//        callLabel.textAlignment = .center
-//        callLabel.font = UIFont(name: Constants.Fonts.title, size: 15)
-//        callLabel.numberOfLines = 2
-//        callLabel.isUserInteractionEnabled = false
-//        callLabel.translatesAutoresizingMaskIntoConstraints = false
-//        callLabel.text = "Request"
-//        containerView.addSubview(callLabel)
-//        
-//        airLabel = UILabel()
-//        airLabel.textColor = UIColor.white
-//        airLabel.textAlignment = .center
-//        airLabel.font = UIFont(name: Constants.Fonts.title, size: 15)
-//        airLabel.numberOfLines = 2
-//        airLabel.isUserInteractionEnabled = false
-//        airLabel.translatesAutoresizingMaskIntoConstraints = false
-//        airLabel.text = "On Air"
-//        containerView.addSubview(airLabel)
-//        
-//        titleLabel = UILabel()
-//        titleLabel.textColor = Constants.Colors.darkBackground
-//        titleLabel.textAlignment = .center
-//        titleLabel.font = UIFont(name: Constants.Fonts.title, size: 20)
-//        titleLabel.numberOfLines = 2
-//        titleLabel.isUserInteractionEnabled = false
-//        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-//        containerView.addSubview(titleLabel)
-//        
-//        addConstraints(preferredConstraints())
-//        containerView.addConstraints(containerConstraints())
-//    }
-//    
-//    
-//    convenience init(canSkipStream: Bool) {
-//        self.init(frame: CGRect(x: 0, y: 0, width: 400, height: NowPlayingView.PreferredHeight))
-//    }
-//    
-//    required init?(coder aDecoder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
-//    
-//    override func willAppear() {
-//        styleFromStream()
-//        styleFromNowPlaying()
-//        NotificationCenter.default.addObserver(self, selector: #selector(streamUpdated), name: NSNotification.Name(rawValue: AudioStream.StreamUpdateNotificationKey), object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(nowPlayingUpdated), name: NSNotification.Name(rawValue: RadioAPI.NowPlayingUpdatedNotification), object: nil)
-//    }
-//    
-//    override func willDisappear() {
-//        NotificationCenter.default.removeObserver(self)
-//    }
-//    
-//    // MARK: - Actions
-//    
-//    @objc func hitPlay(_ button: UIButton) {
-//        AudioStream.sharedInstance.togglePlay()
-//    }
-//    
-//    
-//    // MARK: - Notifications
-//    
-//    @objc func streamUpdated(_ notification: Notification) {
-//        styleFromStream()
-//    }
-//    
-//    func styleFromStream() {
-//        if (AudioStream.sharedInstance.playing) {
-//            playButton.setImage(UIImage(named: "pause"), for: UIControlState())
-//        }
-//        else {
-//            playButton.setImage(UIImage(named: "play"), for: UIControlState())
-//        }
-//    }
-//    
-//    @objc func nowPlayingUpdated(_ notification: Notification) {
-//        styleFromNowPlaying()
-//    }
-//    
-//    func styleFromNowPlaying() {
-//        if let show = RadioAPI.nowPlaying {
-//            titleLabel.text = "LIVE: " + show.title
-//        }
-//        else {
-//            titleLabel.text = "LIVE STREAM"
-//        }
-//    }
-//    
-//    // MARK: - Layout
-//    
-//    func resetConstraints() {
-//        if let constraints = containerConstraintsInstalled {
-//            containerView.removeConstraints(constraints)
-//            containerConstraintsInstalled = nil
-//        }
-//        containerConstraintsInstalled = containerConstraints()
-//        containerView.addConstraints(containerConstraintsInstalled!)
-//    }
-//    
-//    func preferredConstraints() -> [NSLayoutConstraint] {
-//        var constraints: [NSLayoutConstraint] = []
-//        
-//        // container view (max at 400 width)
-//        constraints.append(NSLayoutConstraint(item: containerView, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1.0, constant: 0.0))
-//        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-(8@999)-[container(<=400)]-(8@999)-|", options: [], metrics: nil, views: ["container": containerView])
-//        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|-[container]-|", options: [], metrics: nil, views: ["container": containerView])
-//        //containerView.backgroundColor = Constants.Colors.darkPink
-//        return constraints
-//    }
-//    
-//    let onAirNumber = "3107949348"
-//    let requestNumber = "3108259999"
-//    
-//    func makeCall(phone: String) {
-//        let phoneUrl = "tel://\(phone)"
-//        let url:NSURL = NSURL(string: phoneUrl)!
-//        UIApplication.shared.openURL(url as URL)
-//    }
-//    
-//    @objc func didTapOnAirCallButton(_ button: UIButton) {
-//        makeCall(phone: onAirNumber)
-//    }
-//    
-//    @objc func didTapRequestCallButton(_ button: UIButton) {
-//        makeCall(phone: requestNumber)
-//    }
-//    
-//    func containerConstraints() -> [NSLayoutConstraint] {
-//        var constraints: [NSLayoutConstraint] = []
-//        
-//        let metrics = ["item": NowPlayingView.ItemSpacing, "button": NowPlayingView.ButtonSize, "noButton": (NowPlayingView.ButtonSize + 2*NowPlayingView.ItemSpacing)]
-//        
-//        // Horizontal
-//        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-[title]-|", options: [], metrics: metrics, views: ["title": titleLabel])
-//        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-[callButton]-[play(button)]-[onAirButton]-|", options: [], metrics: metrics, views: ["callButton": callButton, "play": playButton, "onAirButton": onAirButton])
-//        // Vertical
-//        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|-(30)-[play(button)]-[title]-|", options: [], metrics: metrics, views: ["play": playButton, "title": titleLabel])
-//        
-//        // title & subtitle labels
-//        constraints.append(NSLayoutConstraint(item: titleLabel, attribute: .centerY, relatedBy: .equal, toItem: containerView, attribute: .top, multiplier: 1.0, constant: 1))
-//        
-//        // play button
-//        constraints.append(NSLayoutConstraint(item: playButton, attribute: .height, relatedBy: .equal, toItem: playButton, attribute: .width, multiplier: 1.0, constant: 0.0))
-//        constraints.append(NSLayoutConstraint(item: playButton, attribute: .centerX, relatedBy: .equal, toItem: containerView, attribute: .centerX, multiplier: 1.0, constant: 0.0))
-//        
-//        // call button
-//        constraints.append(NSLayoutConstraint(item: callButton, attribute: .width, relatedBy: .equal, toItem: playButton, attribute: .width, multiplier: 0.5, constant: 0.0))
-//        constraints.append(NSLayoutConstraint(item: callButton, attribute: .width, relatedBy: .equal, toItem: callButton, attribute: .height, multiplier: 1.0, constant: 0.0))
-//        constraints.append(NSLayoutConstraint(item: callButton, attribute: .centerY, relatedBy: .equal, toItem: playButton, attribute: .centerY, multiplier: 1.0, constant: 0.0))
-//        
-//        // onair button
-//        constraints.append(NSLayoutConstraint(item: onAirButton, attribute: .width, relatedBy: .equal, toItem: playButton, attribute: .width, multiplier: 0.5, constant: 0.0))
-//        constraints.append(NSLayoutConstraint(item: onAirButton, attribute: .width, relatedBy: .equal, toItem: onAirButton, attribute: .height, multiplier: 1.0, constant: 0.0))
-//        constraints.append(NSLayoutConstraint(item: onAirButton, attribute: .centerY, relatedBy: .equal, toItem: playButton, attribute: .centerY, multiplier: 1.0, constant: 0.0))
-//        
-//        // call label
-//        constraints.append(NSLayoutConstraint(item: callLabel, attribute: .bottom, relatedBy: .equal, toItem: callButton, attribute: .top, multiplier: 1.0, constant: 0.0))
-//        constraints.append(NSLayoutConstraint(item: callLabel, attribute: .centerX, relatedBy: .equal, toItem: callButton, attribute: .centerX, multiplier: 1.0, constant: 0.0))
-//        
-//        // air label
-//        constraints.append(NSLayoutConstraint(item: airLabel, attribute: .bottom, relatedBy: .equal, toItem: onAirButton, attribute: .top, multiplier: 1.0, constant: 0.0))
-//        constraints.append(NSLayoutConstraint(item: airLabel, attribute: .centerX, relatedBy: .equal, toItem: onAirButton, attribute: .centerX, multiplier: 1.0, constant: 0.0))
-//        
-//        return constraints
-//    }
-//    
-//}
+
+import Foundation
+import UIKit
+import SocketIO
+
+class ChatView: UIView, UITextViewDelegate, UITableViewDelegate, UITableViewDataSource{
+    
+    
+    var chatBox: UITextView!
+    
+    var sendButton: UIButton!
+    
+    var tableView: UITableView!
+    
+    var messagesArray: [ChatBubbleData]!
+    
+    var socketClient: SocketIOClient!
+    
+    var manager:SocketManager!
+    var socket:SocketIOClient!
+    
+    var username: String = "DEFAULT"
+    
+    var lastID: Int = 0
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        backgroundColor = Constants.Colors.darkBackground
+        
+        messagesArray = [ChatBubbleData]()
+        
+        
+        //declare our various views to be used in this view controller
+        chatBox = UITextView(frame: CGRect(x: 0, y: 0, width: self.frame.width*3/5, height: 20))
+        chatBox.text = "Write a message"
+        chatBox.textColor = UIColor.lightGray
+        chatBox.delegate = self
+        chatBox.backgroundColor = UIColor.clear
+        chatBox.font = UIFont(name: (chatBox.font?.fontName)!, size: 20)
+        
+        sendButton = UIButton(type: .roundedRect)
+        sendButton.setTitle("Send", for: UIControlState.normal)
+        sendButton.titleLabel?.font = UIFont(name: (sendButton.titleLabel?.font.fontName)!, size: 20)
+        sendButton.sizeToFit()
+        sendButton.addTarget(self, action: #selector(sendButtonAction), for: .touchUpInside)
+        
+        tableView = UITableView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height*4/5))
+        self.tableView.separatorStyle = .none
+        tableView.backgroundColor = UIColor.clear
+        tableView.register(ChatBubbleCell.self, forCellReuseIdentifier: "cell")
+        tableView.dataSource = self
+        tableView.delegate = self
+        //This line flips the y-axis of our table view, basically flipping it upside down.
+        //We do this because it allows us to have chat bubbles appear from the bottom up, not up to bottom.
+        tableView.transform = CGAffineTransform(scaleX: 1, y: -1)
+        
+        addSubview(chatBox)
+        addSubview(tableView)
+        addSubview(sendButton)
+        
+        chatBox.translatesAutoresizingMaskIntoConstraints = false;
+        sendButton.translatesAutoresizingMaskIntoConstraints = false;
+
+        
+        //socketIO stuff.  First we create a manager object for our connection
+        //then we add event handlers to handle events such as assign username
+        //and new messages, then we connect to the server.  The manager is just
+        //an object which handles the socket which communicates with the server.
+        self.manager = SocketManager(socketURL: URL(string: "https://uclaradio.com")!, config: [.log(true),.compress])
+        self.socket = manager.defaultSocket
+        self.addHandlers()
+        self.socket.connect()
+        addConstraints(preferredConstraints())
+        
+    }
+    
+    
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    @objc func sendButtonAction(sender: UIButton!) {
+        
+        //print("button pressed!!")
+        //self.socket.emit("add user")
+        if(self.username != "DEFAULT" && chatBox.text != ""){
+            let messageText: String = chatBox.text
+            let currentTime: String = getCurrentTime()
+            let newMessage: ChatBubbleData = ChatBubbleData(message: messageText, username: self.username, time: currentTime, user: true)
+        
+            let jsonMessage: [String: Any] = [
+                "user": username,
+                "text": messageText
+            ]
+            
+            self.socket.emit("new message", jsonMessage)
+            
+            //pushBubble(bubble: newMessage)
+            chatBox.text = ""
+        }
+        
+    }
+    
+    
+    //TextViewDelegate functions, they essentially handle the placeholder text in our chat box
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.lightGray {
+            textView.text = nil
+            textView.textColor = UIColor.white
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = "Write a message"
+            textView.textColor = UIColor.lightGray
+            textView.resignFirstResponder()
+        }
+    }
+    
+    //TableViewDelegate functions
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("Num: \(indexPath.row)")
+        print("Value: \(messagesArray[indexPath.row])")
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return messagesArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath as IndexPath) as! ChatBubbleCell
+        
+        //This could be confusing.  Not that a cell and a chat bubble are distinct.  The cell refers
+        //to a row in the UITableView.  The bubble is a graphic draw in the cell.  So we need to make
+        //the cell invisible else the entire row which the bubble occupies will be colored.
+        cell.backgroundColor = UIColor.clear
+        
+        //These two lines make the text in the cell's textlabel arrange itself to fit within the width
+        //of the textlabel.  Otherwise, the lines would continue past the end of the label and, should
+        //they be cut off by the edge of it, a ... will be inserted, and of course we don't want that.
+        cell.textLabel?.numberOfLines = 0;
+        cell.textLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping;
+        //set the actual text of the message
+        cell.textLabel?.text = messagesArray[indexPath.row].message
+        
+        //This block determines whether or not the current chat bubble we're pushing to the view is
+        //a user-generated message or not.  If it is, we need the bubble to be blue, the text white,
+        //and the bubble on the right side.  If not, the bubble should be white, text black, and it
+        //should stay on the left side.
+        if(messagesArray[indexPath.row].user){
+            cell.textLabel?.textColor = UIColor.white
+            cell.bubbleColor = Constants.Colors.reallyDarkBlue
+            cell.isRight = true
+        } else {
+            cell.textLabel?.textColor = UIColor.black
+            cell.bubbleColor = UIColor.white
+        }
+        
+        //set the text of the little textlabel under the main one which has the username and message time
+        cell.detailTextLabel?.text = messagesArray[indexPath.row].userName + " " + getCurrentTime()
+        cell.detailTextLabel?.textColor = UIColor.yellow
+        
+        //important!  This line forces the chat bubble to redraw itself.  Important when we're recycling view like we are here, because otherwise we might try to use the bubble from a previous message
+        cell.setNeedsDisplay();
+        
+        return cell
+    }
+    
+    
+    
+    func preferredConstraints() -> [NSLayoutConstraint] {
+        var constraints: [NSLayoutConstraint] = []
+        
+        //specify the metrics for our layout
+        let metrics = ["button": sendButton]
+        
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|-[table]-[chatBox]-100-|", options: [], metrics: metrics, views: ["table": self.tableView, "chatBox": chatBox])
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-[chatBox]-[sendButton]-|", options: [], metrics: metrics, views: ["chatBox": chatBox, "sendButton": sendButton])
+        
+        constraints.append(NSLayoutConstraint(item: sendButton, attribute: .top, relatedBy: .equal, toItem: tableView, attribute: .bottom, multiplier: 1.0, constant: 1.0))
+        constraints.append(NSLayoutConstraint(item: chatBox, attribute: .top, relatedBy: .equal, toItem: tableView, attribute: .bottom, multiplier: 1.0, constant: 1.0))
+        constraints.append(NSLayoutConstraint(item: tableView, attribute: .left, relatedBy: .equal, toItem: self, attribute: .left, multiplier: 1.0, constant: 1.0))
+        constraints.append(NSLayoutConstraint(item: tableView, attribute: .width, relatedBy: .equal, toItem: self, attribute: .width, multiplier: 1.0, constant: 1.0))
+        
+        return constraints
+    }
+    
+    func pushBubble(bubble: ChatBubbleData){
+        tableView.beginUpdates()
+        messagesArray.insert(bubble, at: 0)
+        let indexPath = IndexPath(row: 0, section: 0)
+        tableView.insertRows(at: [indexPath], with: .top)
+        tableView.endUpdates()
+    }
+    
+    func getCurrentTime() -> String{
+        let date = Date()
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.hour, .minute, .second], from: date)
+        
+        let hour = components.hour
+        let minute = components.minute
+        let second = components.second
+        
+        let currentTime = String(hour!) + ":" + String(minute!) + ":" + String(second!)
+        
+        return currentTime
+    }
+    
+    func addHandlers(){
+        
+        self.socket.on("assign username") {[weak self] data, ack in self?.addHandlers()
+            self?.username = data[0] as! String
+        }
+        
+        self.socket.on(clientEvent: .connect) {data, ack in
+            self.socket.emit("add user")
+        }
+        
+        self.socket.on("new message") {[weak self] data, ack in self?.addHandlers()
+            
+            guard let jsonArray = data as? [[String: Any]] else {
+                return
+            }
+            
+            let uid: Int = jsonArray[0]["id"] as! Int
+            let userName: String = jsonArray[0]["user"] as! String
+            let textMsg: String = jsonArray[0]["text"] as! String
+
+            var isUser: Bool = false
+            
+            
+            
+            if(userName == self?.username){
+                isUser = true
+            }
+            
+            if(self?.lastID != uid){
+                let newMessage: ChatBubbleData = ChatBubbleData(message: textMsg, username: userName, time: (self!.getCurrentTime()), user: isUser)
+            
+                self?.pushBubble(bubble: newMessage)
+                self?.lastID = uid
+            }
+        }
+        
+    }
+    
+    
+    
+}

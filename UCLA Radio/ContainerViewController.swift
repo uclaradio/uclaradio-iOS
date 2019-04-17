@@ -16,11 +16,38 @@ class ContainerViewController: UIViewController {
     var rootNavController: UINavigationController!
     var navImage: UIImageView!
     
+    var navImage: UIImageView!
+    
+    var chatViewController: ChatViewController!
+    
+    var chatButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let menu = MenuPageViewController()
+        // Mark: - CHAT
+        chatViewController = ChatViewController()
+
+        
+        let button = UIButton(frame: CGRect(x: 0, y: self.view.frame.size.height-50, width: self.view.frame.width, height: 50))
+        button.backgroundColor = Constants.Colors.darkBackground
+        button.backgroundColor?.withAlphaComponent(0.1)
+        button.setTitle("Chat", for: .normal)
+        button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+        
+        self.view.addSubview(button)
+        
+    } // END VIEWDIDLOAD
+    
+    @objc func buttonAction(sender: UIButton!) {
+        print("Button tapped")
+        if chatViewController.viewIfLoaded?.window != nil {
+            //view controller is visible
+        } else {
+            self.rootNavController.pushViewController(chatViewController, animated: true)
+        }
+      
         rootNavController = UINavigationController(rootViewController: menu)
         rootNavController.navigationBar.isTranslucent = true
         rootNavController.navigationBar.setBackgroundImage(UIImage(), for: .default)
@@ -28,32 +55,11 @@ class ContainerViewController: UIViewController {
         addChildViewController(rootNavController)
         setupCustomNavImage()
         view.addConstraints(preferredConstraints())
+
     }
     
     override var preferredStatusBarStyle : UIStatusBarStyle {
         return .lightContent
-    }
-    
-    // MARK: - NowPlayingActionDelegate
-    
-    func didTapShow(_ show: Show?) {
-        //slider.updatePosition(.closed, animated: true)
-        if let show = show, show.picture != nil {
-            if let showVC = rootNavController.visibleViewController as? ShowViewController, let presentedShow = showVC.show {
-                if (show.id == presentedShow.id) {
-                    // don't push the show's view controller if it's already up
-                    return
-                }
-            }
-            
-            if let showViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: ShowViewController.storyboardID) as? ShowViewController {
-                
-                showViewController.show = show
-                delay(0.3, closure: {
-                    self.rootNavController.pushViewController(showViewController, animated: true)
-                })
-            }
-        }
     }
     
     // MARK: - Layout
@@ -76,7 +82,6 @@ class ContainerViewController: UIViewController {
         navImage = UIImageView(image: img!)
         let screenWidth = self.view.frame.width
         navImage.frame = CGRect(x: screenWidth / 3.8, y: screenWidth / 10,  width: screenWidth / 2, height: 25)
-//        navImage.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.65)
         self.view.addSubview(navImage)
     }
 }
