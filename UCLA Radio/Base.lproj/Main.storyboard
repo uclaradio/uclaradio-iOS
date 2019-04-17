@@ -263,10 +263,10 @@ Follow @uclaradio on social media!</string>
             </objects>
             <point key="canvasLocation" x="543" y="494"/>
         </scene>
-        <!--Details-->
+        <!--Notification Details View Controller-->
         <scene sceneID="m7Q-Nj-lco">
             <objects>
-                <tableViewController storyboardIdentifier="notificationDetailsViewController" title="Details" useStoryboardIdentifierAsRestorationIdentifier="YES" id="lai-cr-h7B" customClass="NotificationDetailsViewController" customModule="UCLA_Radio" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="notificationDetailsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="lai-cr-h7B" customClass="NotificationDetailsViewController" customModule="UCLA_Radio" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="AEa-Bc-c7k">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -341,10 +341,10 @@ Follow @uclaradio on social media!</string>
             </objects>
             <point key="canvasLocation" x="1938" y="493"/>
         </scene>
-        <!--Details-->
+        <!--Show View Controller-->
         <scene sceneID="lqw-hP-dFZ">
             <objects>
-                <viewController storyboardIdentifier="showViewController" title="Details" useStoryboardIdentifierAsRestorationIdentifier="YES" id="uJz-dA-P0s" customClass="ShowViewController" customModule="UCLA_Radio" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="showViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="uJz-dA-P0s" customClass="ShowViewController" customModule="UCLA_Radio" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8Fg-Hh-2rh"/>
                         <viewControllerLayoutGuide type="bottom" id="fV5-rs-63c"/>
