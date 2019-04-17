@@ -5,9 +5,9 @@ PODS:
   - FirebaseAnalytics (3.9.0):
     - FirebaseCore (~> 3.6)
     - FirebaseInstanceID (~> 1.0)
-    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
   - FirebaseCore (3.6.0):
-    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
   - FirebaseInstanceID (1.0.10):
     - FirebaseCore (~> 3.6)
   - Google/Analytics (3.1.0):
@@ -17,13 +17,16 @@ PODS:
     - FirebaseAnalytics (~> 3.2)
   - GoogleAnalytics (3.17.0)
   - GoogleToolboxForMac/Defines (2.1.3)
-  - GoogleToolboxForMac/NSData+zlib (2.1.3):
+  - "GoogleToolboxForMac/NSData+zlib (2.1.3)":
     - GoogleToolboxForMac/Defines (= 2.1.3)
   - KRLCollectionViewGridLayout (0.4.1)
   - Presentr (1.3)
   - SDWebImage (3.7.6):
     - SDWebImage/Core (= 3.7.6)
   - SDWebImage/Core (3.7.6)
+  - Socket.IO-Client-Swift (14.0.0):
+    - Starscream (~> 3.0.6)
+  - Starscream (3.0.6)
 
 DEPENDENCIES:
   - Alamofire
@@ -33,6 +36,25 @@ DEPENDENCIES:
   - KRLCollectionViewGridLayout (~> 0.4.1)
   - Presentr
   - SDWebImage (~> 3.7.6)
+  - Socket.IO-Client-Swift (~> 14.0.0)
+  - Starscream (~> 3.0.2)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - ASHorizontalScrollView
+    - DynamicColor
+    - FirebaseAnalytics
+    - FirebaseCore
+    - FirebaseInstanceID
+    - Google
+    - GoogleAnalytics
+    - GoogleToolboxForMac
+    - KRLCollectionViewGridLayout
+    - Presentr
+    - SDWebImage
+    - Socket.IO-Client-Swift
+    - Starscream
 
 SPEC CHECKSUMS:
   Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
@@ -47,7 +69,9 @@ SPEC CHECKSUMS:
   KRLCollectionViewGridLayout: 6363dc7e3d91cf1f97e19ed20846764566659596
   Presentr: 3f0825a42cb32ecd8fc6b6d0b0de87d7d0b42482
   SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
+  Socket.IO-Client-Swift: 21e6a8a23a7d367d5ddfab6cbbd3c679cf3c25d6
+  Starscream: ef3ece99d765eeccb67de105bfa143f929026cf5
 
-PODFILE CHECKSUM: d45f732bb70a8dadc92e8e10b34936c9f259ddce
+PODFILE CHECKSUM: d37e2a61154e938d8dd0c79b50fcda03bb8d70b0
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.3

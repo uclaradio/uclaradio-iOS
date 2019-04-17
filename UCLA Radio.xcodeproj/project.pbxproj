@@ -8,6 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		061295941FB2812700C848CE /* DJPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061295931FB2812700C848CE /* DJPopupViewController.swift */; };
+		780D288521FEC72A00E5F544 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780D288421FEC72A00E5F544 /* ChatView.swift */; };
+		780D723B21F030B1001F2178 /* OriginalContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780D723A21F030B1001F2178 /* OriginalContainer.swift */; };
+		780D723F21F6D804001F2178 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780D723E21F6D804001F2178 /* ChatViewController.swift */; };
+		780D724521F6E25E001F2178 /* ChatAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780D724421F6E25E001F2178 /* ChatAnimator.swift */; };
+		3B8309CC21F6B6FF00125C8C /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8309CB21F6B6FF00125C8C /* MenuBar.swift */; };
+		7842059B21AD12E700BC3C08 /* NowPlayingContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7842059A21AD12E700BC3C08 /* NowPlayingContainerView.swift */; };
+		7842059F21ADFDB200BC3C08 /* MenuNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7842059E21ADFDB200BC3C08 /* MenuNavController.swift */; };
+		78794C472204026200E125FC /* ChatBubbleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78794C462204026200E125FC /* ChatBubbleCell.swift */; };
+		787968812193E4CB0090574B /* MenuPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787968802193E4CB0090574B /* MenuPageViewController.swift */; };
+		78C588812216631A0051A1EA /* ChatBubbleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C588802216631A0051A1EA /* ChatBubbleData.swift */; };
 		80C4FF0BDD1724D747148CEA /* Pods_UCLA_Radio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65514855D8EABCF7CD92BD49 /* Pods_UCLA_Radio.framework */; };
 		832C65E01CD0800200B3479E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832C65DF1CD0800200B3479E /* AppDelegate.swift */; };
 		832C65E21CD0800200B3479E /* NowPlayingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832C65E11CD0800200B3479E /* NowPlayingViewController.swift */; };
@@ -82,9 +92,20 @@
 		061295931FB2812700C848CE /* DJPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DJPopupViewController.swift; sourceTree = "<group>"; };
 		066D42DA202580B100F16F45 /* UCLA_Radio-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UCLA_Radio-Bridging-Header.h"; sourceTree = "<group>"; };
 		30CFB763946769009837003D /* Pods_UCLA_RadioTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UCLA_RadioTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B83098C21F01F6000125C8C /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChatView.swift; path = "UCLA Radio/Custom Elements/ChatView.swift"; sourceTree = SOURCE_ROOT; };
+		3B8309CB21F6B6FF00125C8C /* MenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MenuBar.swift; path = "UCLA Radio/Custom Elements/MenuBar.swift"; sourceTree = SOURCE_ROOT; };
 		3FFD9ADD0DCADD1878E89FDE /* Pods-UCLA Radio.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UCLA Radio.release.xcconfig"; path = "Pods/Target Support Files/Pods-UCLA Radio/Pods-UCLA Radio.release.xcconfig"; sourceTree = "<group>"; };
 		65514855D8EABCF7CD92BD49 /* Pods_UCLA_Radio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UCLA_Radio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DA6C14DE284BA7CD5A4FD5A /* Pods-UCLA Radio.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UCLA Radio.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UCLA Radio/Pods-UCLA Radio.debug.xcconfig"; sourceTree = "<group>"; };
+		780D288421FEC72A00E5F544 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChatView.swift; path = "UCLA Radio/Custom Elements/ChatView.swift"; sourceTree = SOURCE_ROOT; };
+		780D723A21F030B1001F2178 /* OriginalContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OriginalContainer.swift; sourceTree = "<group>"; };
+		780D723E21F6D804001F2178 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChatViewController.swift; path = "UCLA Radio/Custom Elements/ChatViewController.swift"; sourceTree = SOURCE_ROOT; };
+		780D724421F6E25E001F2178 /* ChatAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChatAnimator.swift; path = "UCLA Radio/Custom Elements/ChatAnimator.swift"; sourceTree = SOURCE_ROOT; };
+		7842059A21AD12E700BC3C08 /* NowPlayingContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NowPlayingContainerView.swift; path = "UCLA Radio/Custom Elements/NowPlayingContainerView.swift"; sourceTree = SOURCE_ROOT; };
+		7842059E21ADFDB200BC3C08 /* MenuNavController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MenuNavController.swift; path = "UCLA Radio/Custom Elements/MenuNavController.swift"; sourceTree = SOURCE_ROOT; };
+		78794C462204026200E125FC /* ChatBubbleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChatBubbleCell.swift; path = "UCLA Radio/Custom Elements/ChatBubbleCell.swift"; sourceTree = SOURCE_ROOT; };
+		787968802193E4CB0090574B /* MenuPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuPageViewController.swift; sourceTree = "<group>"; };
+		78C588802216631A0051A1EA /* ChatBubbleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChatBubbleData.swift; path = "UCLA Radio/Custom Elements/ChatBubbleData.swift"; sourceTree = SOURCE_ROOT; };
 		7EDC7C36369CBB202115B29B /* Pods-UCLA RadioTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UCLA RadioTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UCLA RadioTests/Pods-UCLA RadioTests.debug.xcconfig"; sourceTree = "<group>"; };
 		832C65DC1CD0800200B3479E /* UCLA Radio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UCLA Radio.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		832C65DF1CD0800200B3479E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -223,6 +244,7 @@
 				D80C7AA61DF7D92B003375F6 /* NotificationManager.swift */,
 				D865CBB11E0F0C0E008C050E /* AnalyticsManager.swift */,
 				8365ECF61CE9945C001B96BF /* ContainerViewController.swift */,
+				780D723A21F030B1001F2178 /* OriginalContainer.swift */,
 				83C4CC1C1CE25BB900FBA1EC /* Constants.swift */,
 				835CDF971D0818AD00C3213B /* Global.swift */,
 				832C65E31CD0800200B3479E /* Main.storyboard */,
@@ -314,6 +336,7 @@
 				83C28A781D050F3B0096D629 /* Schedule */,
 				835EC1C31DA09C2100599860 /* Events */,
 				83C28A621D025DED0096D629 /* MenuTableViewCell.swift */,
+				787968802193E4CB0090574B /* MenuPageViewController.swift */,
 				8356DDFE1DA043E900B2B63B /* MenuSectionHeaderView.swift */,
 				83C28A631D025DED0096D629 /* MenuViewController.swift */,
 				83C28A6A1D025E500096D629 /* AboutViewController.swift */,
@@ -336,8 +359,17 @@
 			isa = PBXGroup;
 			children = (
 				8365ECF41CE99265001B96BF /* SlidingViewController.swift */,
+				3B83098C21F01F6000125C8C /* ChatView.swift */,
 				83E424791CEECCF700662EDD /* NowPlayingView.swift */,
 				832F7EC81DA19D87001462C6 /* BaseViewController.swift */,
+				7842059A21AD12E700BC3C08 /* NowPlayingContainerView.swift */,
+				7842059E21ADFDB200BC3C08 /* MenuNavController.swift */,
+				780D723E21F6D804001F2178 /* ChatViewController.swift */,
+				780D724421F6E25E001F2178 /* ChatAnimator.swift */,
+				78C588802216631A0051A1EA /* ChatBubbleData.swift */,
+				780D288421FEC72A00E5F544 /* ChatView.swift */,
+				78794C462204026200E125FC /* ChatBubbleCell.swift */,
+				3B8309CB21F6B6FF00125C8C /* MenuBar.swift */,
 			);
 			path = "custom elements";
 			sourceTree = "<group>";
@@ -385,7 +417,6 @@
 				832C65D91CD0800200B3479E /* Frameworks */,
 				832C65DA1CD0800200B3479E /* Resources */,
 				99EB4CE62D2F234E48363279 /* [CP] Embed Pods Frameworks */,
-				296E7CC0708044067E2A801A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -405,7 +436,6 @@
 				832C65ED1CD0800200B3479E /* Frameworks */,
 				832C65EE1CD0800200B3479E /* Resources */,
 				B3A911B5A3E4090E0CB11FB3 /* [CP] Embed Pods Frameworks */,
-				67D3A942959D06C22B39A6E3 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -426,7 +456,6 @@
 				832C65F81CD0800200B3479E /* Frameworks */,
 				832C65F91CD0800200B3479E /* Resources */,
 				EF27F2560B5591FB2827EEFD /* [CP] Embed Pods Frameworks */,
-				ABC2945B784EF4B8D8D957DE /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -450,7 +479,7 @@
 				TargetAttributes = {
 					832C65DB1CD0800200B3479E = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = V4Z45C29H6;
+						DevelopmentTeam = 928WARTLH8;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -526,36 +555,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		296E7CC0708044067E2A801A /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-UCLA Radio/Pods-UCLA Radio-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		67D3A942959D06C22B39A6E3 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-UCLA RadioTests/Pods-UCLA RadioTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		96950FE662F8F4BEDCEFA6AA /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -588,6 +587,8 @@
 				"${BUILT_PRODUCTS_DIR}/KRLCollectionViewGridLayout/KRLCollectionViewGridLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/Presentr/Presentr.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/Socket.IO-Client-Swift/SocketIO.framework",
+				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -598,25 +599,12 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KRLCollectionViewGridLayout.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Presentr.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SocketIO.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-UCLA Radio/Pods-UCLA Radio-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		ABC2945B784EF4B8D8D957DE /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-UCLA RadioUITests/Pods-UCLA RadioUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B3A911B5A3E4090E0CB11FB3 /* [CP] Embed Pods Frameworks */ = {
@@ -700,13 +688,17 @@
 			files = (
 				83C4CC1F1CE25C1500FBA1EC /* UIColor+Hex.swift in Sources */,
 				8356DDFD1DA03A3A00B2B63B /* Giveaway.swift in Sources */,
+				780D723F21F6D804001F2178 /* ChatViewController.swift in Sources */,
+				7842059F21ADFDB200BC3C08 /* MenuNavController.swift in Sources */,
 				83C28A771D02CB980096D629 /* Schedule.swift in Sources */,
 				834A33A31DA4B2A3008155E6 /* EventsInfoHeaderView.swift in Sources */,
 				832F7ECB1DA1D155001462C6 /* EventsHeaderView.swift in Sources */,
+				78C588812216631A0051A1EA /* ChatBubbleData.swift in Sources */,
 				83C28A6D1D025FB10096D629 /* RadioAPI.swift in Sources */,
 				8365ECF71CE9945C001B96BF /* ContainerViewController.swift in Sources */,
 				D80C7AA51DF7D7B0003375F6 /* DateFormatter+ShowDate.swift in Sources */,
 				D80C7AA71DF7D92B003375F6 /* NotificationManager.swift in Sources */,
+				780D724521F6E25E001F2178 /* ChatAnimator.swift in Sources */,
 				832C65E21CD0800200B3479E /* NowPlayingViewController.swift in Sources */,
 				836279271DA88501008C2B1D /* DJCollectionViewCell.swift in Sources */,
 				D865CBB21E0F0C0E008C050E /* AnalyticsManager.swift in Sources */,
@@ -719,23 +711,30 @@
 				832F7EC91DA19D87001462C6 /* BaseViewController.swift in Sources */,
 				833B169F1CE1BD2D00E711F5 /* UIImage+Color.swift in Sources */,
 				837C71561D9F4CD800E5C472 /* TrianglifyView.swift in Sources */,
+				780D723B21F030B1001F2178 /* OriginalContainer.swift in Sources */,
 				8365ECF51CE99265001B96BF /* SlidingViewController.swift in Sources */,
 				83C28A651D025DED0096D629 /* MenuViewController.swift in Sources */,
 				8356DDFF1DA043E900B2B63B /* MenuSectionHeaderView.swift in Sources */,
 				83B381021CE1ABD000BA22FE /* AudioStream.swift in Sources */,
+				7842059B21AD12E700BC3C08 /* NowPlayingContainerView.swift in Sources */,
 				D86773E81E0A2C180014EC0F /* NotificationViewController.swift in Sources */,
 				835CDF981D0818AD00C3213B /* Global.swift in Sources */,
 				83C4CC1D1CE25BB900FBA1EC /* Constants.swift in Sources */,
 				837C71541D9F4CD800E5C472 /* Colorbrewer.swift in Sources */,
+				780D288521FEC72A00E5F544 /* ChatView.swift in Sources */,
 				83C221131E556F1E00DB28AB /* DesignableLabel.swift in Sources */,
 				83E4247A1CEECCF700662EDD /* NowPlayingView.swift in Sources */,
 				83C28A6B1D025E500096D629 /* AboutViewController.swift in Sources */,
+				3B83098D21F01F6000125C8C /* ChatView.swift in Sources */,
+				787968812193E4CB0090574B /* MenuPageViewController.swift in Sources */,
 				83C28A7E1D050FD40096D629 /* ScheduleShowCell.swift in Sources */,
 				83C28A711D0263350096D629 /* DJ.swift in Sources */,
 				D8A9A9801E0DD19B002F8E24 /* NotificationDetailsViewController.swift in Sources */,
+				78794C472204026200E125FC /* ChatBubbleCell.swift in Sources */,
 				83C28A641D025DED0096D629 /* MenuTableViewCell.swift in Sources */,
 				835EC1C71DA0A02D00599860 /* GiveawayTableViewCell.swift in Sources */,
 				836279281DA88501008C2B1D /* DJListViewController.swift in Sources */,
+				3B8309CC21F6B6FF00125C8C /* MenuBar.swift in Sources */,
 				835EC1C51DA09C3700599860 /* EventsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -907,7 +906,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = V4Z45C29H6;
+				DEVELOPMENT_TEAM = 928WARTLH8;
 				INFOPLIST_FILE = "UCLA Radio/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.uclastudentmedia.UCLARadio;
@@ -928,7 +927,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = V4Z45C29H6;
+				DEVELOPMENT_TEAM = 928WARTLH8;
 				INFOPLIST_FILE = "UCLA Radio/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.uclastudentmedia.UCLARadio;
