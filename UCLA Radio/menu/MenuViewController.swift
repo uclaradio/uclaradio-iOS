@@ -162,7 +162,9 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         // table view
         constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|[table]|", options: [], metrics: nil, views: ["table": tableView])
-        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[table]|", options: [], metrics: nil, views: ["table": tableView])
+        
+        let distanceFromNav = navigationController?.navigationBar.frame.height
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:[-(navBar)-[table]|", options: [], metrics: nil, views: ["table": tableView, "navBar": distanceFromNav])
         
         // trianglify view
         constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|[triangles]|", options: [], metrics: nil, views: ["triangles": triangleView])

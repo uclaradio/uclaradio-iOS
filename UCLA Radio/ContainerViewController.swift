@@ -10,9 +10,11 @@ import Foundation
 import UIKit
 import KRLCollectionViewGridLayout
 
-class ContainerViewController: UIViewController{
+class ContainerViewController: UIViewController {
     
+    // Menu
     var rootNavController: UINavigationController!
+    var navImage: UIImageView!
     
     var navImage: UIImageView!
     
@@ -20,40 +22,13 @@ class ContainerViewController: UIViewController{
     
     var chatButton: UIButton!
     
-    var nowPlaying: NowPlayingViewController!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor.black
-
         let menu = MenuPageViewController()
-        
-        
-        rootNavController = UINavigationController(rootViewController: menu)
-        view.addSubview(rootNavController.view)
-        addChildViewController(rootNavController)
-
+        // Mark: - CHAT
         chatViewController = ChatViewController()
-        
-        
-        if let navController = rootNavController {
-            System.clearNavigationBar(forBar: navController.navigationBar)
-            navController.view.backgroundColor = .clear
-        }
-        
 
-//        installChatSlider()
-    
-//        to get rid of hairline
-//        if let navController = rootNavController {
-//            System.clearNavigationBar(forBar: navController.navigationBar)
-//            navController.view.backgroundColor = .clear
-//            navController.navigationBar.setValue(true, forKey: "hidesShadow")
-//        }
-//
-
-        view.addConstraints(preferredConstraints())
         
         let button = UIButton(frame: CGRect(x: 0, y: self.view.frame.size.height-50, width: self.view.frame.width, height: 50))
         button.backgroundColor = Constants.Colors.darkBackground
@@ -63,7 +38,7 @@ class ContainerViewController: UIViewController{
         
         self.view.addSubview(button)
         
-    }
+    } // END VIEWDIDLOAD
     
     @objc func buttonAction(sender: UIButton!) {
         print("Button tapped")
@@ -72,58 +47,49 @@ class ContainerViewController: UIViewController{
         } else {
             self.rootNavController.pushViewController(chatViewController, animated: true)
         }
+      
+        rootNavController = UINavigationController(rootViewController: menu)
+        rootNavController.navigationBar.isTranslucent = true
+        rootNavController.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        view.addSubview(rootNavController.view)
+        addChildViewController(rootNavController)
+        setupCustomNavImage()
+        view.addConstraints(preferredConstraints())
+
     }
-    
-//    func installChatSlider() {
-//        if slider != nil {
-//            return
-//        }
-//        // set up slider view controller (container)
-//        slider = SlidingViewController()
-//        view.addSubview(slider.view)
-//        addChildViewController(slider)
-//        slider.didMove(toParentViewController: self)
-//        view.addConstraints(slider.preferredConstraints())
-//
-//        // set up content (NowPlayingViewController)
-//        if let nowPlaying = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "nowPlaying") as? NowPlayingViewController {
-//            self.nowPlaying = nowPlaying
-//            nowPlaying.actionDelegate = self
-//            slider.addContent(nowPlaying)
-//
-//            // set up slider tab (NowPlayingView)
-//            let tabView = NowPlayingView(canSkipStream: false)
-//            slider.addTabView(tabView)
-//            tabView.backgroundColor = UIColor.black
-//        }
-//    }
     
     override var preferredStatusBarStyle : UIStatusBarStyle {
         return .lightContent
     }
     
-    // MARK: - NowPlayingActionDelegate
-    
-    
-    
-    
     // MARK: - Layout
     
     func preferredConstraints() -> [NSLayoutConstraint] {
+        
         var constraints = [NSLayoutConstraint]()
         
         let metrics = ["tabSpace": NowPlayingContainerView.PreferredHeight]
+        let view = rootNavController.view!
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|-(tabSpace)-[nav]-(tabSpace)-|", options: [], metrics: metrics, views: ["nav": view])
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|[nav]|", options: [], metrics: nil, views: ["nav": view])
+        
         return constraints
     }
     
-    
-    
-    struct System {
-        static func clearNavigationBar(forBar navBar: UINavigationBar) {
-            navBar.setBackgroundImage(UIImage(), for: .default)
-            navBar.shadowImage = UIImage()
-            navBar.isTranslucent = true
-        }
+    private func setupCustomNavImage() {
+        
+        let img = UIImage(named: "uclaradio_banner")
+        navImage = UIImageView(image: img!)
+        let screenWidth = self.view.frame.width
+        navImage.frame = CGRect(x: screenWidth / 3.8, y: screenWidth / 10,  width: screenWidth / 2, height: 25)
+        self.view.addSubview(navImage)
     }
+}
 
+extension UINavigationBar {
+    
+    override open func sizeThatFits(_ size: CGSize) -> CGSize {
+        return CGSize(width: UIScreen.main.bounds.size.width, height: 100.0)
+    }
+    
 }

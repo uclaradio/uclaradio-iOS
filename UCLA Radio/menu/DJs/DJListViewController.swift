@@ -54,7 +54,7 @@ class DJListViewController: BaseViewController, APIFetchDelegate, UICollectionVi
         collectionView.translatesAutoresizingMaskIntoConstraints = false
      
         // spicy
-        collectionView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 141.0).isActive = true
+        collectionView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 119.0).isActive = true
         collectionView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
         collectionView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 0).isActive = true
         collectionView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor, constant: 0).isActive = true

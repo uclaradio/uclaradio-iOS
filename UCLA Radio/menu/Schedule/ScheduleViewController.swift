@@ -22,7 +22,6 @@ class ScheduleViewController: BaseViewController, APIFetchDelegate, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(ScheduleShowCell.self, forCellReuseIdentifier: reuseIdentifier)
@@ -33,7 +32,7 @@ class ScheduleViewController: BaseViewController, APIFetchDelegate, UITableViewD
         tableView.backgroundColor = UIColor.clear
         // spicy
         // try just adding anchor contraints like brian in this viewdidload...not doing both this and preferred constraints
-        tableView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 141.0).isActive = true
+        tableView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 119.0).isActive = true
         tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
         tableView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 0).isActive = true
         tableView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor, constant: 0).isActive = true
