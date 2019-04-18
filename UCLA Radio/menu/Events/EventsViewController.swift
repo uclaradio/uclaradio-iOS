@@ -25,11 +25,6 @@ class EventsViewController: BaseViewController, APIFetchDelegate, UITableViewDat
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = Constants.Colors.lightBlue
-        if let navigationController = navigationController {
-            navigationController.navigationBar.barTintColor = Constants.Colors.reallyDarkBlue
-        }
-        
         tableView.dataSource = self
         tableView.delegate = self
         tableView.separatorStyle = .none
@@ -38,8 +33,19 @@ class EventsViewController: BaseViewController, APIFetchDelegate, UITableViewDat
         tableView.register(EventsInfoHeaderView.self, forHeaderFooterViewReuseIdentifier: infoHeaderReuseIdentifier)
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        // spicy
+        // try just adding anchor contraints like brian in this viewdidload...not doing both this and preferred constraints
+        tableView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 141.0).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        tableView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 0).isActive = true
+        tableView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor, constant: 0).isActive = true
+        tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0).isActive = true
+        tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 0).isActive = true
         
-        view.addConstraints(preferredConstraints())
+        //set background image of tableView
+        tableView.backgroundColor = UIColor(white: 1, alpha: 0.0)
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {

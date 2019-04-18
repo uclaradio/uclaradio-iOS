@@ -45,7 +45,6 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         super.viewDidLoad()
         
         view.backgroundColor = UIColor.clear
-        
         triangleView = TrianglifyView()
         view.addSubview(triangleView)
         triangleView.translatesAutoresizingMaskIntoConstraints = false
@@ -64,6 +63,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tableView.separatorStyle = .none
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        
         
         view.addConstraints(preferredConstraints())
     }
@@ -162,7 +162,9 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         // table view
         constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|[table]|", options: [], metrics: nil, views: ["table": tableView])
-        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[table]|", options: [], metrics: nil, views: ["table": tableView])
+        
+        let distanceFromNav = navigationController?.navigationBar.frame.height
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:[-(navBar)-[table]|", options: [], metrics: nil, views: ["table": tableView, "navBar": distanceFromNav])
         
         // trianglify view
         constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|[triangles]|", options: [], metrics: nil, views: ["triangles": triangleView])
