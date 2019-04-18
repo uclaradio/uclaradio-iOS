@@ -8,11 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		061295941FB2812700C848CE /* DJPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061295931FB2812700C848CE /* DJPopupViewController.swift */; };
-		780D288521FEC72A00E5F544 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780D288421FEC72A00E5F544 /* ChatView.swift */; };
+		3B82D4892268494E0076FBED /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B82D4882268494E0076FBED /* ChatView.swift */; };
+		3B8309CC21F6B6FF00125C8C /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8309CB21F6B6FF00125C8C /* MenuBar.swift */; };
 		780D723B21F030B1001F2178 /* OriginalContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780D723A21F030B1001F2178 /* OriginalContainer.swift */; };
 		780D723F21F6D804001F2178 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780D723E21F6D804001F2178 /* ChatViewController.swift */; };
 		780D724521F6E25E001F2178 /* ChatAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780D724421F6E25E001F2178 /* ChatAnimator.swift */; };
-		3B8309CC21F6B6FF00125C8C /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8309CB21F6B6FF00125C8C /* MenuBar.swift */; };
 		7842059B21AD12E700BC3C08 /* NowPlayingContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7842059A21AD12E700BC3C08 /* NowPlayingContainerView.swift */; };
 		7842059F21ADFDB200BC3C08 /* MenuNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7842059E21ADFDB200BC3C08 /* MenuNavController.swift */; };
 		78794C472204026200E125FC /* ChatBubbleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78794C462204026200E125FC /* ChatBubbleCell.swift */; };
@@ -92,12 +92,11 @@
 		061295931FB2812700C848CE /* DJPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DJPopupViewController.swift; sourceTree = "<group>"; };
 		066D42DA202580B100F16F45 /* UCLA_Radio-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UCLA_Radio-Bridging-Header.h"; sourceTree = "<group>"; };
 		30CFB763946769009837003D /* Pods_UCLA_RadioTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UCLA_RadioTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3B83098C21F01F6000125C8C /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChatView.swift; path = "UCLA Radio/Custom Elements/ChatView.swift"; sourceTree = SOURCE_ROOT; };
+		3B82D4882268494E0076FBED /* ChatView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatView.swift; path = ../../../../.Trash/ChatView.swift; sourceTree = "<group>"; };
 		3B8309CB21F6B6FF00125C8C /* MenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MenuBar.swift; path = "UCLA Radio/Custom Elements/MenuBar.swift"; sourceTree = SOURCE_ROOT; };
 		3FFD9ADD0DCADD1878E89FDE /* Pods-UCLA Radio.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UCLA Radio.release.xcconfig"; path = "Pods/Target Support Files/Pods-UCLA Radio/Pods-UCLA Radio.release.xcconfig"; sourceTree = "<group>"; };
 		65514855D8EABCF7CD92BD49 /* Pods_UCLA_Radio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UCLA_Radio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DA6C14DE284BA7CD5A4FD5A /* Pods-UCLA Radio.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UCLA Radio.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UCLA Radio/Pods-UCLA Radio.debug.xcconfig"; sourceTree = "<group>"; };
-		780D288421FEC72A00E5F544 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChatView.swift; path = "UCLA Radio/Custom Elements/ChatView.swift"; sourceTree = SOURCE_ROOT; };
 		780D723A21F030B1001F2178 /* OriginalContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OriginalContainer.swift; sourceTree = "<group>"; };
 		780D723E21F6D804001F2178 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChatViewController.swift; path = "UCLA Radio/Custom Elements/ChatViewController.swift"; sourceTree = SOURCE_ROOT; };
 		780D724421F6E25E001F2178 /* ChatAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChatAnimator.swift; path = "UCLA Radio/Custom Elements/ChatAnimator.swift"; sourceTree = SOURCE_ROOT; };
@@ -359,7 +358,7 @@
 			isa = PBXGroup;
 			children = (
 				8365ECF41CE99265001B96BF /* SlidingViewController.swift */,
-				3B83098C21F01F6000125C8C /* ChatView.swift */,
+				3B82D4882268494E0076FBED /* ChatView.swift */,
 				83E424791CEECCF700662EDD /* NowPlayingView.swift */,
 				832F7EC81DA19D87001462C6 /* BaseViewController.swift */,
 				7842059A21AD12E700BC3C08 /* NowPlayingContainerView.swift */,
@@ -367,7 +366,6 @@
 				780D723E21F6D804001F2178 /* ChatViewController.swift */,
 				780D724421F6E25E001F2178 /* ChatAnimator.swift */,
 				78C588802216631A0051A1EA /* ChatBubbleData.swift */,
-				780D288421FEC72A00E5F544 /* ChatView.swift */,
 				78794C462204026200E125FC /* ChatBubbleCell.swift */,
 				3B8309CB21F6B6FF00125C8C /* MenuBar.swift */,
 			);
@@ -697,6 +695,7 @@
 				83C28A6D1D025FB10096D629 /* RadioAPI.swift in Sources */,
 				8365ECF71CE9945C001B96BF /* ContainerViewController.swift in Sources */,
 				D80C7AA51DF7D7B0003375F6 /* DateFormatter+ShowDate.swift in Sources */,
+				3B82D4892268494E0076FBED /* ChatView.swift in Sources */,
 				D80C7AA71DF7D92B003375F6 /* NotificationManager.swift in Sources */,
 				780D724521F6E25E001F2178 /* ChatAnimator.swift in Sources */,
 				832C65E21CD0800200B3479E /* NowPlayingViewController.swift in Sources */,
@@ -721,11 +720,9 @@
 				835CDF981D0818AD00C3213B /* Global.swift in Sources */,
 				83C4CC1D1CE25BB900FBA1EC /* Constants.swift in Sources */,
 				837C71541D9F4CD800E5C472 /* Colorbrewer.swift in Sources */,
-				780D288521FEC72A00E5F544 /* ChatView.swift in Sources */,
 				83C221131E556F1E00DB28AB /* DesignableLabel.swift in Sources */,
 				83E4247A1CEECCF700662EDD /* NowPlayingView.swift in Sources */,
 				83C28A6B1D025E500096D629 /* AboutViewController.swift in Sources */,
-				3B83098D21F01F6000125C8C /* ChatView.swift in Sources */,
 				787968812193E4CB0090574B /* MenuPageViewController.swift in Sources */,
 				83C28A7E1D050FD40096D629 /* ScheduleShowCell.swift in Sources */,
 				83C28A711D0263350096D629 /* DJ.swift in Sources */,

@@ -15,20 +15,24 @@ class ContainerViewController: UIViewController {
     // Menu
     var rootNavController: UINavigationController!
     var navImage: UIImageView!
-    
-    var navImage: UIImageView!
-    
     var chatViewController: ChatViewController!
-    
     var chatButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let menu = MenuPageViewController()
+        
+        rootNavController = UINavigationController(rootViewController: menu)
+        rootNavController.navigationBar.isTranslucent = true
+        rootNavController.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        view.addSubview(rootNavController.view)
+        addChildViewController(rootNavController)
+        setupCustomNavImage()
+        view.addConstraints(preferredConstraints())
+        
         // Mark: - CHAT
         chatViewController = ChatViewController()
-
         
         let button = UIButton(frame: CGRect(x: 0, y: self.view.frame.size.height-50, width: self.view.frame.width, height: 50))
         button.backgroundColor = Constants.Colors.darkBackground
@@ -40,6 +44,7 @@ class ContainerViewController: UIViewController {
         
     } // END VIEWDIDLOAD
     
+    // CHAT BUTTON
     @objc func buttonAction(sender: UIButton!) {
         print("Button tapped")
         if chatViewController.viewIfLoaded?.window != nil {
@@ -47,15 +52,6 @@ class ContainerViewController: UIViewController {
         } else {
             self.rootNavController.pushViewController(chatViewController, animated: true)
         }
-      
-        rootNavController = UINavigationController(rootViewController: menu)
-        rootNavController.navigationBar.isTranslucent = true
-        rootNavController.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        view.addSubview(rootNavController.view)
-        addChildViewController(rootNavController)
-        setupCustomNavImage()
-        view.addConstraints(preferredConstraints())
-
     }
     
     override var preferredStatusBarStyle : UIStatusBarStyle {
