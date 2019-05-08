@@ -30,6 +30,8 @@ class ChatViewController: UIViewController, UIViewControllerTransitioningDelegat
         
         //self.transitioningDelegate = self
         //navigationController?.delegate = self
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
     func navigationController(
@@ -41,6 +43,21 @@ class ChatViewController: UIViewController, UIViewControllerTransitioningDelegat
         transition.popStyle = (operation == .push)
         //transition.pushStyle = (operation == .push)
         return transition
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0 {
+                self.view.frame.origin.y -= keyboardSize.height+200
+                //self.chatView.chatBox.frame.minY
+            }
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
+        }
     }
     
 }

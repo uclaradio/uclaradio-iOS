@@ -12,7 +12,7 @@ import UIKit
 class NowPlayingContainerView: SliderTabView {
     
     static let PreferredHeight: CGFloat = 60
-    static let ButtonSize: CGFloat = 110
+    static let ButtonSize: CGFloat = 90
     static let CallButtonSize: CGFloat = 50
     static let ItemSpacing: CGFloat = 15
     
@@ -50,7 +50,7 @@ class NowPlayingContainerView: SliderTabView {
         playButton = UIButton(type: .custom)
         playButton.tintColor = UIColor.white
         playButton.contentMode = .scaleAspectFit
-        playButton.imageEdgeInsets = UIEdgeInsets(top: 35, left: 35, bottom: 35, right: 35)
+        playButton.imageEdgeInsets = UIEdgeInsets(top: 25, left: 25, bottom: 25, right: 25)
         playButton.translatesAutoresizingMaskIntoConstraints = false
         playButton.addTarget(self, action: #selector(hitPlay), for: .touchUpInside)
         playButton.backgroundColor = Constants.Colors.gold
@@ -110,7 +110,7 @@ class NowPlayingContainerView: SliderTabView {
     }
     
     convenience init(canSkipStream: Bool) {
-        self.init(frame: CGRect(x: 0, y: 0, width: 400, height: NowPlayingView.PreferredHeight))
+        self.init(frame: CGRect(x: 0, y: 0, width: 400, height: NowPlayingContainerView.PreferredHeight))
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -194,14 +194,14 @@ class NowPlayingContainerView: SliderTabView {
         
         //specify the metrics for our layout
         let metrics = [
-            "item": NowPlayingView.ItemSpacing,
-            "button": NowPlayingView.ButtonSize,
-            "noButton": (NowPlayingView.ButtonSize + 2*NowPlayingView.ItemSpacing)]
+            "item": NowPlayingContainerView.ItemSpacing,
+            "button": NowPlayingContainerView.ButtonSize,
+            "noButton": (NowPlayingContainerView.ButtonSize + 2*NowPlayingContainerView.ItemSpacing)]
         
         
         
         //Use visual format language magic to make autolayout do its thing
-        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|-[play(button)]-(110)-|", options: [], metrics: metrics, views: ["play": playButton, "image": imageView])
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|-[play(button)]-(130)-|", options: [], metrics: metrics, views: ["play": playButton, "image": imageView, "title": titleLabel])
         constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-[image]-|", options: [], metrics: metrics, views: ["image": imageContainer])
         constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-[title]-|", options: [], metrics: metrics, views: ["title": titleLabel])
         constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-(30)-[callButton]-[play(button)]-[onAirButton]-(30)-|", options: [], metrics: metrics, views: ["callButton": callButton, "play": playButton, "onAirButton": onAirButton])
@@ -216,7 +216,7 @@ class NowPlayingContainerView: SliderTabView {
         
         //specify constraints for the titleLabel, we want it to always be centered along the x-axis and right above the playButton
         constraints.append(NSLayoutConstraint(item: titleLabel, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1.0, constant: 1.0))
-        constraints.append(NSLayoutConstraint(item: titleLabel, attribute: .bottom, relatedBy: .equal, toItem: playButton, attribute: .top, multiplier: 1.0, constant: 1.0))
+        constraints.append(NSLayoutConstraint(item: titleLabel, attribute: .bottom, relatedBy: .equal, toItem: playButton, attribute: .top, multiplier: 1.0, constant: -5.0))
         
         //set the size of the call button and on air button
         constraints.append(NSLayoutConstraint(item: onAirButton, attribute: .width, relatedBy: .equal, toItem: playButton, attribute: .width, multiplier: 0.5, constant: 1.0))
