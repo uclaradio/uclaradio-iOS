@@ -12,7 +12,7 @@ import UIKit
 class NowPlayingContainerView: SliderTabView {
     
     static let PreferredHeight: CGFloat = 60
-    static let ButtonSize: CGFloat = 90
+    static let ButtonSize: CGFloat = 110
     static let CallButtonSize: CGFloat = 50
     static let ItemSpacing: CGFloat = 15
     

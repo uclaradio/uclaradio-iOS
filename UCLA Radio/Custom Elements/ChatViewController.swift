@@ -28,8 +28,6 @@ class ChatViewController: UIViewController, UIViewControllerTransitioningDelegat
         
         self.view.addSubview(chatView)
         
-        //self.transitioningDelegate = self
-        //navigationController?.delegate = self
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
@@ -41,7 +39,6 @@ class ChatViewController: UIViewController, UIViewControllerTransitioningDelegat
         to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         
         transition.popStyle = (operation == .push)
-        //transition.pushStyle = (operation == .push)
         return transition
     }
     
@@ -49,7 +46,6 @@ class ChatViewController: UIViewController, UIViewControllerTransitioningDelegat
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y == 0 {
                 self.view.frame.origin.y -= keyboardSize.height+200
-                //self.chatView.chatBox.frame.minY
             }
         }
     }
