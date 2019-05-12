@@ -60,6 +60,7 @@ class ChatView: UIView, UITextViewDelegate, UITableViewDelegate, UITableViewData
         //This line flips the y-axis of our table view, basically flipping it upside down.
         //We do this because it allows us to have chat bubbles appear from the bottom up, not up to bottom.
         tableView.transform = CGAffineTransform(scaleX: 1, y: -1)
+        tableView.allowsSelection = false
         
         addSubview(chatBox)
         addSubview(tableView)
@@ -90,8 +91,6 @@ class ChatView: UIView, UITextViewDelegate, UITableViewDelegate, UITableViewData
     
     @objc func sendButtonAction(sender: UIButton!) {
         
-        //print("button pressed!!")
-        //self.socket.emit("add user")
         if(self.username != "DEFAULT" && chatBox.text != ""){
             let messageText: String = chatBox.text
             let currentTime: String = getCurrentTime()
@@ -104,7 +103,6 @@ class ChatView: UIView, UITextViewDelegate, UITableViewDelegate, UITableViewData
             
             self.socket.emit("new message", jsonMessage)
             
-            //pushBubble(bubble: newMessage)
             chatBox.text = ""
         }
         
@@ -123,7 +121,7 @@ class ChatView: UIView, UITextViewDelegate, UITableViewDelegate, UITableViewData
         if textView.text.isEmpty {
             textView.text = "Write a message"
             textView.textColor = UIColor.lightGray
-            textView.resignFirstResponder()
+            //textView.resignFirstResponder()
         }
     }
     
