@@ -17,30 +17,14 @@ class ChatAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     var presenting = true
     var originFrame = CGRect.zero
     var popStyle: Bool = false
-    //var pushStyle: Bool = false
     
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return duration
     }
     
+    //unused for now but required by the UIViewControllerAnimatedTransitioning protocol
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-        let containerView = transitionContext.containerView
         
-        let toView = transitionContext.view(forKey: .to)!
-        
-//        containerView.addSubview(toView)
-//        toView.bounds = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
-//        UIView.animate(withDuration: duration,
-//                       animations: {
-//                        
-//                        toView.bounds = CGRect(x: 0, y: UIScreen.main.bounds.size.height, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
-//        },
-//                       completion: { _ in
-//                        transitionContext.completeTransition(true)
-//        }
-//        )
-        
-        print("animation loaded")
     }
 
 }
