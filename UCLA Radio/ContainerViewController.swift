@@ -46,7 +46,7 @@ class ContainerViewController: UIViewController {
     
     // CHAT BUTTON
     @objc func buttonAction(sender: UIButton!) {
-        print("Button tapped")
+        
         if chatViewController.viewIfLoaded?.window != nil {
             //view controller is visible
         } else {

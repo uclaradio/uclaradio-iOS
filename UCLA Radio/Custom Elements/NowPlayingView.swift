@@ -12,7 +12,7 @@ import UIKit
 class NowPlayingView: SliderTabView {
     
     static let PreferredHeight: CGFloat = 60
-    static let ButtonSize: CGFloat = 110
+    static let ButtonSize: CGFloat = 90
     static let CallButtonSize: CGFloat = 50
     static let ItemSpacing: CGFloat = 15
     
@@ -197,7 +197,7 @@ class NowPlayingView: SliderTabView {
         constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-[title]-|", options: [], metrics: metrics, views: ["title": titleLabel])
         constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-[callButton]-[play(button)]-[onAirButton]-|", options: [], metrics: metrics, views: ["callButton": callButton, "play": playButton, "onAirButton": onAirButton])
         // Vertical
-        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|-(30)-[play(button)]-[title]-|", options: [], metrics: metrics, views: ["play": playButton, "title": titleLabel])
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|-[play(button)]-(50)-|", options: [], metrics: metrics, views: ["play": playButton, "title": titleLabel])
         
         // title & subtitle labels
         constraints.append(NSLayoutConstraint(item: titleLabel, attribute: .centerY, relatedBy: .equal, toItem: containerView, attribute: .top, multiplier: 1.0, constant: 1))

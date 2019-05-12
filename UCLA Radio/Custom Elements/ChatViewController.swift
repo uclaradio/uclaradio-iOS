@@ -28,8 +28,12 @@ class ChatViewController: UIViewController, UIViewControllerTransitioningDelegat
         
         self.view.addSubview(chatView)
         
-        //self.transitioningDelegate = self
-        //navigationController?.delegate = self
+        //this line of code makes the chatbox lose focus when we tap outside of it and also makes the
+        //keyboard go away when the chatbox loses focus
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
     func navigationController(
@@ -39,8 +43,21 @@ class ChatViewController: UIViewController, UIViewControllerTransitioningDelegat
         to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         
         transition.popStyle = (operation == .push)
-        //transition.pushStyle = (operation == .push)
         return transition
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0 {
+                self.view.frame.origin.y -= keyboardSize.height
+            }
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
+        }
     }
     
 }

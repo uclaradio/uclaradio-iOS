@@ -10,7 +10,6 @@
 		061295941FB2812700C848CE /* DJPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061295931FB2812700C848CE /* DJPopupViewController.swift */; };
 		3B82D48B22684FB50076FBED /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B82D48A22684FB50076FBED /* ChatView.swift */; };
 		3B8309CC21F6B6FF00125C8C /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8309CB21F6B6FF00125C8C /* MenuBar.swift */; };
-		780D723B21F030B1001F2178 /* OriginalContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780D723A21F030B1001F2178 /* OriginalContainer.swift */; };
 		780D723F21F6D804001F2178 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780D723E21F6D804001F2178 /* ChatViewController.swift */; };
 		780D724521F6E25E001F2178 /* ChatAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780D724421F6E25E001F2178 /* ChatAnimator.swift */; };
 		7842059B21AD12E700BC3C08 /* NowPlayingContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7842059A21AD12E700BC3C08 /* NowPlayingContainerView.swift */; };
@@ -57,7 +56,6 @@
 		83C28A7E1D050FD40096D629 /* ScheduleShowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C28A7D1D050FD40096D629 /* ScheduleShowCell.swift */; };
 		83C4CC1D1CE25BB900FBA1EC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C4CC1C1CE25BB900FBA1EC /* Constants.swift */; };
 		83C4CC1F1CE25C1500FBA1EC /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C4CC1E1CE25C1500FBA1EC /* UIColor+Hex.swift */; };
-		83E4247A1CEECCF700662EDD /* NowPlayingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E424791CEECCF700662EDD /* NowPlayingView.swift */; };
 		A0B978A4559347E3173FC317 /* Pods_UCLA_RadioTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30CFB763946769009837003D /* Pods_UCLA_RadioTests.framework */; };
 		D80859121E552819007BD3FF /* apercu_bold-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D808590E1E552819007BD3FF /* apercu_bold-webfont.ttf */; };
 		D80859131E552819007BD3FF /* apercu_light-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D808590F1E552819007BD3FF /* apercu_light-webfont.ttf */; };
@@ -97,7 +95,6 @@
 		3FFD9ADD0DCADD1878E89FDE /* Pods-UCLA Radio.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UCLA Radio.release.xcconfig"; path = "Pods/Target Support Files/Pods-UCLA Radio/Pods-UCLA Radio.release.xcconfig"; sourceTree = "<group>"; };
 		65514855D8EABCF7CD92BD49 /* Pods_UCLA_Radio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UCLA_Radio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DA6C14DE284BA7CD5A4FD5A /* Pods-UCLA Radio.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UCLA Radio.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UCLA Radio/Pods-UCLA Radio.debug.xcconfig"; sourceTree = "<group>"; };
-		780D723A21F030B1001F2178 /* OriginalContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OriginalContainer.swift; sourceTree = "<group>"; };
 		780D723E21F6D804001F2178 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChatViewController.swift; path = "UCLA Radio/Custom Elements/ChatViewController.swift"; sourceTree = SOURCE_ROOT; };
 		780D724421F6E25E001F2178 /* ChatAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChatAnimator.swift; path = "UCLA Radio/Custom Elements/ChatAnimator.swift"; sourceTree = SOURCE_ROOT; };
 		7842059A21AD12E700BC3C08 /* NowPlayingContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NowPlayingContainerView.swift; path = "UCLA Radio/Custom Elements/NowPlayingContainerView.swift"; sourceTree = SOURCE_ROOT; };
@@ -150,7 +147,6 @@
 		83C28A7D1D050FD40096D629 /* ScheduleShowCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleShowCell.swift; sourceTree = "<group>"; };
 		83C4CC1C1CE25BB900FBA1EC /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		83C4CC1E1CE25C1500FBA1EC /* UIColor+Hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
-		83E424791CEECCF700662EDD /* NowPlayingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NowPlayingView.swift; sourceTree = "<group>"; };
 		9499A0A300738321534504C1 /* Pods-UCLA RadioUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UCLA RadioUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UCLA RadioUITests/Pods-UCLA RadioUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		A16D1681F2B525604222C9D6 /* Pods-UCLA RadioTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UCLA RadioTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-UCLA RadioTests/Pods-UCLA RadioTests.release.xcconfig"; sourceTree = "<group>"; };
 		D808590E1E552819007BD3FF /* apercu_bold-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "apercu_bold-webfont.ttf"; sourceTree = "<group>"; };
@@ -243,7 +239,6 @@
 				D80C7AA61DF7D92B003375F6 /* NotificationManager.swift */,
 				D865CBB11E0F0C0E008C050E /* AnalyticsManager.swift */,
 				8365ECF61CE9945C001B96BF /* ContainerViewController.swift */,
-				780D723A21F030B1001F2178 /* OriginalContainer.swift */,
 				83C4CC1C1CE25BB900FBA1EC /* Constants.swift */,
 				835CDF971D0818AD00C3213B /* Global.swift */,
 				832C65E31CD0800200B3479E /* Main.storyboard */,
@@ -358,7 +353,6 @@
 			isa = PBXGroup;
 			children = (
 				8365ECF41CE99265001B96BF /* SlidingViewController.swift */,
-				83E424791CEECCF700662EDD /* NowPlayingView.swift */,
 				832F7EC81DA19D87001462C6 /* BaseViewController.swift */,
 				3B82D48A22684FB50076FBED /* ChatView.swift */,
 				7842059A21AD12E700BC3C08 /* NowPlayingContainerView.swift */,
@@ -505,6 +499,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -709,7 +704,6 @@
 				832F7EC91DA19D87001462C6 /* BaseViewController.swift in Sources */,
 				833B169F1CE1BD2D00E711F5 /* UIImage+Color.swift in Sources */,
 				837C71561D9F4CD800E5C472 /* TrianglifyView.swift in Sources */,
-				780D723B21F030B1001F2178 /* OriginalContainer.swift in Sources */,
 				8365ECF51CE99265001B96BF /* SlidingViewController.swift in Sources */,
 				83C28A651D025DED0096D629 /* MenuViewController.swift in Sources */,
 				8356DDFF1DA043E900B2B63B /* MenuSectionHeaderView.swift in Sources */,
@@ -720,7 +714,6 @@
 				83C4CC1D1CE25BB900FBA1EC /* Constants.swift in Sources */,
 				837C71541D9F4CD800E5C472 /* Colorbrewer.swift in Sources */,
 				83C221131E556F1E00DB28AB /* DesignableLabel.swift in Sources */,
-				83E4247A1CEECCF700662EDD /* NowPlayingView.swift in Sources */,
 				83C28A6B1D025E500096D629 /* AboutViewController.swift in Sources */,
 				787968812193E4CB0090574B /* MenuPageViewController.swift in Sources */,
 				83C28A7E1D050FD40096D629 /* ScheduleShowCell.swift in Sources */,
