@@ -12,7 +12,7 @@ import MediaPlayer
 import SDWebImage
 
 // will be overriden by api at uclaradio.com/api/streamurl
-fileprivate let DefaultStreamURL = "http://uclaradio.com:8000/listen"
+fileprivate let DefaultStreamURL = "https://uclaradio.com/stream/listen"
 
 class AudioStream: NSObject, APIFetchDelegate {
     
